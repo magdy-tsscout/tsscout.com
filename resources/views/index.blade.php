@@ -16,6 +16,7 @@
 @endsection
 
 @section('content')
+<!-- this is CI/CD publish test -->
     <div class="container">
         <div class="con-left">
             <div class="left-column">
