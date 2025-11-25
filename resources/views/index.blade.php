@@ -16,7 +16,6 @@
 @endsection
 
 @section('content')
-<!-- test aya -->
     <div class="container">
         <div class="con-left">
             <div class="left-column">
