@@ -1,0 +1,989 @@
+/* General Styles */
+body {
+    font-family: Arial, sans-serif;
+    line-height: 1.6;
+    margin: 0;
+    padding: 0;
+    color: #0F1A27;
+}
+
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 20px;
+}
+
+.title {
+    font-size: 60px;
+    text-align: center;
+    margin-top: 20px;
+    margin-bottom: 20px;
+}
+ 
+
+.privacy1 {
+    font-weight: bold;
+    color: #0F1A27;
+    font-size: 30px;
+    margin-top: 20px;
+}
+
+p {
+    margin: 0 0 15px;
+    color: #0F1A27;
+    
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    .container {
+        padding: 20px;
+    }
+    
+    .title {
+        font-size: 30px;
+        font-weight: bold;
+    }
+    
+    .content {
+        padding: 0 10px;
+    }
+}
+
+
+
+/* Reset default margin and padding */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+/* Basic styling for the container */
+.con-left {
+  display: flex;
+  flex-wrap: wrap;
+}
+
+/* Style for left column */
+.left-column {
+  flex: 1;
+  padding: 20px;
+ 
+}
+
+/* Style for right column */
+.right-column {
+  flex: 1;
+  display: flex;
+  justify-content: center; /* Center aligns the image horizontally */
+  align-items: center; /* Center aligns the image vertically */
+}
+
+ 
+  
+  .left-column, .right-column {
+    flex: 1; /* Each column takes full width */
+  }
+
+
+/* Reset default margin and padding */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+/* Basic styling for the custom-container */
+.custom-container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 20px;
+}
+
+.custom-title {
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+.custom-title h1 {
+  font-size: 2em;
+}
+
+.custom-row {
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.custom-column {
+  flex: 1;
+  padding: 10px;
+}
+
+.custom-box {
+  background-color:#f2f6fb;
+  border-radius: 10px;
+  padding: 20px;
+  border: 1px solid white;
+}
+
+.image-wrapper {
+  width: 65px;
+  height: 65px;
+  
+  border-radius: 10px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-bottom: 10px; /* Add space below */
+}
+
+.image-wrapper img {
+  width: 55px;
+  height: 55px;
+  object-fit: cover;
+  border-radius: 10px;
+}
+
+.custom-content {
+  margin-top: 10px;
+}
+
+.custom-content h4, .custom-content p {
+  text-align: left; /* Align text to the left */
+  margin: 0;
+}
+.button-container {
+  display: flex;
+  justify-content: center;
+  margin-top: 20px;
+}
+
+.btn-default {
+  background: var(--primary-500) 0% 0% no-repeat padding-box;
+  border: 1px solid var(--primary-500);
+  background: #3545D6 0% 0% no-repeat padding-box;
+  border: 1px solid #3545D6;
+  border-radius: 8px;
+  opacity: 1;
+  color: white;
+  font-size: 16px;
+}
+
+@media (max-width: 768px) {
+  .custom-column {
+    flex: 100%; /* Each column takes full width on smaller screens */
+  }
+}
+
+
+   /* Custom CSS */
+.section-title {
+    color: #0F1A27;
+    font-weight: bold;
+    font-size: 22px;
+}
+
+.section-subtitle, .section-paragraph {
+    color: #1E3F5B;
+    font-weight: bold;
+}
+
+.icon {
+    width: 70px; /* Adjust the width of the SVGs */
+    margin-right: 1rem; /* Space between icon and text */
+    display: flex;
+    align-items: center;
+
+}
+
+.my-centered-title {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+    .header {
+    color: #1E3F5B; /* Text color */
+    text-align: center; /* Center the text */
+    margin: 0; /* Remove default margin */
+    padding: 15px 20px; /* Add padding for spacing */
+    font-size: 50px; /* Text size */
+     font-weight: 600; /* Font weight */
+    line-height: normal;
+    width: 100%; /* Full width */
+    z-index: 1000; /* Ensure it stays above other content */
+      max-width: 840px; /* Limit the width to control line breaks */
+    margin-left: auto; /* Center horizontally */
+    margin-right: auto; /* Center horizontally */
+ }
+
+   .header2 {
+    color: #1E3F5B; /* Text color */
+    text-align: center; /* Center the text */
+    margin: 0; /* Remove default margin */
+    padding: 15px 20px; /* Add padding for spacing */
+    font-size: 20px; /* Text size */
+    font-family: 'Montserrat-Arabic'; /* Font style */
+    font-weight: 400; /* Font weight */
+    line-height: normal;
+    width: 100%; /* Full width */
+    z-index: 1000; /* Ensure it stays above other content */
+      max-width: 840px; /* Limit the width to control line breaks */
+    margin-left: auto; /* Center horizontally */
+    margin-right: auto; /* Center horizontally */
+ }
+
+ .faq-section {
+    padding: 0px 0px !important;
+}
+
+
+        /* Responsive  */
+@media (max-width: 768px) {
+   h1{
+    font-size: 22px !important;
+   }
+   h2,h3,h4,h5{
+    font-size: 20px !important;
+   }
+  
+   p{
+    font-size: 16px !important;
+   }
+
+   } 
+
+   .accordion-header .accordion-button {
+
+     font-size: 18px !important;
+
+   }
+
+   @media (min-width: 992px) {
+    .col-lg-3 {
+        flex: 0 0 auto;
+        width: 20%;
+    }
+}
+.underline {
+  position: relative;
+  display: inline-block;
+}
+
+.underline::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  bottom: -5px; /* Adjust this to move the line closer or further from the text */
+  width: 100%;
+  height: 4px; /* Adjust the thickness of the underline */
+  background: linear-gradient(to right, transparent 10%, #CBF36D 50%, transparent 90%);
+  border-radius: 50px; /* Adjust this value to control the curvature */
+}
+
+
+ 
+
+@media (max-width: 768px) {
+    .con-left {
+        flex-direction: column;
+        text-align: center;
+    }
+
+    .left-column, .right-column {
+        padding: 10px;
+    }
+
+    .left-column h2 {
+        font-size: 3rem; /* Adjust font size for mobile */
+    }
+}
+
+.clients-testimonials{
+    background: none;
+}
+
+
+.page-header {
+  padding: 0px 0 !important;
+}
+.latest-news {
+background: none !important;
+}
+
+.options-wrapper {
+  display: flex;
+  justify-content: center;
+  width: 100%;
+  padding-bottom: 15px;
+}
+
+.options-container {
+  margin-top: 20px;
+  background-color: #cdd1fa;
+  padding: 10px;
+  border-radius: 10px;
+  display: inline-flex;
+  justify-content: center;
+}
+
+.option {
+  margin: 0 10px;
+  padding: 10px 25px;
+  border-radius: 30px;
+  cursor: pointer;
+  font-weight: 500;
+  font-size: 18px;
+  cursor: pointer;
+}
+.option.selected {
+background-color: #1E3F5B;
+color: white;
+}
+
+.option:hover {
+background-color: #1E3F5B;
+color: white;
+}
+.post-item-body {
+ text-align: left !important;
+}
+h2{
+font-family: 'Montserrat-Arabic';
+font-size: 20p;
+font-weight: bold;
+}
+.page-header{
+  background: none;
+}
+.page-header::before {
+
+  background-image: none;
+}
+
+.partners-logo {
+  background: none;
+}
+.section-row {
+  margin-bottom: 10px;
+}
+.section-title h1, .section-title h2 {
+  font-size: 50px;
+}
+
+/* Center the section title */
+.section-title {
+  text-align: center; /* Center the text horizontally */
+}
+
+/* Additional styling for h2 */
+.section-title h2 {
+  font-size: 22px; /* Adjust font size as needed */
+  font-weight: bold;
+  margin: 0 auto; /* Center the element with auto margins */
+  display: inline-block; /* Ensures h2 width is adjusted to its content */
+}
+
+.about-us {
+   padding: 0px 0px; 
+}
+.exclusive-partners {
+  padding: 30px 0;
+}
+
+@media (max-width: 768px) {
+  p {
+      font-size: 14px !important;
+  }
+}
+
+.post-item-body h2 {
+  display: block;
+  line-height: 1.6em;
+  font-size: 18px;
+  padding-top: 15px;
+}
+
+
+/* Centering the Latest News Section */
+.latest-news {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: none !important;
+  padding: 0 !important;
+}
+
+/* Centering the row */
+.latest-news .row {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+}
+
+/* Blog Item Styling */
+.blog-item {
+  text-align: center;
+  padding: 20px;
+  background-color: #f9f9f9;
+  border-radius: 15px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  max-width: 600px; /* Limit the max width of the blog item to focus on the content */
+  width: 100%; /* Ensure the item takes full width within the container */
+}
+
+.blog-item:hover {
+  transform: translateY(-10px);
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+}
+
+/* Blog Image Styling */
+.post-featured-image img {
+  border-radius: 15px;
+  width: 100%; /* Make the image take full width of its container */
+  height: auto;
+  transition: transform 0.3s ease;
+  max-height: 400px; /* Limit the height to keep the image's aspect ratio */
+  object-fit: cover; /* Ensure the image covers the container nicely */
+}
+
+.blog-item:hover .post-featured-image img {
+  transform: scale(1.05);
+}
+
+/* Blog Content Styling */
+.post-item-body p a {
+  color: #1E3F5B;
+   font-size: 16px;
+  text-decoration: none;
+}
+
+h2 a {
+  font-family: 'Montserrat-Arabic';
+  font-size: 24px;
+  font-weight: bold;
+  color: #333;
+  text-decoration: none;
+}
+
+h2 a:hover {
+  color: #1E3F5B;
+  text-decoration: underline;
+}
+
+/* Animation */
+@keyframes fadeInUp {
+  from {
+      transform: translateY(20px);
+      opacity: 0;
+  }
+  to {
+      transform: translateY(0);
+      opacity: 1;
+  }
+}
+
+.blog-item {
+  animation: fadeInUp 0.5s ease-in-out;
+  background: #E3E7FC;
+}
+/* Responsive Styles */
+@media (max-width: 992px) {
+  .option {
+      font-size: 16px;
+      padding: 8px 20px;
+  }
+
+  .blog-item {
+      max-width: 100%;
+      padding: 15px;
+  }
+
+  h2 a {
+      font-size: 20px;
+  }
+
+  .post-item-body p {
+      font-size: 15px;
+  }
+}
+
+@media (max-width: 768px) {
+  .option {
+      font-size: 14px;
+      padding: 8px 15px;
+  }
+
+  h2 a {
+      font-size: 18px;
+  }
+
+  .post-item-body p {
+      font-size: 14px;
+  }
+}
+
+@media (max-width: 576px) {
+  .option {
+      font-size: 12px;
+      padding: 6px 12px;
+  }
+
+  .post-featured-image img {
+      max-height: 300px;
+  }
+
+  h2 a {
+      font-size: 16px;
+  }
+
+  .post-item-body p {
+      font-size: 13px;
+  }
+}
+
+@media (max-width: 400px) {
+  .option {
+      font-size: 11px;
+      padding: 5px 10px;
+  }
+
+  .post-featured-image img {
+      max-height: 250px;
+  }
+
+  h2 a {
+      font-size: 14px;
+  }
+
+  .post-item-body p {
+      font-size: 12px;
+  }
+}
+
+.our-services {
+background: none;
+}
+
+h2 a {
+font-size: 16px;
+
+}
+
+.homeBlogContainer{
+  max-width: 100%;
+}
+
+.latest-news {
+max-width: 100%;
+}
+
+.feature-item{
+  background: white;
+}
+
+.service-content-title h2 {
+  font-size: 19px;
+}
+
+@media (max-width: 768px) {
+.col-4 {
+  flex: 0 0 auto;
+  width: 48.333333%;
+}
+}
+
+.right-column {
+  position: relative;
+  width: 100%;
+  max-width: 500px; /* Maximum width based on your needs */
+  margin: auto; /* Center the column if needed */
+}
+
+.gradient-circle {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 100%; /* Adjust percentage based on the effect you want */
+  height: 140%; /* Adjust percentage based on the effect you want */
+  background: radial-gradient(circle, #c9e7ad 0%, #ddeaf3 60%, transparent 100%);
+  border-radius: 50%;
+  transform: translate(-50%, -50%);
+}
+
+.right-column img {
+  position: relative;
+  z-index: 1;
+  width: 70%;
+  height: auto;
+  border-radius: 15px;
+}
+
+
+@media (max-width: 768px) {
+  .right-column {
+      max-width: 90%; /* Adjust based on the needs of smaller screens */
+  }
+
+  .gradient-circle {
+      width: 100%;  
+      height: 100%;  
+  }
+}
+
+.about-content ul li {
+
+  width: 100%;
+
+}
+
+.about-content ul li {
+  width: 100%;
+   
+  font-size: 17px;
+  font-weight: 200;
+  color: var(--primary-color);
+}
+
+
+.partners-logo {
+  width: 100%; /* Ensures logos take full width of their container */
+  max-width: 180px; /* Default maximum size for logos on large screens */
+  margin: 0 auto; /* Centers logos within their columns */
+  padding: 3px 20px; /* Adds padding around the logos */
+  margin-bottom: 30px; /* Adds space below each logo */
+  mix-blend-mode: darken; /* Applies blend mode if needed */
+}
+
+.partners-logo img {
+  width: 100%; /* Ensures logos are responsive */
+  height: auto; /* Maintains the aspect ratio */
+}
+
+.tiktook-logo img {
+  max-width: 180px; /* Ensures TikTok logo matches other logos in size on large screens */
+}
+
+@media (min-width: 992px) {
+  .partners-logo {
+      max-width: 200px; /* Larger width for large screens */
+  }
+
+  .tiktook-logo img {
+      max-width: 200px; /* Larger TikTok logo for large screens */
+  }
+}
+
+@media (max-width: 768px) {
+  .partners-logo {
+      max-width: 150px; /* Increase logo size for tablets */
+  }
+
+  .tiktook-logo img {
+      max-width: 150px; /* Ensures TikTok logo matches other logos in size */
+  }
+}
+
+@media (max-width: 480px) {
+  .partners-logo {
+      max-width: 140px; /* Increase logo size for small mobile screens */
+  }
+
+  .tiktook-logo img {
+      max-width: 140px; /* Ensures TikTok logo matches other logos in size */
+  }
+}
+
+
+.post-item-body h3 a{
+color:#1e3f5b;
+padding-top: 10px;
+font-size: 20px;
+font-weight: bold;
+text-align: center;
+}
+
+.post-item-body p{
+  padding-top: 20px;
+  text-align: center;
+}
+
+.service-item {
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1), 0 6px 20px rgba(0, 0, 0, 0.1);
+  transition: box-shadow 0.3s ease;
+   overflow: hidden; 
+}
+
+.service-item:hover {
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2), 0 12px 40px rgba(0, 0, 0, 0.2);
+}
+
+
+.email-container {
+display: flex;
+align-items: center;
+background-color: #E7E4FD;
+border-radius: 9px;
+padding: 5px;
+width: 90%; /* Make it responsive */
+max-width: 400px; /* Max width for larger screens */
+box-sizing: border-box; /* Include padding in width calculation */
+}
+
+.email-input {
+border: none;
+outline: none;
+background-color: transparent;
+padding: 10px 15px;
+font-size: 14px;
+color: #1E3F5B;
+flex: 1; /* Allow the input to grow */
+min-width: 0; /* Prevent overflow on small screens */
+}
+
+.trial-button {
+display: flex;
+align-items: center;
+border: none;
+outline: none;
+padding: 10px 15px;
+background-color: #3545D8;
+color: white;
+font-size: 14px;
+border-radius: 9px;
+margin-left: 10px;
+cursor: pointer;
+white-space: nowrap; /* Prevent text from wrapping */
+}
+
+.trial-button .arrow {
+display: flex;
+align-items: center;
+justify-content: center;
+background-color: #9AA1F1;
+color: white;
+border-radius: 10%;
+width: 24px;
+height: 24px;
+margin-left: 8px;
+}
+
+/* Ensure responsiveness */
+@media (max-width: 500px) {
+.trial-button {
+  padding: 10px; /* Reduce padding on smaller screens */
+}
+}
+
+.blog-item {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  border: 1px solid #ddd; /* Optional: Add a subtle border around each blog item */
+  border-radius: 8px; /* Rounded corners for the blog item */
+  padding: 15px; /* Padding inside the blog item */
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Optional: Add a shadow */
+  transition: box-shadow 0.3s ease;
+  overflow: hidden; /* Ensure content does not overflow */
+}
+
+.post-item-body {
+  flex-grow: 1;
+}
+
+.category-label {
+  position: absolute;
+  bottom: 15px; /* Adjust this value to control distance from the bottom */
+  left: 15px; /* Adjust this value to control distance from the left */
+  color: #638C57; /* Light green background */
+ background-color: #C2F750; /* Darker green text color */
+  border-radius: 15px; /* Rounded borders */
+  padding: 5px 10px;
+  font-size: 0.9rem;
+  text-align: center;
+}
+
+.blog-item:hover {
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2); /* Hover effect */
+}
+
+@media (max-width: 768px) {
+.homeBlogParagraph{
+  font-size: 16px !important;
+}
+}
+/* Outer container styles */
+.unique-outer-container {
+  background-color: #E4E7F6; /* Light color 1 */
+  padding: 20px;
+  border-radius: 20px;
+   display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+/* Inner container styles */
+.unique-inner-container {
+  background-color: #F1F3FA; /* Light color 2 */
+  border-radius: 15px;
+  padding: 20px;
+  width: 90%;
+  max-width: 1200px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 300px; /* Ensures a minimum height */
+}
+
+/* Flexbox to align image and text */
+.unique-content {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 20px;
+  text-align: center; /* Centers text for smaller screens */
+  flex-wrap: wrap; /* Allows content to stack on smaller screens */
+}
+
+/* Image styles */
+.unique-image {
+  max-width: 150px;
+  height: auto;
+  border-radius: 50%;
+}
+
+/* Text container */
+.unique-text {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+/* Heading and text styles */
+.unique-text h2 {
+  font-size: 24px;
+  color: #1e3f5b;
+  margin-bottom: 10px;
+}
+
+.unique-text p {
+  font-size: 16px;
+  color: #333;
+  margin-bottom: 20px;
+}
+
+/* Button styles */
+.unique-button {
+  display: inline-block;
+  background-color: #1e3f5b;
+  color: #ffffff;
+  padding: 10px 20px;
+  text-decoration: none;
+  border-radius: 25px;
+  font-weight: bold;
+  transition: background-color 0.3s ease;
+}
+
+.unique-button:hover {
+  background-color: #e41f55;
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+  .unique-inner-container {
+      flex-direction: column;
+      text-align: center;
+      padding: 20px 55px;
+  }
+
+  .unique-content {
+      flex-direction: column;
+  }
+
+  .unique-image {
+      margin-bottom: 15px;
+  }
+  
+}
+
+
+
+@media (max-width: 768px) {
+  .boostSalesHead {
+      font-size: 20px !important;
+  }
+}
+
+.unique-button{
+  width:180px;
+  margin: auto;
+}
+
+.unique-button:hover{
+  background:#3545D6;
+  color: white;
+}
+
+@media only screen and (max-width: 767px) {
+  .service-content-title h2 {
+      font-size: xxx-large;
+      max-width: 170px;
+      font-size: 19px !important;
+  }
+}
+
+.post-item-body h3{
+  text-align: center;
+}
+
+.post-item-body {
+  margin: 10px;
+}
+
+.our-services {
+    padding: 0px 0px 0px; 
+}
+
+.service-content-title a {
+  background-color: #8ab3d5;
+}
+
+        /* Responsive design for mobile screens */
+        @media screen and (max-width: 768px) {
+ 
+
+          .con-left {
+            flex-direction: column;
+          }
+        
+          .left-column, .right-column {
+            width: 100%;
+          }
+        
+          .email-container {
+             width: 100%;
+          }
+        
+          .gradient-circle {
+            display: none; /* Hide gradient circle on mobile */
+          }
+        
+          .bannerImg {
+            width: 80%; /* Adjust image size for mobile */
+          }
+        
+          h2 {
+            font-size: 2rem; /* Adjust font size for smaller screens */
+          }
+        }
+
+        @media screen and (min-width: 768px) {
+.aboutCol{
+  padding-bottom:150px
+}
+        }

@@ -1,0 +1,109 @@
+.flags a {
+    display: inline !important;
+}
+
+.ebay-calc-container {
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+}
+.flags-container {
+    flex-shrink: 1;
+    justify-content: center;
+    align-items: center;
+    display: flex;
+}
+.flags {
+    background-image: linear-gradient(#fff, #efefef);
+    border: 1px solid #ccc;
+    padding: 3px 10px;
+    border-radius: 10px;
+    width: fit-content;
+    margin-bottom: 15px;
+}
+.flags a {
+    border-radius: 10px;
+    margin-right: 5px;
+    padding-right: 5px;
+    padding-left: 5px;
+}
+.flags a:last-child {
+    margin-right: 0 !important;
+}
+.flags a.active{
+    border: 1px solid rgba(61, 82, 14, 0.4);
+    color: #3c520e;
+}
+.flags a img {
+    position: relative;
+    top: -2px
+}
+.form-container {
+    flex-grow: 1
+}
+
+.form-container .form-group {
+    margin-bottom: 30px;
+}
+.form-container .badge-info {
+    background-color: #0dcaf0;
+}
+
+@media (max-width: 992px) {
+    .ebay-calc-container {
+        flex-direction: row;
+    }
+
+    .flags-container {
+        align-items: start;
+    }
+
+    .flags a {
+        display: block !important;
+        margin-right: 0;
+        margin-bottom: 15px;
+        padding: 0;
+    }
+
+    .flags {
+        background-image: linear-gradient(to bottom, #fff, #efefef);
+        display: flex;
+        margin-bottom: 15px;
+        flex-direction: column;
+    }
+
+    .flags a {
+        position: relative;
+        opacity: .5;
+    }
+    .flags a.active {
+        border-top: 0;
+        border-right: 0;
+        border-left: 0;
+        border-bottom-width: 3px;
+        border-bottom-color: #333;
+        border-radius: 0;
+        opacity: 1;
+    }
+    .flags a.active::after {
+        content: '';
+        width: 0;
+        height: 0;
+        border-top: 5px solid transparent;
+        border-left: 10px solid #555;
+        border-bottom: 5px solid transparent;
+        position: absolute;
+        margin-left: 47px;
+        z-index: 9;
+        margin-top: -21px;
+    }
+    .flags a img {
+        width:  36px;
+        height: 36px;
+        top: 0px
+    }
+
+    .flags a span {
+        display: none;
+    }
+}

@@ -1,0 +1,69 @@
+/* Base Styles */
+body {
+    font-family: 'Roboto', sans-serif; /* Updated to a more modern font */
+    background-color: #f4f7f9; /* Light background for a cleaner look */
+    color: #333; /* Darker text color for better readability */
+}
+
+/* Card Header */
+.card-header {
+    border-bottom: 1px solid #e2e6ea; /* Lighter border color for a subtle effect */
+    background-color: #ffffff; /* White background for card headers */
+    font-size: 1.25rem; /* Larger font size for better readability */
+    font-weight: 600; /* Bold text for emphasis */
+}
+
+/* Accordion */
+.accordion-button {
+    font-weight: 600; /* Slightly bold for better visibility */
+    color: #007bff; /* Blue color to match the professional theme */
+    background-color: #ffffff; /* White background for accordion buttons */
+    border: 1px solid #e2e6ea; /* Matching border color */
+    border-radius: 5px; /* Rounded corners */
+    transition: background-color 0.3s, color 0.3s; /* Smooth transition effects */
+}
+
+.accordion-button:not(.collapsed) {
+    color: #0056b3; /* Darker blue when active */
+    background-color: #f1f1f1; /* Light background when active */
+}
+
+.accordion-item {
+    border: 1px solid #e2e6ea; /* Matching border color */
+    border-radius: 5px; /* Rounded corners */
+    margin-bottom: 1rem; /* Spacing between items */
+    overflow: hidden; /* Clean look for rounded corners */
+}
+
+.accordion-body {
+    padding: 20px; /* Increased padding for better content spacing */
+    background-color: #ffffff; /* White background for content */
+}
+
+/* Buttons */
+.btn-secondary {
+    margin-left: 10px;
+    background-color: #007bff; /* Blue color for consistency */
+    color: #ffffff; /* White text for better contrast */
+    border: none; /* Remove default border */
+    border-radius: 5px; /* Rounded corners */
+    transition: background-color 0.3s; /* Smooth color transition */
+}
+
+.btn-secondary:hover {
+    background-color: #0056b3; /* Darker blue on hover */
+}
+
+/* Footer */
+footer {
+    background-color: #1E3F5B; /* Dark blue for a professional look */
+    color: #FCFDFF; /* Light text color for contrast */
+    padding: 15px; /* Padding for spacing */
+    text-align: center; /* Centered text */
+    border-top: 1px solid #ddd; /* Subtle border on top */
+    margin-top: 20px; /* Spacing from the main content */
+}
+
+.card-header{
+    background-color: #1e3f5b !important;
+}

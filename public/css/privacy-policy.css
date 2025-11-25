@@ -1,0 +1,61 @@
+/* General Styles */
+body {
+    font-family: Arial, sans-serif;
+    line-height: 1.6;
+    margin: 0;
+    padding: 0;
+    color: #0F1A27;
+}
+
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 20px;
+}
+
+.title {
+    font-size: 60px;
+    text-align: center;
+    margin-top: 20px;
+    margin-bottom: 20px;
+}
+
+.content {
+    padding: 0 20px;
+}
+
+.privacy1 {
+    font-weight: bold;
+    color: #0F1A27;
+    font-size: 30px;
+    margin-top: 20px;
+}
+
+p {
+    margin: 0 0 15px;
+    color: #0F1A27;
+    
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    .container {
+        padding: 20px;
+    }
+    
+    .title {
+        font-size: 40px;
+    }
+    
+    .content {
+        padding: 0 10px;
+    }
+}
+
+h5{
+    padding-top: 10px;
+    padding-bottom: 10px;
+}
+p{
+    padding-top: 10px;
+}

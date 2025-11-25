@@ -1,0 +1,242 @@
+
+@font-face {
+    font-family: 'Montserrat-Arabic';
+    src: url('webfonts/Montserrat-Arabic-Regular-400.otf') format('opentype');
+    font-weight: normal;
+    font-style: normal;
+}
+
+
+    h3{
+         font-family: 'Montserrat-Arabic', sans-serif;
+    font-weight: normal;
+    font-size: 20px;
+letter-spacing: 0px;
+color: #1E3F5B;
+opacity: 1;
+    }
+
+h1{
+     font-family: 'Montserrat-Arabic', sans-serif;
+    font-weight: 600;
+    font-size: 60px;
+    line-height: 60px;
+    text-align: center;
+    letter-spacing: 0px;
+    color: #1E3F5B;
+    opacity: 1;
+}
+
+label {
+    font-family: 'Montserrat-Arabic', sans-serif;
+    font-weight: medium;
+    font-size: 16px;
+    line-height: 26px;
+    text-align: left;
+    letter-spacing: 0px;
+    color: #0F1A27;
+    opacity: 1;
+}
+
+h4{
+    font-size: 16px;
+}
+
+button{
+    width: 100%;
+}
+  
+
+  .FAQ{
+ 
+height: 70px;
+/* UI Properties */
+background: var(--unnamed-color-1e3f5b) 0% 0% no-repeat padding-box;
+border: 1px solid var(--white);
+background: #1E3F5B 0% 0% no-repeat padding-box;
+border: 1px solid #FFFFFF;
+border-radius: 10px;
+opacity: 1;
+color:white;
+  }
+
+   .page-header {
+     
+    padding: 0 0;
+}
+   
+
+.contact-us {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+}
+
+.contact-form-box {
+    box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+    padding: 30px;
+    border-radius: 10px;
+    background-color: #fff;
+}
+
+.input-group {
+    position: relative;
+    display: flex;
+    align-items: center;
+}
+
+.icon-wrapper {
+    position: absolute;
+    left: 10px;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 20px;
+    height: 20px;
+    z-index: 8;
+}
+
+.input-group img, .input-group svg {
+    width: 20px;
+    height: 20px;
+}
+
+.form-control {
+    padding-left: 40px; /* Adjust to accommodate the icon width */
+    position: relative;
+    z-index: 1;
+}
+
+ 
+
+
+.btn-default{
+
+     border-radius: 8px;
+
+}
+
+.contact-form .form-control {
+    background-color: #F5F5F5;
+
+}
+
+.FAQ {
+    display: flex;
+    align-items: center;
+    margin-top: 20px;
+    font-size: 18px;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+
+.FAQ img {
+    margin-right: 10px;
+    padding-left: 15px;
+}
+
+.FAQ span {
+    padding-left: 10px;
+}
+
+.followUs {
+    text-align: center;
+    font-size: 30px;
+    color: #1E3F5B;
+     font-family: 'Montserrat-Arabic', sans-serif;
+    font-weight: bold;
+    letter-spacing: 0px;
+    opacity: 1;
+    margin-top: 20px;
+}
+
+.socialOne {
+    text-align: center;
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 10px;
+    margin-top: 20px;
+}
+
+.socialIcon {
+    padding: 15px;
+     height: auto;
+}
+
+@media (max-width: 768px) {
+    .FAQ {
+        font-size: 12px;
+    }
+
+    .followUs {
+        font-size: 24px;
+    }
+
+   
+}
+
+@media (max-width: 480px) {
+    .FAQ {
+        font-size: 14px;
+        text-align: center;
+    }
+
+    .followUs {
+        font-size: 20px;
+    }
+
+    
+}
+
+
+      
+.input-group {
+    position: relative;
+}
+
+.icon-wrapper {
+    position: absolute;
+    left: 10px; /* Adjust this value to position the icon */
+    top: 50%;
+    transform: translateY(-50%);
+    display: flex;
+    align-items: center;
+}
+
+.form-control {
+    padding-left: 40px; /* Ensure this value is enough to prevent overlap */
+}
+
+.input-group input {
+    padding-left: 40px; /* Same value as .form-control */
+}
+
+.socialIcon{
+    border: 1px solid #E3E7FC;
+    border-radius: 6px;
+    background: #E3E7FC;
+}
+
+
+.icon-wrapper {
+    display: flex !important;
+    align-items: center !important;
+ }
+
+.input-with-icon {
+    padding-left: 40px !important; /* Adjust to ensure enough space for the icon and padding */
+}
+
+.icon-wrapper img {
+    width: 20px !important; /* Adjust the icon size if needed */
+    height: auto !important;
+    margin-right: 10px !important; /* Adds space between the icon and the input text */
+}
+
+.page-header {
+background: none;
+}
+.page-header::before {
+background-image: none;
+}

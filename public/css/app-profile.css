@@ -1,0 +1,903 @@
+
+@font-face {
+    font-family: 'Montserrat-Arabic';
+    src: url('webfonts/Montserrat-Arabic-Regular-400.otf') format('opentype');
+    font-weight: normal;
+    font-style: normal;
+}
+
+
+    h3{
+         font-family: 'Montserrat-Arabic', sans-serif;
+    font-weight: normal;
+    font-size: 20px;
+letter-spacing: 0px;
+color: #1E3F5B;
+opacity: 1;
+    }
+
+h1{
+     font-family: 'Montserrat-Arabic', sans-serif;
+    font-weight: 600;
+    font-size: 60px;
+    line-height: 60px;
+    text-align: center;
+    letter-spacing: 0px;
+    color: #1E3F5B;
+    opacity: 1;
+}
+
+label {
+    font-family: 'Montserrat-Arabic', sans-serif;
+    font-weight: medium;
+    font-size: 13px;
+    line-height: 26px;
+    text-align: left;
+    letter-spacing: 0px;
+    color: #0F1A27;
+    opacity: 1;
+}
+
+h4{
+    font-size: 16px;
+}
+
+button{
+    width: 100%;
+}
+  
+
+  .FAQ{
+ 
+height: 70px;
+/* UI Properties */
+background: var(--unnamed-color-1e3f5b) 0% 0% no-repeat padding-box;
+border: 1px solid var(--white);
+background: #1E3F5B 0% 0% no-repeat padding-box;
+border: 1px solid #FFFFFF;
+border-radius: 10px;
+opacity: 1;
+color:white;
+  }
+
+   .page-header {
+     
+    padding: 0 0;
+}
+   
+
+.contact-us {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+}
+
+.contact-form-box {
+    box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+    padding: 30px;
+    border-radius: 10px;
+    background-color: #fff;
+}
+
+.input-group {
+    position: relative;
+    display: flex;
+    align-items: center;
+}
+
+.icon-wrapper {
+    position: absolute;
+    left: 10px;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 20px;
+    height: 20px;
+    z-index: 8;
+}
+
+.input-group img, .input-group svg {
+    width: 20px;
+    height: 20px;
+}
+
+.form-control {
+    padding-left: 40px; /* Adjust to accommodate the icon width */
+    position: relative;
+    z-index: 1;
+}
+
+ 
+
+
+.btn-default{
+
+     border-radius: 8px;
+
+}
+
+.contact-form .form-control {
+    background-color: #F5F5F5;
+
+}
+
+.FAQ {
+    display: flex;
+    align-items: center;
+    margin-top: 20px;
+    font-size: 18px;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+
+.FAQ img {
+    margin-right: 10px;
+    padding-left: 15px;
+}
+
+.FAQ span {
+    padding-left: 10px;
+}
+
+.followUs {
+    text-align: center;
+    font-size: 30px;
+    color: #1E3F5B;
+     font-family: 'Montserrat-Arabic', sans-serif;
+    font-weight: bold;
+    letter-spacing: 0px;
+    opacity: 1;
+    margin-top: 20px;
+}
+
+.socialOne {
+    text-align: center;
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 10px;
+    margin-top: 20px;
+}
+
+.socialIcon {
+    padding: 15px;
+     height: auto;
+}
+
+@media (max-width: 768px) {
+    .FAQ {
+        font-size: 12px;
+    }
+
+    .followUs {
+        font-size: 24px;
+    }
+
+   
+}
+
+@media (max-width: 480px) {
+    .FAQ {
+        font-size: 14px;
+        text-align: center;
+    }
+
+    .followUs {
+        font-size: 20px;
+    }
+
+    
+}
+
+
+      
+.input-group {
+    position: relative;
+}
+
+.icon-wrapper {
+    position: absolute;
+    left: 10px; /* Adjust this value to position the icon */
+    top: 50%;
+    transform: translateY(-50%);
+    display: flex;
+    align-items: center;
+}
+
+.form-control {
+    padding-left: 40px; /* Ensure this value is enough to prevent overlap */
+}
+
+.input-group input {
+    padding-left: 40px; /* Same value as .form-control */
+}
+
+.socialIcon{
+    border: 1px solid #E3E7FC;
+    border-radius: 6px;
+    background: #E3E7FC;
+}
+
+
+.icon-wrapper {
+    display: flex !important;
+    align-items: center !important;
+ }
+
+.input-with-icon {
+    padding-left: 40px !important; /* Adjust to ensure enough space for the icon and padding */
+}
+
+.icon-wrapper img {
+    width: 20px !important; /* Adjust the icon size if needed */
+    height: auto !important;
+    margin-right: 10px !important; /* Adds space between the icon and the input text */
+}
+
+.page-header {
+background: none;
+}
+.page-header::before {
+background-image: none;
+}
+
+ 
+   .btn-default {
+    background: #3534D6;
+    border: none;
+   }
+   footer, header{
+       display: none;
+   }
+   .profile-container {
+display: flex;
+flex-direction: column;
+align-items: flex-start;
+font-family: 'Montserrat-Arabic';
+padding-bottom: 20px;
+}
+
+.avatar-section {
+display: flex;
+align-items: center;
+}
+
+.avatar-image {
+width: 80px;
+height: 80px;
+border-radius: 50%;
+margin-right: 15px;
+border: 2px solid;
+}
+
+.info-section {
+display: flex;
+flex-direction: column;
+}
+
+.name-status {
+display: flex;
+align-items: center;
+}
+
+.name {
+font-size: 20px;
+font-weight: bold;
+}
+
+.verified-icon {
+width: 18px;
+height: 18px;
+margin-left: 5px;
+}
+
+.status {
+color: green;
+font-size: 16px;
+margin-left: 10px;
+}
+
+.details {
+margin-top: 5px;
+font-size: 14px;
+color: #666;
+}
+
+.contact-info {
+display: flex;
+margin-top: 10px;
+}
+
+.contact-item {
+display: flex;
+align-items: center;
+border: 2px solid #E3E9FE;
+border-radius: 7px;
+padding: 3px;
+margin-right: 10px;
+background-color: #d4dbff;
+}
+
+.icon {
+width: 20px;
+height: 20px;
+margin-right: 10px;
+}
+
+.contact-text {
+font-size: 15px;
+color: #938f8f;
+font-weight: 600;
+}
+
+.tab-bar {
+display: flex;
+ border-bottom: 2px solid #ddd;
+margin-bottom: 20px;
+position: relative;
+flex-wrap: wrap; /* Allows tabs to wrap on smaller screens */
+}
+
+.tab {
+padding: 10px 20px;
+cursor: pointer;
+font-size: 16px;
+font-weight: bold;
+color: #555;
+transition: color 0.3s, background-color 0.3s;
+text-align: center;
+margin: 5px 0;
+}
+
+.tab.active {
+color: rgb(87, 101, 230);
+border-radius: 5px;
+}
+
+.tab:hover {
+background-color: #e3e7fc;
+color: #1E3F5B;
+}
+
+.tab-content {
+padding: 20px;
+background-color: #fff;
+border: 1px solid #ddd;
+border-radius: 5px;
+box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+@media screen and (max-width: 768px) {
+.tab-bar {
+   flex-direction: column; /* Stack tabs vertically on smaller screens */
+   align-items: center;
+}
+
+.tab {
+   flex: none; /* Remove the equal width on smaller screens */
+   width: 100%;
+   margin: 5px 0;
+}
+}
+
+@media screen and (max-width: 480px) {
+.tab {
+   font-size: 14px; /* Reduce font size on very small screens */
+   padding: 8px 16px;
+}
+
+.tab-content {
+   padding: 15px;
+   font-size: 14px; /* Adjust padding and font size for smaller screens */
+}
+}
+
+
+
+/* payment */
+
+/* Flexbox layout */
+/* Flexbox layout for 100% width */
+.subscription {
+display: flex;
+flex-wrap: wrap; /* Allows columns to wrap to new lines if needed */
+gap: 20px;
+padding: 20px;
+background-color: #f9f9f9;
+border-radius: 10px;
+box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+margin: 20px auto;
+width: 100%; /* Set to 100% width */
+}
+
+/* Subscription Section (50% width) */
+.col-6 {
+flex: 0 0 48%; /* Two equal columns (48% with gap for spacing) */
+}
+
+/* Payment Method Section (100% width) */
+.col-12 {
+flex: 0 0 100%; /* Full width for payment section */
+}
+
+
+/* General Styles */
+h3 {
+font-size: 18px;
+margin-bottom: 10px;
+}
+
+/* General styles for toggle button container */
+.toggle-btn {
+display: inline-flex;
+width: 200px;
+border-radius: 25px;
+background-color: #e0e0e0;
+border: 2px solid #ccc;
+overflow: hidden;
+margin-bottom: 20px;
+}
+
+/* Style for each option */
+.toggle-btn-option {
+flex: 1;
+padding: 3px;
+border: none;
+background-color: #1E3F5B;
+color: white;
+cursor: pointer;
+transition: background-color 0.3s ease;
+font-size: 12px;
+}
+
+.toggle-btn-option.active {
+background-color: #C3F956; /* Green background for active option */
+color: #1E3F5B;
+border: 1px solid #C3F956;
+border-radius: 50px;
+}
+
+/* Toggle buttons active states */
+#monthly-btn.active,
+#credit-btn.active {
+background-color: #C3F956; /* Green for active */
+color: #1E3F5B;
+}
+
+#yearly-btn.active,
+#paypal-btn.active {
+background-color: #C3F956; /* Green for active */
+color: #1E3F5B;
+}
+
+
+
+/* Plans and Payment Options Styles */
+.plans, .payment-options {
+display: flex;
+flex-direction: column;
+}
+
+.plan-option, .payment-option {
+display: flex;
+justify-content: space-between;
+padding: 15px;
+background-color: #fff;
+border: 1px solid #ddd;
+margin-bottom: 10px;
+border-radius: 5px;
+ transition: background-color 0.3s ease;
+}
+
+
+input[type="radio"] {
+margin-right: 10px;
+}
+
+
+.price {
+color: #1e3f5b;
+}
+
+.card-type {
+color: #666;
+}
+.title-row {
+display: flex;
+justify-content: space-between;
+align-items: center;
+margin-bottom: 10px;
+}
+
+.plans {
+display: flex;
+flex-direction: column;
+}
+
+.plan-option {
+display: flex;
+justify-content: space-between; /* Aligns items to the ends */
+align-items: center; /* Center aligns the items vertically */
+padding: 10px; /* Adds some padding for better spacing */
+border: 1px solid #ccc; /* Optional: adds a border to each option */
+border-radius: 5px; /* Optional: adds rounded corners */
+margin-bottom: 10px; /* Adds spacing between options */
+ 
+}
+
+.plan-option input {
+margin-right: 10px; /* Spacing between radio button and label */
+}
+
+.price {
+color: #1E3F5B; /* Change this to your preferred color */
+}
+.tab-content {
+display: none;
+}
+
+.tab-content.active {
+display: inline-block;
+}
+
+
+
+/* Two-column layout for larger screens */
+@media (min-width: 768px) {
+.subscription-section, .payment-method-section {
+   width: 50%;
+   float: left;
+}
+}
+
+/* Stack the sections on top of each other for smaller screens */
+@media (max-width: 767px) {
+.subscription-section, .payment-method-section {
+   width: 100%;
+   float: none;
+}
+
+.toggle-btn {
+   display: flex;
+   justify-content: space-between;
+}
+
+.plans label, .payment-options label {
+   display: block;
+   padding: 10px 0;
+}
+
+.plans span.price {
+   display: block;
+   margin-top: 5px;
+   
+}
+}
+
+/* Adjust button styling for mobile */
+@media (max-width: 767px) {
+.toggle-btn-option {
+   width: 48%;
+}
+}
+
+
+/* Styling for the radio button and plan title */
+.plan-option input {
+margin-right: 10px;
+}
+
+/* Price aligned to the right */
+.plan-option .price {
+margin-left: auto;
+color: #1E3F5B;
+font-size: 13px;
+    font-weight: 700;
+}
+
+/* For smaller screens, stack radio buttons and prices */
+@media (max-width: 767px) {
+.plans label, .payment-options label {
+   display: block;
+   padding: 10px 0;
+}
+
+.plans span.price {
+   display: block;
+   margin-top: 5px;
+   text-align: right; /* Align price to the right */
+}
+}
+
+/* Adjust the columns to stack on smaller screens */
+@media (max-width: 767px) {
+.subscription-section, .payment-method-section {
+   width: 100%;
+   float: none;
+}
+}
+
+/* Adjusting the layout of the payment option */
+.payment-option {
+display: flex;
+justify-content: space-between;
+align-items: center;
+padding: 10px;
+border: 1px solid #ccc;
+border-radius: 5px;
+margin-bottom: 10px;
+ }
+
+/* Positioning radio button and payment method details together on the left */
+.payment-option .left-side {
+display: flex;
+align-items: center;
+}
+
+/* Styling for the radio button */
+.payment-option input[type="radio"] {
+margin-right: 10px;
+}
+
+/* Styling for the Visa/Payment method number span */
+.payment-option .payment-details {
+margin-left: 10px;
+color: #666;
+}
+
+/* Price aligned to the right for payment options */
+.payment-option .price {
+margin-left: auto;
+color: #1E3F5B;
+}
+
+/* For smaller screens, stack radio buttons and prices */
+@media (max-width: 767px) {
+.payment-option .price {
+   display: block;
+   margin-top: 5px;
+   text-align: right; /* Align price to the right */
+}
+}
+
+/* Adjust the layout for the plan option */
+/* Adjust the layout for the plan option */
+.plan-option {
+display: flex;
+justify-content: space-between;
+align-items: center;
+padding: 10px;
+border: 1px solid #ccc;
+border-radius: 5px;
+margin-bottom: 10px;
+ position: relative;
+}
+
+/* Align the plan title and radio button side by side */
+.left-side {
+display: flex;
+align-items: center;
+}
+
+.plan-title {
+    margin-right: 10px;
+    font-size: 13px;
+    font-weight: 700;
+}
+.price {
+color: #1E3F5B;
+}
+
+/* Styling for the additional 'Current Plan' text */
+.current-plan {
+display: block;
+font-size: 12px;
+color: #a9afb5;
+font-style: italic;
+margin-top: -5px;
+}
+
+ 
+/* Responsive behavior for smaller screens */
+@media (max-width: 767px) {
+
+.trial-info, .current-plan {
+   text-align: left;
+}
+}
+
+
+
+/* Styling for the '1$ Trial/Monthly' text below the price */
+.trial-info {
+display: block;
+font-size: 12px;
+color: #a9afb5;
+margin-top: 5px;
+text-align: right;
+}
+
+/* For smaller screens, stack the text properly */
+@media (max-width: 767px) {
+.trial-info, .current-plan {
+   text-align: left; /* Adjust alignment for smaller screens */
+}
+}
+
+.FAQ {
+    height: 50px;
+     background: #D4DBFF;
+     color: #1e3f5b;
+     font-size: 14px;
+}
+a{
+    padding-left: 5px;
+    padding-right: 5px;
+    text-decoration: underline;
+}
+
+.unsubscribe-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px;
+}
+
+.unsubscribe-container p {
+    margin: 0;
+    font-size: 13px;
+    color: #1D3F5B;
+}
+
+.unsubscribe-button {
+    background-color: #1D3F5B;
+    color: white;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    width: 150px; /* Adjust width as needed */
+    text-align: center;
+}
+
+.unsubscribe-button:hover {
+    background-color: #17304A; /* Darker hover effect */
+}
+
+@media (max-width: 768px) {
+    .unsubscribe-container {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+    
+    .unsubscribe-button {
+        margin-top: 10px;
+        width: 100%; /* Button will take full width on small screens */
+    }
+}
+h3{
+    font-weight: 700;
+}
+.plan-option {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px 0;
+    border-bottom: 1px solid #e0e0e0;
+}
+
+ 
+.pricing-container {
+    display: flex;
+    flex-direction: column-reverse; /* Places the price above the trial-info */
+    align-items: flex-end; /* Aligns both to the right */
+    text-align: right; /* Ensures text alignment is also on the right */
+    padding-right: 10px;
+}
+
+.trial-info {
+    margin-top: -5px; /* Optional spacing between price and trial-info */
+}
+
+.price {
+    font-size: 18px;
+    font-weight: bold;
+}
+
+.new-card-input{
+    padding-left: 5px !important;
+}
+
+.new-card-button-container {
+    display: flex;
+    justify-content: space-between;
+}
+
+.new-card-delete-btn, .new-card-save-btn {
+    width: 48%;
+    padding: 10px;
+    border: none;
+    border-radius: 5px;
+    font-size: 16px;
+    cursor: pointer;
+}
+
+.new-card-delete-btn {
+    background-color: #FFE3D1;
+    color: #000;
+}
+
+.new-card-save-btn {
+    background-color: #3545d6;
+    color: white;
+}
+
+@media (min-width: 768px) {
+.contact-form-box {
+   
+    height: 800px;
+}
+}
+
+@media (max-width: 768px) {
+h3{
+font-size: 15px;
+}
+.trial-info{
+    font-size: 10px;
+}
+.current-plan{
+    font-size: 10px;
+}
+}
+
+.contact-section {
+    display: flex;
+    gap: 20px;
+    flex-wrap: wrap;
+    padding: 10px;
+ }
+
+.contact-item {
+    display: flex;
+    gap: 5px;
+    align-items: center;
+    font-size: 1em;
+    margin-bottom: 10px;
+}
+
+.contact-label {
+    font-weight: bold;
+    color: #333;
+}
+
+.contact-value {
+    color: #555;
+    word-break: break-word; /* To ensure long email addresses break properly */
+}
+
+/* Responsive Design for Smaller Screens */
+@media (max-width: 600px) {
+    .contact-section {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+
+    .contact-item {
+        flex-direction: column;
+        align-items: flex-start;
+        font-size: 0.9em;
+    }
+
+    .contact-value {
+        margin-left: 0;
+        text-align: left;
+    }
+
+    .plan-option .price {
+        font-size: 12px;
+    }
+    .trial-info{
+        display: none;
+    }
+}

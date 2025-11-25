@@ -1,0 +1,344 @@
+.filter-container {
+    display: flex;
+    flex-direction: column;
+    max-width: 1200px;
+    margin: 35px auto;
+  }
+  
+  .filter-row {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 20px;
+    flex-wrap: wrap;
+  }
+  
+  .filter-box {
+    display: flex;
+    flex-direction: column;
+    width: 19%;
+    margin-bottom: 10px;
+  }
+  
+  .filter-box label {
+    margin-bottom: 5px;
+    font-weight: bold;
+    padding-top: 10px;
+    padding-left: 5px;
+  }
+  
+  .filter-box select,
+  .filter-box input {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 10px;
+    outline: none;
+    font-size: 14px;
+    background-color: #F5F5F5;
+    color: #1E3F5B;
+    box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.1);
+  }
+  
+  .filter-box input::placeholder {
+    color: #888;
+  }
+  
+  @media (max-width: 1024px) {
+    .filter-box {
+      width: 48%;
+    }
+  }
+  
+  @media (max-width: 768px) {
+    .filter-box {
+      width: 100%;
+    }
+  }
+  label{
+    font-size: 14px;
+  }
+  
+  .search-container input[type="text"] {
+      font-size: 13px;
+  }
+  .more-options-link {
+      color: #3545D6;  
+      text-decoration: none; /* Remove underline */
+      font-size: 16px; /* Adjust font size */
+      cursor: pointer; /* Change cursor to pointer */
+      position: relative; /* For positioning the arrow */
+  }
+  
+  .arrow {
+      display: inline-block;
+      width: 0;
+      height: 0;
+      margin-left: 8px; /* Space between text and arrow */
+      border-left: 5px solid transparent;
+      border-right: 5px solid transparent;
+  }
+  
+  /* Down arrow */
+  .arrow.down {
+      border-top: 5px solid #3545D6; /* Down arrow */
+  }
+  
+  /* Up arrow */
+  .arrow.up {
+      border-bottom: 5px solid #3545D6; /* Up arrow */
+  }
+  
+  #second-filter-row {
+      display: none; /* Hidden by default */
+  }
+  
+  .filter-row {
+      display: flex;
+      justify-content: space-around;
+      margin-bottom: 20px;
+      flex-wrap: wrap;
+      background: white;
+      border-radius: 10px;
+  }
+
+  .latest-news{
+    padding: 50px 20px;
+    background: #c3cbfc;
+    border-radius: 24px;
+    opacity: 1;
+    text-align: center;
+    max-width: 80% !important;
+    box-sizing: border-box;
+  }
+  
+  @media (max-width: 768px) {
+   
+    .latest-news h2{
+      font-size: 20px;
+    }
+      
+  }
+  /* results style */
+  /* Container for results sections */
+.results-container {
+  display: flex;
+  gap: 20px;
+  flex-wrap: wrap;
+}
+
+.results-section {
+  background-color: #fff;
+  padding: 20px;
+  border-radius: 8px;
+  flex: 1;
+  min-width: 300px;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+/* Header styles for each section */
+.section-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 20px;
+}
+
+.section-header h2 {
+  color: #1E3F5B;
+  font-size: 15px;
+}
+
+.search-bar {
+  display: flex;
+  align-items: center;
+  background-color: #F5F5F5;
+  padding: 8px;
+  border-radius: 10px;
+}
+
+.search-bar input {
+  border: none;
+  background: none;
+  outline: none;
+  padding: 5px;
+}
+
+.search-icon {
+  font-size: 1.2em;
+  color: #888;
+}
+
+/* Table styles */
+.results-table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.results-table thead th {
+  background-color: #DEE5F8;
+  color: #333;
+  padding: 10px;
+  text-align: left;
+}
+
+.results-table tbody td {
+  padding: 10px;
+  border-top: 1px solid #ddd;
+  vertical-align: middle;
+}
+
+.results-table tbody td:last-child {
+  text-align: center;
+  color: #1E3F5B;
+  cursor: pointer;
+}
+
+/* Pagination styles */
+.pagination {
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  gap: 8px;
+  margin-top: 20px;
+  font-size: 0.9em;
+}
+
+.pagination span {
+  cursor: pointer;
+}
+
+.pagination span:hover {
+  color: #1E3F5B;
+}
+/* Outer container to center the results section */
+.main-container {
+  display: flex;
+  justify-content: center;
+  padding: 0 20px;
+}
+
+.results-container {
+  display: flex;
+  gap: 20px;
+  flex-wrap: wrap;
+  max-width: 1200px; /* Set max-width to limit the width of the content */
+  width: 100%;
+}
+
+th{
+  font-size: 13px;
+}
+/* Container for input with icon */
+.input-with-icon {
+  position: relative;
+  width: 100%;
+}
+
+.input-with-icon input {
+  width: 100%;
+  padding-right: 30px; /* Add padding to make space for the icon */
+  padding-left: 10px;
+}
+
+.copy-icon {
+  position: absolute;
+  right: 10px;
+  top: 50%;
+  transform: translateY(-50%);
+  color: #888;
+  cursor: pointer;
+}
+
+.copy-icon:hover {
+  color: #1E3F5B;
+}
+
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+  .results-container {
+    flex-direction: column;
+  }
+
+  .pagination {
+    justify-content: center;
+  }
+}
+
+/* Loader Container */
+.loader-container {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(255, 255, 255, 0.8); /* Semi-transparent background */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 9999; /* Ensure it overlays all other elements */
+  visibility: hidden; /* Hidden by default */
+  opacity: 0;
+  transition: visibility 0s, opacity 0.3s ease-in-out;
+}
+
+/* Show the loader */
+.loader-container.active {
+  visibility: visible;
+  opacity: 1;
+}
+
+/* Circle Loader Animation */
+.loader {
+  border: 8px solid #f3f3f3; /* Light grey */
+  border-top: 8px solid #3498db; /* Blue */
+  border-radius: 50%;
+  width: 50px;
+  height: 50px;
+  animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
+.pagination-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: 20px 0;
+}
+
+.pagination {
+  display: flex;
+  list-style: none;
+  gap: 5px;
+  padding: 0;
+}
+
+.pagination li {
+  padding: 8px 12px;
+  border: 1px solid #ddd;
+  cursor: pointer;
+  user-select: none;
+}
+
+.pagination li.active {
+  background-color: #3498db;
+  color: white;
+  border-color: #3498db;
+}
+
+.pagination li.disabled {
+  cursor: not-allowed;
+  opacity: 0.5;
+}
+
+.pagination li:hover:not(.active):not(.disabled) {
+  background-color: #f0f0f0;
+}

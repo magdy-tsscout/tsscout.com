@@ -1,0 +1,26 @@
+# Allow all search engines to crawl the site
+User-agent: *
+
+# Disallow the admin dashboard and related routes
+Disallow: /admin/
+Disallow: /admin/site/login
+Disallow: /admin/blogs/
+Disallow: /admin/faqs/
+Disallow: /admin/tools/
+
+# Disallow user authentication pages (login, register)
+Disallow: /login
+Disallow: /register
+
+# Disallow dynamic routes like tools that might be specific for users
+Disallow: /Suppliers-Scouting/
+Disallow: /competitor-monitoring/
+Disallow: /product-scouting/
+
+# Allow all blog and FAQ pages to be indexed
+Allow: /blogs
+Allow: /faqs
+Allpw: /{slug}
+
+# Sitemap location 
+Sitemap: https://dropshippingscout.com//sitemap.xml

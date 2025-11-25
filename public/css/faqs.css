@@ -1,0 +1,253 @@
+.header {
+    color: #1E3F5B; /* Text color */
+    text-align: center; /* Center the text */
+    margin: 0; /* Remove default margin */
+    padding: 15px 20px; /* Add padding for spacing */
+    font-size: 45px; /* Text size */
+    font-family: 'Montserrat-Arabic'; /* Font style */
+    font-weight: 600; /* Font weight */
+    line-height: normal;
+    width: 100%; /* Full width */
+    z-index: 1000; /* Ensure it stays above other content */
+    max-width: 900px;    margin-left: auto; /* Center horizontally */
+    margin-right: auto; /* Center horizontally */
+ }
+
+ /* Use a media query to adjust line breaks on desktop screens */
+@media (min-width: 1024px) {
+    .header {
+        white-space: pre-line; /* Preserve whitespace and line breaks */
+    }
+    .header::before {
+         display: block; /* Ensure the content is treated as block-level */
+    }
+}
+
+
+        .search-container {
+            margin-top: 20px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+     .search-container input[type="text"] {
+    padding: 10px;
+    border-radius: 11px;
+    border: 1px solid #ccc;
+    width: 400px;
+    font-size: 16px;
+    margin-right: 10px;
+    font-family: Montserrat-Arabic;
+    color: #9B9BA0;
+}
+
+        .search-container button {
+    background-color: #3545D6;
+    color: white;
+    border: none;
+    padding: 10px 60px;
+    border-radius: 5px;
+    font-size: 14px;
+    cursor: pointer;
+    font-family: Montserrat-Arabic;
+    font-weight: 600;
+}
+
+        .info-text {
+            margin-top: 20px;
+            color: #0F1A27;
+            text-align: center;
+            font-weight: 400;
+        }
+
+        .info-text a {
+            color: #3545D6;
+            text-decoration: underline;
+            font-weight: 500;
+        }
+
+        .options-wrapper {
+            display: flex;
+            justify-content: center;
+            width: 100%;
+            padding-bottom: 15px;
+        }
+
+        .options-container {
+            margin-top: 20px;
+            background-color: #cdd1fa;
+            padding: 10px;
+            border-radius: 40px;
+            display: inline-flex;
+            justify-content: center;
+        }
+
+        .option {
+            margin: 0 10px;
+            padding: 10px 25px;
+            border-radius: 30px;
+            cursor: pointer;
+            font-weight: 500;
+            font-size: 14px;
+            cursor: pointer;
+        }
+        .option.selected {
+    background-color: #1E3F5B;
+    color: white;
+}
+
+.option:hover {
+    background-color: #1E3F5B;
+    color: white;
+}
+ 
+        
+        .accordion-title{
+        	padding-bottom: 22px;
+        }
+
+        .accordion-header .accordion-button.collapsed {
+         
+          background-color: white !important;
+          font-size: 18px;
+           font-family: 'Montserrat', sans-serif;
+            font-weight: 500; /* medium weight */
+            font-size: 18px;
+             
+ }
+         .accordion-button::after {
+            content: '\f067'; /* Font Awesome + icon */
+            font-family: 'Font Awesome 5 Free';
+            font-weight: 900;
+            margin-left: auto; /* Push the icon to the right */
+            transition: transform 0.2s ease;
+        }
+
+        .accordion-button.collapsed::after {
+            content: '\f067'; /* Font Awesome + icon */
+        }
+
+        .accordion-button:not(.collapsed)::after {
+            content: '\f068'; /* Font Awesome - icon */
+        }
+        
+        .accordion-MainTitle{
+        	
+        	font-weight: 600;
+        	font-size: 22px;
+        }
+
+        .accordion-header .accordion-button.collapsed {
+    
+    font-size: 18px !important;
+    font-family: 'Montserrat-Arabic' !important;
+    font-weight: 500 !important;
+}
+
+/* Responsive  */
+@media (max-width: 768px) {
+    .search-container input[type="text"] {
+    width: 285px;
+    }
+
+.header{
+	font-size: 22px;
+}
+.accordion-MainTitle{
+	font-size: 18px;
+}
+.accordion-header .accordion-button.collapsed {
+font-size: 15px !important;
+inline-size: -webkit-fill-available;
+
+}
+
+
+
+}	
+
+.faq-section {
+    padding: 0px 0px;
+    padding-bottom: 40px;
+}
+
+.option.active {
+    background-color: #1E3F5B;
+    color: #FCFDFF;
+    cursor: pointer;
+}
+/* Adjustments for smaller screens */
+@media (max-width: 768px) {
+    .options-wrapper {
+        overflow-x: auto; /* Ensure wrapper can scroll horizontally */
+        -webkit-overflow-scrolling: touch; /* Smooth scrolling on iOS */
+        display: -webkit-box;
+    }
+
+    .options-container {
+        flex-direction: row;
+    }
+    .option{
+        padding: 7px;
+    }
+}
+.faq-section {
+     padding-top: 40px;
+ }
+
+
+ /* General styling for the options wrapper */
+.options-wrapper {
+    width: 100%; /* Ensure the wrapper takes the full width */
+    overflow: hidden; /* Hide overflow outside of the container */
+}
+
+/* Options container should be a fixed width and have horizontal scrolling */
+.options-container {
+    display: flex;
+    flex-wrap: nowrap; /* Prevent wrapping of options */
+    gap: 20px; /* Spacing between options */
+    overflow-x: scroll; /* Enable horizontal scrolling for the options */
+    -webkit-overflow-scrolling: touch; /* Smooth scrolling for mobile */
+    scroll-snap-type: x mandatory; /* Optional: snap scrolling for better UX */
+}
+
+/* Show scrollbar on mobile */
+.options-container::-webkit-scrollbar {
+    height: 8px; /* Height of the scrollbar */
+}
+
+.options-container::-webkit-scrollbar-track {
+    background: #f0f0f0; /* Track color */
+}
+
+.options-container::-webkit-scrollbar-thumb {
+    background-color: #1E3F5B; /* Scrollbar thumb color */
+    border-radius: 10px; /* Rounded corners for the scrollbar thumb */
+}
+
+/* Each individual option */
+.option {
+    white-space: nowrap; /* Prevent text from wrapping */
+    padding: 10px 15px;
+    border-radius: 5px;
+    cursor: pointer;
+    user-select: none;
+}
+
+/* Styling for mobile devices */
+@media (max-width: 768px) {
+    .options-wrapper {
+        padding: 10px 0; /* Add some padding for better spacing */
+        overflow-x: auto;
+    }
+
+    .options-container {
+        gap: 15px; /* Reduce gap on mobile */
+    }
+
+    .option {
+        font-size: 14px; /* Adjust font size for smaller screens */
+    }
+}

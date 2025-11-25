@@ -1,0 +1,14 @@
+{
+    "ebay_com": {
+        "name": "eBay.com",
+        "fee_percentage": 10,
+        "categories": ["Electronics", "Fashion", "Home", "Toys"],
+        "fixed_transaction_fee": 0.30
+    },
+    "ebay_uk": {
+        "name": "eBay UK",
+        "fee_percentage": 8,
+        "categories": ["Electronics", "Fashion", "Home"],
+        "fixed_transaction_fee": 0.25
+    }
+}
