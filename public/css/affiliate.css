@@ -1,0 +1,330 @@
+/* General Styles */
+body {
+    font-family: Arial, sans-serif;
+    line-height: 1.6;
+    margin: 0;
+    padding: 0;
+    color: #0F1A27;
+}
+
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 20px;
+}
+
+.title {
+    font-size: 50px;
+    text-align: center;
+    margin-top: 20px;
+    margin-bottom: 20px;
+}
+
+.content {
+    padding: 0 20px;
+}
+
+.privacy1 {
+    font-weight: bold;
+    color: #0F1A27;
+    font-size: 30px;
+    margin-top: 20px;
+}
+
+p {
+    margin: 0 0 15px;
+    color: #0F1A27;
+    
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    .container {
+        padding: 20px;
+    }
+    
+    .title {
+        font-size: 22px;
+        font-weight: bold;
+    }
+    
+    .content {
+        padding: 0 10px;
+    }
+}
+
+
+
+/* Reset default margin and padding */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+/* Basic styling for the container */
+.con-left {
+  display: flex;
+  flex-wrap: wrap;
+}
+
+/* Style for left column */
+.left-column {
+  flex: 1;
+  padding: 20px;
+ 
+}
+
+/* Style for right column */
+.right-column {
+  flex: 1;
+  display: flex;
+  justify-content: center; /* Center aligns the image horizontally */
+  align-items: center; /* Center aligns the image vertically */
+}
+
+ 
+  
+  .left-column, .right-column {
+    flex: 1; /* Each column takes full width */
+  }
+
+
+/* Reset default margin and padding */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+/* Basic styling for the custom-container */
+.custom-container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 20px;
+}
+
+.custom-title {
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+.custom-title h1 {
+  font-size: 2em;
+}
+
+.custom-row {
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.custom-column {
+  flex: 1;
+  padding: 10px;
+}
+
+.custom-box {
+  background-color:#f2f6fb;
+  border-radius: 10px;
+  padding: 20px;
+  border: 1px solid white;
+}
+
+.image-wrapper {
+  width: 65px;
+  height: 65px;
+  
+  border-radius: 10px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-bottom: 10px; /* Add space below */
+}
+
+.image-wrapper img {
+  width: 55px;
+  height: 55px;
+  object-fit: cover;
+  border-radius: 10px;
+}
+
+.custom-content {
+  margin-top: 10px;
+}
+
+.custom-content h4, .custom-content p {
+  text-align: left; /* Align text to the left */
+  margin: 0;
+}
+.button-container {
+  display: flex;
+  justify-content: center;
+  margin-top: 20px;
+}
+
+.btn-default {
+  background: var(--primary-500) 0% 0% no-repeat padding-box;
+  border: 1px solid var(--primary-500);
+  background: #3545D6 0% 0% no-repeat padding-box;
+  border: 1px solid #3545D6;
+  border-radius: 8px;
+  opacity: 1;
+  color: white;
+  font-size: 16px;
+}
+
+@media (max-width: 768px) {
+  .custom-column {
+    flex: 100%; /* Each column takes full width on smaller screens */
+  }
+}
+
+
+   /* Custom CSS */
+.section-title {
+    color: #0F1A27;
+    font-weight: bold;
+    font-size: 24px;
+}
+
+.section-subtitle, .section-paragraph {
+    color: #1E3F5B;
+    font-weight: bold;
+}
+
+.icon {
+    width: 70px; /* Adjust the width of the SVGs */
+    margin-right: 1rem; /* Space between icon and text */
+    display: flex;
+    align-items: center;
+
+}
+
+.my-centered-title {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+    .header {
+    color: #1E3F5B; /* Text color */
+    text-align: center; /* Center the text */
+    margin: 0; /* Remove default margin */
+    padding: 15px 20px; /* Add padding for spacing */
+    font-size: 50px; /* Text size */
+     font-weight: 600; /* Font weight */
+    line-height: normal;
+    width: 100%; /* Full width */
+    z-index: 1000; /* Ensure it stays above other content */
+      max-width: 840px; /* Limit the width to control line breaks */
+    margin-left: auto; /* Center horizontally */
+    margin-right: auto; /* Center horizontally */
+ }
+
+   .header2 {
+    color: #1E3F5B; /* Text color */
+    text-align: center; /* Center the text */
+    margin: 0; /* Remove default margin */
+    padding: 15px 20px; /* Add padding for spacing */
+    font-size: 20px; /* Text size */
+    font-family: 'Montserrat-Arabic'; /* Font style */
+    font-weight: 400; /* Font weight */
+    line-height: normal;
+    width: 100%; /* Full width */
+    z-index: 1000; /* Ensure it stays above other content */
+      max-width: 840px; /* Limit the width to control line breaks */
+    margin-left: auto; /* Center horizontally */
+    margin-right: auto; /* Center horizontally */
+ }
+
+ .faq-section {
+    padding: 0px 0px !important;
+}
+
+
+        /* Responsive  */
+@media (max-width: 768px) {
+   h1,h2,h3,h4,h5{
+    font-size: 18px !important;
+   }
+  
+   p{
+    font-size: 15px !important;
+   }
+
+   } 
+
+   .accordion-header .accordion-button {
+
+     font-size: 15px !important;
+
+   }
+
+   .section-title {
+    font-size: 22px;
+    padding-bottom: 10px;
+}
+
+
+/* Media query for mobile screens */
+@media screen and (max-width: 768px) {
+  .con-left {
+    flex-direction: column;
+    align-items: center;
+  }
+  .title {
+    font-size: 22px !important;
+  
+  }
+  
+  .left-column {
+    text-align: center;
+    margin-bottom: 20px;
+  }
+
+  .right-column img {
+    width: 100%; /* Make the image responsive */
+    height: auto;
+  }
+}
+
+.custom-row {
+  display: flex;
+  justify-content: space-between;
+  gap: 20px; /* Space between columns */
+}
+
+.custom-column {
+  flex: 1; /* Make all columns take equal width */
+}
+
+.custom-box {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  height: 100%;
+  padding: 20px;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  background-color: #fff;
+}
+
+.image-wrapper img {
+  width: 100%;
+  height: auto;
+}
+
+.custom-content {
+  flex-grow: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end; /* Push content down */
+}
+
+/* Make the layout responsive for mobile screens */
+@media screen and (max-width: 768px) {
+  .custom-row {
+    flex-direction: column;
+  }
+}

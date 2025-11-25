@@ -1,0 +1,426 @@
+@font-face {
+    font-family: 'Montserrat-Arabic';
+    src: url('../webfonts/Montserrat-Arabic Regular 400.otf') format('opentype');
+    font-weight: normal;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'Montserrat-Arabic';
+    src: url('../webfonts/Montserrat-Arabic Medium 500.otf') format('opentype');
+    font-weight: 500;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'Montserrat-Arabic';
+    src: url('../webfonts/Montserrat-Arabic SemiBold 600.otf') format('opentype');
+    font-weight: 600;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'Montserrat-Arabic';
+    src: url('../webfonts/Montserrat-Arabic Bold 700.otf') format('opentype');
+    font-weight: bold;
+    font-style: normal;
+}
+
+/* Example styles */
+body {
+    font-family: 'Montserrat-Arabic';
+}
+.nav-link{
+    color:#1E3F5B !important;
+    font-size: 16px !important;
+    font-weight: 500 !important;
+}
+
+.gredient{
+    background: linear-gradient(156deg, #FFFFFF 5%, #E6F0FF 21%, #DBE7DA 31%, #E4E7F6 50%);
+}
+
+.main-menu ul ul {
+    background: white;
+}
+
+/* header style for dropdowns structure */
+/* General Navbar Styling */
+.main-header {
+    position: relative;
+    z-index: 1000;
+ 
+}
+
+.header-sticky {
+    position: sticky;
+    top: 0;
+    z-index: 10;
+}
+
+.navbar {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 15px 0;
+}
+
+.navbar-brand img {
+    max-height: 50px;
+}
+
+.navbar-nav {
+    display: flex;
+    align-items: center;
+}
+
+.navbar-nav .nav-item {
+    margin-right: 30px;
+    position: relative;
+}
+
+.navbar-nav .nav-link {
+    font-weight: bold;
+    color: #1E3F5B;
+    padding: 10px 15px;
+    text-transform: capitalize;
+}
+
+.navbar-nav .nav-link:hover {
+    color: #3545D6;
+}
+
+/* Dropdown Menu Styling */
+.navbar-nav .submenu {
+    position: relative;
+}
+
+.navbar-nav .submenu ul {
+    display: none;
+    position: absolute;
+    top: 100%;
+    left: 0;
+    background: #FFFFFF;
+    border: 1px solid #E3E7FC;
+     border-radius: 40px;
+    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
+    min-width: 400px;
+    z-index: 10;
+    display: flex;
+}
+
+.navbar-nav .submenu:hover ul {
+    display: flex;
+}
+
+/* Add left padding to the left section */
+.left-section {
+width: 50%;
+padding: 20px;
+padding-left: 30px; /* Adjust this value to increase or decrease the space */
+}
+
+.left-section h6, .right-section h6 {
+    font-size: 16px;
+    font-weight: bold;
+    color: #1E3F5B;
+    margin-bottom: 4px;
+    margin-top:10px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.left-section p {
+    font-size: 14px;
+    color: #6B7C93;
+     position: relative;
+    padding-right: 20px;
+    padding-bottom: 25px;
+}
+
+.dropdown-section a {
+    display: block;
+    font-size: 14px;
+    font-weight: bold;
+    color: #3545D6;
+    text-decoration: none;
+    padding: 5px 0;
+    transition: background-color 0.3s ease;
+}
+
+.dropdown-section a:hover {
+    color: #1E3F5B;
+    background-color: #f0f0f0;
+}
+
+ 
+.icon {
+    margin-left: 5px;
+    vertical-align: middle;
+    width: 70px !important;
+}
+
+.resource-item {
+    display: flex;
+    align-items: center;
+    margin-bottom: 15px;
+    cursor: pointer;
+}
+.resource-item:hover {
+  background-color: #f0f0f0;
+  border-radius: 10px;
+}
+
+.resource-icon {
+   width: 24px;
+height: 24px;
+margin-right: 10px;
+margin-left: 20px;
+margin-bottom: 40px;
+}
+
+.resource-item h6 {
+    font-size: 16px;
+    font-weight: bold;
+    color: #1E3F5B;
+    margin: 0;
+}
+
+.resource-item p {
+    font-size: 14px;
+    color: #6B7C93;
+    margin: 0;
+}
+
+/* Adjust layout for dropdown links and their icons */
+.right-section .dropdown-link {
+display: flex;
+align-items: center;
+padding: 10px 0; /* Increase padding if necessary */
+white-space: nowrap; /* Ensure that text doesn't wrap to the next line */
+margin-top: 15px;
+
+}
+
+
+
+.right-section .dropdown-link img {
+margin-left: 8px;
+display: inline-block;
+}
+
+@media (min-width: 768px) {
+.right-section {
+    padding-left: 80px;
+   }
+}  
+
+@media (max-width: 768px) {
+    .right-section {
+        padding-left: 5px;
+       }
+    }   
+
+/* Responsive Adjustments */
+@media (max-width: 768px) {
+    .navbar-nav .submenu ul {
+        flex-direction: column;
+        width: 100%;
+    }
+
+    .left-section, .right-section {
+        width: 100%;
+        padding: 10px;
+    }
+
+}
+
+/* Header Buttons */
+.header-btn {
+    display: flex;
+    align-items: center;
+}
+
+.header-btn a {
+    font-size: 14px;
+    margin-right: 20px;
+    color: #3545D6;
+}
+
+.header-btn a.btn-default {
+    background-color: #3545D6;
+    color: #FFFFFF;
+    padding: 10px 20px;
+    border-radius: 8px;
+    text-decoration: none;
+}
+
+.header-btn a.btn-default:hover {
+    background-color: #1E3F5B;
+}
+
+/* Hover Styling */
+.navbar-nav .nav-item.submenu:hover .nav-link {
+    color: #3545D6;
+}
+.dropdown-section{
+    padding-left: 10px;
+}
+
+.dropdown-link{
+    color: #1E3F5B !important;
+}
+
+.woocommerce{
+    width: 99px;
+    height: 20px;
+}
+.ebay{
+    width: 52px;
+    height: 20px;
+}
+.shopify{
+    width: 62px;
+    height: 20px;
+}
+.toolsItem{
+    min-width: 800px !important;
+}
+.left-section{
+    padding-left:20px !important;
+}
+.dropdown-link{
+    font-size: 14px !important;
+    font-family: 'Montserrat-Arabic';
+    font-weight: 400px;
+}
+
+/* Spacing for Right Section */
+.right-section .dropdown-link {
+display: flex;
+align-items: center;
+padding: 5px 0;
+margin-bottom: 10px; /* Adds spacing between each link */
+}
+
+.right-section .dropdown-link img {
+margin-left: 8px;
+}
+
+/* Spacing for Left Section */
+.left-section h6, .left-section p {
+margin-bottom: 15px; /* Adds spacing between each header/paragraph */
+}
+
+/* Style for Left Section Hover Effect */
+.left-section h6, .left-section p {
+margin-bottom: 10px;
+border-radius: 20px;
+transition: background-color 0.3s ease, cursor 0.3s ease;
+}
+
+.left-section h6:hover, .left-section p:hover {
+cursor: pointer;
+background-color: #f0f0f0; /* Light grey background on hover */
+}
+
+/* Ensuring Both Title and Paragraph Get the Hover Effect Together */
+.left-section h6:hover + p, 
+.left-section p:hover, 
+.left-section h6:hover {
+background-color: #f0f0f0;
+}
+
+.slicknav_menu {
+padding: 0;
+background: #F7F7FC;
+}
+
+/* Hide <p> elements on mobile view */
+@media (max-width: 768px) {
+.left-section p {
+display: none; /* Hides the paragraph element */
+}
+}
+
+.btn-default::before {
+    content: '';
+}
+.btn-default:hover{
+    color: black !important;
+}
+
+.tools-arrow {
+    font-size: 18px; /* Increase size of the arrow */
+    margin-left: 8px; /* Add some space between the icon and arrow */
+    vertical-align: middle; /* Align arrow vertically with the icon */
+    transition: transform 0.3s ease; /* Add a smooth transition */
+}
+
+.dropdown-link {
+    display: flex;
+    align-items: center;
+}
+
+.pages-list {
+    padding-left: 20px; /* Indent the list for better visual hierarchy */
+}
+
+/* Rotate the arrow when expanded */
+.tools-arrow.open {
+    transform: rotate(90deg);
+}
+
+@media (max-width: 768px) {
+.pages-list{
+
+    display: block !important;
+}
+
+.tools-arrow{
+    display: none;
+}
+
+
+}
+.magicButtons {
+    display: none !important;
+}
+
+@media (max-width: 768px) {
+    /* .magicButtons{
+        display: flex;
+        justify-content: center;
+        text-align: center;
+    } */
+
+}
+  
+
+ header.main-header {
+    position: sticky !important;
+    z-index: 1000;
+    top: 0;
+}
+
+header.main-header .header-sticky.hide {
+    padding: 15px 0;
+}
+
+.navbar {
+     padding: 0px 0; 
+}
+
+@media (max-width: 768px) {
+body{
+    zoom: 85%;
+}
+}
+
+@media (max-width: 990px) {
+    .magicButtons {
+        display: block !important;
+    }
+}
+

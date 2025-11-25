@@ -1,0 +1,5 @@
+"user_id","username","email","password","created_at","updated_at","is_admin"
+"3","mordyahmed","mordy1462@gmail.com","$2y$12$5h08n/BhscBPHHUB5RMx8eBZF5GeORT.x6uSZaPIZ249ht25vVNzy","2024-08-28 17:02:48","2024-09-15 15:37:59","1"
+"4","Mahmoud Hassan","mh600485@gmail.com","$2y$12$c7Ynw5P2kp41iQ1OY5vlM.8k2G9XwHXsQv.HPGzrFZODRrFeV3TPu","2024-08-19 03:34:15","2024-08-19 03:34:57","1"
+"5","magdy","developer.eye1@gmail.com","$2y$12$sNGQMa4q4hwut9YmMhelQO9oHNsyookpQAehexDGy.HjoUgFCkuk6","2024-08-27 16:11:36","2024-08-27 16:11:36","1"
+"6","Aya","aya.admin@scout.com","$2y$12$/m9bBamS8qJx7MUTqeoE1uC3EzXNaGoqv17WJVlnVSbktZ/WdYzOW","2024-09-14 00:04:40","2024-09-14 01:46:21","1"

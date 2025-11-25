@@ -1,0 +1,13 @@
+.footer-links ul li a {
+    font-weight: 500 !important;
+}
+.footer-links h2 {
+    font-weight: bold !important;
+    font-size: 14px;
+}
+@media only screen and (max-width: 991px) {
+    .footer-links h2 {
+         text-align: left;
+         padding-top: 15px;
+    }
+}

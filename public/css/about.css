@@ -1,0 +1,80 @@
+   /* Custom CSS */
+        .section-title {
+            color: #0F1A27;
+            font-weight: bold;
+            font-size:24px; 
+
+        }
+        .section-subtitle, .section-paragraph {
+            color: #1E3F5B;
+            font-weight: bold;
+        }
+        .icon {
+            width: 50px; /* Adjust the width of the SVGs */
+            height: 50px; /* Adjust the height of the SVGs */
+            margin-right: 1rem; /* Space between icon and text */
+            display: flex;
+            align-items: center;
+        }
+        .centered-title {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+           
+        }
+
+        /* Responsive  */
+@media (max-width: 768px) {
+h1{
+    font-size:30px !important;
+}
+h3{
+    font-size: 20px !important;
+}
+h5{
+    font-size:16px !important;
+}
+p{
+    font-size: 16px !important;
+}
+.section-title h1, .section-title h2 {
+font-size: 30px !important;
+}
+
+
+}
+
+.hero {
+    position: relative;
+    padding: 30px 0;
+}
+
+.hero-image img {
+    border-radius: 40px;
+}
+
+.hero-content {
+    margin-left: 95px;
+}
+
+.hero-content .section-title {
+    margin-bottom: 30px;
+}
+
+.hero-body {
+    width: 100%;
+    max-width: 568px;
+    margin-bottom: 40px;
+}
+
+.hero-body p {
+    margin: 0;
+}
+
+.section-paragraph{
+    padding-top: 10px;
+}
+.reveal {
+    visibility: visible;
+}
