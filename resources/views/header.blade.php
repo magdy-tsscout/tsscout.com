@@ -6,7 +6,6 @@
     </div>
 </div>
 <!-- Preloader End -->
-<!-- this is CI/CD publish test -->
 
 <header class="main-header">
     <div class="header-sticky">
