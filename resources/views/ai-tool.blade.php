@@ -6,12 +6,16 @@
   <title>Scouter Pro — Winners Analytics</title>
   <script src="https://cdn.tailwindcss.com"></script>
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
 
   <!-- Tailwind theme overrides -->
   <script>
     tailwind.config = {
       theme: {
         extend: {
+          fontFamily: {
+            sans: ['Inter', 'system-ui', 'sans-serif'],
+          },
           colors: {
             brand: {
               navy: "#1E3F5B",     /* deep navy from your hero */
@@ -67,222 +71,424 @@
     background-color: rgb(255 255 255 / 40%) !important;
 }
 
-.bg-dark{
---tw-bg-opacity: 1;
-background-color: #1e3f5b !important;
-    color: white !important;
-}
-.bg-brand-blue{
-  background-color: #3545D8 !important;
+    .bg-dark{
+    --tw-bg-opacity: 1;
+    background-color: #1e3f5b !important;
+        color: white !important;
+    }
+    .bg-brand-blue{
+      background-color: #3545D8 !important;
+    }
+
+    /* Image zoom effect */
+    .image-zoom-container {
+      position: relative;
+      display: inline-block;
+      overflow: hidden;
+      border-radius: 8px;
+    }
+
+    .image-zoom {
+      transition: transform 0.3s ease;
+      cursor: pointer;
+    }
+
+    .image-zoom:hover {
+      transform: scale(1.8);
+      z-index: 20;
+    }
+
+    /* Pagination styles */
+    .pagination {
+      display: flex;
+      list-style: none;
+      padding: 0;
+      margin: 0;
+    }
+
+    .pagination li {
+      margin: 0 2px;
+    }
+
+    .pagination a {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      width: 36px;
+      height: 36px;
+      border-radius: 8px;
+      text-decoration: none;
+      color: #1E3F5B;
+      font-weight: 500;
+      transition: all 0.2s ease;
+    }
+
+    .pagination a:hover {
+      background-color: #E9FFD1;
+    }
+
+    .pagination .active a {
+      background-color: #1E3F5B;
+      color: white;
+    }
+
+    /* Sidebar styles */
+    .sidebar-icon {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      width: 100%;
+      padding: 12px 0;
+      color: #1E3F5B;
+      border-radius: 8px;
+      transition: all 0.2s ease;
+      cursor: pointer;
+    }
+
+    .sidebar-icon:hover {
+      background-color: #E9FFD1;
+      color: #1E3F5B;
+    }
+
+    .sidebar-icon.active {
+      background-color: #1E3F5B;
+      color: white;
+    }
+
+    .sidebar-tooltip {
+      position: absolute;
+      left: 100%;
+      top: 50%;
+      transform: translateY(-50%);
+      background-color: #1E3F5B;
+      color: white;
+      padding: 6px 12px;
+      border-radius: 6px;
+      font-size: 12px;
+      white-space: nowrap;
+      opacity: 0;
+      pointer-events: none;
+      transition: opacity 0.2s ease;
+      z-index: 30;
+    }
+
+    .sidebar-icon:hover .sidebar-tooltip {
+      opacity: 1;
+    }
+
+    /* Hide results initially */
+    .results-section {
+      display: none;
+    }
+
+    /* Image Modal Styles */
+    .image-modal {
+      display: none;
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background-color: rgba(0, 0, 0, 0.8);
+      z-index: 100;
+      align-items: center;
+      justify-content: center;
+      animation: fadeIn 0.3s ease-out forwards;
+    }
+
+    .image-modal.active {
+      display: flex;
+    }
+
+    .modal-content {
+      max-width: 90%;
+      max-height: 90%;
+      position: relative;
+      animation: scaleIn 0.3s ease-out forwards;
+    }
+
+    .modal-image {
+      max-width: 100%;
+      max-height: 80vh;
+      border-radius: 12px;
+      box-shadow: 0 20px 60px rgba(0, 0, 0, 0.5);
+    }
+
+    .modal-close {
+      position: absolute;
+      top: -40px;
+      right: 0;
+      background: rgba(255, 255, 255, 0.2);
+      color: white;
+      border: none;
+      width: 32px;
+      height: 32px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      font-size: 18px;
+      transition: all 0.2s ease;
+    }
+
+    .modal-close:hover {
+      background: rgba(255, 255, 255, 0.3);
+      transform: scale(1.1);
+    }
+
+    .modal-title {
+      position: absolute;
+      bottom: -50px;
+      left: 0;
+      width: 100%;
+      text-align: center;
+      color: white;
+      font-size: 16px;
+      font-weight: 500;
+      padding: 10px;
+      background: rgba(0, 0, 0, 0.5);
+      border-radius: 8px;
+    }
+
+    /* Mobile card layout improvements */
+    .mobile-card-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 12px;
+    }
+
+    .mobile-card-cell {
+      display: flex;
+      flex-direction: column;
+      padding: 8px;
+      background: #f8fafc;
+      border-radius: 8px;
+    }
+
+    .mobile-card-label {
+      font-size: 11px;
+      color: #64748b;
+      margin-bottom: 4px;
+    }
+
+    .mobile-card-value {
+      font-size: 13px;
+      font-weight: 600;
+      color: #1E3F5B;
+    }
+
+    /* Filter tooltip styles */
+    .filter-tooltip {
+      position: relative;
+      display: inline-block;
+      margin-left: 5px;
+    }
+
+    .filter-tooltip .tooltip-text {
+      visibility: hidden;
+      width: 220px;
+      background-color: #1E3F5B;
+      color: white;
+      text-align: center;
+      border-radius: 6px;
+      padding: 8px 12px;
+      position: absolute;
+      z-index: 50;
+      bottom: 125%;
+      left: 50%;
+      transform: translateX(-50%);
+      opacity: 0;
+      transition: opacity 0.3s;
+      font-size: 12px;
+      line-height: 1.4;
+    }
+
+    .filter-tooltip:hover .tooltip-text {
+      visibility: visible;
+      opacity: 1;
+    }
+
+    /* KPI tooltip styles */
+    .kpi-tooltip {
+      position: relative;
+      display: inline-block;
+      margin-left: 5px;
+    }
+
+    .kpi-tooltip .tooltip-text {
+      visibility: hidden;
+      width: 200px;
+      background-color: #1E3F5B;
+      color: white;
+      text-align: center;
+      border-radius: 6px;
+      padding: 8px 12px;
+      position: absolute;
+      z-index: 50;
+      bottom: 125%;
+      left: 50%;
+      transform: translateX(-50%);
+      opacity: 0;
+      transition: opacity 0.3s;
+      font-size: 12px;
+      line-height: 1.4;
+    }
+
+    .kpi-tooltip:hover .tooltip-text {
+      visibility: visible;
+      opacity: 1;
+    }
+
+    /* Table header tooltip styles */
+    .th-tooltip {
+      position: relative;
+      display: inline-block;
+      cursor: help;
+    }
+
+    .th-tooltip .tooltip-text {
+      visibility: hidden;
+      width: 180px;
+      background-color: #1E3F5B;
+      color: white;
+      text-align: center;
+      border-radius: 6px;
+      padding: 8px 12px;
+      position: absolute;
+      z-index: 50;
+      bottom: 125%;
+      left: 50%;
+      transform: translateX(-50%);
+      opacity: 0;
+      transition: opacity 0.3s;
+      font-size: 12px;
+      line-height: 1.4;
+    }
+
+    .th-tooltip:hover .tooltip-text {
+      visibility: visible !important;
+      opacity: 1 !important;
+    }
+
+    /* Performance icons */
+    .performance-icon {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      width: 24px;
+      height: 24px;
+      border-radius: 50%;
+      font-size: 12px;
+    }
+
+    .performance-best {
+      background-color: #10B981;
+      color: white;
+    }
+
+    .performance-good {
+      background-color: #3B82F6;
+      color: white;
+    }
+
+    .performance-average {
+      background-color: #F59E0B;
+      color: white;
+    }
+
+    /* Image preview tooltip */
+    .image-preview-tooltip {
+      position: absolute;
+      bottom: 100%;
+      left: 50%;
+      transform: translateX(-50%);
+      background: white;
+      border-radius: 8px;
+      padding: 8px;
+      box-shadow: 0 4px 20px rgba(0,0,0,0.15);
+      z-index: 100;
+      display: none;
+      width: 180px;
+    }
+
+    .image-preview-tooltip img {
+      width: 100%;
+      height: auto;
+      border-radius: 4px;
+      margin-bottom: 5px;
+    }
+
+    .image-preview-tooltip .preview-title {
+      font-size: 12px;
+      color: #1E3F5B;
+      font-weight: 500;
+      text-align: center;
+    }
+
+    .image-zoom-container:hover .image-preview-tooltip {
+      display: block;
+    }
+    #filterToggle{
+      z-index: 0;
+    }
+
+    
+/* Mobile sidebar positioning - only when expanded */
+@media (max-width: 768px) {
+  #sidebar:not(.hidden) {
+    top: 78px !important;
+    height: calc(100vh - 80px) !important;
+  }
+  
+
+  /* When sidebar is hidden (circle state), keep original positioning */
+  #sidebar.hidden {
+    top: 0 !important;
+    height: 100vh !important;
+  }
 }
 
-/* Image zoom effect */
-.image-zoom-container {
-  position: relative;
-  display: inline-block;
-  overflow: hidden;
-  border-radius: 8px;
+/* Ensure header has proper height on mobile */
+@media (max-width: 768px) {
+  header .glass {
+    min-height: 70px;
+  }
 }
 
-.image-zoom {
-  transition: transform 0.3s ease;
-  cursor: pointer;
+/* Adjust main content for mobile */
+@media (max-width: 768px) {
+  .ml-16 {
+    margin-left: 0 !important;
+  }
 }
 
-.image-zoom:hover {
-  transform: scale(1.8);
-  z-index: 20;
-}
+.w-12{
 
-/* Pagination styles */
-.pagination {
-  display: flex;
-  list-style: none;
-  padding: 0;
-  margin: 0;
-}
-
-.pagination li {
-  margin: 0 2px;
-}
-
-.pagination a {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  width: 36px;
-  height: 36px;
-  border-radius: 8px;
-  text-decoration: none;
-  color: #1E3F5B;
-  font-weight: 500;
-  transition: all 0.2s ease;
-}
-
-.pagination a:hover {
-  background-color: #E9FFD1;
-}
-
-.pagination .active a {
-  background-color: #1E3F5B;
-  color: white;
-}
-
-/* Sidebar styles */
-.sidebar-icon {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  width: 100%;
-  padding: 12px 0;
-  color: #1E3F5B;
-  border-radius: 8px;
-  transition: all 0.2s ease;
-  cursor: pointer;
-}
-
-.sidebar-icon:hover {
-  background-color: #E9FFD1;
-  color: #1E3F5B;
-}
-
-.sidebar-icon.active {
-  background-color: #1E3F5B;
-  color: white;
-}
-
-.sidebar-tooltip {
-  position: absolute;
-  left: 100%;
-  top: 50%;
-  transform: translateY(-50%);
-  background-color: #1E3F5B;
-  color: white;
-  padding: 6px 12px;
-  border-radius: 6px;
-  font-size: 12px;
-  white-space: nowrap;
-  opacity: 0;
-  pointer-events: none;
-  transition: opacity 0.2s ease;
-  z-index: 30;
-}
-
-.sidebar-icon:hover .sidebar-tooltip {
-  opacity: 1;
-}
-
-/* Hide results initially */
-.results-section {
-  display: none;
-}
-
-/* Image Modal Styles */
-.image-modal {
-  display: none;
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  background-color: rgba(0, 0, 0, 0.8);
-  z-index: 100;
-  align-items: center;
-  justify-content: center;
-  animation: fadeIn 0.3s ease-out forwards;
-}
-
-.image-modal.active {
-  display: flex;
-}
-
-.modal-content {
-  max-width: 90%;
-  max-height: 90%;
-  position: relative;
-  animation: scaleIn 0.3s ease-out forwards;
-}
-
-.modal-image {
-  max-width: 100%;
-  max-height: 80vh;
-  border-radius: 12px;
-  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.5);
-}
-
-.modal-close {
-  position: absolute;
-  top: -40px;
-  right: 0;
-  background: rgba(255, 255, 255, 0.2);
-  color: white;
-  border: none;
-  width: 32px;
-  height: 32px;
-  border-radius: 50%;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  cursor: pointer;
-  font-size: 18px;
-  transition: all 0.2s ease;
-}
-
-.modal-close:hover {
-  background: rgba(255, 255, 255, 0.3);
-  transform: scale(1.1);
-}
-
-.modal-title {
-  position: absolute;
-  bottom: -50px;
-  left: 0;
-  width: 100%;
-  text-align: center;
-  color: white;
-  font-size: 16px;
-  font-weight: 500;
-  padding: 10px;
-  background: rgba(0, 0, 0, 0.5);
-  border-radius: 8px;
-}
-
-/* Mobile card layout improvements */
-.mobile-card-grid {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 12px;
-}
-
-.mobile-card-cell {
-  display: flex;
-  flex-direction: column;
-  padding: 8px;
-  background: #f8fafc;
-  border-radius: 8px;
-}
-
-.mobile-card-label {
-  font-size: 11px;
-  color: #64748b;
-  margin-bottom: 4px;
-}
-
-.mobile-card-value {
-  font-size: 13px;
-  font-weight: 600;
-  color: #1E3F5B;
-}
-
-#filterToggle{
-
-z-index: 999;
+  width: 6rem !important;
 
 }
+
+.h-12{
+height: 7rem !important;
+}
+
+/* Gradient lines for a premium look */
+#tableBody tr:not(:last-child) td {
+  border-bottom: 0.5px solid;
+  border-image: linear-gradient(to right, transparent, #e2e8f0, transparent) 1;
+}
+
+#tableBody td:not(:last-child) {
+  border-right: 3px solid #f8fafc;
+}
+
   </style>
 </head>
 
 <body class="min-h-screen text-brand-ink" style="background: var(--bg-grad);">
+
+  
 
   <!-- Image Modal -->
   <div id="imageModal" class="image-modal">
@@ -295,235 +501,9 @@ z-index: 999;
     </div>
   </div>
 
-  <!-- Top Nav -->
-  <header class="sticky top-0 z-40">
-    <div class="glass shadow-soft">
-      <div class="max-w-7xl mx-auto px-5 py-4 flex items-center justify-between">
-        <div class="flex items-center gap-3">
-          <div class="h-10 w-10 rounded-xl bg-brand-blue shadow-glow grid place-content-center text-white font-bold">S</div>
-          <div class="text-xl font-bold tracking-tight"><span class="text-brand-navy">SCOUT</span><span class="text-brand-navy">ER</span> <span class="text-brand-lime">PRO</span></div>
-        </div>
-        <div class="flex items-center gap-3">
-          <!-- Back to AI tool page -->
-          <a href="/ai-tool" class="group relative inline-flex items-center gap-2 rounded-xl bg-brand-navy text-white px-4 py-2 shadow-soft hover:shadow-glow transition-all">
-            <svg class="w-4 h-4 opacity-80 group-hover:-translate-x-0.5 transition" viewBox="0 0 24 24" fill="none"><path d="M15 18l-6-6 6-6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
-            <span>Back to AI Tool</span>
-          </a>
-        </div>
-      </div>
-    </div>
-  </header>
-
-  <!-- Search Section -->
-  <section class="max-w-7xl mx-auto px-5 mt-8">
-    <div class="rounded-card p-6 md:p-8 bg-white/80 shadow-soft relative overflow-hidden">
-      <div class="absolute -right-16 -top-16 h-48 w-48 rounded-full bg-brand-lime/40 blur-2xl animate-float"></div>
-      <div class="flex flex-col md:flex-row gap-4 items-end">
-        <div class="flex-1 w-full">
-          <label for="keywordSearch" class="block text-sm font-medium text-brand-navy mb-2">Search Keyword</label>
-          <div class="relative">
-            <input 
-              type="text" 
-              id="keywordSearch" 
-              placeholder="Enter product keyword..." 
-              class="w-full px-4 py-3 rounded-xl border border-gray-300 focus:outline-none focus:ring-2 focus:ring-brand-blue/60 focus:border-transparent"
-              value="samsung s24 case"
-            >
-          </div>
-        </div>
-        <div class="flex gap-2">
-          <button id="searchButton" class="flex items-center gap-2 rounded-xl bg-brand-blue text-white px-6 py-3 shadow-soft hover:shadow-glow transition">
-            <svg class="w-5 h-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-              <path d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"/>
-            </svg>
-            <span class="font-medium">Search</span>
-          </button>
-          <button id="filterToggle" class="flex items-center gap-2 rounded-xl bg-white px-4 py-3 border border-gray-300 hover:shadow-soft transition">
-            <svg class="w-5 h-5 text-brand-blue" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-              <path d="M22 3H2l8 9.46V19l4 2v-8.54L22 3z"/>
-            </svg>
-            <span class="font-medium text-brand-navy">Filters</span>
-          </button>
-        </div>
-      </div>
-      
-      <!-- Filters Panel (initially hidden) -->
-      <div id="filtersPanel" class="mt-6 p-5 bg-gray-50 rounded-xl hidden">
-        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
-          <div>
-            <label class="block text-sm font-medium text-brand-navy mb-2">Min Profit Margin</label>
-            <select class="w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-brand-blue/60">
-              <option>Any</option>
-              <option>50%+</option>
-              <option selected>75%+</option>
-              <option>100%+</option>
-              <option>150%+</option>
-            </select>
-          </div>
-          <div>
-            <label class="block text-sm font-medium text-brand-navy mb-2">Sales Volume</label>
-            <select class="w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-brand-blue/60">
-              <option>Any</option>
-              <option>10+ per month</option>
-              <option selected>20+ per month</option>
-              <option>50+ per month</option>
-              <option>100+ per month</option>
-            </select>
-          </div>
-          <div>
-            <label class="block text-sm font-medium text-brand-navy mb-2">Rating</label>
-            <select class="w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-brand-blue/60">
-              <option>Any</option>
-              <option>3.5+ stars</option>
-              <option selected>4.0+ stars</option>
-              <option>4.5+ stars</option>
-            </select>
-          </div>
-          <div>
-            <label class="block text-sm font-medium text-brand-navy mb-2">Shipping Time</label>
-            <select class="w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-brand-blue/60">
-              <option>Any</option>
-              <option>≤ 7 days</option>
-              <option selected>≤ 14 days</option>
-              <option>≤ 21 days</option>
-            </select>
-          </div>
-        </div>
-        <div class="mt-4 flex justify-end gap-3">
-          <button class="px-4 py-2 rounded-lg border border-gray-300 hover:bg-gray-100 transition">Reset</button>
-          <button class="px-4 py-2 rounded-lg bg-brand-blue text-white shadow-soft hover:shadow-glow transition">Apply Filters</button>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- Hero / Context (Hidden initially) -->
-  <section id="heroSection" class="results-section max-w-7xl mx-auto px-5 mt-8">
-    <div class="rounded-card p-6 md:p-8 bg-white/80 shadow-soft relative overflow-hidden">
-      <div class="absolute -right-16 -top-16 h-48 w-48 rounded-full bg-brand-lime/40 blur-2xl animate-float"></div>
-      <h1 class="text-2xl md:text-3xl font-extrabold tracking-tight text-brand-navy mb-2">
-        🏆 Top Winners: <span class="text-brand-lime">"samsung s24 case"</span>
-      </h1>
-      <p class="text-brand-ink/70 max-w-3xl">
-        <span class="mr-3">🎯 Real-Time Market Analysis</span> •
-        <span class="mx-3">💯 Smart Data Processing</span> •
-        <span class="mx-3">📊 Live Sales Metrics</span>
-      </p>
-    </div>
-  </section>
-
-  <!-- KPIs (Hidden initially) - FIXED GRID LAYOUT -->
-  <section id="kpiSection" class="results-section max-w-7xl mx-auto px-5 mt-6">
-    <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-4 md:gap-5">
-      <!-- Each card -->
-      <div class="glass rounded-card p-4 md:p-5 shadow-soft animate-fadeInUp">
-        <p class="text-xs uppercase tracking-wide text-brand-ink/60">Analyzed</p>
-        <div id="kpiAnalyzed" class="text-2xl md:text-3xl font-extrabold text-brand-navy">0</div>
-      </div>
-      <div class="glass rounded-card p-4 md:p-5 shadow-soft animate-fadeInUp [animation-delay:.05s]">
-        <p class="text-xs uppercase tracking-wide text-brand-ink/60">Winners Found</p>
-        <div id="kpiWinners" class="text-2xl md:text-3xl font-extrabold text-brand-navy">0</div>
-      </div>
-      <div class="glass rounded-card p-4 md:p-5 shadow-soft animate-fadeInUp [animation-delay:.1s]">
-        <p class="text-xs uppercase tracking-wide text-brand-ink/60">Success Rate</p>
-        <div id="kpiSuccess" class="text-2xl md:text-3xl font-extrabold text-navy-600">0%</div>
-      </div>
-      <div class="glass rounded-card p-4 md:p-5 shadow-soft animate-fadeInUp [animation-delay:.15s]">
-        <p class="text-xs uppercase tracking-wide text-brand-ink/60">Min Profit</p>
-        <div id="kpiMinProfit" class="text-2xl md:text-3xl font-extrabold text-navy-600">0%</div>
-      </div>
-      <div class="glass rounded-card p-4 md:p-5 shadow-soft animate-fadeInUp [animation-delay:.2s]">
-        <p class="text-xs uppercase tracking-wide text-brand-ink/60">Data Quality</p>
-        <div class="text-2xl md:text-3xl font-extrabold text-navy-500">Smart</div>
-      </div>
-      <div class="glass rounded-card p-4 md:p-5 shadow-soft animate-fadeInUp [animation-delay:.25s]">
-        <p class="text-xs uppercase tracking-wide text-brand-ink/60">Time</p>
-        <div id="kpiTime" class="text-2xl md:text-3xl font-extrabold text-brand-navy">0s</div>
-      </div>
-    </div>
-  </section>
-
-  <!-- Results Section (Hidden initially) -->
-  <section id="resultsSection" class="results-section max-w-7xl mx-auto px-5 mt-8 mb-24">
-    <div class="rounded-card bg-white shadow-soft overflow-hidden">
-      <!-- Table header -->
-      <div class="px-5 py-4 flex flex-col md:flex-row md:items-center md:justify-between gap-3">
-        <div>
-          <h3 class="text-lg md:text-xl font-bold text-brand-navy">High-Profit Products</h3>
-          <p class="text-sm text-brand-ink/60">
-            Curated winners from AliExpress → eBay with 30D sales & profitability.
-          </p>
-        </div>
-        <div class="flex items-center gap-2">
-          <input
-            id="tableSearch"
-            class="px-3 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-brand-blue/60"
-            placeholder="Search title..."
-          />
-          <button
-            id="exportCSV"
-            class="px-3 py-2 rounded-lg bg-brand-blue text-white shadow-soft hover:shadow-glow transition"
-          >
-            Export CSV
-          </button>
-        </div>
-      </div>
-
-      <!-- Table container -->
-      <div class="pretty-scroll overflow-x-auto hidden md:block">
-        <table id="productsTable" class="min-w-[900px] w-full text-sm">
-          <thead class="sticky-head">
-            <tr class="bg-brand-navy text-white/90">
-              <th class="py-3 pl-5 pr-2 text-left">#</th>
-              <th class="p-3 text-left">Product image</th>
-              <th class="p-3 text-left">Title</th>
-              <th class="p-3 text-right">Ali Price</th>
-              <th class="p-3 text-right">eBay Price</th>
-              <th class="p-3 text-center">Sales (30D)</th>
-              <th class="p-3 text-center">Daily Avg</th>
-              <th class="p-3 text-center">Rating</th>
-              <th class="p-3 text-center">Performance</th>
-              <th class="py-3 pr-5 pl-2 text-right">Profit</th>
-            </tr>
-          </thead>
-          <tbody class="divide-y divide-gray-100" id="tableBody">
-            <!-- Rows will be populated by JavaScript -->
-          </tbody>
-        </table>
-      </div>
-
-      <!-- Responsive Cards for Mobile -->
-      <div id="mobileCards" class="space-y-4 md:hidden px-3 pb-5">
-        <!-- Cards will be populated by JavaScript -->
-      </div>
-
-      <!-- Pagination and Rows Per Page -->
-      <div class="px-5 py-4 border-t flex flex-col md:flex-row justify-between items-center gap-4">
-        <div class="flex items-center gap-3">
-          <span class="text-sm text-brand-ink/70">Rows per page:</span>
-          <select id="rowsPerPage" class="px-3 py-1.5 border rounded-lg focus:outline-none focus:ring-2 focus:ring-brand-blue/60">
-            <option value="5">5</option>
-            <option value="10" selected>10</option>
-            <option value="25">25</option>
-            <option value="50">50</option>
-          </select>
-        </div>
-        
-        <div class="flex items-center gap-2">
-          <span id="pageInfo" class="text-sm text-brand-ink/70">Page 1 of 1</span>
-          <nav>
-            <ul id="pagination" class="pagination">
-              <!-- Pagination will be populated by JavaScript -->
-            </ul>
-          </nav>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- RIGHT SIDEBAR - Navigation Only -->
+  <!-- LEFT SIDEBAR - Navigation Only -->
   <aside id="sidebar"
-         class="fixed top-0 right-0 h-full w-16 bg-white shadow-2xl translate-x-full transition-transform duration-300 z-50 overflow-hidden hover:w-48 group">
+         class="fixed top-0 left-0 h-full w-16 bg-white shadow-2xl z-50 overflow-hidden">
     <div class="h-full flex flex-col py-4">
       <!-- Close button -->
       <div class="px-3 mb-6 flex justify-end">
@@ -582,11 +562,430 @@ z-index: 999;
     </div>
   </aside>
 
-  <!-- Floating handle (always visible on right edge) -->
+  <!-- Floating handle (always visible on left edge) -->
   <button id="floatingHandle"
-          class="fixed right-2 top-1/2 -translate-y-1/2 z-40 rounded-full shadow-glow bg-brand-blue text-white px-3 py-2">
+          class="fixed left-2 top-1/2 -translate-y-1/2 z-40 rounded-full shadow-glow bg-brand-blue text-white px-3 py-2">
     <i class="fas fa-bars"></i>
   </button>
+
+  <!-- Main Content -->
+  <div class="ml-15">
+    <!-- Top Nav -->
+    <header class="sticky top-0 z-40">
+      <div class="glass shadow-soft">
+        <div class="max-w-7xl mx-auto px-5 py-4 flex items-center justify-between">
+          <div class="flex items-center gap-3">
+            <!-- SVG Logo -->
+            <img src="logo.svg" alt="">
+           </div>
+          <div class="flex items-center gap-3">
+            <!-- Back to AI tool page -->
+            <a href="/ai-tool" class="group relative inline-flex items-center gap-2 rounded-xl bg-brand-blue text-white px-4 py-2 shadow-soft hover:shadow-glow transition-all">
+              <svg class="w-4 h-4 opacity-80 group-hover:-translate-x-0.5 transition" viewBox="0 0 24 24" fill="none">
+                <path d="M15 18l-6-6 6-6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+              </svg>
+              <span class="hidden sm:inline">Back to AI Tool</span>
+              <span class="sm:hidden">AI Tool</span>
+            </a>
+          </div>
+        </div>
+      </div>
+    </header>
+
+ <div class="max-w-7xl mx-auto px-5 mt-6 mb-2">
+  <div class="text-center">
+    <div class="inline-flex items-center gap-3 bg-white/80 rounded-2xl px-6 py-4 shadow-soft border border-brand-blue/10">
+      <!-- Icon -->
+      <div class="w-10 h-10 bg-gradient-to-br from-brand-blue to-brand-navy rounded-xl flex items-center justify-center shadow-sm">
+        <i class="fas fa-binoculars text-white text-lg"></i>
+      </div>
+      
+      <!-- Title -->
+      <div class="text-left">
+        <h1 class="text-2xl font-bold bg-gradient-to-r from-brand-navy to-brand-blue bg-clip-text text-transparent">
+          Scouter AI Tool
+        </h1>
+        <p class="text-xs text-brand-ink/60 font-medium">
+          AI-Powered Product Analysis
+        </p>
+      </div>
+      
+      <!-- Badge -->
+      <div class="bg-brand-lime text-brand-navy px-3 py-1 rounded-full text-xs font-bold shadow-sm">
+        BETA
+      </div>
+    </div>
+  </div>
+</div>
+
+    <!-- Search Section -->
+    <section class="max-w-7xl mx-auto px-5 mt-8">
+      <div class="rounded-card p-6 md:p-8 bg-white/80 shadow-soft relative overflow-hidden">
+        <div class="absolute -right-16 -top-16 h-48 w-48 rounded-full bg-brand-lime/40 blur-2xl animate-float"></div>
+        <div class="flex flex-col md:flex-row gap-4 items-end">
+          <div class="flex-1 w-full">
+            <label for="keywordSearch" class="block text-sm font-medium text-brand-navy mb-2">Search Keyword</label>
+            <div class="relative">
+              <input 
+                type="text" 
+                id="keywordSearch" 
+                placeholder="Enter product keyword..." 
+                class="w-full px-4 py-3 rounded-xl border border-gray-300 focus:outline-none focus:ring-2 focus:ring-brand-blue/60 focus:border-transparent"
+                value="samsung s24 case"
+              >
+            </div>
+          </div>
+          <div class="flex gap-2">
+            <button id="searchButton" class="flex items-center gap-2 rounded-xl bg-brand-blue text-white px-6 py-3 shadow-soft hover:shadow-glow transition">
+              <svg class="w-5 h-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <path d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"/>
+              </svg>
+              <span class="font-medium">Search</span>
+            </button>
+            <button id="filterToggle" class="flex items-center gap-2 rounded-xl bg-white px-4 py-3 border border-gray-300 hover:shadow-soft transition z-50">
+              <svg class="w-5 h-5 text-brand-blue" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <path d="M22 3H2l8 9.46V19l4 2v-8.54L22 3z"/>
+              </svg>
+              <span class="font-medium text-brand-navy"></span>
+            </button>
+          </div>
+        </div>
+        
+        <!-- Filters Panel (shown by default) -->
+        <div id="filtersPanel" class="mt-6 p-5 bg-gray-50 rounded-xl">
+          <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
+            <div>
+              <label class="block text-sm font-medium text-brand-navy mb-2">
+                Min Profit Margin
+                <span class="filter-tooltip">
+                  <i class="fas fa-info-circle text-brand-blue text-xs"></i>
+                  <span class="tooltip-text">Minimum profit margin percentage to filter products</span>
+                </span>
+              </label>
+              <input type="number" class="w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-brand-blue/60" placeholder="e.g. 75">
+            </div>
+            <div>
+              <label class="block text-sm font-medium text-brand-navy mb-2">
+                Sales Volume
+                <span class="filter-tooltip">
+                  <i class="fas fa-info-circle text-brand-blue text-xs"></i>
+                  <span class="tooltip-text">Minimum daily sales volume to filter products</span>
+                </span>
+              </label>
+              <input type="number" class="w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-brand-blue/60" placeholder="e.g. 3">
+            </div>
+            <!-- Commented out other filters -->
+            <!--
+            <div>
+              <label class="block text-sm font-medium text-brand-navy mb-2">Rating</label>
+              <select class="w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-brand-blue/60">
+                <option>Any</option>
+                <option>3.5+ stars</option>
+                <option selected>4.0+ stars</option>
+                <option>4.5+ stars</option>
+              </select>
+            </div>
+            <div>
+              <label class="block text-sm font-medium text-brand-navy mb-2">Shipping Time</label>
+              <select class="w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-brand-blue/60">
+                <option>Any</option>
+                <option>≤ 7 days</option>
+                <option selected>≤ 14 days</option>
+                <option>≤ 21 days</option>
+              </select>
+            </div>
+            -->
+          </div>
+          <!-- Removed Apply Filters button -->
+        </div>
+      </div>
+    </section>
+
+<section id="preSearchVisual" class="max-w-4xl mx-auto px-5 mt-12 mb-8">
+  <div class="text-center">
+    <!-- Animated Icon Container -->
+    <div class="relative inline-block mb-6">
+      <!-- Outer glow -->
+      <div class="absolute inset-0 rounded-full bg-brand-blue/20 blur-xl animate-pulse"></div>
+      
+      <!-- Main icon container -->
+      <div class="relative bg-white/80 rounded-2xl p-8 shadow-soft border border-brand-blue/10">
+        <!-- Radar animation -->
+        <div class="relative w-32 h-32 mx-auto mb-4">
+          <!-- Radar circles -->
+          <div class="absolute inset-0 rounded-full border-2 border-brand-blue/20"></div>
+          <div class="absolute inset-4 rounded-full border-2 border-brand-blue/30"></div>
+          <div class="absolute inset-8 rounded-full border-2 border-brand-blue/40"></div>
+          
+          <!-- Scanning line -->
+          <div class="absolute top-0 left-1/2 w-1 h-full origin-bottom">
+            <div class="w-1 h-full bg-gradient-to-b from-transparent via-brand-lime to-brand-blue animate-spin"></div>
+          </div>
+          
+          <!-- Center dot -->
+          <div class="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2">
+            <div class="w-4 h-4 bg-brand-blue rounded-full shadow-glow"></div>
+          </div>
+        </div>
+        
+        <!-- Icons around radar -->
+        <div class="absolute -top-2 -left-2 w-8 h-8 bg-brand-lime rounded-full flex items-center justify-center shadow-sm">
+          <i class="fas fa-search text-brand-navy text-xs"></i>
+        </div>
+        <div class="absolute -top-2 -right-2 w-8 h-8 bg-brand-blue rounded-full flex items-center justify-center shadow-sm">
+          <i class="fas fa-chart-line text-white text-xs"></i>
+        </div>
+        <div class="absolute -bottom-2 -left-2 w-8 h-8 bg-brand-navy rounded-full flex items-center justify-center shadow-sm">
+          <i class="fas fa-bolt text-brand-lime text-xs"></i>
+        </div>
+        <div class="absolute -bottom-2 -right-2 w-8 h-8 bg-white rounded-full flex items-center justify-center shadow-sm border border-brand-blue/20">
+          <i class="fas fa-trophy text-brand-blue text-xs"></i>
+        </div>
+      </div>
+    </div>
+
+    <!-- Text content -->
+    <div class="space-y-4">
+      <h3 class="text-2xl md:text-3xl font-bold text-brand-navy">
+        Ready to <span class="text-brand-lime">Discover</span> Winners?
+      </h3>
+
+
+      <!-- CTA Button -->
+      <div class="pt-6" style="display: none;">
+        <button id="visualSearchButton" class="group relative inline-flex items-center gap-3 rounded-xl bg-brand-blue text-white px-8 py-4 shadow-soft hover:shadow-glow transition-all transform hover:scale-105">
+          <i class="fas fa-play-circle text-brand-lime text-lg"></i>
+          <span class="font-semibold text-lg">Start Product Analysis</span>
+          <div class="absolute -inset-1 bg-brand-lime/20 rounded-xl blur-sm group-hover:blur-md transition-all -z-10"></div>
+        </button>
+      </div>
+    </div>
+  </div>
+</section>
+
+    <!-- Hero / Context (Hidden initially) -->
+    <section id="heroSection" class="results-section max-w-7xl mx-auto px-5 mt-8">
+      <div class="rounded-card p-6 md:p-8 bg-white/80 shadow-soft relative overflow-hidden">
+        <div class="absolute -right-16 -top-16 h-48 w-48 rounded-full bg-brand-lime/40 blur-2xl animate-float"></div>
+        <h1 class="text-2xl md:text-3xl font-extrabold tracking-tight text-brand-navy mb-2">
+          🏆 Top Winners: <span class="text-brand-lime">"samsung s24 case"</span>
+        </h1>
+        <p class="text-brand-ink/70 max-w-3xl">
+          <span class="mr-3">🎯 Real-Time Market Analysis</span> •
+          <span class="mx-3">💯 Smart Data Processing</span> •
+          <span class="mx-3">📊 Live Sales Metrics</span>
+        </p>
+      </div>
+    </section>
+
+    <!-- KPIs (Hidden initially) - FIXED GRID LAYOUT -->
+    <section id="kpiSection" class="results-section max-w-7xl mx-auto px-5 mt-6">
+      <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-4 md:gap-5">
+        <!-- Each card -->
+        <div class="glass rounded-card p-4 md:p-5 shadow-soft animate-fadeInUp">
+          <p class="text-xs uppercase tracking-wide text-brand-ink/60 flex items-center">
+            Analyzed
+            <span class="kpi-tooltip">
+              <i class="fas fa-info-circle text-brand-blue text-xs ml-1"></i>
+              <span class="tooltip-text">Total number of products analyzed in the search</span>
+            </span>
+          </p>
+          <div id="kpiAnalyzed" class="text-2xl md:text-3xl font-extrabold text-brand-navy">0</div>
+        </div>
+        <div class="glass rounded-card p-4 md:p-5 shadow-soft animate-fadeInUp [animation-delay:.05s]">
+          <p class="text-xs uppercase tracking-wide text-brand-ink/60 flex items-center">
+            Winners Found
+            <span class="kpi-tooltip">
+              <i class="fas fa-trophy text-brand-lime text-xs ml-1"></i>
+              <span class="tooltip-text">Number of high-profit products identified</span>
+            </span>
+          </p>
+          <div id="kpiWinners" class="text-2xl md:text-3xl font-extrabold text-brand-navy">0</div>
+        </div>
+        <div class="glass rounded-card p-4 md:p-5 shadow-soft animate-fadeInUp [animation-delay:.1s]">
+          <p class="text-xs uppercase tracking-wide text-brand-ink/60 flex items-center">
+            Success Rate
+            <span class="kpi-tooltip">
+              <i class="fas fa-chart-line text-green-500 text-xs ml-1"></i>
+              <span class="tooltip-text">Percentage of analyzed products that are profitable</span>
+            </span>
+          </p>
+          <div id="kpiSuccess" class="text-2xl md:text-3xl font-extrabold text-navy-600">0%</div>
+        </div>
+        <div class="glass rounded-card p-4 md:p-5 shadow-soft animate-fadeInUp [animation-delay:.15s]">
+          <p class="text-xs uppercase tracking-wide text-brand-ink/60 flex items-center">
+            Min Profit
+            <span class="kpi-tooltip">
+              <i class="fas fa-money-bill-wave text-yellow-500 text-xs ml-1"></i>
+              <span class="tooltip-text">Minimum profit margin of the filtered products</span>
+            </span>
+          </p>
+          <div id="kpiMinProfit" class="text-2xl md:text-3xl font-extrabold text-navy-600">0%</div>
+        </div>
+        <div class="glass rounded-card p-4 md:p-5 shadow-soft animate-fadeInUp [animation-delay:.2s]">
+          <p class="text-xs uppercase tracking-wide text-brand-ink/60 flex items-center">
+            Data Quality
+            <span class="kpi-tooltip">
+              <i class="fas fa-database text-purple-500 text-xs ml-1"></i>
+              <span class="tooltip-text">Quality rating of the data sources used</span>
+            </span>
+          </p>
+          <div class="text-2xl md:text-3xl font-extrabold text-navy-500">Smart</div>
+        </div>
+        <div class="glass rounded-card p-4 md:p-5 shadow-soft animate-fadeInUp [animation-delay:.25s]">
+          <p class="text-xs uppercase tracking-wide text-brand-ink/60 flex items-center">
+            Time
+            <span class="kpi-tooltip">
+              <i class="fas fa-clock text-red-500 text-xs ml-1"></i>
+              <span class="tooltip-text">Time taken to analyze and process the data</span>
+            </span>
+          </p>
+          <div id="kpiTime" class="text-2xl md:text-3xl font-extrabold text-brand-navy">0s</div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Results Section (Hidden initially) -->
+    <section id="resultsSection" class="results-section max-w-7xl mx-auto px-5 mt-8 mb-24">
+      <div class="rounded-card bg-white shadow-soft overflow-hidden">
+        <!-- Table header -->
+        <div class="px-5 py-4 flex flex-col md:flex-row md:items-center md:justify-between gap-3">
+          <div>
+            <h3 class="text-lg md:text-xl font-bold text-brand-navy">High-Profit Products</h3>
+            <p class="text-sm text-brand-ink/60">
+              Curated winners from AliExpress → eBay with 30D sales & profitability.
+            </p>
+          </div>
+          <div class="flex items-center gap-2">
+            <input
+              id="tableSearch"
+              class="px-3 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-brand-blue/60"
+              placeholder="Search title..."
+            />
+            <button
+              id="exportCSV"
+              class="px-3 py-2 rounded-lg bg-brand-blue text-white shadow-soft hover:shadow-glow transition"
+            >
+              Export CSV
+            </button>
+          </div>
+        </div>
+
+        <!-- Table container -->
+        <div class="pretty-scroll overflow-x-auto hidden md:block">
+          <table id="productsTable" class="min-w-[900px] w-full text-sm">
+            <thead class="sticky-head">
+              <tr class="bg-brand-navy text-white/90">
+                <th class="py-3 pl-5 pr-2 text-left">#</th>
+                <th class="p-3 text-left">
+                  <span class="th-tooltip">
+                    Product image
+                    <span class="tooltip-text">Product image - click to enlarge</span>
+                  </span>
+                </th>
+                <th class="p-3 text-left">
+                  <span class="th-tooltip">
+                    Title
+                    <span class="tooltip-text">Product title and description</span>
+                  </span>
+                </th>
+                <th class="p-3 text-right">
+                  <span class="th-tooltip">
+                    Ali Price
+                    <span class="tooltip-text">Price on AliExpress</span>
+                  </span>
+                </th>
+                <th class="p-3 text-right">
+                  <span class="th-tooltip">
+                    eBay Price
+                    <span class="tooltip-text">Selling price on eBay</span>
+                  </span>
+                </th>
+                <th class="p-3 text-center">
+                  <span class="th-tooltip">
+                    Sales (30D)
+                    <span class="tooltip-text">Number of sales in the last 30 days</span>
+                  </span>
+                </th>
+                <th class="p-3 text-center">
+                  <span class="th-tooltip">
+                    Daily Avg
+                    <span class="tooltip-text">Average daily sales volume</span>
+                  </span>
+                </th>
+                <th class="p-3 text-center">
+                  <span class="th-tooltip">
+                    Rating
+                    <span class="tooltip-text">Customer rating (if available)</span>
+                  </span>
+                </th>
+                <th class="p-3 text-center">
+                  <span class="th-tooltip">
+                    Performance
+                    <span class="tooltip-text">Sales performance indicator</span>
+                  </span>
+                </th>
+                <th class="py-3 pr-5 pl-2 text-right">
+                  <span class="th-tooltip">
+                    Profit
+                    <span class="tooltip-text">Profit margin percentage</span>
+                  </span>
+                </th>
+              </tr>
+            </thead>
+            <tbody class="divide-y divide-gray-100" id="tableBody">
+              <!-- Rows will be populated by JavaScript -->
+            </tbody>
+          </table>
+        </div>
+
+        <!-- Responsive Cards for Mobile -->
+        <div id="mobileCards" class="space-y-4 md:hidden px-3 pb-5">
+          <!-- Cards will be populated by JavaScript -->
+        </div>
+
+        <!-- Pagination and Rows Per Page -->
+        <div class="px-5 py-4 border-t flex flex-col md:flex-row justify-between items-center gap-4">
+          <div class="flex items-center gap-3">
+            <span class="text-sm text-brand-ink/70">Rows per page:</span>
+            <select id="rowsPerPage" class="px-3 py-1.5 border rounded-lg focus:outline-none focus:ring-2 focus:ring-brand-blue/60">
+              <option value="5">5</option>
+              <option value="10" selected>10</option>
+              <option value="25">25</option>
+              <option value="50">50</option>
+            </select>
+          </div>
+          
+          <div class="flex items-center gap-2">
+            <span id="pageInfo" class="text-sm text-brand-ink/70">Page 1 of 1</span>
+            <nav>
+              <ul id="pagination" class="pagination">
+                <!-- Pagination will be populated by JavaScript -->
+              </ul>
+            </nav>
+          </div>
+        </div>
+      </div>
+    </section>
+  </div>
+
+
+  <script>
+   document.getElementById('visualSearchButton').addEventListener('click', function() {
+    // Trigger the existing search functionality
+    document.getElementById('searchButton').click();
+    
+    // Hide the visual section after search
+    document.getElementById('preSearchVisual').style.display = 'none';
+  });
+  
+  // Hide the visual section when regular search is performed
+  const originalSearchHandler = document.getElementById('searchButton').onclick;
+  document.getElementById('searchButton').onclick = function() {
+    if (originalSearchHandler) originalSearchHandler();
+    document.getElementById('preSearchVisual').style.display = 'none';
+  };
+</script>
 
   <!-- Scripts -->
   <script>
@@ -760,12 +1159,12 @@ z-index: 999;
     const closer = document.getElementById("closeSidebar");
 
     openers.forEach(btn => btn && btn.addEventListener("click", () => {
-      sidebar.classList.remove("translate-x-full");
+      sidebar.classList.toggle("hidden");
     }));
-    closer.addEventListener("click", () => sidebar.classList.add("translate-x-full"));
+    closer.addEventListener("click", () => sidebar.classList.add("hidden"));
 
     // Close sidebar with ESC
-    document.addEventListener("keydown", (e)=>{ if(e.key==="Escape") sidebar.classList.add("translate-x-full"); });
+    document.addEventListener("keydown", (e)=>{ if(e.key==="Escape") sidebar.classList.add("hidden"); });
 
     // Filter toggle
     const filterToggle = document.getElementById("filterToggle");
@@ -779,7 +1178,7 @@ z-index: 999;
     // Close filters panel when clicking outside
     document.addEventListener('click', (e) => {
       if (!filtersPanel.contains(e.target) && !filterToggle.contains(e.target)) {
-        filtersPanel.classList.add('hidden');
+        // Don't close by default, only when search is clicked
       }
     });
 
@@ -799,6 +1198,9 @@ z-index: 999;
       resultsSections.forEach(section => {
         section.style.display = "block";
       });
+      
+      // Hide filters panel after search
+      filtersPanel.classList.add("hidden");
       
       // Animate the KPIs
       animate(document.getElementById("kpiAnalyzed"), products.length, "");
@@ -855,6 +1257,20 @@ z-index: 999;
       renderTable();
     });
 
+    // Function to get performance icon
+    function getPerformanceIcon(performance) {
+      switch(performance) {
+        case "BEST SELLER":
+          return '<div class="performance-icon performance-best" title="Best Seller"><i class="fas fa-crown"></i></div>';
+        case "GOOD SELLER":
+          return '<div class="performance-icon performance-good" title="Good Seller"><i class="fas fa-chart-line"></i></div>';
+        case "AVERAGE":
+          return '<div class="performance-icon performance-average" title="Average"><i class="fas fa-minus"></i></div>';
+        default:
+          return '<div class="performance-icon performance-average" title="Average"><i class="fas fa-minus"></i></div>';
+      }
+    }
+
     // Function to render table and mobile cards
     function renderTable() {
       const tableBody = document.getElementById("tableBody");
@@ -880,13 +1296,17 @@ z-index: 999;
         row.innerHTML = `
           <td class="py-3 pl-5 pr-2 font-semibold text-brand-ink/70">${rowNumber}</td>
           <td class="p-3">
-            <div class="image-zoom-container">
+            <div class="image-zoom-container relative">
               <img
                 src="${product.image}"
                 class="h-12 w-12 rounded-lg object-cover image-zoom"
                 alt="${product.title}"
                 data-title="${product.title}"
               />
+              <div class="image-preview-tooltip">
+                <img src="${product.image}" alt="${product.title}">
+                <div class="preview-title">${product.title}</div>
+              </div>
             </div>
           </td>
           <td class="p-3 font-medium">${product.title}</td>
@@ -901,7 +1321,7 @@ z-index: 999;
             }
           </td>
           <td class="p-3 text-center">
-            <span class="inline-flex items-center px-2 sm:px-3 py-0.5 sm:py-1 rounded-full bg-dark text-emerald-700 font-semibold text-[10px] sm:text-sm">${product.performance}</span>
+            ${getPerformanceIcon(product.performance)}
           </td>
           <td class="py-3 pr-5 pl-2 text-right font-bold text-brand-navy">+${product.profit}%</td>
         `;
@@ -912,13 +1332,17 @@ z-index: 999;
         card.className = "rounded-xl border border-gray-200 p-4 shadow-sm bg-white";
         card.innerHTML = `
           <div class="flex items-center gap-3 mb-3">
-            <div class="image-zoom-container">
+            <div class="image-zoom-container relative">
               <img
                 src="${product.image}"
                 class="h-14 w-14 rounded-lg object-cover image-zoom"
                 alt="${product.title}"
                 data-title="${product.title}"
               />
+              <div class="image-preview-tooltip">
+                <img src="${product.image}" alt="${product.title}">
+                <div class="preview-title">${product.title}</div>
+              </div>
             </div>
             <div>
               <h4 class="font-semibold text-brand-navy text-sm">${product.title}</h4>
@@ -948,7 +1372,7 @@ z-index: 999;
             </div>
             <div class="mobile-card-cell">
               <span class="mobile-card-label">Performance</span>
-              <span class="mobile-card-value">${product.performance}</span>
+              <span class="mobile-card-value">${getPerformanceIcon(product.performance)}</span>
             </div>
             <div class="mobile-card-cell">
               <span class="mobile-card-label">Profit</span>
@@ -1079,6 +1503,17 @@ z-index: 999;
 
     // Initialize when page loads
     document.addEventListener('DOMContentLoaded', init);
+
+
+    // Close sidebar by default when page loads
+document.addEventListener('DOMContentLoaded', function() {
+    const sidebar = document.getElementById('sidebar');
+    sidebar.classList.add('hidden');
+});
+
+
   </script>
+
+  
 </body>
 </html>
