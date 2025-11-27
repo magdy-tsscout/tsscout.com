@@ -576,7 +576,7 @@ height: 7rem !important;
         <div class="max-w-7xl mx-auto px-5 py-4 flex items-center justify-between">
           <div class="flex items-center gap-3">
             <!-- SVG Logo -->
-            <img src="logo.svg" alt="">
+            <img src="public/images/logo.svg" alt="">
            </div>
           <div class="flex items-center gap-3">
             <!-- Back to AI tool page -->
