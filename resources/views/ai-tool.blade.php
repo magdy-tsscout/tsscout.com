@@ -84,18 +84,22 @@
     .image-zoom-container {
       position: relative;
       display: inline-block;
-      overflow: hidden;
+      overflow: visible;
       border-radius: 8px;
     }
 
     .image-zoom {
-      transition: transform 0.3s ease;
+      transition: transform 0.3s ease, z-index 0.3s ease;
       cursor: pointer;
+      position: relative;
+      z-index: 1;
     }
 
-    .image-zoom:hover {
-      transform: scale(1.8);
-      z-index: 20;
+    .image-zoom-container:hover .image-zoom {
+      transform: scale(3.5) translateX(50px);
+      z-index: 100;
+      box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+      border-radius: 8px;
     }
 
     /* Pagination styles */
@@ -294,7 +298,7 @@
       border-radius: 6px;
       padding: 8px 12px;
       position: absolute;
-      z-index: 50;
+      z-index: 1000;
       bottom: 125%;
       left: 50%;
       transform: translateX(-50%);
@@ -325,7 +329,7 @@
       border-radius: 6px;
       padding: 8px 12px;
       position: absolute;
-      z-index: 50;
+      z-index: 1000;
       bottom: 125%;
       left: 50%;
       transform: translateX(-50%);
@@ -343,32 +347,46 @@
     /* Table header tooltip styles */
     .th-tooltip {
       position: relative;
+      cursor: pointer;
       display: inline-block;
-      cursor: help;
     }
 
     .th-tooltip .tooltip-text {
       visibility: hidden;
-      width: 180px;
+      width: 200px;
       background-color: #1E3F5B;
       color: white;
       text-align: center;
       border-radius: 6px;
-      padding: 8px 12px;
+      padding: 20px;
       position: absolute;
-      z-index: 50;
-      bottom: 125%;
+      z-index: 1000;
+      bottom: 100%;
       left: 50%;
-      transform: translateX(-50%);
+      transform: translateX(-50%) translateY(-10px);
       opacity: 0;
-      transition: opacity 0.3s;
+      transition: all 0.3s ease;
       font-size: 12px;
       line-height: 1.4;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+      white-space: normal;
+    }
+
+    .th-tooltip .tooltip-text::after {
+      content: "";
+      position: absolute;
+      top: 100%;
+      left: 50%;
+      margin-left: -5px;
+      border-width: 5px;
+      border-style: solid;
+      border-color: #1E3F5B transparent transparent transparent;
     }
 
     .th-tooltip:hover .tooltip-text {
-      visibility: visible !important;
-      opacity: 1 !important;
+      visibility: visible;
+      opacity: 1;
+      transform: translateX(-50%) translateY(0);
     }
 
     /* Performance icons */
@@ -464,25 +482,154 @@
 }
 
 .w-12{
-
   width: 6rem !important;
-
 }
 
 .h-12{
-height: 7rem !important;
+  height: 7rem !important;
 }
 
-/* Gradient lines for a premium look */
-#tableBody tr:not(:last-child) td {
-  border-bottom: 0.5px solid;
-  border-image: linear-gradient(to right, transparent, #e2e8f0, transparent) 1;
+/* Table cell borders */
+#tableBody tr {
+  border-bottom: 1px solid #f1f5f9;
 }
 
-#tableBody td:not(:last-child) {
-  border-right: 3px solid #f8fafc;
+#tableBody td {
+  padding: 12px 15px;
+  border-right: 1px solid #f8fafc;
 }
 
+#tableBody td:last-child {
+  border-right: none;
+}
+
+/* Export button responsiveness */
+@media (max-width: 640px) {
+  #exportCSV {
+    padding: 8px 12px;
+    font-size: 14px;
+    width: auto;
+    white-space: nowrap;
+  }
+  
+  .px-5.py-4.flex.flex-col.md\:flex-row.md\:items-center.md\:justify-between.gap-3 {
+    flex-direction: column;
+    gap: 15px;
+  }
+  
+  .px-5.py-4.flex.flex-col.md\:flex-row.md\:items-center.md\:justify-between.gap-3 > div:last-child {
+    width: 100%;
+    display: flex;
+    gap: 10px;
+  }
+  
+  #tableSearch {
+    flex: 1;
+    min-width: 0;
+  }
+}
+
+/* Table header sorting styles */
+.sortable {
+  cursor: pointer;
+  user-select: none;
+  position: relative;
+  padding-right: 25px !important;
+}
+
+.sortable:hover {
+  background-color: rgba(255, 255, 255, 0.1);
+}
+
+.sortable::after {
+  content: "↕";
+  position: absolute;
+  right: 10px;
+  top: 50%;
+  transform: translateY(-50%);
+  font-size: 12px;
+  opacity: 0.7;
+}
+
+.sortable.asc::after {
+  content: "↑";
+  opacity: 1;
+  color: #C6F74A;
+}
+
+.sortable.desc::after {
+  content: "↓";
+  opacity: 1;
+  color: #C6F74A;
+}
+
+/* Table container with borders */
+.table-container {
+  border: 1px solid #e2e8f0;
+  border-radius: 12px;
+  overflow: hidden;
+  margin: 0 15px;
+  background: white;
+}
+
+@media (min-width: 768px) {
+  .table-container {
+    margin: 0 20px;
+  }
+}
+
+/* Table wrapper for better control */
+.table-wrapper {
+  width: 100%;
+  overflow-x: auto;
+}
+
+/* Alternative: Show tooltips BELOW the table headers */
+.th-tooltip .tooltip-text {
+  visibility: hidden;
+  width: 200px;
+  background-color: #1E3F5B;
+  color: white;
+  text-align: center;
+  border-radius: 6px;
+  padding: 20px;
+  position: absolute;
+  z-index: 1000;
+  /* Position BELOW the header */
+  top: 100%;
+  left: 50%;
+  transform: translateX(-50%) translateY(10px);
+  opacity: 0;
+  transition: all 0.3s ease;
+  font-size: 12px;
+  line-height: 1.4;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+  white-space: normal;
+  margin-top: 15px;
+}
+
+.th-tooltip .tooltip-text::after {
+  content: "";
+  position: absolute;
+  bottom: 100%;
+  left: 50%;
+  margin-left: -5px;
+  border-width: 5px;
+  border-style: solid;
+  border-color: transparent transparent #1E3F5B transparent;
+}
+
+.th-tooltip:hover .tooltip-text {
+  visibility: visible;
+  opacity: 1;
+  transform: translateX(-50%) translateY(0);
+}
+
+/* Ensure table headers have proper height for tooltips */
+.sticky-head th {
+  padding-top: 15px;
+  padding-bottom: 15px;
+}
   </style>
 </head>
 
@@ -503,7 +650,7 @@ height: 7rem !important;
 
   <!-- LEFT SIDEBAR - Navigation Only -->
   <aside id="sidebar"
-         class="fixed top-0 left-0 h-full w-16 bg-white shadow-2xl z-50 overflow-hidden">
+         class="fixed top-0 left-0 h-full w-16 bg-white shadow-2xl z-50 overflow-hidden hidden">
     <div class="h-full flex flex-col py-4">
       <!-- Close button -->
       <div class="px-3 mb-6 flex justify-end">
@@ -569,14 +716,14 @@ height: 7rem !important;
   </button>
 
   <!-- Main Content -->
-  <div class="ml-15">
+  <div class="ml-0 md:ml-16">
     <!-- Top Nav -->
     <header class="sticky top-0 z-40">
       <div class="glass shadow-soft">
         <div class="max-w-7xl mx-auto px-5 py-4 flex items-center justify-between">
           <div class="flex items-center gap-3">
             <!-- SVG Logo -->
-            <img src="public/images/logo.svg" alt="">
+            <img src="logo.svg" alt="">
            </div>
           <div class="flex items-center gap-3">
             <!-- Back to AI tool page -->
@@ -653,50 +800,44 @@ height: 7rem !important;
         
         <!-- Filters Panel (shown by default) -->
         <div id="filtersPanel" class="mt-6 p-5 bg-gray-50 rounded-xl">
-          <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
+          <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
             <div>
               <label class="block text-sm font-medium text-brand-navy mb-2">
-                Min Profit Margin
+                Rating
                 <span class="filter-tooltip">
                   <i class="fas fa-info-circle text-brand-blue text-xs"></i>
-                  <span class="tooltip-text">Minimum profit margin percentage to filter products</span>
+                  <span class="tooltip-text">Minimum rating to filter products</span>
                 </span>
               </label>
-              <input type="number" class="w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-brand-blue/60" placeholder="e.g. 75">
+              <input type="number" min="0" max="5" step="0.1" 
+                     class="w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-brand-blue/60" 
+                     placeholder="e.g. 4.0" value="" id="ratingFilter">
             </div>
             <div>
               <label class="block text-sm font-medium text-brand-navy mb-2">
-                Sales Volume
+                AVG Sales
                 <span class="filter-tooltip">
                   <i class="fas fa-info-circle text-brand-blue text-xs"></i>
-                  <span class="tooltip-text">Minimum daily sales volume to filter products</span>
+                  <span class="tooltip-text">Average daily sales volume</span>
                 </span>
               </label>
-              <input type="number" class="w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-brand-blue/60" placeholder="e.g. 3">
-            </div>
-            <!-- Commented out other filters -->
-            <!--
-            <div>
-              <label class="block text-sm font-medium text-brand-navy mb-2">Rating</label>
-              <select class="w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-brand-blue/60">
-                <option>Any</option>
-                <option>3.5+ stars</option>
-                <option selected>4.0+ stars</option>
-                <option>4.5+ stars</option>
-              </select>
+              <input type="number" min="0" step="0.1"
+                     class="w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-brand-blue/60" 
+                     placeholder="e.g. 1.0" value="" id="avgSalesFilter">
             </div>
             <div>
-              <label class="block text-sm font-medium text-brand-navy mb-2">Shipping Time</label>
-              <select class="w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-brand-blue/60">
-                <option>Any</option>
-                <option>≤ 7 days</option>
-                <option selected>≤ 14 days</option>
-                <option>≤ 21 days</option>
-              </select>
+              <label class="block text-sm font-medium text-brand-navy mb-2">
+                Min Profit %
+                <span class="filter-tooltip">
+                  <i class="fas fa-info-circle text-brand-blue text-xs"></i>
+                  <span class="tooltip-text">Minimum profit percentage</span>
+                </span>
+              </label>
+              <input type="number" min="0" 
+                     class="w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-brand-blue/60" 
+                     placeholder="e.g. 75" value="" id="minProfitFilter">
             </div>
-            -->
           </div>
-          <!-- Removed Apply Filters button -->
         </div>
       </div>
     </section>
@@ -750,9 +891,8 @@ height: 7rem !important;
         Ready to <span class="text-brand-lime">Discover</span> Winners?
       </h3>
 
-
       <!-- CTA Button -->
-      <div class="pt-6" style="display: none;">
+      <div class="pt-6">
         <button id="visualSearchButton" class="group relative inline-flex items-center gap-3 rounded-xl bg-brand-blue text-white px-8 py-4 shadow-soft hover:shadow-glow transition-all transform hover:scale-105">
           <i class="fas fa-play-circle text-brand-lime text-lg"></i>
           <span class="font-semibold text-lg">Start Product Analysis</span>
@@ -849,94 +989,98 @@ height: 7rem !important;
     <section id="resultsSection" class="results-section max-w-7xl mx-auto px-5 mt-8 mb-24">
       <div class="rounded-card bg-white shadow-soft overflow-hidden">
         <!-- Table header -->
-        <div class="px-5 py-4 flex flex-col md:flex-row md:items-center md:justify-between gap-3">
+        <div class="px-5 py-4 border-b flex flex-col md:flex-row md:items-center md:justify-between gap-3 bg-white">
           <div>
             <h3 class="text-lg md:text-xl font-bold text-brand-navy">High-Profit Products</h3>
             <p class="text-sm text-brand-ink/60">
               Curated winners from AliExpress → eBay with 30D sales & profitability.
             </p>
           </div>
-          <div class="flex items-center gap-2">
+          <div class="flex items-center gap-2 w-full md:w-auto">
             <input
               id="tableSearch"
-              class="px-3 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-brand-blue/60"
+              class="px-3 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-brand-blue/60 flex-grow md:flex-grow-0"
               placeholder="Search title..."
             />
             <button
               id="exportCSV"
-              class="px-3 py-2 rounded-lg bg-brand-blue text-white shadow-soft hover:shadow-glow transition"
+              class="px-4 py-2 rounded-lg bg-brand-blue text-white shadow-soft hover:shadow-glow transition whitespace-nowrap"
             >
-              Export CSV
+              <i class="fas fa-download mr-2"></i>
+              <span class="hidden sm:inline">Export CSV</span>
+              <span class="sm:hidden">Export</span>
             </button>
           </div>
         </div>
 
-        <!-- Table container -->
-        <div class="pretty-scroll overflow-x-auto hidden md:block">
-          <table id="productsTable" class="min-w-[900px] w-full text-sm">
-            <thead class="sticky-head">
-              <tr class="bg-brand-navy text-white/90">
-                <th class="py-3 pl-5 pr-2 text-left">#</th>
-                <th class="p-3 text-left">
-                  <span class="th-tooltip">
-                    Product image
-                    <span class="tooltip-text">Product image - click to enlarge</span>
-                  </span>
-                </th>
-                <th class="p-3 text-left">
-                  <span class="th-tooltip">
-                    Title
-                    <span class="tooltip-text">Product title and description</span>
-                  </span>
-                </th>
-                <th class="p-3 text-right">
-                  <span class="th-tooltip">
-                    Ali Price
-                    <span class="tooltip-text">Price on AliExpress</span>
-                  </span>
-                </th>
-                <th class="p-3 text-right">
-                  <span class="th-tooltip">
-                    eBay Price
-                    <span class="tooltip-text">Selling price on eBay</span>
-                  </span>
-                </th>
-                <th class="p-3 text-center">
-                  <span class="th-tooltip">
-                    Sales (30D)
-                    <span class="tooltip-text">Number of sales in the last 30 days</span>
-                  </span>
-                </th>
-                <th class="p-3 text-center">
-                  <span class="th-tooltip">
-                    Daily Avg
-                    <span class="tooltip-text">Average daily sales volume</span>
-                  </span>
-                </th>
-                <th class="p-3 text-center">
-                  <span class="th-tooltip">
-                    Rating
-                    <span class="tooltip-text">Customer rating (if available)</span>
-                  </span>
-                </th>
-                <th class="p-3 text-center">
-                  <span class="th-tooltip">
-                    Performance
-                    <span class="tooltip-text">Sales performance indicator</span>
-                  </span>
-                </th>
-                <th class="py-3 pr-5 pl-2 text-right">
-                  <span class="th-tooltip">
-                    Profit
-                    <span class="tooltip-text">Profit margin percentage</span>
-                  </span>
-                </th>
-              </tr>
-            </thead>
-            <tbody class="divide-y divide-gray-100" id="tableBody">
-              <!-- Rows will be populated by JavaScript -->
-            </tbody>
-          </table>
+        <!-- Table container with borders -->
+        <div class="table-container my-4">
+          <div class="pretty-scroll overflow-x-auto">
+            <table id="productsTable" class="w-full text-sm">
+              <thead class="sticky-head">
+                <tr class="bg-brand-navy text-white/90">
+                  <th class="py-3 pl-5 pr-2 text-left">#</th>
+                  <th class="p-3 text-left">
+                    <span class="th-tooltip">
+                      Product image
+                      <span class="tooltip-text">Product image - click to enlarge</span>
+                    </span>
+                  </th>
+                  <th class="p-3 text-left sortable">
+                    <span class="th-tooltip">
+                      Title
+                      <span class="tooltip-text">Product title and description</span>
+                    </span>
+                  </th>
+                  <th class="p-3 text-right sortable">
+                    <span class="th-tooltip">
+                      Ali Price
+                      <span class="tooltip-text">Price on AliExpress</span>
+                    </span>
+                  </th>
+                  <th class="p-3 text-right sortable">
+                    <span class="th-tooltip">
+                      eBay Price
+                      <span class="tooltip-text">Selling price on eBay</span>
+                    </span>
+                  </th>
+                  <th class="p-3 text-center sortable">
+                    <span class="th-tooltip">
+                      Sales (30D)
+                      <span class="tooltip-text">Number of sales in the last 30 days</span>
+                    </span>
+                  </th>
+                  <th class="p-3 text-center sortable">
+                    <span class="th-tooltip">
+                      Daily Avg
+                      <span class="tooltip-text">Average daily sales volume</span>
+                    </span>
+                  </th>
+                  <th class="p-3 text-center sortable">
+                    <span class="th-tooltip">
+                      Rating
+                      <span class="tooltip-text">Customer rating</span>
+                    </span>
+                  </th>
+                  <th class="p-3 text-center sortable">
+                    <span class="th-tooltip">
+                      Performance
+                      <span class="tooltip-text">Sales performance indicator</span>
+                    </span>
+                  </th>
+                  <th class="py-3 pr-5 pl-2 text-right sortable">
+                    <span class="th-tooltip">
+                      Profit
+                      <span class="tooltip-text">Profit margin %</span>
+                    </span>
+                  </th>
+                </tr>
+              </thead>
+              <tbody class="divide-y divide-gray-100" id="tableBody">
+                <!-- Rows will be populated by JavaScript -->
+              </tbody>
+            </table>
+          </div>
         </div>
 
         <!-- Responsive Cards for Mobile -->
@@ -968,24 +1112,6 @@ height: 7rem !important;
       </div>
     </section>
   </div>
-
-
-  <script>
-   document.getElementById('visualSearchButton').addEventListener('click', function() {
-    // Trigger the existing search functionality
-    document.getElementById('searchButton').click();
-    
-    // Hide the visual section after search
-    document.getElementById('preSearchVisual').style.display = 'none';
-  });
-  
-  // Hide the visual section when regular search is performed
-  const originalSearchHandler = document.getElementById('searchButton').onclick;
-  document.getElementById('searchButton').onclick = function() {
-    if (originalSearchHandler) originalSearchHandler();
-    document.getElementById('preSearchVisual').style.display = 'none';
-  };
-</script>
 
   <!-- Scripts -->
   <script>
@@ -1137,10 +1263,82 @@ height: 7rem !important;
       }
     ];
 
-    // Global variables for pagination
+    // Global variables
     let currentPage = 1;
     let rowsPerPage = 10;
     let filteredProducts = [...products];
+    let sortColumn = null;
+    let sortDirection = 'asc';
+
+    // Sorting functionality
+    function sortTable(columnIndex) {
+      if (sortColumn === columnIndex) {
+        sortDirection = sortDirection === 'asc' ? 'desc' : 'asc';
+      } else {
+        sortColumn = columnIndex;
+        sortDirection = 'asc';
+      }
+      
+      // Update table headers
+      document.querySelectorAll('.sortable').forEach((th, index) => {
+        th.classList.remove('asc', 'desc');
+        if (index === columnIndex) {
+          th.classList.add(sortDirection);
+        }
+      });
+      
+      // Sort products
+      filteredProducts.sort((a, b) => {
+        let aValue, bValue;
+        
+        // Map column indices (starting from 2 because # and Product image are not sortable)
+        const columnMap = {
+          2: 'title',
+          3: 'aliPrice',
+          4: 'ebayPrice',
+          5: 'sales30d',
+          6: 'dailyAvg',
+          7: 'rating',
+          8: 'performance',
+          9: 'profit'
+        };
+        
+        const field = columnMap[columnIndex];
+        if (!field) return 0;
+        
+        // Handle performance field conversion
+        if (field === 'performance') {
+          const perfMap = { "BEST SELLER": 3, "GOOD SELLER": 2, "AVERAGE": 1 };
+          aValue = perfMap[a[field]] || 0;
+          bValue = perfMap[b[field]] || 0;
+        } else {
+          aValue = a[field];
+          bValue = b[field];
+        }
+        
+        // Handle null/undefined values
+        if (aValue == null) aValue = field === 'title' ? '' : 0;
+        if (bValue == null) bValue = field === 'title' ? '' : 0;
+        
+        if (sortDirection === 'asc') {
+          return aValue > bValue ? 1 : aValue < bValue ? -1 : 0;
+        } else {
+          return aValue < bValue ? 1 : aValue > bValue ? -1 : 0;
+        }
+      });
+      
+      renderTable();
+    }
+
+    // Setup sorting on table headers
+    function setupSorting() {
+      const headers = document.querySelectorAll('.sortable');
+      headers.forEach((header, index) => {
+        // Add 2 to index because # and Product image columns are not sortable
+        const columnIndex = index + 2;
+        header.addEventListener('click', () => sortTable(columnIndex));
+      });
+    }
 
     // counter animation
     const animate = (el, end, suffix="", dur=1200) => {
@@ -1188,7 +1386,26 @@ height: 7rem !important;
     const keywordSearch = document.getElementById("keywordSearch");
     const heroSection = document.getElementById("heroSection");
     
+    // Visual search button
+    document.getElementById('visualSearchButton').addEventListener('click', function() {
+      document.getElementById('searchButton').click();
+      document.getElementById('preSearchVisual').style.display = 'none';
+    });
+    
     searchButton.addEventListener("click", () => {
+      // Get filter values
+      const ratingFilter = parseFloat(document.getElementById("ratingFilter").value) || 0;
+      const avgSalesFilter = parseFloat(document.getElementById("avgSalesFilter").value) || 0;
+      const minProfitFilter = parseFloat(document.getElementById("minProfitFilter").value) || 0;
+      
+      // Apply filters
+      filteredProducts = products.filter(product => {
+        const productRating = product.rating || 0;
+        return (!ratingFilter || productRating >= ratingFilter) &&
+               (!avgSalesFilter || product.dailyAvg >= avgSalesFilter) &&
+               (!minProfitFilter || product.profit >= minProfitFilter);
+      });
+      
       // Update the hero section with the search keyword
       const keyword = keywordSearch.value;
       const heroTitle = heroSection.querySelector("h1");
@@ -1199,16 +1416,29 @@ height: 7rem !important;
         section.style.display = "block";
       });
       
-      // Hide filters panel after search
+      // Hide visual section and filters panel
+      document.getElementById('preSearchVisual').style.display = 'none';
       filtersPanel.classList.add("hidden");
       
       // Animate the KPIs
-      animate(document.getElementById("kpiAnalyzed"), products.length, "");
-      animate(document.getElementById("kpiWinners"), products.length, "");
-      animate(document.getElementById("kpiSuccess"), 100, "%");
-      animate(document.getElementById("kpiMinProfit"), 75, "%");
+      animate(document.getElementById("kpiAnalyzed"), filteredProducts.length, "");
+      animate(document.getElementById("kpiWinners"), filteredProducts.length, "");
+      animate(document.getElementById("kpiSuccess"), Math.round((filteredProducts.length / products.length) * 100), "%");
+      
+      // Calculate min profit from filtered products
+      const minProfit = filteredProducts.length > 0 ? 
+        Math.min(...filteredProducts.map(p => p.profit)) : 0;
+      animate(document.getElementById("kpiMinProfit"), Math.round(minProfit), "%");
+      
       animate(document.getElementById("kpiTime"), 124, "s");
 
+      // Reset sorting
+      sortColumn = null;
+      sortDirection = 'asc';
+      document.querySelectorAll('.sortable').forEach(th => {
+        th.classList.remove('asc', 'desc');
+      });
+      
       // Render the table with products
       renderTable();
     });
@@ -1230,7 +1460,7 @@ height: 7rem !important;
       // Create CSV content
       let csvContent = "ID,Title,Ali Price,eBay Price,Sales (30D),Daily Avg,Rating,Performance,Profit\n";
       
-      products.forEach(product => {
+      filteredProducts.forEach(product => {
         csvContent += `${product.id},"${product.title}",${product.aliPrice},${product.ebayPrice},${product.sales30d},${product.dailyAvg},${product.rating || "No rating"},${product.performance},${product.profit}%\n`;
       });
       
@@ -1296,24 +1526,20 @@ height: 7rem !important;
         row.innerHTML = `
           <td class="py-3 pl-5 pr-2 font-semibold text-brand-ink/70">${rowNumber}</td>
           <td class="p-3">
-            <div class="image-zoom-container relative">
+            <div class="image-zoom-container">
               <img
                 src="${product.image}"
                 class="h-12 w-12 rounded-lg object-cover image-zoom"
                 alt="${product.title}"
                 data-title="${product.title}"
               />
-              <div class="image-preview-tooltip">
-                <img src="${product.image}" alt="${product.title}">
-                <div class="preview-title">${product.title}</div>
-              </div>
             </div>
           </td>
           <td class="p-3 font-medium">${product.title}</td>
           <td class="p-3 text-right text-brand-navy font-semibold">$${product.aliPrice.toFixed(2)}</td>
           <td class="p-3 text-right text-brand-navy font-semibold">$${product.ebayPrice.toFixed(2)}</td>
           <td class="p-3 text-center text-brand-navy font-semibold">${product.sales30d}</td>
-          <td class="p-3 text-center text-brand-navy font-semibold">${product.dailyAvg}</td>
+          <td class="p-3 text-center text-brand-navy font-semibold">${product.dailyAvg.toFixed(1)}</td>
           <td class="p-3 text-center">
             ${product.rating ? 
               `<span class="inline-flex items-center gap-1 px-2 py-0.5 sm:px-2.5 sm:py-1 rounded-full bg-dark text-navy-700 text-xs sm:text-sm">⭐ ${product.rating}</span>` :
@@ -1332,17 +1558,13 @@ height: 7rem !important;
         card.className = "rounded-xl border border-gray-200 p-4 shadow-sm bg-white";
         card.innerHTML = `
           <div class="flex items-center gap-3 mb-3">
-            <div class="image-zoom-container relative">
+            <div class="image-zoom-container">
               <img
                 src="${product.image}"
                 class="h-14 w-14 rounded-lg object-cover image-zoom"
                 alt="${product.title}"
                 data-title="${product.title}"
               />
-              <div class="image-preview-tooltip">
-                <img src="${product.image}" alt="${product.title}">
-                <div class="preview-title">${product.title}</div>
-              </div>
             </div>
             <div>
               <h4 class="font-semibold text-brand-navy text-sm">${product.title}</h4>
@@ -1364,7 +1586,7 @@ height: 7rem !important;
             </div>
             <div class="mobile-card-cell">
               <span class="mobile-card-label">Daily Avg</span>
-              <span class="mobile-card-value">${product.dailyAvg}</span>
+              <span class="mobile-card-value">${product.dailyAvg.toFixed(1)}</span>
             </div>
             <div class="mobile-card-cell">
               <span class="mobile-card-label">Rating</span>
@@ -1372,7 +1594,7 @@ height: 7rem !important;
             </div>
             <div class="mobile-card-cell">
               <span class="mobile-card-label">Performance</span>
-              <span class="mobile-card-value">${getPerformanceIcon(product.performance)}</span>
+              <span class="mobile-card-value">${getPerformanceIcon(product.performance).outerHTML}</span>
             </div>
             <div class="mobile-card-cell">
               <span class="mobile-card-label">Profit</span>
@@ -1385,9 +1607,6 @@ height: 7rem !important;
       
       // Update pagination
       updatePagination(totalPages);
-      
-      // Re-attach image click events
-      attachImageClickEvents();
     }
 
     // Function to update pagination
@@ -1439,21 +1658,6 @@ height: 7rem !important;
       pagination.appendChild(nextLi);
     }
 
-    // Image zoom enhancement
-    function attachImageClickEvents() {
-      document.querySelectorAll('.image-zoom').forEach(img => {
-        img.addEventListener('mouseenter', function() {
-          this.style.zIndex = '20';
-          this.style.transform = 'scale(1.8)';
-        });
-        
-        img.addEventListener('mouseleave', function() {
-          this.style.zIndex = '';
-          this.style.transform = 'scale(1)';
-        });
-      });
-    }
-
     // Image Modal Functionality
     const imageModal = document.getElementById("imageModal");
     const modalImage = document.getElementById("modalImage");
@@ -1467,7 +1671,7 @@ height: 7rem !important;
           modalImage.src = this.src;
           modalTitle.textContent = this.getAttribute('data-title') || this.alt;
           imageModal.classList.add('active');
-          document.body.style.overflow = 'hidden'; // Prevent scrolling
+          document.body.style.overflow = 'hidden';
         });
       });
     }
@@ -1475,14 +1679,14 @@ height: 7rem !important;
     // Close modal when clicking close button
     modalClose.addEventListener('click', function() {
       imageModal.classList.remove('active');
-      document.body.style.overflow = ''; // Restore scrolling
+      document.body.style.overflow = '';
     });
 
     // Close modal when clicking outside the image
     imageModal.addEventListener('click', function(e) {
       if (e.target === imageModal) {
         imageModal.classList.remove('active');
-        document.body.style.overflow = ''; // Restore scrolling
+        document.body.style.overflow = '';
       }
     });
 
@@ -1490,7 +1694,7 @@ height: 7rem !important;
     document.addEventListener('keydown', function(e) {
       if (e.key === 'Escape' && imageModal.classList.contains('active')) {
         imageModal.classList.remove('active');
-        document.body.style.overflow = ''; // Restore scrolling
+        document.body.style.overflow = '';
       }
     });
 
@@ -1499,21 +1703,11 @@ height: 7rem !important;
       // Set initial state
       filteredProducts = [...products];
       attachModalEvents();
+      setupSorting(); // Initialize sorting functionality
     }
 
     // Initialize when page loads
     document.addEventListener('DOMContentLoaded', init);
-
-
-    // Close sidebar by default when page loads
-document.addEventListener('DOMContentLoaded', function() {
-    const sidebar = document.getElementById('sidebar');
-    sidebar.classList.add('hidden');
-});
-
-
   </script>
-
-  
 </body>
 </html>
