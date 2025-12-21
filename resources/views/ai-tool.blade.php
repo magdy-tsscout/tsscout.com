@@ -260,6 +260,7 @@
       display: grid;
       grid-template-columns: 1fr 1fr;
       gap: 12px;
+      margin-top: 10px;
     }
 
     .mobile-card-cell {
@@ -268,12 +269,14 @@
       padding: 8px;
       background: #f8fafc;
       border-radius: 8px;
+      border: 1px solid #e2e8f0;
     }
 
     .mobile-card-label {
       font-size: 11px;
       color: #64748b;
       margin-bottom: 4px;
+      font-weight: 500;
     }
 
     .mobile-card-value {
@@ -344,7 +347,7 @@
       opacity: 1;
     }
 
-    /* Table header tooltip styles */
+    /* Table header tooltip styles - FIXED */
     .th-tooltip {
       position: relative;
       cursor: pointer;
@@ -358,29 +361,31 @@
       color: white;
       text-align: center;
       border-radius: 6px;
-      padding: 20px;
+      padding: 10px;
       position: absolute;
       z-index: 1000;
-      bottom: 100%;
+      /* Position BELOW the header */
+      top: 100%;
       left: 50%;
-      transform: translateX(-50%) translateY(-10px);
+      transform: translateX(-50%) translateY(10px);
       opacity: 0;
       transition: all 0.3s ease;
       font-size: 12px;
       line-height: 1.4;
       box-shadow: 0 4px 12px rgba(0,0,0,0.15);
       white-space: normal;
+      margin-top: 15px;
     }
 
     .th-tooltip .tooltip-text::after {
       content: "";
       position: absolute;
-      top: 100%;
+      bottom: 100%;
       left: 50%;
       margin-left: -5px;
       border-width: 5px;
       border-style: solid;
-      border-color: #1E3F5B transparent transparent transparent;
+      border-color: transparent transparent #1E3F5B transparent;
     }
 
     .th-tooltip:hover .tooltip-text {
@@ -578,51 +583,88 @@
   }
 }
 
-/* Table wrapper for better control */
-.table-wrapper {
-  width: 100%;
-  overflow-x: auto;
+/* Mobile/Desktop responsive display */
+@media (max-width: 767px) {
+  #mobileCards {
+    display: block;
+    padding: 15px;
+  }
+  
+  #productsTable {
+    display: none;
+  }
+  
+  .pretty-scroll {
+    display: none;
+  }
+  
+  .table-container {
+    display: none;
+  }
 }
 
-/* Alternative: Show tooltips BELOW the table headers */
-.th-tooltip .tooltip-text {
-  visibility: hidden;
-  width: 200px;
-  background-color: #1E3F5B;
-  color: white;
-  text-align: center;
-  border-radius: 6px;
-  padding: 20px;
-  position: absolute;
-  z-index: 1000;
-  /* Position BELOW the header */
-  top: 100%;
-  left: 50%;
-  transform: translateX(-50%) translateY(10px);
-  opacity: 0;
-  transition: all 0.3s ease;
-  font-size: 12px;
+@media (min-width: 768px) {
+  #mobileCards {
+    display: none !important;
+  }
+  
+  #productsTable {
+    display: table;
+  }
+  
+  .pretty-scroll {
+    display: block;
+  }
+  
+  .table-container {
+    display: block;
+  }
+}
+
+/* Mobile image container */
+#mobileCards .image-zoom-container {
+  position: relative;
+}
+
+#mobileCards .image-zoom {
+  transition: transform 0.3s ease;
+  cursor: pointer;
+}
+
+#mobileCards .image-zoom-container:hover .image-zoom {
+  transform: scale(2) translateX(30px);
+  z-index: 100;
+  box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+}
+
+/* Ensure proper spacing for mobile cards */
+#mobileCards {
+  padding-top: 10px;
+  padding-bottom: 20px;
+}
+
+/* Mobile card container */
+#mobileCards .rounded-xl {
+  background: white;
+  border: 1px solid #e2e8f0;
+  margin-bottom: 12px;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+}
+
+/* Mobile card title */
+#mobileCards h4 {
+  font-size: 14px;
   line-height: 1.4;
-  box-shadow: 0 4px 12px rgba(0,0,0,0.15);
-  white-space: normal;
-  margin-top: 15px;
+  margin-bottom: 8px;
 }
 
-.th-tooltip .tooltip-text::after {
-  content: "";
-  position: absolute;
-  bottom: 100%;
-  left: 50%;
-  margin-left: -5px;
-  border-width: 5px;
-  border-style: solid;
-  border-color: transparent transparent #1E3F5B transparent;
-}
-
-.th-tooltip:hover .tooltip-text {
-  visibility: visible;
-  opacity: 1;
-  transform: translateX(-50%) translateY(0);
+/* Mobile card number badge */
+#mobileCards .text-xs.text-gray-500 {
+  font-size: 11px;
+  background: #f1f5f9;
+  padding: 2px 6px;
+  border-radius: 4px;
+  display: inline-block;
 }
 
 /* Ensure table headers have proper height for tooltips */
@@ -1013,8 +1055,8 @@
           </div>
         </div>
 
-        <!-- Table container with borders -->
-        <div class="table-container my-4">
+        <!-- Desktop Table Container -->
+        <div class="table-container my-4 hidden md:block">
           <div class="pretty-scroll overflow-x-auto">
             <table id="productsTable" class="w-full text-sm">
               <thead class="sticky-head">
@@ -1059,7 +1101,7 @@
                   <th class="p-3 text-center sortable">
                     <span class="th-tooltip">
                       Rating
-                      <span class="tooltip-text">Customer rating</span>
+                      <span class="tooltip-text">Customer rating (if available)</span>
                     </span>
                   </th>
                   <th class="p-3 text-center sortable">
@@ -1071,7 +1113,7 @@
                   <th class="py-3 pr-5 pl-2 text-right sortable">
                     <span class="th-tooltip">
                       Profit
-                      <span class="tooltip-text">Profit margin %</span>
+                      <span class="tooltip-text">Profit margin percentage</span>
                     </span>
                   </th>
                 </tr>
@@ -1083,8 +1125,8 @@
           </div>
         </div>
 
-        <!-- Responsive Cards for Mobile -->
-        <div id="mobileCards" class="space-y-4 md:hidden px-3 pb-5">
+        <!-- Mobile Cards Container -->
+        <div id="mobileCards" class="md:hidden px-5 py-4 space-y-4">
           <!-- Cards will be populated by JavaScript -->
         </div>
 
@@ -1516,11 +1558,11 @@
       const paginatedProducts = filteredProducts.slice(startIndex, endIndex);
       const totalPages = Math.ceil(filteredProducts.length / rowsPerPage);
       
-      // Render table rows
+      // Render table rows for desktop
       paginatedProducts.forEach((product, index) => {
         const rowNumber = startIndex + index + 1;
         
-        // Table row
+        // Desktop table row
         const row = document.createElement("tr");
         row.className = "hover:bg-brand-mint/40 transition";
         row.innerHTML = `
@@ -1566,9 +1608,9 @@
                 data-title="${product.title}"
               />
             </div>
-            <div>
-              <h4 class="font-semibold text-brand-navy text-sm">${product.title}</h4>
-              <span class="text-xs text-gray-500">#${rowNumber}</span>
+            <div class="flex-1">
+              <h4 class="font-semibold text-brand-navy text-sm mb-1">${product.title}</h4>
+              <span class="text-xs text-gray-500 bg-gray-100 px-2 py-1 rounded">#${rowNumber}</span>
             </div>
           </div>
           <div class="mobile-card-grid">
@@ -1594,11 +1636,11 @@
             </div>
             <div class="mobile-card-cell">
               <span class="mobile-card-label">Performance</span>
-              <span class="mobile-card-value">${getPerformanceIcon(product.performance).outerHTML}</span>
+              <span class="mobile-card-value">${product.performance}</span>
             </div>
             <div class="mobile-card-cell">
               <span class="mobile-card-label">Profit</span>
-              <span class="mobile-card-value font-bold">+${product.profit}%</span>
+              <span class="mobile-card-value font-bold text-green-600">+${product.profit}%</span>
             </div>
           </div>
         `;
