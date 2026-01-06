@@ -3,6 +3,7 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="csrf-token" content="{{ csrf_token() }}">
   <title>Scouter Pro — Winners Analytics</title>
   <script src="https://cdn.tailwindcss.com"></script>
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
@@ -1433,57 +1434,115 @@
       document.getElementById('searchButton').click();
       document.getElementById('preSearchVisual').style.display = 'none';
     });
-    
-    searchButton.addEventListener("click", () => {
-      // Get filter values
-      const ratingFilter = parseFloat(document.getElementById("ratingFilter").value) || 0;
-      const avgSalesFilter = parseFloat(document.getElementById("avgSalesFilter").value) || 0;
-      const minProfitFilter = parseFloat(document.getElementById("minProfitFilter").value) || 0;
-      
-      // Apply filters
-      filteredProducts = products.filter(product => {
-        const productRating = product.rating || 0;
-        return (!ratingFilter || productRating >= ratingFilter) &&
-               (!avgSalesFilter || product.dailyAvg >= avgSalesFilter) &&
-               (!minProfitFilter || product.profit >= minProfitFilter);
-      });
-      
-      // Update the hero section with the search keyword
-      const keyword = keywordSearch.value;
-      const heroTitle = heroSection.querySelector("h1");
-      heroTitle.innerHTML = `🏆 Top Winners: <span class="text-brand-lime">"${keyword}"</span>`;
-      
-      // Show all results sections
-      resultsSections.forEach(section => {
-        section.style.display = "block";
-      });
-      
-      // Hide visual section and filters panel
-      document.getElementById('preSearchVisual').style.display = 'none';
-      filtersPanel.classList.add("hidden");
-      
-      // Animate the KPIs
-      animate(document.getElementById("kpiAnalyzed"), filteredProducts.length, "");
-      animate(document.getElementById("kpiWinners"), filteredProducts.length, "");
-      animate(document.getElementById("kpiSuccess"), Math.round((filteredProducts.length / products.length) * 100), "%");
-      
-      // Calculate min profit from filtered products
-      const minProfit = filteredProducts.length > 0 ? 
-        Math.min(...filteredProducts.map(p => p.profit)) : 0;
-      animate(document.getElementById("kpiMinProfit"), Math.round(minProfit), "%");
-      
-      animate(document.getElementById("kpiTime"), 124, "s");
+     
+    searchButton.addEventListener("click", async () => {
+  try {
+    searchButton.disabled = true;
+    searchButton.innerHTML = `
+      <svg class="animate-spin w-5 h-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+        <circle cx="12" cy="12" r="10" stroke-opacity="0.3"></circle>
+        <path d="M4 12a8 8 0 018-8"></path>
+      </svg>
+      <span class="font-medium">Searching...</span>
+    `;
 
-      // Reset sorting
-      sortColumn = null;
-      sortDirection = 'asc';
-      document.querySelectorAll('.sortable').forEach(th => {
-        th.classList.remove('asc', 'desc');
-      });
-      
-      // Render the table with products
-      renderTable();
+    const keyword = keywordSearch.value.trim();
+    if (!keyword) {
+      alert('Please enter a search keyword');
+      resetSearchButton();
+      return;
+    }
+
+    const ratingFilter = parseFloat(document.getElementById("ratingFilter").value) || null;
+    const avgSalesFilter = parseFloat(document.getElementById("avgSalesFilter").value) || null;
+    const minProfitFilter = parseFloat(document.getElementById("minProfitFilter").value) || null;
+    const csrfToken = document.querySelector('meta[name="csrf-token"]')?.getAttribute('content');
+
+    const response = await fetch('/api/scouter-pro/search', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+        'Accept': 'application/json',
+        'X-CSRF-TOKEN': csrfToken || '',
+      },
+      body: JSON.stringify({
+        keyword: keyword,
+        profitMargin: 0.30,
+        salesThreshold: 10,
+        maxResults: 50,
+        rating: ratingFilter,
+        avgSales: avgSalesFilter,
+        minProfit: minProfitFilter
+      })
     });
+
+    const result = await response.json();
+
+    if (!result.success) {
+      throw new Error(result.message || 'Search failed');
+    }
+
+    const backendProducts = result.data.results || [];
+    
+    if (backendProducts.length === 0) {
+      alert('No products found. Try different keyword or filters.');
+      resetSearchButton();
+      return;
+    }
+
+    products.length = 0;
+    products.push(...backendProducts.map((item, index) => ({
+      id: index + 1,
+      title: item.title || 'Unknown Product',
+      aliPrice: parseFloat(item.aliPrice || 0),
+      ebayPrice: parseFloat(item.ebayPrice || 0),
+      sales30d: parseInt(item.sales30d || 0),
+      dailyAvg: parseFloat(item.dailyAvg || 0),
+      rating: item.rating ? parseFloat(item.rating) : null,
+      performance: item.performance || (item.dailyAvg >= 1.5 ? 'BEST SELLER' : item.dailyAvg >= 0.8 ? 'GOOD SELLER' : 'AVERAGE'),
+      profit: parseFloat(item.profit || 0),
+      image: item.image || 'https://images.unsplash.com/photo-1598327105666-5b89351aff97?q=80&w=240&auto=format&fit=crop'
+    })));
+
+    filteredProducts = [...products];
+    heroSection.querySelector("h1").innerHTML = `🏆 Top Winners: <span class="text-brand-lime">"${keyword}"</span>`;
+    
+    resultsSections.forEach(section => section.style.display = "block");
+    document.getElementById('preSearchVisual').style.display = 'none';
+    filtersPanel.classList.add("hidden");
+    
+    animate(document.getElementById("kpiAnalyzed"), filteredProducts.length, "");
+    animate(document.getElementById("kpiWinners"), filteredProducts.length, "");
+    animate(document.getElementById("kpiSuccess"), Math.round((filteredProducts.length / backendProducts.length) * 100), "%");
+    
+    const minProfit = filteredProducts.length > 0 ? Math.min(...filteredProducts.map(p => p.profit)) : 0;
+    animate(document.getElementById("kpiMinProfit"), Math.round(minProfit), "%");
+    animate(document.getElementById("kpiTime"), 124, "s");
+
+    sortColumn = null;
+    sortDirection = 'asc';
+    document.querySelectorAll('.sortable').forEach(th => th.classList.remove('asc', 'desc'));
+    
+    currentPage = 1;
+    renderTable();
+    resetSearchButton();
+
+  } catch (error) {
+    console.error('Search error:', error);
+    alert('Search failed: ' + error.message);
+    resetSearchButton();
+  }
+});
+
+function resetSearchButton() {
+  searchButton.disabled = false;
+  searchButton.innerHTML = `
+    <svg class="w-5 h-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+      <path d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"/>
+    </svg>
+    <span class="font-medium">Search</span>
+  `;
+}
 
     // Table search functionality
     const tableSearch = document.getElementById("tableSearch");
