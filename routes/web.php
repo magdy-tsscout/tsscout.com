@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\ScouterProController;
 use App\Http\Controllers\PagesController;
 use App\Http\Controllers\Auth\RegisterController;
 use App\Http\Controllers\Auth\LoginController;
@@ -92,13 +93,6 @@ Route::get('/blogs/{slug}', [BlogController::class, 'show'])->name('blogs.show')
 Route::post('/blogs/{id}/like', [BlogController::class, 'like'])->name('blogs.like');
 
 
-Route::fallback(function () {
-    // Render custom 404 view
-    return response()->view('404', [], 404);
-});
-
-
-
 // Admin routes
 Route::get('/admin/blogs', [BlogController::class, 'index'])->name('blogs.index');
 Route::get('/admin/blogs/create', [BlogController::class, 'create'])->name('blogs.create');
@@ -162,7 +156,15 @@ Route::group(['prefix'=>'calculator'], function() {
 });
 
 
+// Scouter Pro AI Tool
+Route::get('/ai-tool', [ScouterProController::class, 'index'])->name('scouter-pro.index');
+Route::post('/api/scouter-pro/search', [ScouterProController::class, 'search'])->name('scouter-pro.search');
+Route::get('/api/scouter-pro/health', [ScouterProController::class, 'health'])->name('scouter-pro.health');
 
+Route::fallback(function () {
+    // Render custom 404 view
+    return response()->view('404', [], 404);
+});
 
 // Dynamic Page Route
 Route::get('/{slug}', [PagesController::class, 'show'])->name('pages.show');
