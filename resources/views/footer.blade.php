@@ -59,8 +59,8 @@
                             <div class="footer-links">
                                 <h2>Resources</h2>
                                 <ul>
-                                    {{-- <li><a href="{{ route('blogs.userIndex') }}">Blog</a></li> --}}
-                                    {{-- <li><a href="{{route('blogs.userTutorial')}}">Tutorial</a></li> --}}
+                                    <li><a href="{{ route('blogs.userIndex') }}">Blog</a></li>
+                                    <li><a href="{{route('blogs.userTutorial')}}">Tutorial</a></li>
                                     <li><a href="{{ route('faqs') }}">FAQ</a></li>
                                 </ul>
                             </div>
