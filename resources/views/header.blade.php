@@ -118,7 +118,7 @@
                             <li class="nav-item submenu"><a class="nav-link" href="#">Resources</a>
                                 <ul class="dropdown">
                                    <li class="dropdown-section">
-                                         {{-- <a href="{{ url('blogs')}}" class="resource-link">
+                                         <a href="{{ url('blogs')}}" class="resource-link">
                                             <div class="resource-item">
                                                 <img src="{{ asset('images/header icons/blog.svg') }}" alt="Blog Icon" class="resource-icon">
                                                 <div>
@@ -126,7 +126,7 @@
                                                     <p>Find insights and updates on our blog.<br>Stay informed with the latest trends.</p>
                                                 </div>
                                             </div>
-                                        </a> --}}
+                                        </a>
 
 
                                         <a href="{{ url('faqs') }}" class="resource-link">
