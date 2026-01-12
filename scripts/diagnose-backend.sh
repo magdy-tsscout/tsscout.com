@@ -24,10 +24,10 @@ echo ""
 echo "2. Port 3000 Status:"
 echo "-------------------"
 if netstat -tlnp 2>/dev/null | grep -q ":3000"; then
-    echo -e "${GREEN}✓ Port 3000 is listening${NC}"
+    echo -e "${GREEN}[OK] Port 3000 is listening${NC}"
     netstat -tlnp | grep ":3000"
 else
-    echo -e "${RED}✗ Port 3000 is NOT listening${NC}"
+    echo -e "${RED}[FAIL] Port 3000 is NOT listening${NC}"
 fi
 echo ""
 
@@ -39,10 +39,10 @@ HTTP_CODE=$(echo "$HEALTH_LOCAL" | tail -n1)
 RESPONSE=$(echo "$HEALTH_LOCAL" | head -n-1)
 
 if [ "$HTTP_CODE" = "200" ]; then
-    echo -e "${GREEN}✓ Health check passed${NC}"
+    echo -e "${GREEN}[OK] Health check passed${NC}"
     echo "Response: $RESPONSE"
 else
-    echo -e "${RED}✗ Health check failed (HTTP $HTTP_CODE)${NC}"
+    echo -e "${RED}[FAIL] Health check failed (HTTP $HTTP_CODE)${NC}"
     echo "Response: $RESPONSE"
 fi
 echo ""
@@ -55,10 +55,10 @@ HTTP_CODE_EXT=$(echo "$HEALTH_EXT" | tail -n1)
 RESPONSE_EXT=$(echo "$HEALTH_EXT" | head -n-1)
 
 if [ "$HTTP_CODE_EXT" = "200" ]; then
-    echo -e "${GREEN}✓ External health check passed${NC}"
+    echo -e "${GREEN}[OK] External health check passed${NC}"
     echo "Response: $RESPONSE_EXT"
 else
-    echo -e "${RED}✗ External health check failed (HTTP $HTTP_CODE_EXT)${NC}"
+    echo -e "${RED}[FAIL] External health check failed (HTTP $HTTP_CODE_EXT)${NC}"
     echo "Response: $RESPONSE_EXT"
 fi
 echo ""
@@ -67,10 +67,10 @@ echo ""
 echo "5. Backend Directory:"
 echo "-------------------"
 if [ -d "/var/www/scouter-pro" ]; then
-    echo -e "${GREEN}✓ Directory exists${NC}"
+    echo -e "${GREEN}[OK] Directory exists${NC}"
     ls -lh /var/www/scouter-pro/ | head -10
 else
-    echo -e "${RED}✗ Directory not found${NC}"
+    echo -e "${RED}[FAIL] Directory not found${NC}"
 fi
 echo ""
 
@@ -78,12 +78,12 @@ echo ""
 echo "6. Environment Configuration:"
 echo "-------------------"
 if [ -f "/var/www/scouter-pro/.env" ]; then
-    echo -e "${GREEN}✓ .env file exists${NC}"
+    echo -e "${GREEN}[OK] .env file exists${NC}"
     echo "PORT: $(grep PORT /var/www/scouter-pro/.env)"
     echo "NODE_ENV: $(grep NODE_ENV /var/www/scouter-pro/.env)"
     echo "API_KEY: $(grep API_KEY /var/www/scouter-pro/.env | head -1)"
 else
-    echo -e "${RED}✗ .env file not found${NC}"
+    echo -e "${RED}[FAIL] .env file not found${NC}"
 fi
 echo ""
 
@@ -91,11 +91,11 @@ echo ""
 echo "7. Nginx Configuration:"
 echo "-------------------"
 if [ -f "/www/server/panel/vhost/nginx/tsscout.ai.conf" ]; then
-    echo -e "${GREEN}✓ Nginx config exists${NC}"
+    echo -e "${GREEN}[OK] Nginx config exists${NC}"
     echo "API location block:"
-    grep -A 10 "location /api" /www/server/panel/vhost/nginx/tsscout.ai.conf || echo -e "${RED}✗ No /api location block found${NC}"
+    grep -A 10 "location /api" /www/server/panel/vhost/nginx/tsscout.ai.conf || echo -e "${RED}[FAIL] No /api location block found${NC}"
 else
-    echo -e "${YELLOW}⚠ Nginx config path may be different${NC}"
+    echo -e "${YELLOW}[WARN] Nginx config path may be different${NC}"
     echo "Checking alternative locations..."
     find /etc/nginx -name "*tsscout.ai*" 2>/dev/null || echo "No Nginx config found"
 fi
@@ -104,7 +104,7 @@ echo ""
 # 8. Check PM2 logs (last 20 lines)
 echo "8. Recent PM2 Logs:"
 echo "-------------------"
-pm2 logs scouter-pro-api --lines 20 --nostream 2>&1 || echo -e "${RED}✗ Could not retrieve logs${NC}"
+pm2 logs scouter-pro-api --lines 20 --nostream 2>&1 || echo -e "${RED}[FAIL] Could not retrieve logs${NC}"
 echo ""
 
 # 9. Test external API dependency
@@ -114,9 +114,9 @@ EXT_API=$(curl -s -w "\n%{http_code}" -m 5 http://164.90.165.80/shopify-api/heal
 EXT_HTTP_CODE=$(echo "$EXT_API" | tail -n1)
 
 if [ "$EXT_HTTP_CODE" = "200" ]; then
-    echo -e "${GREEN}✓ External API is reachable${NC}"
+    echo -e "${GREEN}[OK] External API is reachable${NC}"
 else
-    echo -e "${YELLOW}⚠ External API check inconclusive (HTTP $EXT_HTTP_CODE)${NC}"
+    echo -e "${YELLOW}[WARN] External API check inconclusive (HTTP $EXT_HTTP_CODE)${NC}"
 fi
 echo ""
 
@@ -127,27 +127,27 @@ echo "========================================="
 ISSUES=0
 
 if ! pm2 status | grep -q "scouter-pro-api.*online"; then
-    echo -e "${RED}✗ PM2 process is not running${NC}"
+    echo -e "${RED}[FAIL] PM2 process is not running${NC}"
     ISSUES=$((ISSUES+1))
 fi
 
 if ! netstat -tlnp 2>/dev/null | grep -q ":3000"; then
-    echo -e "${RED}✗ Port 3000 is not listening${NC}"
+    echo -e "${RED}[FAIL] Port 3000 is not listening${NC}"
     ISSUES=$((ISSUES+1))
 fi
 
 if [ "$HTTP_CODE" != "200" ]; then
-    echo -e "${RED}✗ Local health check failed${NC}"
+    echo -e "${RED}[FAIL] Local health check failed${NC}"
     ISSUES=$((ISSUES+1))
 fi
 
 if [ "$HTTP_CODE_EXT" != "200" ]; then
-    echo -e "${RED}✗ External health check failed${NC}"
+    echo -e "${RED}[FAIL] External health check failed${NC}"
     ISSUES=$((ISSUES+1))
 fi
 
 if [ $ISSUES -eq 0 ]; then
-    echo -e "${GREEN}✓ All checks passed! Backend is healthy.${NC}"
+    echo -e "${GREEN}[OK] All checks passed! Backend is healthy.${NC}"
 else
     echo -e "${RED}Found $ISSUES issue(s). See details above.${NC}"
     echo ""
