@@ -14,7 +14,7 @@ class ScouterProController extends Controller
 
     public function __construct()
     {
-        $this->backendUrl = env('BACKEND_API_URL', 'https://tsscout.com/api');
+        $this->backendUrl = env('BACKEND_API_URL', 'https://tsscout.ai/api');
         $this->apiKey = env('BACKEND_API_KEY', '1d95bfb7-b38a-50e4-b5f9-cb348deb4021');
         $this->timeout = env('BACKEND_API_TIMEOUT', 120);
     }
@@ -43,7 +43,7 @@ class ScouterProController extends Controller
                 'Content-Type' => 'application/json',
             ])
             ->timeout($this->timeout)
-            ->post($this->backendUrl . '/search', [
+            ->post($this->backendUrl . '/research', [
                 'keyword' => $validated['keyword'],
                 'profitMargin' => $validated['profitMargin'] ?? 0.30,
                 'salesThreshold' => $validated['salesThreshold'] ?? 10,
