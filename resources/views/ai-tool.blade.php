@@ -1493,15 +1493,19 @@
     products.length = 0;
     products.push(...backendProducts.map((item, index) => ({
       id: index + 1,
-      title: item.title || 'Unknown Product',
+      title: item.aliTitle || item.title || 'Unknown Product',
       aliPrice: parseFloat(item.aliPrice || 0),
       ebayPrice: parseFloat(item.ebayPrice || 0),
-      sales30d: parseInt(item.sales30d || 0),
+      sales30d: parseInt(item.ebaySales || item.sales30d || 0),
       dailyAvg: parseFloat(item.dailyAvg || 0),
       rating: item.rating ? parseFloat(item.rating) : null,
-      performance: item.performance || (item.dailyAvg >= 1.5 ? 'BEST SELLER' : item.dailyAvg >= 0.8 ? 'GOOD SELLER' : 'AVERAGE'),
+      performance: item.performance || (parseFloat(item.dailyAvg) >= 1.0 ? 'BEST SELLER' : parseFloat(item.dailyAvg) >= 0.3 ? 'GOOD SELLER' : 'AVERAGE'),
       profit: parseFloat(item.profit || 0),
-      image: item.image || 'https://images.unsplash.com/photo-1598327105666-5b89351aff97?q=80&w=240&auto=format&fit=crop'
+      image: item.aliImage || item.ebayImage || item.image || 'https://images.unsplash.com/photo-1598327105666-5b89351aff97?q=80&w=240&auto=format&fit=crop',
+      aliUrl: item.aliUrl || '#',
+      ebayUrl: item.ebayUrl || '#',
+      dataSource: item.dataSource || 'unknown',
+      sourceDetail: item.sourceDetail || ''
     })));
 
     filteredProducts = [...products];
