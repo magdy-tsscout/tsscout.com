@@ -1468,7 +1468,7 @@
       body: JSON.stringify({
         keyword: keyword,
         profitMargin: 0.30,
-        salesThreshold: 10,
+        salesThreshold: 2,
         maxResults: 50,
         rating: ratingFilter,
         avgSales: avgSalesFilter,
