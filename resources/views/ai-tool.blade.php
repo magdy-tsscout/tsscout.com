@@ -1482,8 +1482,8 @@
       throw new Error(result.message || 'Search failed');
     }
 
-    const backendProducts = result.data.results || [];
-    
+    const backendProducts = result.data?.results || result.results || [];
+
     if (backendProducts.length === 0) {
       alert('No products found. Try different keyword or filters.');
       resetSearchButton();

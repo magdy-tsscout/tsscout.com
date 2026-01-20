@@ -59,10 +59,14 @@ class ScouterProController extends Controller
             if ($response->successful()) {
                 $data = $response->json();
                 $products = $data['results'] ?? [];
+                $fallbackMode = $data['fallbackMode'] ?? false;
+                $fallbackReason = $data['fallbackReason'] ?? null;
+                $dataProvenance = $data['dataProvenance'] ?? null;
 
                 Log::info('Scouter Pro API Success', [
                     'products_count' => count($products),
                     'keyword' => $validated['keyword'],
+                    'fallbackMode' => $fallbackMode,
                 ]);
 
                 if (isset($validated['rating']) && $validated['rating'] > 0) {
@@ -87,8 +91,11 @@ class ScouterProController extends Controller
 
                 return response()->json([
                     'success' => true,
+                    'fallbackMode' => $fallbackMode,
+                    'fallbackReason' => $fallbackReason,
                     'data' => [
                         'results' => $products,
+                        'dataProvenance' => $dataProvenance,
                         'metadata' => [
                             'total' => count($products),
                             'keyword' => $validated['keyword'],
