@@ -160,6 +160,7 @@ Route::group(['prefix'=>'calculator'], function() {
 Route::get('/ai-tool', [ScouterProController::class, 'index'])->name('scouter-pro.index');
 Route::post('/api/scouter-pro/search', [ScouterProController::class, 'search'])->name('scouter-pro.search');
 Route::get('/api/scouter-pro/health', [ScouterProController::class, 'health'])->name('scouter-pro.health');
+Route::get('/api/scouter-pro/diagnose', [ScouterProController::class, 'diagnose'])->name('scouter-pro.diagnose');
 
 Route::fallback(function () {
     // Render custom 404 view

@@ -50,28 +50,39 @@ class ScouterProController extends Controller
                 'maxResults' => $validated['maxResults'] ?? 20,
             ]);
 
+            // Log the request for debugging
+            Log::info('Scouter Pro API Request', [
+                'url' => $this->backendUrl . '/research',
+                'keyword' => $validated['keyword'],
+            ]);
+
             if ($response->successful()) {
                 $data = $response->json();
                 $products = $data['results'] ?? [];
-                
+
+                Log::info('Scouter Pro API Success', [
+                    'products_count' => count($products),
+                    'keyword' => $validated['keyword'],
+                ]);
+
                 if (isset($validated['rating']) && $validated['rating'] > 0) {
                     $products = array_filter($products, function($product) use ($validated) {
                         return isset($product['rating']) && $product['rating'] >= $validated['rating'];
                     });
                 }
-                
+
                 if (isset($validated['avgSales']) && $validated['avgSales'] > 0) {
                     $products = array_filter($products, function($product) use ($validated) {
                         return isset($product['dailyAvg']) && $product['dailyAvg'] >= $validated['avgSales'];
                     });
                 }
-                
+
                 if (isset($validated['minProfit']) && $validated['minProfit'] > 0) {
                     $products = array_filter($products, function($product) use ($validated) {
                         return isset($product['profit']) && $product['profit'] >= $validated['minProfit'];
                     });
                 }
-                
+
                 $products = array_values($products);
 
                 return response()->json([
@@ -87,20 +98,42 @@ class ScouterProController extends Controller
                 ]);
             }
 
-            return response()->json([
-                'success' => false,
-                'message' => $response->json()['message'] ?? 'Failed to fetch products',
-                'error' => 'API request failed'
-            ], $response->status());
-
-        } catch (\Exception $e) {
-            Log::error('Scouter Pro Exception', [
-                'message' => $e->getMessage()
+            // Log detailed error info when API fails
+            Log::error('Scouter Pro API Failed', [
+                'status' => $response->status(),
+                'body' => $response->body(),
+                'keyword' => $validated['keyword'],
+                'url' => $this->backendUrl . '/research',
             ]);
 
             return response()->json([
                 'success' => false,
-                'message' => 'An unexpected error occurred',
+                'message' => $response->json()['message'] ?? 'Failed to fetch products',
+                'error' => 'API request failed',
+                'debug_status' => $response->status()
+            ], $response->status() ?: 500);
+
+        } catch (\Illuminate\Http\Client\ConnectionException $e) {
+            Log::error('Scouter Pro Connection Error', [
+                'message' => $e->getMessage(),
+                'url' => $this->backendUrl . '/research',
+            ]);
+
+            return response()->json([
+                'success' => false,
+                'message' => 'Unable to connect to product database. Please try again.',
+                'error' => 'Connection timeout'
+            ], 503);
+
+        } catch (\Exception $e) {
+            Log::error('Scouter Pro Exception', [
+                'message' => $e->getMessage(),
+                'trace' => $e->getTraceAsString()
+            ]);
+
+            return response()->json([
+                'success' => false,
+                'message' => 'An unexpected error occurred: ' . $e->getMessage(),
                 'error' => 'Internal server error'
             ], 500);
         }
@@ -126,5 +159,62 @@ class ScouterProController extends Controller
                 'timestamp' => now()->toIso8601String()
             ], 503);
         }
+    }
+
+    /**
+     * Diagnostic endpoint to test backend API connection
+     */
+    public function diagnose()
+    {
+        $diagnostics = [
+            'timestamp' => now()->toIso8601String(),
+            'backend_url' => $this->backendUrl,
+            'timeout' => $this->timeout,
+            'tests' => []
+        ];
+
+        // Test 1: Health endpoint
+        try {
+            $healthResponse = Http::timeout(10)->get($this->backendUrl . '/health');
+            $diagnostics['tests']['health'] = [
+                'status' => $healthResponse->status(),
+                'success' => $healthResponse->successful(),
+                'body' => $healthResponse->json()
+            ];
+        } catch (\Exception $e) {
+            $diagnostics['tests']['health'] = [
+                'success' => false,
+                'error' => $e->getMessage()
+            ];
+        }
+
+        // Test 2: Research endpoint with test keyword
+        try {
+            $researchResponse = Http::withHeaders([
+                'Authorization' => 'Bearer ' . $this->apiKey,
+                'Accept' => 'application/json',
+                'Content-Type' => 'application/json',
+            ])
+            ->timeout(30)
+            ->post($this->backendUrl . '/research', [
+                'keyword' => 'phone case',
+                'profitMargin' => 0.30,
+                'salesThreshold' => 10,
+                'maxResults' => 5,
+            ]);
+
+            $diagnostics['tests']['research'] = [
+                'status' => $researchResponse->status(),
+                'success' => $researchResponse->successful(),
+                'body' => $researchResponse->json()
+            ];
+        } catch (\Exception $e) {
+            $diagnostics['tests']['research'] = [
+                'success' => false,
+                'error' => $e->getMessage()
+            ];
+        }
+
+        return response()->json($diagnostics);
     }
 }
