@@ -6,6 +6,13 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Http;
 use Illuminate\Support\Facades\Log;
 
+/**
+ * Scouter Pro Controller
+ *
+ * Handles product research API - connects to Express backend which fetches
+ * data from AliExpress API (~40s response time) and eBay database.
+ * Timeout set to 120s to accommodate slow AliExpress API responses.
+ */
 class ScouterProController extends Controller
 {
     protected $backendUrl;
@@ -16,7 +23,7 @@ class ScouterProController extends Controller
     {
         $this->backendUrl = env('BACKEND_API_URL', 'https://tsscout.ai/api');
         $this->apiKey = env('BACKEND_API_KEY', '1d95bfb7-b38a-50e4-b5f9-cb348deb4021');
-        $this->timeout = env('BACKEND_API_TIMEOUT', 120);
+        $this->timeout = env('BACKEND_API_TIMEOUT', 120); // AliExpress API needs ~40-60s
     }
 
     public function index()
