@@ -1518,23 +1518,37 @@
       return;
     }
 
+    // Debug: log first product to verify data structure
+    console.log('First product from API:', backendProducts[0]);
+
     products.length = 0;
-    products.push(...backendProducts.map((item, index) => ({
-      id: index + 1,
-      title: item.aliTitle || item.title || 'Unknown Product',
-      aliPrice: parseFloat(item.aliPrice || 0),
-      ebayPrice: parseFloat(item.ebayPrice || 0),
-      sales30d: parseInt(item.ebaySales || item.sales30d || 0),
-      dailyAvg: parseFloat(item.dailyAvg || 0),
-      rating: item.rating ? parseFloat(item.rating) : null,
-      performance: item.performance || (parseFloat(item.dailyAvg) >= 1.0 ? 'BEST SELLER' : parseFloat(item.dailyAvg) >= 0.3 ? 'GOOD SELLER' : 'AVERAGE'),
-      profit: parseFloat(item.profit || 0),
-      image: item.aliImage || item.ebayImage || item.image || 'https://images.unsplash.com/photo-1598327105666-5b89351aff97?q=80&w=240&auto=format&fit=crop',
-      aliUrl: item.aliUrl || '#',
-      ebayUrl: item.ebayUrl || '#',
-      dataSource: item.dataSource || 'unknown',
-      sourceDetail: item.sourceDetail || ''
-    })));
+    products.push(...backendProducts.map((item, index) => {
+      // Get title - try multiple field names
+      const title = item.aliTitle || item.ebayTitle || item.title || item.name || 'Product ' + (index + 1);
+
+      // Get sales - try multiple field names
+      const sales = parseInt(item.ebaySales) || parseInt(item.sales30d) || parseInt(item.sales) || 0;
+
+      // Get daily average
+      const dailyAvg = parseFloat(item.dailyAvg) || (sales / 30);
+
+      return {
+        id: index + 1,
+        title: title,
+        aliPrice: parseFloat(item.aliPrice) || 0,
+        ebayPrice: parseFloat(item.ebayPrice) || 0,
+        sales30d: sales,
+        dailyAvg: dailyAvg,
+        rating: item.rating ? parseFloat(item.rating) : null,
+        performance: item.performance || (dailyAvg >= 1.0 ? 'BEST SELLER' : dailyAvg >= 0.3 ? 'GOOD SELLER' : 'AVERAGE'),
+        profit: parseFloat(item.profit) || 0,
+        image: item.aliImage || item.ebayImage || item.image || 'https://via.placeholder.com/100x100?text=No+Image',
+        aliUrl: item.aliUrl || '#',
+        ebayUrl: item.ebayUrl || '#',
+        dataSource: item.dataSource || 'api',
+        sourceDetail: item.sourceDetail || ''
+      };
+    }));
 
     filteredProducts = [...products];
     heroSection.querySelector("h1").innerHTML = `🏆 Top Winners: <span class="text-brand-lime">"${keyword}"</span>`;
