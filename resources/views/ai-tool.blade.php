@@ -1436,6 +1436,20 @@
     });
      
     searchButton.addEventListener("click", async () => {
+  // Create AbortController with 150 second timeout for long API calls
+  const controller = new AbortController();
+  const timeoutId = setTimeout(() => controller.abort(), 150000);
+
+  // Timer to show elapsed time
+  let elapsedSeconds = 0;
+  const timerInterval = setInterval(() => {
+    elapsedSeconds++;
+    const searchingText = elapsedSeconds < 30
+      ? `Searching... ${elapsedSeconds}s`
+      : `Analyzing products... ${elapsedSeconds}s`;
+    searchButton.querySelector('span').textContent = searchingText;
+  }, 1000);
+
   try {
     searchButton.disabled = true;
     searchButton.innerHTML = `
@@ -1443,12 +1457,14 @@
         <circle cx="12" cy="12" r="10" stroke-opacity="0.3"></circle>
         <path d="M4 12a8 8 0 018-8"></path>
       </svg>
-      <span class="font-medium">Searching...</span>
+      <span class="font-medium">Searching... 0s</span>
     `;
 
     const keyword = keywordSearch.value.trim();
     if (!keyword) {
       alert('Please enter a search keyword');
+      clearTimeout(timeoutId);
+      clearInterval(timerInterval);
       resetSearchButton();
       return;
     }
@@ -1473,8 +1489,18 @@
         rating: ratingFilter,
         avgSales: avgSalesFilter,
         minProfit: minProfitFilter
-      })
+      }),
+      signal: controller.signal
     });
+
+    clearTimeout(timeoutId);
+    clearInterval(timerInterval);
+
+    if (!response.ok) {
+      const errorText = await response.text();
+      console.error('Response not OK:', response.status, errorText);
+      throw new Error(`Server error (${response.status}): ${errorText.substring(0, 100)}`);
+    }
 
     const result = await response.json();
 
@@ -1485,7 +1511,9 @@
     const backendProducts = result.data?.results || result.results || [];
 
     if (backendProducts.length === 0) {
-      alert('No products found. Try different keyword or filters.');
+      alert('No products found. Try a different keyword or filters.');
+      clearTimeout(timeoutId);
+      clearInterval(timerInterval);
       resetSearchButton();
       return;
     }
@@ -1529,11 +1557,22 @@
     
     currentPage = 1;
     renderTable();
+    clearTimeout(timeoutId);
+    clearInterval(timerInterval);
     resetSearchButton();
 
   } catch (error) {
+    clearTimeout(timeoutId);
+    clearInterval(timerInterval);
     console.error('Search error:', error);
-    alert('Search failed: ' + error.message);
+
+    if (error.name === 'AbortError') {
+      alert('Search timed out after 150 seconds. The AliExpress API is very slow. Please try again with a simpler keyword.');
+    } else if (error.message.includes('Failed to fetch') || error.message.includes('NetworkError')) {
+      alert('Network error. Please check your internet connection and try again.');
+    } else {
+      alert('Search failed: ' + error.message);
+    }
     resetSearchButton();
   }
 });
