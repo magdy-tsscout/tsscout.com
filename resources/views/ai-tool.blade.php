@@ -1158,153 +1158,8 @@
 
   <!-- Scripts -->
   <script>
-    // Sample data for products
-    const products = [
-      {
-        id: 1,
-        title: "Magnetic Flip Leather Case for Samsung S25/S24 Ultra",
-        aliPrice: 6.31,
-        ebayPrice: 17.55,
-        sales30d: 25,
-        dailyAvg: 0.8,
-        rating: 4.3,
-        performance: "GOOD SELLER",
-        profit: 178.1,
-        image: "https://images.unsplash.com/photo-1598327105666-5b89351aff97?q=80&w=240&auto=format&fit=crop"
-      },
-      {
-        id: 2,
-        title: "Luxury Vintage PU Leather Case for Samsung S25 Ultra",
-        aliPrice: 2.92,
-        ebayPrice: 7.89,
-        sales30d: 29,
-        dailyAvg: 1.0,
-        rating: null,
-        performance: "GOOD SELLER",
-        profit: 170.4,
-        image: "https://images.unsplash.com/photo-1512496015851-a90fb38ba796?q=80&w=240&auto=format&fit=crop"
-      },
-      {
-        id: 3,
-        title: "Clear Transparent Case for Samsung S24 Ultra",
-        aliPrice: 3.45,
-        ebayPrice: 12.99,
-        sales30d: 42,
-        dailyAvg: 1.4,
-        rating: 4.7,
-        performance: "BEST SELLER",
-        profit: 276.5,
-        image: "https://images.unsplash.com/photo-1556656793-08538906a9f8?q=80&w=240&auto=format&fit=crop"
-      },
-      {
-        id: 4,
-        title: "Shockproof Armor Case for Samsung S24",
-        aliPrice: 4.25,
-        ebayPrice: 15.75,
-        sales30d: 18,
-        dailyAvg: 0.6,
-        rating: 4.1,
-        performance: "AVERAGE",
-        profit: 270.6,
-        image: "https://images.unsplash.com/photo-1583394838336-acd977736f90?q=80&w=240&auto=format&fit=crop"
-      },
-      {
-        id: 5,
-        title: "Wallet Stand Case for Samsung S24 Ultra",
-        aliPrice: 5.80,
-        ebayPrice: 19.99,
-        sales30d: 33,
-        dailyAvg: 1.1,
-        rating: 4.5,
-        performance: "GOOD SELLER",
-        profit: 244.7,
-        image: "https://images.unsplash.com/photo-1601593346740-925612772716?q=80&w=240&auto=format&fit=crop"
-      },
-      {
-        id: 6,
-        title: "Silicone Gel Case for Samsung S24",
-        aliPrice: 2.15,
-        ebayPrice: 8.49,
-        sales30d: 56,
-        dailyAvg: 1.9,
-        rating: 4.2,
-        performance: "BEST SELLER",
-        profit: 294.9,
-        image: "https://images.unsplash.com/photo-1605236453806-6ff36851218e?q=80&w=240&auto=format&fit=crop"
-      },
-      {
-        id: 7,
-        title: "Carbon Fiber Case for Samsung S24 Ultra",
-        aliPrice: 7.20,
-        ebayPrice: 24.99,
-        sales30d: 14,
-        dailyAvg: 0.5,
-        rating: 4.8,
-        performance: "AVERAGE",
-        profit: 247.1,
-        image: "https://images.unsplash.com/photo-1610945265064-0e34e5519bbf?q=80&w=240&auto=format&fit=crop"
-      },
-      {
-        id: 8,
-        title: "Waterproof Case for Samsung S24",
-        aliPrice: 8.50,
-        ebayPrice: 29.99,
-        sales30d: 22,
-        dailyAvg: 0.7,
-        rating: 4.0,
-        performance: "GOOD SELLER",
-        profit: 252.8,
-        image: "https://images.unsplash.com/photo-1574944985070-8f3ebc6b79d2?q=80&w=240&auto=format&fit=crop"
-      },
-      {
-        id: 9,
-        title: "Glitter Sparkle Case for Samsung S24",
-        aliPrice: 3.75,
-        ebayPrice: 13.49,
-        sales30d: 47,
-        dailyAvg: 1.6,
-        rating: 4.6,
-        performance: "BEST SELLER",
-        profit: 259.7,
-        image: "https://images.unsplash.com/photo-1601784551446-66c8f5c8f8b6?q=80&w=240&auto=format&fit=crop"
-      },
-      {
-        id: 10,
-        title: "Wooden Texture Case for Samsung S24 Ultra",
-        aliPrice: 6.90,
-        ebayPrice: 22.99,
-        sales30d: 12,
-        dailyAvg: 0.4,
-        rating: 4.4,
-        performance: "AVERAGE",
-        profit: 233.2,
-        image: "https://images.unsplash.com/photo-1558618666-fcd25c85cd64?q=80&w=240&auto=format&fit=crop"
-      },
-      {
-        id: 11,
-        title: "Marble Design Case for Samsung S24",
-        aliPrice: 4.60,
-        ebayPrice: 16.75,
-        sales30d: 38,
-        dailyAvg: 1.3,
-        rating: 4.3,
-        performance: "GOOD SELLER",
-        profit: 264.1,
-        image: "https://images.unsplash.com/photo-1586953208448-b95a79798f07?q=80&w=240&auto=format&fit=crop"
-      },
-      {
-        id: 12,
-        title: "Gaming Design Case for Samsung S24 Ultra",
-        aliPrice: 5.25,
-        ebayPrice: 18.99,
-        sales30d: 27,
-        dailyAvg: 0.9,
-        rating: 4.7,
-        performance: "GOOD SELLER",
-        profit: 261.7,
-        image: "https://images.unsplash.com/photo-1592899677977-9c10ca588bbd?q=80&w=240&auto=format&fit=crop"
-      }
-    ];
+    // Products array - populated from API results only
+    const products = [];
 
     // Global variables
     let currentPage = 1;
@@ -1436,6 +1291,18 @@
     });
      
     searchButton.addEventListener("click", async () => {
+  const controller = new AbortController();
+  const timeoutId = setTimeout(() => controller.abort(), 300000);
+
+  let elapsedSeconds = 0;
+  const timerInterval = setInterval(() => {
+    elapsedSeconds++;
+    const searchingText = elapsedSeconds < 30
+      ? `Searching... ${elapsedSeconds}s`
+      : `Analyzing products... ${elapsedSeconds}s`;
+    searchButton.querySelector('span').textContent = searchingText;
+  }, 1000);
+
   try {
     searchButton.disabled = true;
     searchButton.innerHTML = `
@@ -1473,7 +1340,8 @@
         rating: ratingFilter,
         avgSales: avgSalesFilter,
         minProfit: minProfitFilter
-      })
+      }),
+      signal: controller.signal
     });
 
     const result = await response.json();
@@ -1490,19 +1358,31 @@
       return;
     }
 
+    console.log('First product from API:', backendProducts[0]);
+
     products.length = 0;
-    products.push(...backendProducts.map((item, index) => ({
-      id: index + 1,
-      title: item.title || 'Unknown Product',
-      aliPrice: parseFloat(item.aliPrice || 0),
-      ebayPrice: parseFloat(item.ebayPrice || 0),
-      sales30d: parseInt(item.sales30d || 0),
-      dailyAvg: parseFloat(item.dailyAvg || 0),
-      rating: item.rating ? parseFloat(item.rating) : null,
-      performance: item.performance || (item.dailyAvg >= 1.5 ? 'BEST SELLER' : item.dailyAvg >= 0.8 ? 'GOOD SELLER' : 'AVERAGE'),
-      profit: parseFloat(item.profit || 0),
-      image: item.image || 'https://images.unsplash.com/photo-1598327105666-5b89351aff97?q=80&w=240&auto=format&fit=crop'
-    })));
+    products.push(...backendProducts.map((item, index) => {
+      const title = item.aliTitle || item.ebayTitle || item.title || 'Product ' + (index + 1);
+      const sales = parseInt(item.ebaySales) || parseInt(item.sales30d) || parseInt(item.sales) || 0;
+      const dailyAvg = parseFloat(item.dailyAvg) || (sales / 30);
+
+      return {
+        id: index + 1,
+        title: title,
+        aliPrice: parseFloat(item.aliPrice) || 0,
+        ebayPrice: parseFloat(item.ebayPrice) || 0,
+        sales30d: sales,
+        dailyAvg: dailyAvg,
+        rating: item.rating ? parseFloat(item.rating) : null,
+        performance: item.performance || (dailyAvg >= 1.0 ? 'BEST SELLER' : dailyAvg >= 0.3 ? 'GOOD SELLER' : 'AVERAGE'),
+        profit: parseFloat(item.profit) || 0,
+        image: item.aliImage || item.ebayImage || item.image || '',
+        aliUrl: item.aliUrl || '#',
+        ebayUrl: item.ebayUrl || '#',
+        dataSource: item.dataSource || 'api',
+        sourceDetail: item.sourceDetail || ''
+      };
+    }));
 
     filteredProducts = [...products];
     heroSection.querySelector("h1").innerHTML = `🏆 Top Winners: <span class="text-brand-lime">"${keyword}"</span>`;
@@ -1525,11 +1405,20 @@
     
     currentPage = 1;
     renderTable();
+    clearTimeout(timeoutId);
+    clearInterval(timerInterval);
     resetSearchButton();
 
   } catch (error) {
+    clearTimeout(timeoutId);
+    clearInterval(timerInterval);
     console.error('Search error:', error);
-    alert('Search failed: ' + error.message);
+
+    if (error.name === 'AbortError') {
+      alert('Search timed out after 300 seconds. The AliExpress API is very slow. Please try again with a simpler keyword.');
+    } else {
+      alert('Search failed: ' + error.message);
+    }
     resetSearchButton();
   }
 });
