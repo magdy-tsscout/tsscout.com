@@ -1529,11 +1529,10 @@ function resetSearchButton() {
             <a href="${product.aliUrl}" target="_blank" rel="noopener" class="text-brand-navy hover:underline">${product.title}</a>
             <div class="flex gap-2 mt-1">
               <a href="${product.aliUrl}" target="_blank" rel="noopener" class="text-xs text-orange-500 hover:underline">AliExpress</a>
-              <a href="${product.ebayUrl}" target="_blank" rel="noopener" class="text-xs text-blue-500 hover:underline">eBay</a>
             </div>
           </td>
           <td class="p-3 text-right text-brand-navy font-semibold"><a href="${product.aliUrl}" target="_blank" rel="noopener" class="hover:underline">$${product.aliPrice.toFixed(2)}</a></td>
-          <td class="p-3 text-right text-brand-navy font-semibold"><a href="${product.ebayUrl}" target="_blank" rel="noopener" class="hover:underline">$${product.ebayPrice.toFixed(2)}</a></td>
+          <td class="p-3 text-right text-brand-navy font-semibold">$${product.ebayPrice.toFixed(2)}</td>
           <td class="p-3 text-center text-brand-navy font-semibold">${product.sales30d}</td>
           <td class="p-3 text-center text-brand-navy font-semibold">${product.dailyAvg.toFixed(1)}</td>
           <td class="p-3 text-center">
@@ -1567,7 +1566,6 @@ function resetSearchButton() {
               <div class="flex gap-2 items-center">
                 <span class="text-xs text-gray-500 bg-gray-100 px-2 py-1 rounded">#${rowNumber}</span>
                 <a href="${product.aliUrl}" target="_blank" rel="noopener" class="text-xs text-orange-500 hover:underline">AliExpress</a>
-                <a href="${product.ebayUrl}" target="_blank" rel="noopener" class="text-xs text-blue-500 hover:underline">eBay</a>
               </div>
             </div>
           </div>
