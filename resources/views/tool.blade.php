@@ -42,7 +42,7 @@
         </div>
 
         <div class="right-column">
-            @if($section['image'] && is_file(public_path('storage/app/public/' . $section['image'])))
+            @if($section['image'] && !is_file(public_path('storage/app/public/' . $section['image'])))
                 <img src="{{ 'https://tsscout.com/storage/app/public/' . $section['image'] }}" alt="{{ $section['header'] }}">
             @else
                 <img src="https://tsscout.com/public/images/logo.svg" alt="{{ $section['header'] }}">
@@ -142,7 +142,7 @@
 <div class="mobile-view">
     @foreach ($page->sections() as $section)
         <div class="mobile-section">
-            @if($section['image'] && is_file(public_path('storage/app/public/' . $section['image'])))
+            @if($section['image'] && !is_file(public_path('storage/app/public/' . $section['image'])))
                 <img src="{{ 'https://tsscout.com/storage/app/public/' . $section['image'] }}" alt="{{ $section['header'] }}">
             @else
                 <img src="https://tsscout.com/public/images/logo.svg" alt="{{ $section['header'] }}">
