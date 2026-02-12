@@ -48,7 +48,7 @@
 
 <br>
 
-@if (!empty($page['image_2']))
+@if (!empty($page['header_2']))
   <div class="con-left">
     <div class="right-column">
       <img src="{{ 'https://tsscout.com/storage/app/public/' . $page['image_2'] }}" alt="Example Image">
@@ -68,7 +68,7 @@
   </div>
 @endif
 
-@if (!empty($page['image_3']))
+@if (!empty($page['header_3']))
   <div class="con-left">
     <div class="left-column">
       <h2>{{$page->header_3}}</h2>
@@ -88,7 +88,7 @@
 
 <br>
 
-@if (!empty($page['image_4']))
+@if (!empty($page['header_4']))
   <div class="con-left">
     <div class="right-column">
       <img src="{{ 'https://tsscout.com/storage/app/public/' . $page['image_4'] }}" alt="Example Image">
@@ -113,7 +113,7 @@
 
 <!-- Mobile View Sections -->
 <div class="mobile-view">
-  @if (!empty($page['image_1']))
+  @if (!empty($page['header_1']))
     <div class="mobile-section">
     <img src="{{ 'https://tsscout.com/storage/app/public/' . $page['image_1'] }}" alt="Example Image">
       <h2>{{$page->header_1}}</h2>
@@ -123,7 +123,7 @@
       </a>
     </div>
   @endif
-  @if (!empty($page['image_2']))
+  @if (!empty($page['header_2']))
     <div class="mobile-section">
     <img src="{{ 'https://tsscout.com/storage/app/public/' . $page['image_2'] }}" alt="Example Image">
       <h2>{{$page->header_2}}</h2>
@@ -133,7 +133,7 @@
       </a>
     </div>
   @endif
-  @if (!empty($page['image_3']))
+  @if (!empty($page['header_3']))
     <div class="mobile-section">
     <img src="{{ 'https://tsscout.com/storage/app/public/' . $page['image_3'] }}" alt="Example Image">
       <h2>{{$page->header_3}}</h2>
@@ -143,7 +143,7 @@
       </a>
     </div>
   @endif
-  @if (!empty($page['image_4']))
+  @if (!empty($page['header_4']))
     <div class="mobile-section">
     <img src="{{ 'https://tsscout.com/storage/app/public/' . $page['image_4'] }}" alt="Example Image">
       <h2>{{$page->header_4}}</h2>
