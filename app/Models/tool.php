@@ -52,7 +52,7 @@ class tool extends Model
             is_file(storage_path('app/public/' . $img)) &&
             file_exists(storage_path('app/public/' . $img)) && getimagesize(storage_path('app/public/' . $img)) )
             {
-                return url('public/storage/app/public/' . $img);
+                return url('storage/app/public/' . $img);
             } else {
                 return 'https://tsscout.com/public/images/logo.svg';
             }
