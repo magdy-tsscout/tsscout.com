@@ -28,7 +28,7 @@
 @foreach ($page->sections() as $section)
 <div class="desktop-view">
     <div class="con-left">
-        <div class="{{ $loop->even?'left':'right' }}-column">
+        <div class="{{ $loop->odd?'left':'right' }}-column">
             <h2>{{$section['header']}}</h2>
             <br>
             <p style="color: #1E3F5B; font-size: 16px; font-weight: 400;">{{$section['paragraph']}}</p>
@@ -42,7 +42,7 @@
             </p>
         </div>
 
-        <div class="{{ $loop->even?'right':'left' }}-column">
+        <div class="{{ $loop->odd?'right':'left' }}-column">
             @if($section['image'] && !is_file(public_path('storage/app/public/' . $section['image'])))
                 <img src="{{ 'https://tsscout.com/storage/app/public/' . $section['image'] }}" alt="{{ $section['header'] }}">
             @else
