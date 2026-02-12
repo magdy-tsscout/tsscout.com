@@ -47,7 +47,7 @@ class tool extends Model
 
     public function img($i=1) {
         $img= $this->{"image_{$i}"};
-        dd(storage_path('app/public/' . $img));
+        // dd(storage_path('app/public/' . $img));
         if (
             $img &&
             is_file(storage_path('app/public/' . $img)) &&
