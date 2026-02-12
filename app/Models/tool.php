@@ -30,4 +30,18 @@ class tool extends Model
         'paragraph_4',
         'image_4'
     ];
+
+    public function sections(){
+        $ar=[];
+        for ($i = 1; $i <= 4; $i++) {
+            if (!empty($this->{'header_'.$i}) || !empty($this->{'paragraph_'.$i}) || !empty($this->{'image_'.$i})) {
+                $ar[] = [
+                    'header' => $this->{'header_'.$i},
+                    'paragraph' => $this->{'paragraph_'.$i},
+                    'image' => $this->{'image_'.$i},
+                ];
+            }
+        }
+        return $ar;
+    }
 }
