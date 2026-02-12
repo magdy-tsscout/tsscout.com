@@ -42,7 +42,11 @@
         </div>
 
         <div class="right-column">
-        <img src="{{ 'https://tsscout.com/storage/app/public/' . $section['image'] }}" alt="Example Image">
+            @if($section['image'])
+                <img src="{{ 'https://tsscout.com/storage/app/public/' . $section['image'] }}" alt="Example Image">
+            @else
+                <img src="https://tsscout.com/public/images/logo.svg" alt="Example Image">
+            @endif
         </div>
     </div>
     <br>
