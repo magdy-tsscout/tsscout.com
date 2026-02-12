@@ -147,7 +147,7 @@
         </div>
     @endforeach
     </div>
-  @endif
+
   {{-- @if (!empty($page['image_2']))
     <div class="mobile-section">
     <img src="{{ 'https://tsscout.com/storage/app/public/' . $page['image_2'] }}" alt="Example Image">
