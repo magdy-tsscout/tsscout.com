@@ -47,13 +47,12 @@ class tool extends Model
 
     public function img($i=1) {
         $img= $this->{"image_{$i}"};
-        // dd(storage_path('app/public/' . $img));
         if (
             $img &&
             is_file(storage_path('app/public/' . $img)) &&
             file_exists(storage_path('app/public/' . $img)) && getimagesize(storage_path('app/public/' . $img)) )
             {
-                return storage_path('app/public/' . $img);
+                return public_path('storage/app/public/' . $img);
             } else {
                 return 'https://tsscout.com/public/images/logo.svg';
             }
