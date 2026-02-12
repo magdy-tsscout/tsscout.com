@@ -39,7 +39,7 @@ class toolsController extends Controller
         ->where('tool_slug', $slug)
         ->get();  // Fetch all matching FAQs
 
-        dd($page->sections());
+        // dd($page->sections());
 
         // Pass the page data to the view
         return view('tool', compact('page','Faq'));

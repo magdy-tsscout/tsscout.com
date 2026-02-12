@@ -24,7 +24,30 @@
 <br>
 <!-- Desktop View Sections -->
 <div class="desktop-view">
-@if (!empty($page['image_1']))
+
+@foreach ($page->sections() as $section)
+    <div class="con-left">
+        <div class="left-column">
+        <h2>{{$section->header}}</h2>
+        <br>
+        <p style="color: #1E3F5B; font-size: 16px; font-weight: 400;">{{$section->paragraph}}</p>
+        <br>
+        <a href="https://app.dropshippingscout.com/pricing">
+            <button class="btn-default">start for $1 Trial</button>
+        </a>
+        <p style="color: #1E3F5B; font-size: 13px; font-weight: 550; padding-top: 10px; width: max-content;">
+            <img src="{{asset('images/verified.png')}}" style="max-width: 35px"/>
+            Trusted by 200.000 entrepreneurs like you
+        </p>
+        </div>
+
+        <div class="right-column">
+        <img src="{{ 'https://tsscout.com/storage/app/public/' . $section->image }}" alt="Example Image">
+        </div>
+    </div>
+    <br>
+@endforeach
+{{-- @if (!empty($page['image_1']))
   <div class="con-left">
     <div class="left-column">
       <h2>{{$page->header_1}}</h2>
@@ -106,24 +129,26 @@
       </a>
     </div>
   </div>
-@endif
+@endif --}}
 </div>
 
 
 
 <!-- Mobile View Sections -->
 <div class="mobile-view">
-  @if (!empty($page['image_1']))
-    <div class="mobile-section">
-    <img src="{{ 'https://tsscout.com/storage/app/public/' . $page['image_1'] }}" alt="Example Image">
-      <h2>{{$page->header_1}}</h2>
-      <p style="color: #1E3F5B; font-size: 16px; font-weight: 400;">{{$page->paragraph_1}}</p>
-      <a href="https://app.dropshippingscout.com/pricing">
-        <button class="btn-default">start for $1 Trial</button>
-      </a>
+    @foreach ($page->sections() as $section)
+        <div class="mobile-section">
+            <img src="{{ 'https://tsscout.com/storage/app/public/' . $section['image'] }}" alt="Example Image">
+            <h2>{{$section['header']}}</h2>
+            <p style="color: #1E3F5B; font-size: 16px; font-weight: 400;">{{$section['paragraph']}}</p>
+            <a href="https://app.dropshippingscout.com/pricing">
+                <button class="btn-default">start for $1 Trial</button>
+            </a>
+        </div>
+    @endforeach
     </div>
   @endif
-  @if (!empty($page['image_2']))
+  {{-- @if (!empty($page['image_2']))
     <div class="mobile-section">
     <img src="{{ 'https://tsscout.com/storage/app/public/' . $page['image_2'] }}" alt="Example Image">
       <h2>{{$page->header_2}}</h2>
@@ -152,7 +177,7 @@
         <button class="btn-default">start for $1 Trial</button>
       </a>
     </div>
-  @endif
+  @endif --}}
 
   <!-- Repeat sections 2, 3, and 4 for mobile layout -->
 </div>
