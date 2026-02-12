@@ -23,22 +23,23 @@
 <h5  class="title" style="margin-top:20px ; font-size: 20px; color: #1E3F5B; font-weight: 550;">{{$page->content_subheader}}</h5>
 <br>
 <!-- Desktop View Sections -->
-<div class="desktop-view">
+
 
 @foreach ($page->sections() as $section)
+<div class="desktop-view">
     <div class="con-left">
         <div class="{{ $loop->even?'left':'right' }}-column">
-        <h2>{{$section['header']}}</h2>
-        <br>
-        <p style="color: #1E3F5B; font-size: 16px; font-weight: 400;">{{$section['paragraph']}}</p>
-        <br>
-        <a href="https://app.dropshippingscout.com/pricing">
-            <button class="btn-default">start for $1 Trial</button>
-        </a>
-        <p style="color: #1E3F5B; font-size: 13px; font-weight: 550; padding-top: 10px; width: max-content;">
-            <img src="{{asset('images/verified.png')}}" style="max-width: 35px"/>
-            Trusted by 200.000 entrepreneurs like you
-        </p>
+            <h2>{{$section['header']}}</h2>
+            <br>
+            <p style="color: #1E3F5B; font-size: 16px; font-weight: 400;">{{$section['paragraph']}}</p>
+            <br>
+            <a href="https://app.dropshippingscout.com/pricing">
+                <button class="btn-default">start for $1 Trial</button>
+            </a>
+            <p style="color: #1E3F5B; font-size: 13px; font-weight: 550; padding-top: 10px; width: max-content;">
+                <img src="{{asset('images/verified.png')}}" style="max-width: 35px"/>
+                Trusted by 200.000 entrepreneurs like you
+            </p>
         </div>
 
         <div class="{{ $loop->even?'right':'left' }}-column">
@@ -50,6 +51,7 @@
         </div>
     </div>
     <br>
+</div>
 @endforeach
 {{-- @if (!empty($page['image_1']))
   <div class="con-left">
