@@ -23,12 +23,11 @@
 <h5  class="title" style="margin-top:20px ; font-size: 20px; color: #1E3F5B; font-weight: 550;">{{$page->content_subheader}}</h5>
 <br>
 <!-- Desktop View Sections -->
-
-
-@foreach ($page->sections() as $section)
 <div class="desktop-view">
-    <div class="con-left">
-        <div class="{{ $loop->odd?'left':'right' }}-column">
+
+    @foreach ($page->sections() as $section)
+        <div class="con-left">
+            <div class="left-column">
             <h2>{{$section['header']}}</h2>
             <br>
             <p style="color: #1E3F5B; font-size: 16px; font-weight: 400;">{{$section['paragraph']}}</p>
@@ -40,102 +39,18 @@
                 <img src="{{asset('images/verified.png')}}" style="max-width: 35px"/>
                 Trusted by 200.000 entrepreneurs like you
             </p>
+            </div>
+
+            <div class="right-column">
+                @if($section['image'] && !is_file(public_path('storage/app/public/' . $section['image'])))
+                    <img src="{{ 'https://tsscout.com/storage/app/public/' . $section['image'] }}" alt="{{ $section['header'] }}">
+                @else
+                    <img src="https://tsscout.com/public/images/logo.svg" alt="{{ $section['header'] }}">
+                @endif
+            </div>
         </div>
-
-        <div class="{{ $loop->odd?'right':'left' }}-column">
-            @if($section['image'] && !is_file(public_path('storage/app/public/' . $section['image'])))
-                <img src="{{ 'https://tsscout.com/storage/app/public/' . $section['image'] }}" alt="{{ $section['header'] }}">
-            @else
-                <img src="https://tsscout.com/public/images/logo.svg" alt="{{ $section['header'] }}">
-            @endif
-        </div>
-    </div>
-    <br>
-</div>
-@endforeach
-{{-- @if (!empty($page['image_1']))
-  <div class="con-left">
-    <div class="left-column">
-      <h2>{{$page->header_1}}</h2>
-      <br>
-      <p style="color: #1E3F5B; font-size: 16px; font-weight: 400;">{{$page->paragraph_1}}</p>
-      <br>
-      <a href="https://app.dropshippingscout.com/pricing">
-        <button class="btn-default">start for $1 Trial</button>
-      </a>
-      <p style="color: #1E3F5B; font-size: 13px; font-weight: 550; padding-top: 10px; width: max-content;">
-        <img src="{{asset('images/verified.png')}}" style="max-width: 35px"/>
-        Trusted by 200.000 entrepreneurs like you
-      </p>
-    </div>
-
-    <div class="right-column">
-      <img src="{{ 'https://tsscout.com/storage/app/public/' . $page['image_1'] }}" alt="{{ $section['header'] }}">
-    </div>
-  </div>
-@endif
-
-<br>
-
-@if (!empty($page['image_2']))
-  <div class="con-left">
-    <div class="right-column">
-      <img src="{{ 'https://tsscout.com/storage/app/public/' . $page['image_2'] }}" alt="{{ $section['header'] }}">
-    </div>
-
-    <div class="left-column">
-      <h2 style="width: max-content;">{{$page->header_2}}</h2>
-      <br>
-      <p style="color: #1E3F5B; font-size: 16px; font-weight: 400;">
-        {{$page->paragraph_2}}
-      </p>
-      <br>
-      <a href="https://app.dropshippingscout.com/pricing">
-        <button class="btn-default">start for $1 Trial</button>
-      </a>
-    </div>
-  </div>
-@endif
-
-@if (!empty($page['image_3']))
-  <div class="con-left">
-    <div class="left-column">
-      <h2>{{$page->header_3}}</h2>
-      <br>
-      <p style="color: #1E3F5B; font-size: 16px; font-weight: 400;">{{$page->paragraph_3}}</p>
-      <br>
-      <a href="https://app.dropshippingscout.com/pricing">
-        <button class="btn-default">start for $1 Trial</button>
-      </a>
-    </div>
-
-    <div class="right-column">
-      <img src="{{ 'https://tsscout.com/storage/app/public/' . $page['image_3'] }}" alt="{{ $section['header'] }}">
-    </div>
-  </div>
-@endif
-
-<br>
-
-@if (!empty($page['image_4']))
-  <div class="con-left">
-    <div class="right-column">
-      <img src="{{ 'https://tsscout.com/storage/app/public/' . $page['image_4'] }}" alt="{{ $section['header'] }}">
-    </div>
-
-    <div class="left-column">
-      <h2 style="width: max-content;">{{$page->header_4}}</h2>
-      <br>
-      <p style="color: #1E3F5B; font-size: 16px; font-weight: 400;">
-        {{$page->paragraph_4}}
-      </p>
-      <br>
-      <a href="https://app.dropshippingscout.com/pricing">
-        <button class="btn-default">start for $1 Trial</button>
-      </a>
-    </div>
-  </div>
-@endif --}}
+        <br>
+    @endforeach
 </div>
 
 
