@@ -49,7 +49,7 @@ class tool extends Model
         $img= $this->{"image_{$i}"};
         if (
             $img &&
-            is_file(public_path('storage/' . $img)) &&
+            is_file(storage_path('app/public/' . $img)) &&
             file_exists(storage_path('app/public/' . $img)) && getimagesize(storage_path('app/public/' . $img)) )
             {
                 return storage_path('app/public/' . $img);
