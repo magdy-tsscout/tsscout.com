@@ -28,9 +28,9 @@
 @foreach ($page->sections() as $section)
     <div class="con-left">
         <div class="left-column">
-        <h2>{{$section->header}}</h2>
+        <h2>{{$section['header']}}</h2>
         <br>
-        <p style="color: #1E3F5B; font-size: 16px; font-weight: 400;">{{$section->paragraph}}</p>
+        <p style="color: #1E3F5B; font-size: 16px; font-weight: 400;">{{$section['paragraph']}}</p>
         <br>
         <a href="https://app.dropshippingscout.com/pricing">
             <button class="btn-default">start for $1 Trial</button>
@@ -42,7 +42,7 @@
         </div>
 
         <div class="right-column">
-        <img src="{{ 'https://tsscout.com/storage/app/public/' . $section->image }}" alt="Example Image">
+        <img src="{{ 'https://tsscout.com/storage/app/public/' . $section['image'] }}" alt="Example Image">
         </div>
     </div>
     <br>
