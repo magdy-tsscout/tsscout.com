@@ -44,4 +44,17 @@ class tool extends Model
         }
         return $ar;
     }
+
+    public function img($i=1) {
+        $img= $this->{"image_{$i}"};
+        if (
+            $img &&
+            is_file(public_path('storage/' . $img)) &&
+            file_exists(storage_path('app/public/' . $img)) && getimagesize(storage_path('app/public/' . $img)) )
+            {
+                return storage_path('app/public/' . $img);
+            } else {
+                return 'https://tsscout.com/public/images/logo.svg';
+            }
+    }
 }

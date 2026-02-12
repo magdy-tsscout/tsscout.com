@@ -41,11 +41,9 @@
     </div>
 
     <div class="right-column">
-        @if($page['image_1'] && is_file(public_path('storage/' . $page['image_1'])) && file_exists(public_path('storage/' . $page['image_1'])) && getimagesize(public_path('storage/' . $page['image_1'])))
-          <img src="{{ 'https://tsscout.com/storage/app/public/' . $page['image_1'] }}" alt="{{ $page->header_1 }}">
-      @else
-        <img src="https://tsscout.com/public/images/logo.svg" alt="{{ $page->header_1 }}">
-       @endif
+
+        <img src="{{ $page->img(1) }}" alt="{{ $page->header_1 }}">
+
     </div>
   </div>
 @endif
