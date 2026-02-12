@@ -50,6 +50,7 @@
         </div>
     </div>
     <br>
+    <br>
 @endforeach
 {{-- @if (!empty($page['image_1']))
   <div class="con-left">
@@ -153,6 +154,7 @@
                 <button class="btn-default">start for $1 Trial</button>
             </a>
         </div>
+        <br>
     @endforeach
     </div>
 
