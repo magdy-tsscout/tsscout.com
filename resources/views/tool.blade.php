@@ -27,21 +27,21 @@
 
     @foreach ($page->sections() as $section)
         <div class="con-left">
-            <div class="left-column">
-            <h2>{{$section['header']}}</h2>
-            <br>
-            <p style="color: #1E3F5B; font-size: 16px; font-weight: 400;">{{$section['paragraph']}}</p>
-            <br>
-            <a href="https://app.dropshippingscout.com/pricing">
-                <button class="btn-default">start for $1 Trial</button>
-            </a>
-            <p style="color: #1E3F5B; font-size: 13px; font-weight: 550; padding-top: 10px; width: max-content;">
-                <img src="{{asset('images/verified.png')}}" style="max-width: 35px"/>
-                Trusted by 200.000 entrepreneurs like you
-            </p>
+            <div class="{{ $loop->odd?'left':'right' }}-column">
+                <h2>{{$section['header']}}</h2>
+                <br>
+                <p style="color: #1E3F5B; font-size: 16px; font-weight: 400;">{{$section['paragraph']}}</p>
+                <br>
+                <a href="https://app.dropshippingscout.com/pricing">
+                    <button class="btn-default">start for $1 Trial</button>
+                </a>
+                <p style="color: #1E3F5B; font-size: 13px; font-weight: 550; padding-top: 10px; width: max-content;">
+                    <img src="{{asset('images/verified.png')}}" style="max-width: 35px"/>
+                    Trusted by 200.000 entrepreneurs like you
+                </p>
             </div>
 
-            <div class="right-column">
+            <div class="{{ $loop->odd?'right':'left' }}-column">
                 @if($section['image'] && !is_file(public_path('storage/app/public/' . $section['image'])))
                     <img src="{{ 'https://tsscout.com/storage/app/public/' . $section['image'] }}" alt="{{ $section['header'] }}">
                 @else
@@ -73,38 +73,6 @@
     @endforeach
     </div>
 
-  {{-- @if (!empty($page['image_2']))
-    <div class="mobile-section">
-    <img src="{{ 'https://tsscout.com/storage/app/public/' . $page['image_2'] }}" alt="{{ $section['header'] }}">
-      <h2>{{$page->header_2}}</h2>
-      <p style="color: #1E3F5B; font-size: 16px; font-weight: 400;">{{$page->paragraph_2}}</p>
-      <a href="https://app.dropshippingscout.com/pricing">
-        <button class="btn-default">start for $1 Trial</button>
-      </a>
-    </div>
-  @endif
-  @if (!empty($page['image_3']))
-    <div class="mobile-section">
-    <img src="{{ 'https://tsscout.com/storage/app/public/' . $page['image_3'] }}" alt="{{ $section['header'] }}">
-      <h2>{{$page->header_3}}</h2>
-      <p style="color: #1E3F5B; font-size: 16px; font-weight: 400;">{{$page->paragraph_3}}</p>
-      <a href="https://app.dropshippingscout.com/pricing">
-        <button class="btn-default">start for $1 Trial</button>
-      </a>
-    </div>
-  @endif
-  @if (!empty($page['image_4']))
-    <div class="mobile-section">
-    <img src="{{ 'https://tsscout.com/storage/app/public/' . $page['image_4'] }}" alt="{{ $section['header'] }}">
-      <h2>{{$page->header_4}}</h2>
-      <p style="color: #1E3F5B; font-size: 16px; font-weight: 400;">{{$page->paragraph_4}}</p>
-      <a href="https://app.dropshippingscout.com/pricing">
-        <button class="btn-default">start for $1 Trial</button>
-      </a>
-    </div>
-  @endif --}}
-
-  <!-- Repeat sections 2, 3, and 4 for mobile layout -->
 </div>
 
     <div class="container faqHead" style="display: flex; flex-direction: column; align-items: center; justify-content: center; text-align: center;">
