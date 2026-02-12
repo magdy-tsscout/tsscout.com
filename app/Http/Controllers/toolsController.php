@@ -20,9 +20,9 @@ class toolsController extends Controller
     public function index()
     {
         if (!$this->isAdmin()) {
-            return redirect()->route('Adminlogin')->with('error', 'Access denied.'); 
+            return redirect()->route('Adminlogin')->with('error', 'Access denied.');
         }
-        
+
         // Fetch all tools from the database
         $tools = tool::all();
 
@@ -36,9 +36,10 @@ class toolsController extends Controller
         $page = tool::where('slug', $slug)->firstOrFail();
 
         $Faq = Faq::where('category_name', 'Tool-Features')
-        ->where('tool_slug', $slug) 
+        ->where('tool_slug', $slug)
         ->get();  // Fetch all matching FAQs
 
+        dd($page);
 
         // Pass the page data to the view
         return view('tool', compact('page','Faq'));
@@ -72,34 +73,34 @@ class toolsController extends Controller
             'paragraph_4' => 'nullable|string',
             'image_4' => 'nullable|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
         ]);
-    
+
         // Handle file uploads
         for ($i = 1; $i <= 4; $i++) {
             if ($request->hasFile('image_'.$i)) {
-        
+
                 // Get the original filename with extension
                 $originalFileName = $request->file('image_'.$i)->getClientOriginalName();
-        
+
                 // Generate a unique filename to avoid conflicts
                 $filename = pathinfo($originalFileName, PATHINFO_FILENAME);
                 $extension = $request->file('image_'.$i)->getClientOriginalExtension();
                 $uniqueFileName = $filename . '_' . time() . '.' . $extension;
-        
+
                 // Store the image in the public storage
                 $path = $request->file('image_'.$i)->storeAs('images', $uniqueFileName, 'public');
-        
+
                 // Save the path or file name in the database
                 $data['image_'.$i] = $path;
             }
         }
-        
-    
+
+
         tool::create($data);
-    
+
         return redirect()->route('tools.create')->with('success', 'Page created successfully');
     }
-    
-    
+
+
 
   // Edit method
 public function edit(tool $tool)
@@ -135,23 +136,23 @@ public function update(Request $request, tool $tool)
     // Handle file uploads
     for ($i = 1; $i <= 4; $i++) {
         if ($request->hasFile('image_'.$i)) {
-    
+
             // Get the original filename with extension
             $originalFileName = $request->file('image_'.$i)->getClientOriginalName();
-    
+
             // Generate a unique filename to avoid conflicts
             $filename = pathinfo($originalFileName, PATHINFO_FILENAME);
             $extension = $request->file('image_'.$i)->getClientOriginalExtension();
             $uniqueFileName = $filename . '_' . time() . '.' . $extension;
-    
+
             // Store the image in the public storage
             $path = $request->file('image_'.$i)->storeAs('images', $uniqueFileName, 'public');
-    
+
             // Save the path or file name in the database
             $data['image_'.$i] = $path;
         }
     }
-    
+
 
     $tool->update($data);
 
@@ -168,7 +169,7 @@ public function update(Request $request, tool $tool)
     }
 
 
-    
-    
-    
+
+
+
 }
