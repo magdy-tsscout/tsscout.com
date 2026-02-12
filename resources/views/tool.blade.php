@@ -42,10 +42,10 @@
         </div>
 
         <div class="right-column">
-            @if($section['image'])
-                <img src="{{ 'https://tsscout.com/storage/app/public/' . $section['image'] }}" alt="Example Image">
+            @if($section['image'] && is_file(public_path('storage/app/public/' . $section['image'])))
+                <img src="{{ 'https://tsscout.com/storage/app/public/' . $section['image'] }}" alt="{{ $section['header'] }}">
             @else
-                <img src="https://tsscout.com/public/images/logo.svg" alt="Example Image">
+                <img src="https://tsscout.com/public/images/logo.svg" alt="{{ $section['header'] }}">
             @endif
         </div>
     </div>
@@ -68,7 +68,7 @@
     </div>
 
     <div class="right-column">
-      <img src="{{ 'https://tsscout.com/storage/app/public/' . $page['image_1'] }}" alt="Example Image">
+      <img src="{{ 'https://tsscout.com/storage/app/public/' . $page['image_1'] }}" alt="{{ $section['header'] }}">
     </div>
   </div>
 @endif
@@ -78,7 +78,7 @@
 @if (!empty($page['image_2']))
   <div class="con-left">
     <div class="right-column">
-      <img src="{{ 'https://tsscout.com/storage/app/public/' . $page['image_2'] }}" alt="Example Image">
+      <img src="{{ 'https://tsscout.com/storage/app/public/' . $page['image_2'] }}" alt="{{ $section['header'] }}">
     </div>
 
     <div class="left-column">
@@ -108,7 +108,7 @@
     </div>
 
     <div class="right-column">
-      <img src="{{ 'https://tsscout.com/storage/app/public/' . $page['image_3'] }}" alt="Example Image">
+      <img src="{{ 'https://tsscout.com/storage/app/public/' . $page['image_3'] }}" alt="{{ $section['header'] }}">
     </div>
   </div>
 @endif
@@ -118,7 +118,7 @@
 @if (!empty($page['image_4']))
   <div class="con-left">
     <div class="right-column">
-      <img src="{{ 'https://tsscout.com/storage/app/public/' . $page['image_4'] }}" alt="Example Image">
+      <img src="{{ 'https://tsscout.com/storage/app/public/' . $page['image_4'] }}" alt="{{ $section['header'] }}">
     </div>
 
     <div class="left-column">
@@ -142,7 +142,11 @@
 <div class="mobile-view">
     @foreach ($page->sections() as $section)
         <div class="mobile-section">
-            <img src="{{ 'https://tsscout.com/storage/app/public/' . $section['image'] }}" alt="Example Image">
+            @if($section['image'] && is_file(public_path('storage/app/public/' . $section['image'])))
+                <img src="{{ 'https://tsscout.com/storage/app/public/' . $section['image'] }}" alt="{{ $section['header'] }}">
+            @else
+                <img src="https://tsscout.com/public/images/logo.svg" alt="{{ $section['header'] }}">
+            @endif
             <h2>{{$section['header']}}</h2>
             <p style="color: #1E3F5B; font-size: 16px; font-weight: 400;">{{$section['paragraph']}}</p>
             <a href="https://app.dropshippingscout.com/pricing">
@@ -154,7 +158,7 @@
 
   {{-- @if (!empty($page['image_2']))
     <div class="mobile-section">
-    <img src="{{ 'https://tsscout.com/storage/app/public/' . $page['image_2'] }}" alt="Example Image">
+    <img src="{{ 'https://tsscout.com/storage/app/public/' . $page['image_2'] }}" alt="{{ $section['header'] }}">
       <h2>{{$page->header_2}}</h2>
       <p style="color: #1E3F5B; font-size: 16px; font-weight: 400;">{{$page->paragraph_2}}</p>
       <a href="https://app.dropshippingscout.com/pricing">
@@ -164,7 +168,7 @@
   @endif
   @if (!empty($page['image_3']))
     <div class="mobile-section">
-    <img src="{{ 'https://tsscout.com/storage/app/public/' . $page['image_3'] }}" alt="Example Image">
+    <img src="{{ 'https://tsscout.com/storage/app/public/' . $page['image_3'] }}" alt="{{ $section['header'] }}">
       <h2>{{$page->header_3}}</h2>
       <p style="color: #1E3F5B; font-size: 16px; font-weight: 400;">{{$page->paragraph_3}}</p>
       <a href="https://app.dropshippingscout.com/pricing">
@@ -174,7 +178,7 @@
   @endif
   @if (!empty($page['image_4']))
     <div class="mobile-section">
-    <img src="{{ 'https://tsscout.com/storage/app/public/' . $page['image_4'] }}" alt="Example Image">
+    <img src="{{ 'https://tsscout.com/storage/app/public/' . $page['image_4'] }}" alt="{{ $section['header'] }}">
       <h2>{{$page->header_4}}</h2>
       <p style="color: #1E3F5B; font-size: 16px; font-weight: 400;">{{$page->paragraph_4}}</p>
       <a href="https://app.dropshippingscout.com/pricing">
