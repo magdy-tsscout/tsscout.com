@@ -41,7 +41,11 @@
     </div>
 
     <div class="right-column">
-      <img src="{{ 'https://tsscout.com/storage/app/public/' . $page['image_1'] }}" alt="Example Image">
+        @if($page['image_1'] && is_file(public_path('storage/' . $page['image_1'])) && file_exists(public_path('storage/' . $page['image_1'])) && getimagesize(public_path('storage/' . $page['image_1'])))
+          <img src="{{ 'https://tsscout.com/storage/app/public/' . $page['image_1'] }}" alt="{{ $page->header_1 }}">
+      @else
+        <img src="https://tsscout.com/public/images/logo.svg" alt="{{ $page->header_1 }}">
+       @endif
     </div>
   </div>
 @endif
@@ -51,7 +55,11 @@
 @if (!empty($page['header_2']))
   <div class="con-left">
     <div class="right-column">
-      <img src="{{ 'https://tsscout.com/storage/app/public/' . $page['image_2'] }}" alt="Example Image">
+      @if($page['image_2'] && is_file(public_path('storage/' . $page['image_2'])) && file_exists(public_path('storage/' . $page['image_2'])) && getimagesize(public_path('storage/' . $page['image_2'])))
+          <img src="{{ 'https://tsscout.com/storage/app/public/' . $page['image_2'] }}" alt="{{ $page->header_2}}">
+      @else
+        <img src="https://tsscout.com/public/images/logo.svg" alt="{{ $page->header_2 }}">
+       @endif
     </div>
 
     <div class="left-column">
@@ -81,7 +89,11 @@
     </div>
 
     <div class="right-column">
-      <img src="{{ 'https://tsscout.com/storage/app/public/' . $page['image_3'] }}" alt="Example Image">
+      @if($page['image_3'] && is_file(public_path('storage/' . $page['image_3'])) && file_exists(public_path('storage/' . $page['image_3'])) && getimagesize(public_path('storage/' . $page['image_3'])))
+          <img src="{{ 'https://tsscout.com/storage/app/public/' . $page['image_3'] }}" alt="{{ $page->header_3 }}">
+      @else
+        <img src="https://tsscout.com/public/images/logo.svg" alt="{{ $page->header_3 }}">
+       @endif
     </div>
   </div>
 @endif
@@ -91,7 +103,11 @@
 @if (!empty($page['header_4']))
   <div class="con-left">
     <div class="right-column">
-      <img src="{{ 'https://tsscout.com/storage/app/public/' . $page['image_4'] }}" alt="Example Image">
+      @if($page['image_4'] && is_file(public_path('storage/' . $page['image_4'])) && file_exists(public_path('storage/' . $page['image_4'])) && getimagesize(public_path('storage/' . $page['image_4'])))
+          <img src="{{ 'https://tsscout.com/storage/app/public/' . $page['image_4'] }}" alt="{{ $page->header_4 }}">
+      @else
+        <img src="https://tsscout.com/public/images/logo.svg" alt="{{ $page->header_4 }}">
+       @endif
     </div>
 
     <div class="left-column">
@@ -115,7 +131,11 @@
 <div class="mobile-view">
   @if (!empty($page['header_1']))
     <div class="mobile-section">
-    <img src="{{ 'https://tsscout.com/storage/app/public/' . $page['image_1'] }}" alt="Example Image">
+    @if($page['image_1'] && is_file(public_path('storage/' . $page['image_1'])) && file_exists(public_path('storage/' . $page['image_1'])) && getimagesize(public_path('storage/' . $page['image_1'])))
+          <img src="{{ 'https://tsscout.com/storage/app/public/' . $page['image_1'] }}" alt="{{ $page->header_1 }}">
+      @else
+        <img src="https://tsscout.com/public/images/logo.svg" alt="{{ $page->header_1 }}">
+       @endif
       <h2>{{$page->header_1}}</h2>
       <p style="color: #1E3F5B; font-size: 16px; font-weight: 400;">{{$page->paragraph_1}}</p>
       <a href="https://app.dropshippingscout.com/pricing">
@@ -125,7 +145,11 @@
   @endif
   @if (!empty($page['header_2']))
     <div class="mobile-section">
-    <img src="{{ 'https://tsscout.com/storage/app/public/' . $page['image_2'] }}" alt="Example Image">
+    @if($page['image_2'] && is_file(public_path('storage/' . $page['image_2'])) && file_exists(public_path('storage/' . $page['image_2'])) && getimagesize(public_path('storage/' . $page['image_2'])))
+          <img src="{{ 'https://tsscout.com/storage/app/public/' . $page['image_2'] }}" alt="{{ $page->header_2 }}">
+      @else
+        <img src="https://tsscout.com/public/images/logo.svg" alt="{{ $page->header_2 }}">
+       @endif
       <h2>{{$page->header_2}}</h2>
       <p style="color: #1E3F5B; font-size: 16px; font-weight: 400;">{{$page->paragraph_2}}</p>
       <a href="https://app.dropshippingscout.com/pricing">
@@ -135,7 +159,11 @@
   @endif
   @if (!empty($page['header_3']))
     <div class="mobile-section">
-    <img src="{{ 'https://tsscout.com/storage/app/public/' . $page['image_3'] }}" alt="Example Image">
+    @if($page['image_3'] && is_file(public_path('storage/' . $page['image_3'])) && file_exists(public_path('storage/' . $page['image_3'])) && getimagesize(public_path('storage/' . $page['image_3'])))
+          <img src="{{ 'https://tsscout.com/storage/app/public/' . $page['image_3'] }}" alt="{{ $page->header_3 }}">
+      @else
+        <img src="https://tsscout.com/public/images/logo.svg" alt="{{ $page->header_3 }}">
+       @endif
       <h2>{{$page->header_3}}</h2>
       <p style="color: #1E3F5B; font-size: 16px; font-weight: 400;">{{$page->paragraph_3}}</p>
       <a href="https://app.dropshippingscout.com/pricing">
@@ -145,7 +173,11 @@
   @endif
   @if (!empty($page['header_4']))
     <div class="mobile-section">
-    <img src="{{ 'https://tsscout.com/storage/app/public/' . $page['image_4'] }}" alt="Example Image">
+    @if($page['image_4'] && is_file(public_path('storage/' . $page['image_4'])) && file_exists(public_path('storage/' . $page['image_4'])) && getimagesize(public_path('storage/' . $page['image_4'])))
+          <img src="{{ 'https://tsscout.com/storage/app/public/' . $page['image_4'] }}" alt="{{ $page->header_4 }}">
+      @else
+        <img src="https://tsscout.com/public/images/logo.svg" alt="{{ $page->header_4 }}">
+       @endif
       <h2>{{$page->header_4}}</h2>
       <p style="color: #1E3F5B; font-size: 16px; font-weight: 400;">{{$page->paragraph_4}}</p>
       <a href="https://app.dropshippingscout.com/pricing">
