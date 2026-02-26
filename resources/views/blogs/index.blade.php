@@ -47,6 +47,11 @@
             padding: 0.9rem;
             background: #f8f9fa;
         }
+
+        .category-badge {
+            position: relative;
+            top: 3px;
+        }
     </style>
 @endsection
 @section('content')
@@ -132,7 +137,7 @@
                         </div>
                     </div>
                     <div class="card-footer text-muted">
-                        <span class="badge badge-info">
+                        <span class="badge badge-info category-badge">
                             {{ $blog->category }}
                         </span>
                         <form action="{{ route('blogs.destroy', $blog->id) }}" method="POST" class="d-inline-block float-right">
