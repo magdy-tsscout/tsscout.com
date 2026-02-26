@@ -53,7 +53,7 @@
               <input type="number" id="ebay-fee" placeholder="Enter Fee %">
           </div>
       </div>
-  
+
       <!-- Second row of filters (hidden by default) -->
       <div class="filter-row" id="second-filter-row" style="display: none;">
           <div class="filter-box">
@@ -81,7 +81,7 @@
             <input type="number" id="seller-status" placeholder="1"> <!-- Updated ID -->
             </div>
       </div>
-  
+
       <!-- More Options Link -->
       <div style="text-align: center; margin: 20px 0;" id="more-options-container">
           <a href="javascript:void(0);" id="more-options-link" class="more-options-link">
@@ -190,7 +190,7 @@
           their offerings and pricing.</h2>
     </div>
     <div class="button-container">
-      <a href="https://app.dropshippingscout.com/pricing">
+      <a href="https://app.tsscout.com/pricing">
         <button class="btn-default">Start for $1 Trial</button>
       </a>
   </div>

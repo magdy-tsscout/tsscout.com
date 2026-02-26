@@ -70,14 +70,14 @@ Route::get('admin/site/login', [LoginController::class, 'showLoginForm'])->name(
 Route::post('admin/site/login', [LoginController::class, 'login'])->name('Adminlogin');
 
 Route::get('/login', function () {
-    return redirect('https://app.dropshippingscout.com/login');
+    return redirect('https://app.tsscout.com/login');
 });
 Route::get('/register', function () {
-    return redirect('https://app.dropshippingscout.com/register');
+    return redirect('https://app.tsscout.com/register');
 });
 
 Route::get('/pricing', function () {
-    return redirect('https://app.dropshippingscout.com/pricing');
+    return redirect('https://app.tsscout.com/pricing');
 });
 //Route::get('register', [RegisterController::class, 'showRegistrationForm'])->name('register');
 //Route::post('register', [RegisterController::class, 'register']);

@@ -162,7 +162,7 @@
               their offerings and pricing.</h2>
         </div>
         <div class="button-container">
-          <a href="https://app.dropshippingscout.com/pricing">
+          <a href="https://app.tsscout.com/pricing">
             <button class="btn-default">Start for $1 Trial</button>
           </a>
       </div>
@@ -221,7 +221,7 @@ document.getElementById("search-button").addEventListener("click", async () => {
     return;
   }
 
-  const apiUrl = `https://app.dropshippingscout.com/api/title-Builder`;
+  const apiUrl = `https://app.tsscout.com/api/title-Builder`;
   const apiKey = "633b70d7-b203-4097-9dac-cf72982df53c";
 
   try {

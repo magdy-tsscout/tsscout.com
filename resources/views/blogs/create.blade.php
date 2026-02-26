@@ -93,7 +93,7 @@
                 <div class="form-group mb-3">
                     <label for="category" class="form-label">Category</label>
                     <select class="form-control" id="category" name="category" required>
-                        <option value="Dropshipping">Dropshipping</option>
+                        <option value="eCommece">eCommece</option>
                         <option value="eBay">eBay</option>
                         <option value="Shopify">Shopify</option>
                         <option value="WooCommerce">WooCommerce</option>

@@ -94,7 +94,7 @@
           their offerings and pricing.</h2>
     </div>
     <div class="button-container">
-      <a href="https://app.dropshippingscout.com/pricing">
+      <a href="https://app.tsscout.com/pricing">
         <button class="btn-default">Start for $1 Trial</button>
       </a>
   </div>

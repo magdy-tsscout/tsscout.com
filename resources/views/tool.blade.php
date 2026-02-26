@@ -31,7 +31,7 @@
       <br>
       <p style="color: #1E3F5B; font-size: 16px; font-weight: 400;">{{$page->paragraph_1}}</p>
       <br>
-      <a href="https://app.dropshippingscout.com/pricing">
+      <a href="https://app.tsscout.com/pricing">
         <button class="btn-default">start for $1 Trial</button>
       </a>
       <p style="color: #1E3F5B; font-size: 13px; font-weight: 550; padding-top: 10px; width: max-content;">
@@ -61,7 +61,7 @@
         {{$page->paragraph_2}}
       </p>
       <br>
-      <a href="https://app.dropshippingscout.com/pricing">
+      <a href="https://app.tsscout.com/pricing">
         <button class="btn-default">start for $1 Trial</button>
       </a>
     </div>
@@ -75,7 +75,7 @@
       <br>
       <p style="color: #1E3F5B; font-size: 16px; font-weight: 400;">{{$page->paragraph_3}}</p>
       <br>
-      <a href="https://app.dropshippingscout.com/pricing">
+      <a href="https://app.tsscout.com/pricing">
         <button class="btn-default">start for $1 Trial</button>
       </a>
     </div>
@@ -101,7 +101,7 @@
         {{$page->paragraph_4}}
       </p>
       <br>
-      <a href="https://app.dropshippingscout.com/pricing">
+      <a href="https://app.tsscout.com/pricing">
         <button class="btn-default">start for $1 Trial</button>
       </a>
     </div>
@@ -118,7 +118,7 @@
     <img src="{{ $page->img(1) }}" alt="{{ $page->header_1 }}">
       <h2>{{$page->header_1}}</h2>
       <p style="color: #1E3F5B; font-size: 16px; font-weight: 400;">{{$page->paragraph_1}}</p>
-      <a href="https://app.dropshippingscout.com/pricing">
+      <a href="https://app.tsscout.com/pricing">
         <button class="btn-default">start for $1 Trial</button>
       </a>
     </div>
@@ -128,7 +128,7 @@
     <img src="{{ $page->img(2) }}" alt="{{ $page->header_2 }}">
       <h2>{{$page->header_2}}</h2>
       <p style="color: #1E3F5B; font-size: 16px; font-weight: 400;">{{$page->paragraph_2}}</p>
-      <a href="https://app.dropshippingscout.com/pricing">
+      <a href="https://app.tsscout.com/pricing">
         <button class="btn-default">start for $1 Trial</button>
       </a>
     </div>
@@ -138,7 +138,7 @@
     <img src="{{ $page->img(3) }}" alt="{{ $page->header_3 }}">
       <h2>{{$page->header_3}}</h2>
       <p style="color: #1E3F5B; font-size: 16px; font-weight: 400;">{{$page->paragraph_3}}</p>
-      <a href="https://app.dropshippingscout.com/pricing">
+      <a href="https://app.tsscout.com/pricing">
         <button class="btn-default">start for $1 Trial</button>
       </a>
     </div>
@@ -148,7 +148,7 @@
     <img src="{{ $page->img(4) }}" alt="{{ $page->header_4 }}">
       <h2>{{$page->header_4}}</h2>
       <p style="color: #1E3F5B; font-size: 16px; font-weight: 400;">{{$page->paragraph_4}}</p>
-      <a href="https://app.dropshippingscout.com/pricing">
+      <a href="https://app.tsscout.com/pricing">
         <button class="btn-default">start for $1 Trial</button>
       </a>
     </div>
@@ -211,7 +211,7 @@
         their offerings and pricing.</h2>
   </div>
   <div class="button-container">
-    <a href="https://app.dropshippingscout.com/pricing">
+    <a href="https://app.tsscout.com/pricing">
       <button class="btn-default">Start for $1 Trial</button>
     </a>
 </div>

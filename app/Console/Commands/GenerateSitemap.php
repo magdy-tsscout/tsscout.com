@@ -28,9 +28,9 @@ class GenerateSitemap extends Command
         // Static Routes
         $staticRoutes = [
             '/',
-            'https://app.dropshippingscout.com/login',
-            'https://app.dropshippingscout.com/register',
-            'https://app.dropshippingscout.com/pricing',
+            'https://app.tsscout.com/login',
+            'https://app.tsscout.com/register',
+            'https://app.tsscout.com/pricing',
             '/blogs',
             '/tutorial',
             '/faqs'

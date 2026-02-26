@@ -38,7 +38,7 @@
                 border-radius: 8px; opacity: 1;">Read More</button>
                </a>
             </div>
-            
+
             <div class="right-column">
                 <img src="{{asset('images/Tiktook-Scanner.jpeg')}}" alt="Example Image">
             </div>
@@ -86,7 +86,7 @@
                 <h2>Reach out to suppliers for details on their offerings and pricing.</h2>
             </div>
             <div class="button-container">
-                <a href="https://app.dropshippingscout.com/pricing">
+                <a href="https://app.tsscout.com/pricing">
                 <button class="btn-default">Start for $1 Trial</button>
             </a>
             </div>
@@ -109,7 +109,7 @@
                 border-radius: 8px; opacity: 1;">Read More</button>
                  </a>
             </div>
-            
+
             <div class="right-column">
                 <img src="{{asset('./images/P S.jpg')}}" alt="Example Image">
             </div>
