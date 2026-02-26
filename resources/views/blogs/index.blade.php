@@ -42,7 +42,10 @@
                         </div>
                     </div>
                     <div class="card-footer text-muted">
-                        <form action="{{ route('blogs.destroy', $blog->id) }}" method="POST" class="d-inline-block">
+                        <span class="badge badge-info">
+                            {{ $blog->category }}
+                        </span>
+                        <form action="{{ route('blogs.destroy', $blog->id) }}" method="POST" class="d-inline-block float-right">
                             @csrf
                             @method('DELETE')
                             <div class="btn-group">
