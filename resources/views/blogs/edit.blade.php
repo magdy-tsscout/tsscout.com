@@ -86,7 +86,7 @@
                 <div class="form-group mb-3">
                     <label for="category" class="form-label">Category</label>
                     <select class="form-control" id="category" name="category" required>
-                         <option value="eCommece" {{ $blog->category == 'eCommece' ? 'selected' : '' }}>eCommece</option>
+                         <option value="eCommerce" {{ $blog->category == 'eCommerce' ? 'selected' : '' }}>eCommerce</option>
                          <option value="eBay" {{ $blog->category == 'eBay' ? 'selected' : '' }}>eBay</option>
                          <option value="Shopify" {{ $blog->category == 'Shopify' ? 'selected' : '' }}>Shopify</option>
                          <option value="WooCommerce" {{ $blog->category == 'WooCommerce' ? 'selected' : '' }}>WooCommerce</option>

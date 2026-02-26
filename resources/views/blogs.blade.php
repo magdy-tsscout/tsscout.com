@@ -25,7 +25,7 @@
 <div class="options-wrapper">
     <div class="options-container">
         <div class="option">All</div>
-        <div class="option">eCommece</div>
+        <div class="option">eCommerce</div>
         <div class="option">eBay</div>
         <div class="option">Shopify</div>
         <div class="option">Aliexpress</div>
