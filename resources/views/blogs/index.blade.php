@@ -52,7 +52,7 @@
 @section('content')
 <div class="container-fluid">
     <h3 class="d-inline-block">All Blogs</h3>
-    <button type="button" id="toggleSearchBtn" class="btn btn-outline-secondary d-inline-block float-right ml-2">
+    <button type="button" id="toggleSearchBtn" class="btn btn-outline-primary d-inline-block float-right ml-2">
         <span class="fas fa-search me-1"></span>
         {{ request()->filled('search') || request()->filled('category') ? 'Close Search' : 'Open Search' }}
     </button>
