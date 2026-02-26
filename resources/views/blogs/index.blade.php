@@ -1,5 +1,14 @@
 @extends('layouts.app')
 
+@section('styles')
+    <style>
+       .card-header {
+            background-color: #1e3f5b;
+            color: #ffffff;
+            font-size: 1rem;
+        }
+    </style>
+@endsection
 @section('content')
 <div class="container-fluid">
     <h3 class="d-inline-block">All Blogs</h3>
