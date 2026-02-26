@@ -62,7 +62,7 @@
         New Blog
     </a>
 </div>
-<div class="container-fluid mt-0">
+<div class="container-fluid mt-2">
     <div id="searchPanel" class="search-panel {{ request()->filled('search') || request()->filled('category') ? '' : 'd-none' }}">
         <form action="{{ route('blogs.index') }}" method="GET" class="form-inline justify-content-end flex-wrap">
             <div class="form-group mr-2 mb-2">
