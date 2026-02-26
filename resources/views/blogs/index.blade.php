@@ -3,8 +3,8 @@
 @section('content')
 <div class="container-fluid">
     <h3>All Blogs</h3>
-    <div class="float-end">
-        <a href="{{ route('blogs.create') }}" class="btn btn-light d-inline-block float-right">
+    <div class=" float-right">
+        <a href="{{ route('blogs.create') }}" class="btn btn-light d-inline-block">
             <span class="fas fa-plus-circle me-2"></span>
             New Blog
         </a>
