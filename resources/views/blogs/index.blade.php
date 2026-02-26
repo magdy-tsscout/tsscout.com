@@ -52,6 +52,18 @@
             position: relative;
             top: 3px;
         }
+
+        .empty-state-card {
+            min-height: 230px;
+            border: 1px dashed #bfc7d1;
+            border-radius: 0.6rem;
+        }
+
+        .empty-state-icon {
+            font-size: 3.2rem;
+            color: #6c757d;
+            line-height: 1;
+        }
     </style>
 @endsection
 @section('content')
@@ -98,7 +110,7 @@
 </div>
 <div class="container-fluid mt-3">
     <div class="row blogs-grid">
-        @foreach ($blogs as $blog)
+        @forelse ($blogs as $blog)
             <div class="col-lg-6 mb-4">
                 <div class="card blog-card mb-4">
                     <div class="card-header text-white">
@@ -155,7 +167,17 @@
                     </div>
                 </div>
             </div>
-        @endforeach
+        @empty
+            <div class="col-12">
+                <div class="card empty-state-card mb-4">
+                    <div class="card-body d-flex flex-column align-items-center justify-content-center text-center">
+                        <span class="fa fa-search empty-state-icon mb-3"></span>
+                        <h5 class="mb-2">No Blogs Found</h5>
+                        <p class="text-muted mb-0">No blogs found for the current filters.</p>
+                    </div>
+                </div>
+            </div>
+        @endforelse
     </div>
 
     <div class="d-flex justify-content-center">
