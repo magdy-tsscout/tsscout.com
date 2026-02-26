@@ -33,7 +33,7 @@
                     <div class="card-body">
                         <div class="row">
                             <div class="col-lg-3">
-                                <img src="{{ url('storage/app/public/' . $blog->image) }}" alt="{{ $blog->title }}" class="img-fluid rounded" loading="lazy">
+                                <img src="{{ url('storage/app/public/' . $blog->image) }}" alt="{{ $blog->title }}" class="img-fluid rounded border" loading="lazy">
                             </div>
                             <div class="col-lg-9">
                                 <p class="mb-1">{{ $blog->excerpt }}</p>
