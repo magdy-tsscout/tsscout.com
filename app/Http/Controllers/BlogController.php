@@ -84,8 +84,22 @@ class BlogController extends Controller
             return redirect()->route('Adminlogin')->with('error', 'Access denied.');
         }
 
-        // Retrieve all blogs for display
-        $blogs = Blog::paginate(10); // Paginate results, adjust as needed
+        $search = trim((string) request('search', ''));
+
+        $blogsQuery = Blog::query();
+
+        if ($search !== '') {
+            $blogsQuery->where(function ($query) use ($search) {
+                $query->where('title', 'like', "%{$search}%")
+                    ->orWhere('excerpt', 'like', "%{$search}%")
+                    ->orWhere('author', 'like', "%{$search}%")
+                    ->orWhere('category', 'like', "%{$search}%")
+                    ->orWhere('slug', 'like', "%{$search}%");
+            });
+        }
+
+        // Retrieve blogs for display
+        $blogs = $blogsQuery->orderByDesc('publish_date')->paginate(10)->appends(request()->query());
         return view('blogs.index', compact('blogs'));
     }
 

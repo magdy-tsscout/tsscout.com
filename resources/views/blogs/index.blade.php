@@ -40,18 +40,47 @@
         .blog-card .card-body {
             flex: 1 1 auto;
         }
+
+        .search-panel {
+            border: 1px solid #dee2e6;
+            border-radius: 0.5rem;
+            padding: 0.9rem;
+            background: #f8f9fa;
+        }
     </style>
 @endsection
 @section('content')
 <div class="container-fluid">
     <h3 class="d-inline-block">All Blogs</h3>
+    <button type="button" id="toggleSearchBtn" class="btn btn-outline-secondary d-inline-block float-right ml-2">
+        <span class="fas fa-search me-1"></span>
+        {{ request()->filled('search') ? 'Close Search' : 'Open Search' }}
+    </button>
     <a href="{{ route('blogs.create') }}"
         class="btn btn-light d-inline-block float-right">
         <span class="fas fa-plus-circle me-2"></span>
         New Blog
     </a>
 </div>
-<div class="container-fluid">
+<div class="container-fluid mt-3">
+    <div id="searchPanel" class="search-panel {{ request()->filled('search') ? '' : 'd-none' }}">
+        <form action="{{ route('blogs.index') }}" method="GET" class="form-inline">
+            <div class="form-group mr-2 mb-2">
+                <input
+                    type="text"
+                    name="search"
+                    class="form-control"
+                    placeholder="Search by title, excerpt, author, category, or slug"
+                    value="{{ request('search') }}">
+            </div>
+            <button type="submit" class="btn btn-primary mb-2 mr-2">Search</button>
+            @if (request()->filled('search'))
+                <a href="{{ route('blogs.index') }}" class="btn btn-outline-dark mb-2">Reset</a>
+            @endif
+        </form>
+    </div>
+</div>
+<div class="container-fluid mt-3">
     <div class="row blogs-grid">
         @foreach ($blogs as $blog)
             <div class="col-lg-6 mb-4">
@@ -105,4 +134,25 @@
         {{ $blogs->links('pagination::bootstrap-4', ['path' => request()->path(), 'query' => request()->query()]) }}
     </div>
 </div>
+@endsection
+
+@section('scripts')
+<script>
+    document.addEventListener('DOMContentLoaded', function () {
+        var toggleButton = document.getElementById('toggleSearchBtn');
+        var searchPanel = document.getElementById('searchPanel');
+
+        if (!toggleButton || !searchPanel) {
+            return;
+        }
+
+        toggleButton.addEventListener('click', function () {
+            var isHidden = searchPanel.classList.contains('d-none');
+            searchPanel.classList.toggle('d-none');
+            toggleButton.innerHTML = isHidden
+                ? '<span class="fas fa-search me-1"></span> Close Search'
+                : '<span class="fas fa-search me-1"></span> Open Search';
+        });
+    });
+</script>
 @endsection
