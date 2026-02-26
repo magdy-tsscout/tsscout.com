@@ -27,7 +27,6 @@ class BlogController extends Controller
 
     public function store(Request $request)
     {
-        dd($request->all());
         if (!$this->isAdmin()) {
             return redirect()->route('Adminlogin')->with('error', 'Access denied.');
         }
