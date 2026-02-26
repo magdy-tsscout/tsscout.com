@@ -32,7 +32,7 @@ class Blog extends Model
         });
     }
 
-    function blogsCountByCategory($category)
+    public static function blogsCountByCategory($category)
     {
         return self::where('category', $category)->count();
     }
