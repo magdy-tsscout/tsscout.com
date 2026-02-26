@@ -33,21 +33,23 @@
                     <div class="card-body">
                         <div class="row">
                             <div class="col-lg-3">
-                                <img src="{{ url('storage/app/public/' . $blog->image) }}" alt="{{ $blog->title }}" class="img-fluid mb-3" loading="lazy">
+                                <img src="{{ url('storage/app/public/' . $blog->image) }}" alt="{{ $blog->title }}" class="img-fluid rounded" loading="lazy">
                             </div>
                             <div class="col-lg-9">
                                 <p class="mb-1">{{ $blog->excerpt }}</p>
-                                <p class="text-muted mb-1">{{ $blog->publish_date }} by {{ $blog->author }}</p>
-
-                                <a href="{{ route('blogs.edit', $blog->id) }}" class="btn btn-warning btn-sm">Edit</a>
-
-                                <form action="{{ route('blogs.destroy', $blog->id) }}" method="POST" class="d-inline-block">
-                                    @csrf
-                                    @method('DELETE')
-                                    <button type="submit" class="btn btn-danger btn-sm" onclick="return confirm('Are you sure?')">Delete</button>
-                                </form>
+                                <p class="text-muted mb-1 text-right">{{ $blog->publish_date }} by {{ $blog->author }}</p>
                             </div>
                         </div>
+                    </div>
+                    <div class="card-footer text-muted">
+                        <form action="{{ route('blogs.destroy', $blog->id) }}" method="POST" class="d-inline-block">
+                            @csrf
+                            @method('DELETE')
+                            <div class="btn-group">
+                            <a href="{{ route('blogs.edit', $blog->id) }}" class="btn btn-warning btn-sm">Edit</a>
+                            <button type="submit" class="btn btn-danger btn-sm" onclick="return confirm('Are you sure?')">Delete</button>
+                            </div>
+                        </form>
                     </div>
                 </div>
             </div>
