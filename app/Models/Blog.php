@@ -8,9 +8,16 @@ use Illuminate\Support\Str;
 class Blog extends Model
 {
     protected $fillable = [
-        'title', 'excerpt', 'author', 'publish_date', 'image', 'category', 'content', 'slug','meta_description',
+        'title', 'excerpt', 'author',
+        'publish_date',
+        'image',
+        'category',
+        'content',
+        'slug',
+        'meta_description',
         'meta_keywords',
-        'meta_author','video_url'
+        'meta_author',
+        'video_url'
     ];
 
     // Automatically generate a slug from the title if not provided
