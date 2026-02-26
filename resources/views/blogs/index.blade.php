@@ -31,17 +31,23 @@
                         </a>
                     </div>
                     <div class="card-body">
-                        <img src="{{ url('storage/app/public/' . $blog->image) }}" alt="{{ $blog->title }}" class="img-fluid mb-3" loading="lazy">
-                        <p class="mb-1">{{ $blog->excerpt }}</p>
-                        <p class="text-muted mb-1">{{ $blog->publish_date }} by {{ $blog->author }}</p>
+                        <div class="row">
+                            <div class="col-lg-3">
+                                <img src="{{ url('storage/app/public/' . $blog->image) }}" alt="{{ $blog->title }}" class="img-fluid mb-3" loading="lazy">
+                            </div>
+                            <div class="col-lg-9">
+                                <p class="mb-1">{{ $blog->excerpt }}</p>
+                                <p class="text-muted mb-1">{{ $blog->publish_date }} by {{ $blog->author }}</p>
 
-                        <a href="{{ route('blogs.edit', $blog->id) }}" class="btn btn-warning btn-sm">Edit</a>
+                                <a href="{{ route('blogs.edit', $blog->id) }}" class="btn btn-warning btn-sm">Edit</a>
 
-                        <form action="{{ route('blogs.destroy', $blog->id) }}" method="POST" class="d-inline-block">
-                            @csrf
-                            @method('DELETE')
-                            <button type="submit" class="btn btn-danger btn-sm" onclick="return confirm('Are you sure?')">Delete</button>
-                        </form>
+                                <form action="{{ route('blogs.destroy', $blog->id) }}" method="POST" class="d-inline-block">
+                                    @csrf
+                                    @method('DELETE')
+                                    <button type="submit" class="btn btn-danger btn-sm" onclick="return confirm('Are you sure?')">Delete</button>
+                                </form>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>
