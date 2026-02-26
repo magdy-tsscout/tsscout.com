@@ -2,13 +2,11 @@
 
 @section('content')
 <div class="container-fluid">
-    <h3>All Blogs</h3>
-    <div class=" float-right">
-        <a href="{{ route('blogs.create') }}" class="btn btn-light d-inline-block">
-            <span class="fas fa-plus-circle me-2"></span>
-            New Blog
-        </a>
-    </div>
+    <h3 class="d-inline-block">All Blogs</h3>
+    <a href="{{ route('blogs.create') }}" class="btn btn-light d-inline-block">
+        <span class="fas fa-plus-circle me-2"></span>
+        New Blog
+    </a>
 </div>
 <div class="container-fluid mt-4">
     <div class="row">
