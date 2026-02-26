@@ -104,7 +104,7 @@ class BlogController extends Controller
         }
 
         // Retrieve blogs for display
-        $blogs = $blogsQuery->orderByDesc('publish_date')->paginate(10)->appends(request()->query());
+        $blogs = $blogsQuery->orderByDesc('publish_date')->paginate(20)->appends(request()->query());
 
         $categories = Blog::query()
             ->whereNotNull('category')

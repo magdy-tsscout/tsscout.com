@@ -139,8 +139,12 @@
                             @csrf
                             @method('DELETE')
                             <div class="btn-group">
-                            <a href="{{ route('blogs.edit', $blog->id) }}" class="btn btn-warning btn-sm">Edit</a>
-                            <button type="submit" class="btn btn-danger btn-sm" onclick="return confirm('Are you sure?')">Delete</button>
+                            <a href="{{ route('blogs.edit', $blog->id) }}" class="btn btn-warning btn-sm">
+                                <span class="fa fa-edit"></span>
+                            </a>
+                            <button type="submit" class="btn btn-danger btn-sm" onclick="return confirm('Are you sure?')">
+                                <span class="fa fa-trash"></span>
+                            </button>
                             </div>
                         </form>
                     </div>
