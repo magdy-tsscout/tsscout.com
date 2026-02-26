@@ -38,7 +38,7 @@
                                 </a>
                             </div>
                             <div class="col-lg-9">
-                                <p class="mb-1">{{ Str::limit($blog->excerpt, 100) }}</p>
+                                <p class="mb-1">{{ Str::limit($blog->excerpt, 50) }}</p>
                                 <p class="text-muted mb-1 text-right">{{ $blog->publish_date }} by {{ $blog->author }}</p>
                             </div>
                         </div>
