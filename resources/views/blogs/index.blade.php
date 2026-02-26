@@ -4,7 +4,7 @@
 <div class="container-fluid">
     <h3>All Blogs</h3>
     <div class="float-end">
-        <a href="{{ route('blogs.create') }}" class="btn btn-light  float-right">
+        <a href="{{ route('blogs.create') }}" class="btn btn-light d-inline-block float-right">
             <span class="fas fa-plus-circle me-2"></span>
             New Blog
         </a>
