@@ -99,6 +99,7 @@
                     <div class="card-header text-white">
                         <span class="blog-card-title">{{ $blog->title }}</span>
                         <a
+                            target="_blank"
                             class="btn btn-sm btn-secondary"
                             href="{{ url("blogs/{$blog->slug}") }}">
                             <span class="fa fa-link"></span>
