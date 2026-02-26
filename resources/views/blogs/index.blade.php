@@ -7,6 +7,39 @@
             color: #ffffff;
             font-size: 1rem;
         }
+
+        .blogs-grid > [class*='col-'] {
+            display: flex;
+        }
+
+        .blog-card {
+            width: 100%;
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .blog-card .card-header {
+            min-height: 72px;
+            max-height: 72px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 0.5rem;
+        }
+
+        .blog-card-title {
+            display: -webkit-box;
+            -webkit-line-clamp: 2;
+            -webkit-box-orient: vertical;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            line-height: 1.2;
+        }
+
+        .blog-card .card-body {
+            flex: 1 1 auto;
+        }
     </style>
 @endsection
 @section('content')
@@ -19,13 +52,14 @@
     </a>
 </div>
 <div class="container-fluid mt-4">
-    <div class="row">
+    <div class="row blogs-grid">
         @foreach ($blogs as $blog)
             <div class="col-lg-6">
-                <div class="card mb-4">
-                    <div class="card-header text-white">{{ $blog->title }}
+                <div class="card blog-card mb-4">
+                    <div class="card-header text-white">
+                        <span class="blog-card-title">{{ $blog->title }}</span>
                         <a
-                            class="float-right btn btn-sm btn-secondary"
+                            class="btn btn-sm btn-secondary"
                             href="{{ url("blogs/{$blog->slug}") }}">
                             <span class="fa fa-link"></span>
                         </a>
