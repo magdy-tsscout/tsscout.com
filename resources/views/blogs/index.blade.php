@@ -79,6 +79,7 @@
                     @foreach ($categories as $category)
                         <option value="{{ $category }}" {{ request('category') === $category ? 'selected' : '' }}>
                             {{ $category }}
+                            ({{ Blog::blogsCountByCategory($category) }})
                         </option>
                     @endforeach
                 </select>

@@ -31,4 +31,9 @@ class Blog extends Model
             }
         });
     }
+
+    function blogsCountByCategory($category)
+    {
+        return self::where('category', $category)->count();
+    }
 }
