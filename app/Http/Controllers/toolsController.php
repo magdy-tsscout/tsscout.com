@@ -52,9 +52,6 @@ class toolsController extends Controller
 
     public function store(Request $request)
     {
-
-        dd($request->all());
-
         $data = $request->validate([
             'title' => 'required|string|max:255',
             'meta_description' => 'nullable|string',
