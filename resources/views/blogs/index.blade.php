@@ -67,9 +67,15 @@
                     <div class="card-body">
                         <div class="row">
                             <div class="col-lg-3">
+                                @if($blog->image)
                                 <a href="{{ url('storage/app/public/' . $blog->image) }}" class="d-block w-100" target="_blank">
                                     <img src="{{ url('storage/app/public/' . $blog->image) }}" alt="{{ $blog->title }}" class="img-fluid rounded border" loading="lazy">
                                 </a>
+                                @else
+                                <div class="d-flex align-items-center justify-content-center bg-light rounded border" style="height: 100px;">
+                                    <span class="text-muted">No Image</span>
+                                </div>
+                            @endif
                             </div>
                             <div class="col-lg-9">
                                 <p class="mb-1">{{ Str::limit($blog->excerpt, 50) }}</p>
