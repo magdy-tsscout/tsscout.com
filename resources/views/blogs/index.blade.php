@@ -64,7 +64,7 @@
 </div>
 <div class="container-fluid mt-3">
     <div id="searchPanel" class="search-panel {{ request()->filled('search') || request()->filled('category') ? '' : 'd-none' }}">
-        <form action="{{ route('blogs.index') }}" method="GET" class="form-inline">
+        <form action="{{ route('blogs.index') }}" method="GET" class="form-inline justify-content-center">
             <div class="form-group mr-2 mb-2">
                 <input
                     type="text"
