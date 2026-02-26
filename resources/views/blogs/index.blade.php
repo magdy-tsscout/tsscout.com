@@ -1,7 +1,7 @@
 @extends('layouts.app')
 
 @section('content')
-<div class="container">
+<div class="container-fluid">
     <h3>All Blogs</h3>
     <div class="float-end">
         <a href="{{ route('blogs.create') }}" class="btn btn-light  float-right">
@@ -10,7 +10,7 @@
         </a>
     </div>
 </div>
-<div class="container mt-4">
+<div class="container-fluid mt-4">
     <div class="row">
         @foreach ($blogs as $blog)
             <div class="col-lg-6">
