@@ -85,7 +85,7 @@ class BlogController extends Controller
         }
 
         // Retrieve all blogs for display
-        $blogs = Blog::all();
+        $blogs = Blog::paginate(10); // Paginate results, adjust as needed
         return view('blogs.index', compact('blogs'));
     }
 
