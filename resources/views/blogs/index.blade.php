@@ -54,7 +54,7 @@
 <div class="container-fluid mt-4">
     <div class="row blogs-grid">
         @foreach ($blogs as $blog)
-            <div class="col-lg-6">
+            <div class="col-lg-6 mb-4">
                 <div class="card blog-card mb-4">
                     <div class="card-header text-white">
                         <span class="blog-card-title">{{ $blog->title }}</span>
