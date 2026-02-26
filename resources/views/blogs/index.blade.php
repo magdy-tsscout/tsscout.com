@@ -31,6 +31,7 @@
                         </a>
                     </div>
                     <div class="card-body">
+                        <img src="{{ asset('storage/' . $blog->media_path) }}" alt="{{ $blog->title }}" class="img-fluid mb-3">
                         <p class="mb-1">{{ $blog->excerpt }}</p>
                         <p class="text-muted mb-1">{{ $blog->publish_date }} by {{ $blog->author }}</p>
 
