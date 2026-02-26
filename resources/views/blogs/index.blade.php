@@ -57,7 +57,7 @@
         {{ request()->filled('search') || request()->filled('category') ? 'Close Search' : 'Open Search' }}
     </button>
     <a href="{{ route('blogs.create') }}"
-        class="btn btn-light d-inline-block float-right">
+        class="btn btn-primary d-inline-block float-right">
         <span class="fas fa-plus-circle me-2"></span>
         New Blog
     </a>
