@@ -54,7 +54,7 @@
     <h3 class="d-inline-block">All Blogs</h3>
     <button type="button" id="toggleSearchBtn" class="btn btn-outline-secondary d-inline-block float-right ml-2">
         <span class="fas fa-search me-1"></span>
-        {{ request()->filled('search') ? 'Close Search' : 'Open Search' }}
+        {{ request()->filled('search') || request()->filled('category') ? 'Close Search' : 'Open Search' }}
     </button>
     <a href="{{ route('blogs.create') }}"
         class="btn btn-light d-inline-block float-right">
@@ -63,7 +63,7 @@
     </a>
 </div>
 <div class="container-fluid mt-3">
-    <div id="searchPanel" class="search-panel {{ request()->filled('search') ? '' : 'd-none' }}">
+    <div id="searchPanel" class="search-panel {{ request()->filled('search') || request()->filled('category') ? '' : 'd-none' }}">
         <form action="{{ route('blogs.index') }}" method="GET" class="form-inline">
             <div class="form-group mr-2 mb-2">
                 <input
@@ -73,8 +73,18 @@
                     placeholder="Search by title, excerpt, author, category, or slug"
                     value="{{ request('search') }}">
             </div>
+            <div class="form-group mr-2 mb-2">
+                <select name="category" class="form-control">
+                    <option value="">All Categories</option>
+                    @foreach ($categories as $category)
+                        <option value="{{ $category }}" {{ request('category') === $category ? 'selected' : '' }}>
+                            {{ $category }}
+                        </option>
+                    @endforeach
+                </select>
+            </div>
             <button type="submit" class="btn btn-primary mb-2 mr-2">Search</button>
-            @if (request()->filled('search'))
+            @if (request()->filled('search') || request()->filled('category'))
                 <a href="{{ route('blogs.index') }}" class="btn btn-outline-dark mb-2">Reset</a>
             @endif
         </form>

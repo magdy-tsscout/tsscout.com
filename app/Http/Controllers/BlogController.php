@@ -85,6 +85,7 @@ class BlogController extends Controller
         }
 
         $search = trim((string) request('search', ''));
+        $category = trim((string) request('category', ''));
 
         $blogsQuery = Blog::query();
 
@@ -98,9 +99,20 @@ class BlogController extends Controller
             });
         }
 
+        if ($category !== '') {
+            $blogsQuery->where('category', $category);
+        }
+
         // Retrieve blogs for display
         $blogs = $blogsQuery->orderByDesc('publish_date')->paginate(10)->appends(request()->query());
-        return view('blogs.index', compact('blogs'));
+
+        $categories = Blog::query()
+            ->whereNotNull('category')
+            ->where('category', '!=', '')
+            ->distinct()
+            ->orderBy('category')
+            ->pluck('category');
+        return view('blogs.index', compact('blogs', 'categories'));
     }
 
     public function edit(Blog $blog)
