@@ -96,7 +96,7 @@
     </div>
 
     <div class="d-flex justify-content-center">
-        {{ $blogs->links() }}
+        {{ $blogs->links('pagination::bootstrap-4', ['path' => request()->path(), 'query' => request()->query()]) }}
     </div>
 </div>
 @endsection
