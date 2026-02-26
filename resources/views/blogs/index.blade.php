@@ -168,7 +168,7 @@
                 </div>
             </div>
         @empty
-            <div class="col-12">
+            <div class="col-12 flex-column">
                 <div class="card empty-state-card mb-4">
                     <div class="card-body d-flex flex-column align-items-center justify-content-center text-center">
                         <span class="fa fa-search empty-state-icon mb-3"></span>
