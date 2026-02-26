@@ -1,11 +1,37 @@
 @extends('layouts.app')
 
 @section('content')
+<div class="container">
+    <h3>All Blogs</h3>
+    <div class="float-end">
+        <a href="{{ route('blogs.create') }}" class="btn btn-light float-end">
+            <span class="fas fa-plus me-2"></span>
+            New Blog
+        </a>
+    </div>
+    <div class="row">
+        @foreach ($blogs as $blog)
+            <div class="col-lg-6">
+                <div class="card mb-4">
+                    <div class="card-header">{{ $blog->title }}
+                        <a
+                            class="float-end btn btn-sm btn-secondary"
+                            href="{{ url("blogs/{$blog->slug}") }}"><span class="fa fa-link"></span></a>
+                    </div>
+                    <div class="card-body">
+                        <p class="mb-1">{{ $blog->excerpt }}</p>
+                    </div>
+                </div>
+            </div>
+        @endforeach
+    </div>
+</div>
+
 <div class="container mt-5">
     <div class="card">
         <div class="card-header bg-info text-white">
-            <h3>All Blogs</h3>
-            <a href="{{ route('blogs.create') }}" class="btn btn-light float-end">Create New Blog</a>
+
+
         </div>
         <div class="card-body">
             @foreach ($blogs as $blog)
