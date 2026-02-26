@@ -3,7 +3,7 @@
 @section('content')
 <div class="container-fluid">
     <h3 class="d-inline-block">All Blogs</h3>
-    <a href="{{ route('blogs.create') }}" class="btn btn-light d-inline-block">
+    <a href="{{ route('blogs.create') }}" class="btn btn-light d-inline-block float-right">
         <span class="fas fa-plus-circle me-2"></span>
         New Blog
     </a>
@@ -13,7 +13,7 @@
         @foreach ($blogs as $blog)
             <div class="col-lg-6">
                 <div class="card mb-4">
-                    <div class="card-header">{{ $blog->title }}
+                    <div class="card-header text-white">{{ $blog->title }}
                         <a
                             class="float-right btn btn-sm btn-secondary"
                             href="{{ url("blogs/{$blog->slug}") }}">
