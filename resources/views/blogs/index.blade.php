@@ -51,7 +51,7 @@
         New Blog
     </a>
 </div>
-<div class="container-fluid mt-4">
+<div class="container-fluid">
     <div class="row blogs-grid">
         @foreach ($blogs as $blog)
             <div class="col-lg-6 mb-4">
