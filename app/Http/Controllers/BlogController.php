@@ -27,7 +27,7 @@ class BlogController extends Controller
 
     public function store(Request $request)
     {
-        dd($request->all());
+
         //Validate the incoming request data
         $validatedData = $request->validate([
             'title' => 'required|string|max:255',
@@ -44,6 +44,7 @@ class BlogController extends Controller
             'category' => 'required|string|max:255',
             'content' => 'required|string',
         ]);
+        dd($validatedData);
 
         if ($validatedData['media_type'] === 'image') {
             // Handle image upload
