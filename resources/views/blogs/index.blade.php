@@ -111,7 +111,7 @@
                                     <img src="{{ url('storage/app/public/' . $blog->image) }}" alt="{{ $blog->title }}" class="img-fluid rounded border" loading="lazy">
                                 </a>
                                 @else
-                                <div class="d-flex align-items-center justify-content-center bg-light rounded border" style="height: 100px;">
+                                <div class="d-flex align-items-center justify-content-center bg-light rounded border" style="height: 65px;">
                                     <span class="text-muted">No Image</span>
                                 </div>
                             @endif
