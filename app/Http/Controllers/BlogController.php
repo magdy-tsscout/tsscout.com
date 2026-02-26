@@ -44,7 +44,7 @@ class BlogController extends Controller
             'category' => 'required|string|max:255',
             'content' => 'required|string',
         ]);
-        dd($validatedData);
+
 
         if ($validatedData['media_type'] === 'image') {
             // Handle image upload
