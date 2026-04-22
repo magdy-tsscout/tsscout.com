@@ -162,7 +162,7 @@
 
         toolbar: 'undo redo | formatselect | bold italic backcolor | link image | alignleft aligncenter alignright alignjustify | bullist numlist outdent indent | removeformat | table | code',
         table_default_attributes: {
-            class: 'table table-bordered'
+            class: 'table'
         },
         table_class_list: [
             {title: 'Default (Bordered)', value: 'table table-bordered'},
