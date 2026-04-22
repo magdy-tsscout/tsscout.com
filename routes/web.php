@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\AdminUploadHandlerController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\ScouterProController;
 use App\Http\Controllers\PagesController;
@@ -113,7 +114,7 @@ Route::post('/admin/blogs', [BlogController::class, 'store'])->name('blogs.store
 Route::get('/admin/blogs/{blog}/edit', [BlogController::class, 'edit'])->name('blogs.edit');
 Route::put('/admin/blogs/{blog}', [BlogController::class, 'update'])->name('blogs.update');
 Route::delete('/admin/blogs/{blog}', [BlogController::class, 'destroy'])->name('blogs.destroy');
-
+Route::post('upload-handler', [AdminUploadHandlerController::class, 'handleUpload'])->name('upload-handler');
 
 
 // FAQ Routes
