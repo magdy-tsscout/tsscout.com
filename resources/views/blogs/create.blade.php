@@ -175,7 +175,15 @@
         image_list: '{{ route("get-images") }}',
 
         toolbar: 'undo redo | formatselect | bold italic backcolor | link image | alignleft aligncenter alignright alignjustify | bullist numlist outdent indent | removeformat | table | code',
-
+        table_default_attributes: {
+            class: 'table table-bordered' // الكلاس الافتراضي من Bootstrap
+        },
+        table_class_list: [
+            {title: 'Default (Bordered)', value: 'table table-bordered'},
+            {title: 'Striped Rows', value: 'table table-striped'},
+            {title: 'Hover Effect', value: 'table table-hover'},
+            {title: 'Borderless', value: 'table table-borderless'}
+        ],
         content_css: 'https://www.tiny.cloud/css/codepen.min.css'
     });
 
