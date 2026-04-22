@@ -160,7 +160,7 @@
 
         image_list: '{{ route("get-images") }}',
 
-        toolbar: 'undo redo | formatselect | bold italic backcolor | link image | alignleft aligncenter alignright alignjustify | bullist numlist outdent indent | removeformat | table | code',
+        toolbar: 'undo redo | formatselect | fontsizeselect | block_formats | fontsize_formats | bold italic backcolor | link image | alignleft aligncenter alignright alignjustify | bullist numlist outdent indent | removeformat | table | code',
         table_default_attributes: {
             class: 'table'
         },
