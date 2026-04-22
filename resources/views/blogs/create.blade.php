@@ -174,7 +174,7 @@
 
         image_list: '{{ route("get-images") }}',
 
-        toolbar: 'undo redo | formatselect | bold italic backcolor | link image | alignleft aligncenter alignright alignjustify | bullist numlist outdent indent | removeformat',
+        toolbar: 'undo redo | formatselect | bold italic backcolor | link image | alignleft aligncenter alignright alignjustify | bullist numlist outdent indent | removeformat | table | code',
 
         content_css: 'https://www.tiny.cloud/css/codepen.min.css'
     });
