@@ -153,6 +153,12 @@
                 xhr.send(formData);
             });
         },
+        image_class_list: [
+            {title: 'None', value: ''},
+            {title: 'Left', value: 'align-left'},
+            {title: 'Center', value: 'align-center'},
+            {title: 'Right', value: 'align-right'}
+        ],
         toolbar: 'undo redo | formatselect | bold italic backcolor | link image | alignleft aligncenter alignright alignjustify | bullist numlist outdent indent | removeformat',
         content_css: 'https://www.tiny.cloud/css/codepen.min.css'
     });
