@@ -180,55 +180,7 @@
         image_dimensions: true,
         image_description: true,
         image_advtab: true,
-        file_picker_callback: function (cb, value, meta) {
-        if (meta.filetype === 'image') {
-            currentPickerCallback = cb; // حفظ الـ callback لاستخدامه عند اختيار الصورة
 
-            // فتح الـ Bootstrap Modal
-            var myModal = new bootstrap.Modal(document.getElementById('imageGalleryModal'));
-            myModal.show();
-
-            // جلب الصور من السيرفر
-            fetch('/get-images-list')
-                .then(response => response.json())
-                .then(images => {
-                    const container = document.getElementById('images-container');
-                    container.innerHTML = ''; // تفريغ الحاوية
-
-                    images.forEach(img => {
-                        const html = `
-                            <div class="col-md-3 mb-3">
-                                <img src="${img.value}" class="img-thumbnail select-img"
-                                     style="cursor:pointer; height:120px; width:100%; object-fit:cover"
-                                     data-url="${img.value}">
-                                <p class="small text-truncate">${img.title}</p>
-                            </div>`;
-                        container.innerHTML += html;
-                    });
-
-                    document.querySelectorAll('.select-prev-img').forEach(el => {
-                        el.onclick = function(e) {
-                            e.preventDefault();
-                            const url = this.getAttribute('data-url');
-
-                            // أرسل الرابط أولاً إلى TinyMCE
-                            if (typeof currentPickerCallback === 'function') {
-                                currentPickerCallback(url);
-                            }
-
-                            // ثم أغلق الـ Modal
-                            imageModal.hide();
-
-                            // خطوة إضافية: إعادة التركيز لنافذة TinyMCE
-                            setTimeout(() => {
-                                const win = document.querySelector('.tox-dialog');
-                                if (win) win.focus();
-                            }, 100);
-                        };
-                    });
-                });
-        }
-    },
         image_list: '{{ route("get-images") }}',
 
         toolbar: 'undo redo | formatselect | bold italic backcolor | link image | alignleft aligncenter alignright alignjustify | bullist numlist outdent indent | removeformat',
