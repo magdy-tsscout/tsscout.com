@@ -191,6 +191,7 @@
 
             input.click();
         },
+        image_list: '{{ route("get-images") }}',
 
         toolbar: 'undo redo | formatselect | bold italic backcolor | link image | alignleft aligncenter alignright alignjustify | bullist numlist outdent indent | removeformat',
 
