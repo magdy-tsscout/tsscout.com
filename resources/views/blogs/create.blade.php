@@ -114,6 +114,8 @@
     tinymce.init({
         selector: '#content',
         plugins: 'link image code',
+        image_title: true,
+        automatic_uploads: true,
         toolbar: 'undo redo | formatselect | bold italic backcolor | link image | alignleft aligncenter alignright alignjustify | bullist numlist outdent indent | removeformat',
         content_css: 'https://www.tiny.cloud/css/codepen.min.css'
     });
