@@ -109,8 +109,23 @@
     </div>
 </div>
 
+<div class="modal fade" id="imageGalleryModal" tabindex="-1" aria-hidden="true">
+  <div class="modal-dialog modal-lg">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title">استعراض الصور المرفوعة</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        <div id="images-container" class="row">
+            </div>
+      </div>
+    </div>
+  </div>
+</div>
 <script src="https://cdn.tiny.cloud/1/p0niww7r5y6397opob90p9fp4h496wn3iihrzp4gnq97y19i/tinymce/8/tinymce.min.js" referrerpolicy="origin" crossorigin="anonymous"></script>
 <script>
+    let currentPickerCallback; // لتخزين الـ callback الخاص بـ TinyMCE
     tinymce.init({
         selector: '#content',
         plugins: 'link image code',
@@ -163,34 +178,45 @@
         ],
 
         image_dimensions: true,
+        image_description: true,
         image_advtab: true,
         file_picker_callback: function (cb, value, meta) {
-            const input = document.createElement('input');
-            input.setAttribute('type', 'file');
-            input.setAttribute('accept', 'image/*');
+        if (meta.filetype === 'image') {
+            currentPickerCallback = cb; // حفظ الـ callback لاستخدامه عند اختيار الصورة
 
-            input.onchange = function () {
-                const file = this.files[0];
-                const reader = new FileReader();
-                reader.onload = function () {
-                    /*
-                    هنا نقوم برفع الصورة مؤقتاً كـ Blob
-                    TinyMCE سيتكفل برفعه لـ Laravel عبر images_upload_url
-                    */
-                    const id = 'blobid' + (new Date()).getTime();
-                    const blobCache =  tinymce.activeEditor.editorUpload.blobCache;
-                    const base64 = reader.result.split(',')[1];
-                    const blobInfo = blobCache.create(id, file, base64);
-                    blobCache.add(blobInfo);
+            // فتح الـ Bootstrap Modal
+            var myModal = new bootstrap.Modal(document.getElementById('imageGalleryModal'));
+            myModal.show();
 
-                    // نضع الرابط المؤقت في خانة الـ Source
-                    cb(blobInfo.blobUri(), { title: file.name });
-                };
-                reader.readAsDataURL(file);
-            };
+            // جلب الصور من السيرفر
+            fetch('/get-images-list')
+                .then(response => response.json())
+                .then(images => {
+                    const container = document.getElementById('images-container');
+                    container.innerHTML = ''; // تفريغ الحاوية
 
-            input.click();
-        },
+                    images.forEach(img => {
+                        const html = `
+                            <div class="col-md-3 mb-3">
+                                <img src="${img.value}" class="img-thumbnail select-img"
+                                     style="cursor:pointer; height:120px; width:100%; object-fit:cover"
+                                     data-url="${img.value}">
+                                <p class="small text-truncate">${img.title}</p>
+                            </div>`;
+                        container.innerHTML += html;
+                    });
+
+                    // عند الضغط على صورة من الـ Modal
+                    document.querySelectorAll('.select-img').forEach(el => {
+                        el.onclick = function() {
+                            const imageUrl = this.getAttribute('data-url');
+                            currentPickerCallback(imageUrl, { title: 'Uploaded Image' });
+                            myModal.hide();
+                        };
+                    });
+                });
+        }
+    },
         image_list: '{{ route("get-images") }}',
 
         toolbar: 'undo redo | formatselect | bold italic backcolor | link image | alignleft aligncenter alignright alignjustify | bullist numlist outdent indent | removeformat',
