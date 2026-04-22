@@ -111,7 +111,7 @@
 
 <script src="https://cdn.tiny.cloud/1/p0niww7r5y6397opob90p9fp4h496wn3iihrzp4gnq97y19i/tinymce/8/tinymce.min.js" referrerpolicy="origin" crossorigin="anonymous"></script>
 <script>
-    let currentPickerCallback; // لتخزين الـ callback الخاص بـ TinyMCE
+    let currentPickerCallback;
     tinymce.init({
         selector: '#content',
         plugins: 'link image code table lists',
@@ -160,10 +160,7 @@
 
         image_list: '{{ route("get-images") }}',
 
-        toolbar: 'undo redo | formatselect | fontsizeselect | block_formats | fontsize_formats | bold italic backcolor | link image | alignleft aligncenter alignright alignjustify | bullist numlist outdent indent | removeformat | table | code',
-        block_formats: 'Paragraph=p; Heading 1=h1; Heading 2=h2; Heading 3=h3; Heading 4=h4; Heading 5=h5; Heading 6=h6',
-
-        fontsize_formats: '8pt 10pt 12pt 14pt 16pt 18pt 24pt 36pt 48pt',
+        toolbar: 'undo redo | blocks | fontsize | block_formats | fontsize_formats | bold italic backcolor | link image | alignleft aligncenter alignright alignjustify | bullist numlist outdent indent | removeformat | table | code',
 
         table_default_attributes: {
             class: 'table'
