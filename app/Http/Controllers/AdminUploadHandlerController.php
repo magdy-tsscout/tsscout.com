@@ -37,4 +37,23 @@ class AdminUploadHandlerController extends Controller
 
         return response()->json(['error' => 'No file uploaded'], 400);
     }
+
+
+    # ##########################################################
+    public function getUploadedImages()
+    {
+        $directory = public_path('uploads');
+        // جلب جميع ملفات الصور من المجلد
+        $files = array_diff(scandir($directory), array('.', '..'));
+
+        $images = [];
+        foreach ($files as $file) {
+            $images[] = [
+                'title' => $file,
+                'value' => asset('uploads/' . $file)
+            ];
+        }
+
+        return response()->json($images);
+    }
 }

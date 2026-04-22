@@ -162,12 +162,11 @@
             {title: 'Centered', value: 'img-fluid d-block mx-auto'},
         ],
 
-        // السماح للمستخدم بتغيير أبعاد الصورة يدوياً
         image_dimensions: true,
+        image_advtab: true,
 
-        // إضافة حقول الوصف والعنوان (Alt text & Title)
-        image_caption: true,
         toolbar: 'undo redo | formatselect | bold italic backcolor | link image | alignleft aligncenter alignright alignjustify | bullist numlist outdent indent | removeformat',
+
         content_css: 'https://www.tiny.cloud/css/codepen.min.css'
     });
 
