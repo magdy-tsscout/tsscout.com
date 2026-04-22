@@ -116,6 +116,7 @@ Route::put('/admin/blogs/{blog}', [BlogController::class, 'update'])->name('blog
 Route::delete('/admin/blogs/{blog}', [BlogController::class, 'destroy'])->name('blogs.destroy');
 Route::post('upload-handler', [AdminUploadHandlerController::class, 'handleUpload'])->name('upload-handler');
 Route::get('/get-images', [AdminUploadHandlerController::class, 'getUploadedImages'])->name('get-images');
+Route::get('/get-images-list', [AdminUploadHandlerController::class, 'getUploadedImages']);
 
 
 // FAQ Routes
