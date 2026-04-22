@@ -168,15 +168,6 @@
                 xhr.send(formData);
             });
         },
-        image_class_list: [
-            {title: 'Default (Responsive)', value: 'img-fluid'},
-            {title: 'Rounded Corners', value: 'img-fluid rounded'},
-            {title: 'Thumbnail', value: 'img-fluid img-thumbnail'},
-            {title: 'Align Left', value: 'img-fluid float-start me-3'},
-            {title: 'Align Right', value: 'img-fluid float-end ms-3'},
-            {title: 'Centered', value: 'img-fluid d-block mx-auto'},
-        ],
-
         image_dimensions: true,
         image_description: true,
         image_advtab: true,
