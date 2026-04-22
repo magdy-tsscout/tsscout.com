@@ -16,6 +16,19 @@ use App\Http\Controllers\TitleBuilderController;
 
 
 
+// Route::get('ai-export', function () {
+//     $blogs = \App\Models\Blog::all();
+//     foreach ($blogs as $blog) {
+//         \DB::table('blogs_ai')->insert([
+//             'title' => $blog->title,
+//             'content' => strip_tags($blog->content),
+//             'url'=> "https://tsscout.com/blogs/{$blog->slug}"
+//         ]);
+
+//     }
+//     return 'Blogs exported to blogs_ai table successfully!';
+// })->name('ai-export');
+
 #home page route
 Route::get("/", function(){
     $home_page= new PagesController;
