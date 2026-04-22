@@ -109,20 +109,6 @@
     </div>
 </div>
 
-<div class="modal fade" id="imageGalleryModal" tabindex="-1" aria-hidden="true">
-  <div class="modal-dialog modal-lg">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h5 class="modal-title">استعراض الصور المرفوعة</h5>
-        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-      </div>
-      <div class="modal-body">
-        <div id="images-container" class="row">
-            </div>
-      </div>
-    </div>
-  </div>
-</div>
 <script src="https://cdn.tiny.cloud/1/p0niww7r5y6397opob90p9fp4h496wn3iihrzp4gnq97y19i/tinymce/8/tinymce.min.js" referrerpolicy="origin" crossorigin="anonymous"></script>
 <script>
     let currentPickerCallback; // لتخزين الـ callback الخاص بـ TinyMCE
@@ -176,7 +162,7 @@
 
         toolbar: 'undo redo | formatselect | bold italic backcolor | link image | alignleft aligncenter alignright alignjustify | bullist numlist outdent indent | removeformat | table | code',
         table_default_attributes: {
-            class: 'table table-bordered' // الكلاس الافتراضي من Bootstrap
+            class: 'table table-bordered'
         },
         table_class_list: [
             {title: 'Default (Bordered)', value: 'table table-bordered'},
