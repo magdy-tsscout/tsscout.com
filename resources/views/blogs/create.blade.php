@@ -154,11 +154,19 @@
             });
         },
         image_class_list: [
-            {title: 'None', value: ''},
-            {title: 'Left', value: 'align-left'},
-            {title: 'Center', value: 'align-center'},
-            {title: 'Right', value: 'align-right'}
+            {title: 'Default (Responsive)', value: 'img-fluid'},
+            {title: 'Rounded Corners', value: 'img-fluid rounded'},
+            {title: 'Thumbnail', value: 'img-fluid img-thumbnail'},
+            {title: 'Align Left', value: 'img-fluid float-start me-3'},
+            {title: 'Align Right', value: 'img-fluid float-end ms-3'},
+            {title: 'Centered', value: 'img-fluid d-block mx-auto'},
         ],
+
+        // السماح للمستخدم بتغيير أبعاد الصورة يدوياً
+        image_dimensions: true,
+
+        // إضافة حقول الوصف والعنوان (Alt text & Title)
+        image_caption: true,
         toolbar: 'undo redo | formatselect | bold italic backcolor | link image | alignleft aligncenter alignright alignjustify | bullist numlist outdent indent | removeformat',
         content_css: 'https://www.tiny.cloud/css/codepen.min.css'
     });
