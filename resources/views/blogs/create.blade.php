@@ -206,12 +206,24 @@
                         container.innerHTML += html;
                     });
 
-                    // عند الضغط على صورة من الـ Modal
-                    document.querySelectorAll('.select-img').forEach(el => {
-                        el.onclick = function() {
-                            const imageUrl = this.getAttribute('data-url');
-                            currentPickerCallback(imageUrl, { title: 'Uploaded Image' });
-                            myModal.hide();
+                    document.querySelectorAll('.select-prev-img').forEach(el => {
+                        el.onclick = function(e) {
+                            e.preventDefault();
+                            const url = this.getAttribute('data-url');
+
+                            // أرسل الرابط أولاً إلى TinyMCE
+                            if (typeof currentPickerCallback === 'function') {
+                                currentPickerCallback(url);
+                            }
+
+                            // ثم أغلق الـ Modal
+                            imageModal.hide();
+
+                            // خطوة إضافية: إعادة التركيز لنافذة TinyMCE
+                            setTimeout(() => {
+                                const win = document.querySelector('.tox-dialog');
+                                if (win) win.focus();
+                            }, 100);
                         };
                     });
                 });
