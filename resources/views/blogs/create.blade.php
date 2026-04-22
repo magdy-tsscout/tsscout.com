@@ -114,7 +114,7 @@
     let currentPickerCallback; // لتخزين الـ callback الخاص بـ TinyMCE
     tinymce.init({
         selector: '#content',
-        plugins: 'link image code',
+        plugins: 'link image code table lists',
         image_title: true,
         automatic_uploads: true,
         images_upload_url: "{{ route('upload-handler') }}",
