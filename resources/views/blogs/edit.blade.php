@@ -79,7 +79,7 @@
                     <!-- Content Sections (Handled by TinyMCE) -->
                 <div id="content-sections" class="mb-3">
                     <h4>Content Sections</h4>
-                    <textarea class="form-control tinymce-editor" name="content" rows="10" required>{{ $blog->content }}</textarea>
+                    <textarea class="form-control tinymce-editor" id="content" name="content" rows="10" required>{{ $blog->content }}</textarea>
                 </div>
 
                 <!-- Blog Category -->
