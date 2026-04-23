@@ -106,16 +106,7 @@
     </div>
 </div>
 
-<script src="https://cdn.tiny.cloud/1/p0niww7r5y6397opob90p9fp4h496wn3iihrzp4gnq97y19i/tinymce/8/tinymce.min.js" referrerpolicy="origin" crossorigin="anonymous"></script>
-<script>
-    // Initialize TinyMCE
-    tinymce.init({
-        selector: 'textarea.tinymce-editor',
-        plugins: 'link image code',
-        toolbar: 'undo redo | styleselect | bold italic | alignleft aligncenter alignright alignjustify | outdent indent | link image',
-        height: 500
-    });
-</script>
+<x-editor-scripts />
 
 <script>
     // Same JavaScript as in create view
