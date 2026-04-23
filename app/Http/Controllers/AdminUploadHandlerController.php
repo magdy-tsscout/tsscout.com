@@ -43,11 +43,26 @@ class AdminUploadHandlerController extends Controller
     public function getUploadedImages()
     {
         $directory = public_path('uploads');
-        // جلب جميع ملفات الصور من المجلد
+        if (!is_dir($directory)) {
+            return response()->json([]);
+        }
+
+        // جلب ملفات الصور فقط من المجلد
         $files = array_diff(scandir($directory), array('.', '..'));
+        $allowedExtensions = ['jpg', 'jpeg', 'png', 'gif', 'webp', 'bmp', 'svg'];
 
         $images = [];
         foreach ($files as $file) {
+            $filePath = $directory . DIRECTORY_SEPARATOR . $file;
+            if (!is_file($filePath)) {
+                continue;
+            }
+
+            $extension = strtolower(pathinfo($file, PATHINFO_EXTENSION));
+            if (!in_array($extension, $allowedExtensions, true)) {
+                continue;
+            }
+
             $images[] = [
                 'title' => $file,
                 'value' => asset('uploads/' . $file)
