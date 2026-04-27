@@ -1,5 +1,5 @@
 {{-- resources/views/tools/shopify-detector.blade.php --}}
-@extends('layouts.app')
+@extends('layouts.master')
 
 @section('title', 'Shopify Theme & Plugin Detector — TSScout')
 
