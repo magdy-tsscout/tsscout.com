@@ -150,6 +150,8 @@ Route::post('/calculate-fees', [EbayCalculatorController::class, 'calculate']);
 // SmartTitles
 Route::post('/search-title', [TitleBuilderController::class, 'searchTitle'])->name('search-title');
 Route::get('/shopify-detector', [ShopifyDetectorController::class, 'index'])->name('shopify.detector.index');
+Route::post('/shopify-detector', [ShopifyDetectorController::class, 'detect'])->name('tools.shopify-detector.detect');
+Route::post('/shopify-detector/download', [ShopifyDetectorController::class, 'download'])->name('tools.shopify-detector.download');
 
 
 // Ebay calculator
