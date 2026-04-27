@@ -12,6 +12,7 @@ use App\Http\Controllers\toolsController;
 use Illuminate\Support\Facades\Response;
 use App\Http\Controllers\EbayCalculatorController;
 use App\Http\Controllers\PageBackupController;
+use App\Http\Controllers\ShopifyDetectorController;
 use App\Http\Controllers\ThemeController;
 use App\Http\Controllers\TitleBuilderController;
 
@@ -148,6 +149,7 @@ Route::delete('/admin/tools/{tool}', [toolsController::class, 'destroy'])->name(
 Route::post('/calculate-fees', [EbayCalculatorController::class, 'calculate']);
 // SmartTitles
 Route::post('/search-title', [TitleBuilderController::class, 'searchTitle'])->name('search-title');
+Route::get('/shopify-detector', [ShopifyDetectorController::class, 'index'])->name('shopify.detector.index');
 
 
 // Ebay calculator
