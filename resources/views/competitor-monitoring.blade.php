@@ -24,9 +24,9 @@
           <div class="con-left">
             <div class="left-column">
               <img src="{{asset('./images/ebay.jpg')}}" alt="ebay" width="118.32px" height="45px" style="margin-bottom: 20px;">
-        
+
               <h2>eBay RivalView </h2>
-              
+
               <br>
               <p style="color: #1E3F5B; font-size: 16px; font-weight: 550;">By analyzing search volume, sales data, and social media <br>
                  mentions, these tools can pinpoint products that are <br>
@@ -41,12 +41,12 @@
               border: 1px solid #AFB9FA; border-radius: 8px; opacity: 1;">Read More</button>
             </a>
             </div>
-            
+
             <div class="right-column">
               <img src="{{asset('./images/P S.jpg')}}" alt="Example Image">
             </div>
           </div>
-         
+
          <br>
 
         <div class="custom-container">
@@ -70,8 +70,8 @@
             </a>
           </div>
         </div>
-        
- 
+
+
    <!-- Latest News Section Start -->
 <div class="latest-news" style="max-width: 100%; margin: 40px auto;">
     <div>
@@ -79,7 +79,7 @@
           their offerings and pricing.</h2>
     </div>
     <div class="button-container">
-      <a href="https://app.tsscout.com/pricing">
+      <a href="https://app.tsscout.com/one-dollar-deal">
         <button class="btn-default">Start for $1 Trial</button>
       </a>
   </div>
@@ -103,7 +103,7 @@
 </div>
     </div>
     </div>
- 
+
 
 <div class="rec-container">
   <div class="rec-content">

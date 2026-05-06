@@ -34,7 +34,7 @@ Our subscription-based analytics tool helps online sellers on Amazon, eBay, Walm
                 </p>
                 <br>
 
-                <form method="get" action="https://app.tsscout.com/register">
+                <form method="get" action="https://app.tsscout.com/one-dollar-deal">
                     <input type="hidden" name="popup" value="1">
                     <div class="email-container">
                         <input type="email" name="email" class="email-input" placeholder="Enter your Email" />

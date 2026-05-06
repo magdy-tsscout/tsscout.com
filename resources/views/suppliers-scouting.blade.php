@@ -86,7 +86,7 @@
                 <h2>Reach out to suppliers for details on their offerings and pricing.</h2>
             </div>
             <div class="button-container">
-                <a href="https://app.tsscout.com/pricing">
+                <a href="https://app.tsscout.com/one-dollar-deal">
                 <button class="btn-default">Start for $1 Trial</button>
             </a>
             </div>
