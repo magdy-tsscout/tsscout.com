@@ -162,7 +162,7 @@ border-top-right-radius: 0;border-top-left-radius: 0;" class="unique-button">Log
                         <a
 href="https://app.tsscout.com/login">Login</a>
                         <a
-href="https://app.tsscout.com/login?popup=1"
+href="https://app.tsscout.com/one-dollar-deal"
 class="btn-default" style="background: #3545D6; border: 1px solid #3545D6; border-radius: 8px; color:white !important; text-align:center">Start $1 Trial</a>
 
                     </div>
