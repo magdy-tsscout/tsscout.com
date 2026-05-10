@@ -10,7 +10,7 @@ class AdminUploadHandlerController extends Controller
     {
         // 1. التحقق من أن الملف صورة فعلاً وبحجم محدد
         $validator = Validator::make($request->all(), [
-            'file' => 'required|image|mimes:jpeg,png,jpg,gif|max:2048', // الحد الأقصى 2 ميجابايت
+            'file' => 'required|image|mimes:jpeg,png,jpg,gif|max:10240', // الحد الأقصى 10 ميجابايت
         ]);
 
         if ($validator->fails()) {
