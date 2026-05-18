@@ -118,7 +118,7 @@ document.addEventListener('DOMContentLoaded', function () {
                 const itemCategory = item.dataset.category;
 
                 if (selectedCategory === 'All' || itemCategory === selectedCategory) {
-                    item.style.display = 'block';
+                    item.style.display = 'd-flex';
                     item.style.order = visibleItemIndex; // Reorder the item
                     visibleItemIndex++;
                 } else {
