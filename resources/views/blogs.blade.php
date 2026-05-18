@@ -102,7 +102,7 @@
 <script>
 
 
-</script>
+
 document.addEventListener('DOMContentLoaded', function () {
     const options = document.querySelectorAll('.options-wrapper .options-container .option');
     const blogItems = document.querySelectorAll('.blog-item-container');
@@ -144,4 +144,5 @@ document.addEventListener('DOMContentLoaded', function () {
         filterByCategory('all');
     }
 });
+</script>
 @endsection
