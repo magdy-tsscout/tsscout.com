@@ -106,6 +106,7 @@
 document.addEventListener('DOMContentLoaded', function () {
     const options = document.querySelectorAll('.options-wrapper .options-container .option');
     const blogItems = document.querySelectorAll('.blog-item-container');
+    const transitionDuration = 250;
 
     const normalize = function (value) {
         return String(value || '')
@@ -116,19 +117,38 @@ document.addEventListener('DOMContentLoaded', function () {
 
     const filterByCategory = function (selectedCategory) {
         const selected = normalize(selectedCategory);
-        console.log('Selected category:', selected);
 
         blogItems.forEach(function (item) {
-            console.log('Checking item category:', item.getAttribute('data-category'));
             const itemCategory = normalize(item.getAttribute('data-category'));
             const shouldShow = selected === 'all' || itemCategory === selected;
-            console.log('Should show item:', shouldShow);
-            if(shouldShow) {
-                item.classList.remove('d-none');
-                item.classList.add('d-flex');
+
+            if (shouldShow) {
+                if (item.dataset.hideTimeout) {
+                    clearTimeout(Number(item.dataset.hideTimeout));
+                    item.dataset.hideTimeout = '';
+                }
+
+                if (item.classList.contains('d-none')) {
+                    item.classList.remove('d-none');
+                    item.classList.add('d-flex', 'is-hiding');
+
+                    requestAnimationFrame(function () {
+                        item.classList.remove('is-hiding');
+                    });
+                } else {
+                    item.classList.remove('is-hiding');
+                    item.classList.add('d-flex');
+                }
             } else {
-                item.classList.remove('d-flex');
-                item.classList.add('d-none');
+                item.classList.add('is-hiding');
+
+                const timeoutId = setTimeout(function () {
+                    item.classList.remove('d-flex');
+                    item.classList.add('d-none');
+                    item.dataset.hideTimeout = '';
+                }, transitionDuration);
+
+                item.dataset.hideTimeout = String(timeoutId);
             }
         });
     };

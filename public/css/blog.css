@@ -84,7 +84,7 @@ h4{
         flex: 0 1 auto; /* Allow options to shrink on smaller screens */
         margin-bottom: 10px;
     }
-    
+
     .options-container {
         justify-content: center; /* Center options on small screens */
     }
@@ -141,4 +141,15 @@ h4{
 
 .blog-item:hover {
     box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2); /* Hover effect */
+}
+
+.blog-item-container {
+    transition: opacity 0.25s ease, transform 0.25s ease;
+    opacity: 1;
+    transform: translateY(0);
+}
+
+.blog-item-container.is-hiding {
+    opacity: 0;
+    transform: translateY(8px);
 }
