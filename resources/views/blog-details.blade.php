@@ -29,9 +29,6 @@
     color: inherit; /* Inherit text color */
 }
 
-.blog-details-container table{
-    background: inherit !important;
-}
     </style>
 @endsection
 

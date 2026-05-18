@@ -52,9 +52,10 @@
         toolbar: 'undo redo | blocks | fontsize | block_formats | fontsize_formats | bold italic backcolor | link image | alignleft aligncenter alignright alignjustify | bullist numlist outdent indent | removeformat | table | code',
 
         table_default_attributes: {
-            class: 'table'
+            // class: 'table'
         },
         table_class_list: [
+            {title: 'none', value: ''},
             {title: 'Default (Bordered)', value: 'table table-bordered'},
             {title: 'Striped Rows', value: 'table table-striped'},
             {title: 'Hover Effect', value: 'table table-hover'},
