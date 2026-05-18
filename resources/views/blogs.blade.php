@@ -86,7 +86,7 @@
                         <div class="category-label">
                             {{ $blog->category=='Tiktook'?'TikTok Shop':$blog->category }}
                         </div>
-                    </div>blog-item-container
+                    </div>
                 </div>
             @endforeach
 
