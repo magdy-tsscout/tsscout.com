@@ -29,7 +29,7 @@
     color: inherit; /* Inherit text color */
 }
 .blog-details-container .content-container .content {
-
+    width: 100%;
 }
 
     </style>
