@@ -40,7 +40,7 @@
         <div class="container">
 			<div class="row g-4">
                 @foreach ($blogs as $blog)
-                <div class="col-lg-4 col-md-6 d-flex">
+                <div class="col-lg-4 col-md-6 d-flex blog-item-container">
                     <div class="blog-item w-100" data-category="{{ $blog->category }}">
                         <div class="post-featured-image">
                             <figure class="image-anime">
@@ -86,7 +86,7 @@
                         <div class="category-label">
                             {{ $blog->category=='Tiktook'?'TikTok Shop':$blog->category }}
                         </div>
-                    </div>
+                    </div>blog-item-container
                 </div>
             @endforeach
 
@@ -102,7 +102,7 @@
 <script>
 document.addEventListener('DOMContentLoaded', function () {
     const options = document.querySelectorAll('.option');
-    const blogItems = document.querySelectorAll('.blog-item');
+    const blogItems = document.querySelectorAll('.blog-item-container');
 
     options.forEach(option => {
         option.addEventListener('click', function () {
