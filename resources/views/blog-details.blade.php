@@ -28,12 +28,16 @@
     text-decoration: none; /* Optional: Remove underline from links */
     color: inherit; /* Inherit text color */
 }
+
+.blog-details-container table{
+    background: inherit !important;
+}
     </style>
 @endsection
 
 @section('content')
 
-<div class="container">
+<div class="container blog-details-container">
     <a href="{{ route('blogs.userIndex') }}"><img src="{{ asset('images/left-arrow.svg') }}" class="back-arrow" alt="Back"></a>
     <h1 class="title">{{ $blog->title }}</h1>
     <div class="rowElements">
