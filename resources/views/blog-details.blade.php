@@ -28,6 +28,9 @@
     text-decoration: none; /* Optional: Remove underline from links */
     color: inherit; /* Inherit text color */
 }
+.blog-details-container .content-container .content {
+
+}
 
     </style>
 @endsection
