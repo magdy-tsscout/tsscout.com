@@ -116,10 +116,13 @@ document.addEventListener('DOMContentLoaded', function () {
 
     const filterByCategory = function (selectedCategory) {
         const selected = normalize(selectedCategory);
+        console.log('Selected category:', selected);
 
         blogItems.forEach(function (item) {
+            console.log('Checking item category:', item.getAttribute('data-category'));
             const itemCategory = normalize(item.getAttribute('data-category'));
             const shouldShow = selected === 'all' || itemCategory === selected;
+            console.log('Should show item:', shouldShow);
             item.style.display = shouldShow ? '' : 'none';
         });
     };
