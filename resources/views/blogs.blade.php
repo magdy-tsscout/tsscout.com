@@ -41,7 +41,7 @@
 			<div class="row g-4">
                 @foreach ($blogs as $blog)
                 <div class="col-lg-4 col-md-6 d-flex blog-item-container" data-category="{{ $blog->category }}">
-                    <div class="blog-item w-100" data-category="{{ $blog->category }}">
+                    <div class="blog-item w-100">
                         <div class="post-featured-image">
                             <figure class="image-anime">
                                 @if ($blog->video_url)
@@ -100,57 +100,48 @@
 
 
 <script>
-document.addEventListener('DOMContentLoaded', function () {
-    const options = document.querySelectorAll('.option');
-    const blogItems = document.querySelectorAll('.blog-item-container');
 
-    options.forEach(option => {
-        option.addEventListener('click', function () {
-            const selectedCategory = option.textContent.trim();
-
-            // Toggle active class on options
-            options.forEach(opt => opt.classList.remove('active'));
-            option.classList.add('active');
-
-            // Show or hide blog items based on selected category
-            let visibleItemIndex = 0; // To track the position of visible items
-            blogItems.forEach(item => {
-                const itemCategory = item.dataset.category;
-
-                if (selectedCategory === 'All' || itemCategory === selectedCategory) {
-                    item.style.display = 'd-flex';
-                    item.style.order = visibleItemIndex; // Reorder the item
-                    visibleItemIndex++;
-                } else {
-                    item.style.display = 'none';
-                }
-            });
-        });
-    });
-
-    // Simulate a click on the 'All' option to show all items initially
-    const defaultOption = document.querySelector('.option:first-child');
-    defaultOption.click();
-});
-
-// Change options color
-document.addEventListener('DOMContentLoaded', function () {
-    const options = document.querySelectorAll('.option');
-
-    options.forEach(option => {
-        option.addEventListener('click', function () {
-            // Remove 'selected' class from all options
-            options.forEach(opt => opt.classList.remove('selected'));
-
-            // Add 'selected' class to the clicked option
-            this.classList.add('selected');
-        });
-    });
-
-    // Set the first option as selected by default
-    options[0].classList.add('selected');
-});
 
 </script>
+document.addEventListener('DOMContentLoaded', function () {
+    const options = document.querySelectorAll('.options-wrapper .options-container .option');
+    const blogItems = document.querySelectorAll('.blog-item-container');
 
+    const normalize = function (value) {
+        return String(value || '')
+            .trim()
+            .toLowerCase()
+            .replace(/\s+/g, '');
+    };
+
+    const filterByCategory = function (selectedCategory) {
+        const selected = normalize(selectedCategory);
+
+        blogItems.forEach(function (item) {
+            const itemCategory = normalize(item.getAttribute('data-category'));
+            const shouldShow = selected === 'all' || itemCategory === selected;
+            item.style.display = shouldShow ? '' : 'none';
+        });
+    };
+
+    options.forEach(function (option) {
+        option.addEventListener('click', function () {
+            options.forEach(function (opt) {
+                opt.classList.remove('selected');
+            });
+
+            option.classList.add('selected');
+            filterByCategory(option.textContent);
+        });
+    });
+
+    const allOption = Array.from(options).find(function (option) {
+        return normalize(option.textContent) === 'all';
+    });
+
+    if (allOption) {
+        allOption.classList.add('selected');
+        filterByCategory('all');
+    }
+});
 @endsection
