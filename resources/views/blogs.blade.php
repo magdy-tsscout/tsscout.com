@@ -40,7 +40,7 @@
         <div class="container">
 			<div class="row g-4">
                 @foreach ($blogs as $blog)
-                <div class="col-lg-4 col-md-6 d-flex blog-item-container">
+                <div class="col-lg-4 col-md-6 d-flex blog-item-container" data-category="{{ $blog->category }}">
                     <div class="blog-item w-100" data-category="{{ $blog->category }}">
                         <div class="post-featured-image">
                             <figure class="image-anime">
