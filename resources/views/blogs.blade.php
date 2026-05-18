@@ -123,7 +123,7 @@ document.addEventListener('DOMContentLoaded', function () {
             const itemCategory = normalize(item.getAttribute('data-category'));
             const shouldShow = selected === 'all' || itemCategory === selected;
             console.log('Should show item:', shouldShow);
-            item.style.display = shouldShow ? '' : 'none';
+            item.style.display = shouldShow ? 'd-flex' : 'none';
         });
     };
 
