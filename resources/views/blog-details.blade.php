@@ -14,8 +14,45 @@
 @section('styles')
     <!-- Custom CSS for this view -->
     <link href="{{asset('css/blog-details.css')}}" rel="stylesheet">
-
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400..900;1,400..900&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@100..900&display=swap" rel="stylesheet">
     <style>
+        .content {
+            font-family: 'Inter', sans-serif;
+            font-size: 16px;
+            line-height: 1.6;
+            color: #1E3F5B;
+            margin-bottom: 16px;
+        }
+        .content h1, .content h2, .content h3, .content h4, .content h5, .content h6 {
+            font-family: 'Playfair Display', serif;
+        }
+        .content h1 {
+            font-size: clamp(42px, 5vw, 64px);
+            font-weight: 700;
+            line-height: 1.05;
+            letter-spacing: -0.03em;
+            margin-bottom: 24px;
+        }
+
+        .content h2 {
+            font-size: clamp(30px, 3vw, 40px);
+            font-weight: 700;
+            line-height: 1.15;
+            letter-spacing: -0.02em;
+            margin-top: 72px;
+            margin-bottom: 20px;
+        }
+
+        .content h3 {
+            font-size: 24px;
+            font-weight: 600;
+            line-height: 1.3;
+            letter-spacing: -0.01em;
+            margin-top: 48px;
+            margin-bottom: 16px;
+        }
+
         .table-content {
             white-space: normal;
             word-wrap: break-word;
@@ -235,9 +272,7 @@
     });
 });
 
-</script>
 
-<script>
     document.addEventListener('scroll', function() {
         const sidebar = document.querySelector('.sidebar');
         if (sidebar) {
