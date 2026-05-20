@@ -76,6 +76,9 @@
                 flex: 1 1 auto;
                 overflow: auto;
             }
+            .sticky-top {
+                background-color: #fff8f851;
+            }
         }
 
     </style>
@@ -248,10 +251,5 @@
     });
 </script>
 
-<style>
-    .sticky-top {
-        background-color: #f0f0f0; /* Example styling for when sticky */
-        border-bottom: 2px solid #3545D6; /* Example border */
-    }
-</style>
+
 @endsection
