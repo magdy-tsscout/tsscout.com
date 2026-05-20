@@ -155,6 +155,12 @@
                 width: 100%;
                 border-radius: 8px;
             }
+
+            .sticky-top .table-of-contents li a {
+                color: #1E3F5B;
+                font-family: 'Inter', sans-serif;
+                font-weight: normal;
+            }
         }
 
     </style>
