@@ -77,7 +77,7 @@
                 overflow: auto;
             }
             .sticky-top {
-                background-color: #fff8f851;
+                background-color: #fff8f82b;
             }
         }
 
