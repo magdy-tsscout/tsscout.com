@@ -37,13 +37,7 @@
         }
 
         .sidebar ul.table-of-contents {
-            max-height: 400px;
             overflow-y: auto;
-            border: 1px solid #ddd;
-            padding: 10px;
-            background-color: #f9f9f9; /* Light gray background */
-            border-radius: 5px; /* Rounded corners */
-            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Subtle shadow */
         }
 
         .sidebar ul.table-of-contents li {
@@ -64,12 +58,23 @@
         @media (min-width: 992px) {
             .sidebar {
                 position: sticky;
-                top: 0; /* Stick to the top of the viewport */
-                height: calc(100vh - 20px); /* Take the rest of the viewport height minus padding */
-                overflow-y: auto; /* Scrollable if content overflows */
-                padding-top: 20px; /* Add some spacing */
-                background-color: #fff; /* Ensure background is visible */
-                box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Subtle shadow */
+                top: 0;
+                height: calc(100vh - 20px);
+                overflow-y: auto;
+                padding-top: 20px;
+                display: flex;
+                flex-direction: row;
+                gap: 20px;
+            }
+            .sidebar .social {
+                flex: 0 0 auto;
+            }
+            .sidebar h3 {
+                flex: 0 0 auto;
+            }
+            .sidebar ul.table-of-contents {
+                flex: 1 1 auto;
+                overflow: auto;
             }
         }
 
