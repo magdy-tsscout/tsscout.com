@@ -329,6 +329,32 @@
             }
         }
     });
+
+    document.addEventListener('scroll', function() {
+        const contentHeadings = document.querySelectorAll('.content h1[id], .content h2[id], .content h3[id]');
+        const tocLinks = document.querySelectorAll('.table-of-contents a');
+
+        let activeId = null;
+
+        contentHeadings.forEach((heading) => {
+            const rect = heading.getBoundingClientRect();
+            if (rect.top >= 0 && rect.top <= window.innerHeight / 2) {
+                activeId = heading.id;
+            }
+        });
+
+        tocLinks.forEach((link) => {
+            const href = link.getAttribute('href'); // e.g. "#header1"
+            if (href === '#' + activeId) {
+                link.style.fontWeight = 'bold';
+                link.style.color = '#3545D6';
+                link.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+            } else {
+                link.style.fontWeight = 'normal';
+                link.style.color = '';
+            }
+        });
+    });
 </script>
 
 
