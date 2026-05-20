@@ -29,22 +29,22 @@
                                 <ul class="dropdown toolsItem">
                                     <!-- Left Section -->
                                     <li class="dropdown-section left-section">
-                                        <a href="{{ route('pages.show', ['slug' => $pages->where('view_name', 'product-scouting')->first()->slug]) }}"><h6>Product Scouting</h6>
+                                        <a href="{{ route('pages.show', ['slug' => $pages->where('view_name', 'product-scouting')->first()->slug]) }}"><div class="h6">Product Scouting</div>
                                         <p>Find your fellow competitors, identify the unique selling proposition of your product.</p></a>
-                                        <a href="{{ route('pages.show', ['slug' => $pages->where('view_name', 'competitor-monitoring')->first()->slug]) }}"><h6>Competitor Monitoring</h6>
+                                        <a href="{{ route('pages.show', ['slug' => $pages->where('view_name', 'competitor-monitoring')->first()->slug]) }}"><div class="h6">Competitor Monitoring</div>
                                         <p>Find your fellow competitors, identify the unique selling proposition of your product.</p></a>
-                                        <a href="{{ route('pages.show', ['slug' => $pages->where('view_name', 'suppliers-scouting')->first()->slug]) }}"><h6>Suppliers Scouting</h6>
+                                        <a href="{{ route('pages.show', ['slug' => $pages->where('view_name', 'suppliers-scouting')->first()->slug]) }}"><div class="h6">Suppliers Scouting</div>
                                         <p>Find your fellow competitors, identify the unique selling proposition of your product.</p></a>
 
 
-                                <h6 style="color: #A5A7AA; font-size: 11px;">Free Tools</h6>
-                                <a href="{{url('ebay-calculator')}}"><h6>Ebay Calculator</h6></a>
-                                <a href="{{url('title-builder')}}"><h6>SmartTitles</h6></a>
+                                <div class="h6" style="color: #A5A7AA; font-size: 11px;">Free Tools</div>
+                                <a href="{{url('ebay-calculator')}}"><div class="h6">Ebay Calculator</div></a>
+                                <a href="{{url('title-builder')}}"><div class="h6">SmartTitles</div></a>
 
                                     </li>
 <!-- Right Section -->
 <li class="dropdown-section right-section">
-    <h6 style="color: #A5A7AA; font-size: 11px;">Paid Tools</h6>
+    <div class="h6" style="color: #A5A7AA; font-size: 11px;">Paid Tools</div>
 
     <!-- eBay Section -->
     <a href="#" class="dropdown-link toggle-section" onclick="toggleVisibility(event, 'ebay-pages')">
@@ -122,7 +122,7 @@
                                             <div class="resource-item">
                                                 <img src="{{ asset('images/header icons/blog.svg') }}" alt="Blog Icon" class="resource-icon">
                                                 <div>
-                                                    <h6>Blog</h6>
+                                                    <div class="h6">Blog</div>
                                                     <p>Find insights and updates on our blog.<br>Stay informed with the latest trends.</p>
                                                 </div>
                                             </div>
@@ -133,7 +133,7 @@
                                             <div class="resource-item">
                                                 <img src="{{ asset('images/header icons/faq.svg') }}" alt="FAQs Icon" class="resource-icon">
                                                 <div>
-                                                    <h6>FAQ's</h6>
+                                                    <div class="h6">FAQ's</div>
                                                     <p>Find answers to frequently asked<br>questions and get support.</p>
                                                 </div>
                                             </div>
