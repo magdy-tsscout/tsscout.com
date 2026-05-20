@@ -171,6 +171,7 @@
             }
             .blog-details-container .content-container .content {
                 padding: 0;
+                text-align: justify;
             }
         }
 
