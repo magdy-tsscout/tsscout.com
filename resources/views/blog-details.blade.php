@@ -116,6 +116,10 @@
         }
 
         @media (min-width: 992px) {
+            .social ul {
+                padding-right: 15px;
+                padding-left: 15px;
+            }
             .sidebar {
                 position: sticky;
                 top: 0;
@@ -133,6 +137,8 @@
             }
             .sidebar h3 {
                 flex: 0 0 auto;
+                margin-bottom: 0;
+                margin-top: 0;
             }
             .sidebar ul.table-of-contents {
                 flex: 1 1 auto;
