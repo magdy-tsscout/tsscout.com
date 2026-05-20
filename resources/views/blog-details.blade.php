@@ -24,7 +24,7 @@
             color: #334155;
             margin-bottom: 16px;
         }
-        .content p {
+        .content p, .table-of-contents li a {
             font-family: 'Inter', sans-serif;
             font-weight: normal;
             color: #334155;
@@ -102,6 +102,8 @@
             color: #3545D6; /* Brighter blue on hover */
             text-decoration: underline; /* Underline on hover */
         }
+
+        .rowElements ,
 
         @media (min-width: 992px) {
             .sidebar {
