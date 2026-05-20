@@ -103,7 +103,13 @@
             text-decoration: underline; /* Underline on hover */
         }
 
-        .rowElements ,
+        .rowElements, .rowElements .button-shopify {
+            font-family: 'Inter', sans-serif;
+            font-size: 14px;
+            font-weight: 500;
+            line-height: 1.5;
+            color: #6B7280;
+        }
 
         @media (min-width: 992px) {
             .sidebar {
