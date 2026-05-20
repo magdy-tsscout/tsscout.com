@@ -49,7 +49,7 @@ body {
 .main-header {
     position: relative;
     z-index: 1000;
- 
+
 }
 
 .header-sticky {
@@ -154,7 +154,7 @@ padding-left: 30px; /* Adjust this value to increase or decrease the space */
     background-color: #f0f0f0;
 }
 
- 
+
 .icon {
     margin-left: 5px;
     vertical-align: middle;
@@ -180,7 +180,7 @@ margin-left: 20px;
 margin-bottom: 40px;
 }
 
-.resource-item h6 {
+.resource-item .h6 {
     font-size: 16px;
     font-weight: bold;
     color: #1E3F5B;
@@ -214,13 +214,13 @@ display: inline-block;
 .right-section {
     padding-left: 80px;
    }
-}  
+}
 
 @media (max-width: 768px) {
     .right-section {
         padding-left: 5px;
        }
-    }   
+    }
 
 /* Responsive Adjustments */
 @media (max-width: 768px) {
@@ -326,8 +326,8 @@ background-color: #f0f0f0; /* Light grey background on hover */
 }
 
 /* Ensuring Both Title and Paragraph Get the Hover Effect Together */
-.left-section h6:hover + p, 
-.left-section p:hover, 
+.left-section h6:hover + p,
+.left-section p:hover,
 .left-section h6:hover {
 background-color: #f0f0f0;
 }
@@ -396,7 +396,7 @@ display: none; /* Hides the paragraph element */
     } */
 
 }
-  
+
 
  header.main-header {
     position: sticky !important;
@@ -409,7 +409,7 @@ header.main-header .header-sticky.hide {
 }
 
 .navbar {
-     padding: 0px 0; 
+     padding: 0px 0;
 }
 
 @media (max-width: 768px) {
