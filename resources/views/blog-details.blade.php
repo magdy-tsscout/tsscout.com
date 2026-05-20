@@ -63,7 +63,7 @@
                 overflow-y: auto;
                 padding-top: 20px;
                 display: flex;
-                flex-direction: row;
+                flex-direction: column;
                 gap: 20px;
             }
             .sidebar .social {
