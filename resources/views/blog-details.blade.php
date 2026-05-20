@@ -34,6 +34,10 @@
             font-family: 'Playfair Display', serif;
             color: #1D3F5B;
         }
+        .content ol, .content ul {
+            padding-right: 0;
+            padding-left: 0;
+        }
         .content h1 {
             font-size: clamp(42px, 5vw, 64px);
             font-weight: 700;
