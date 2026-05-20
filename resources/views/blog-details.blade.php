@@ -36,9 +36,11 @@
             height: auto;
         }
 
-        .sidebar ul {
+        .sidebar ul.table-of-contents {
             max-height: 400px;
             overflow-y: auto;
+            border: 1px solid #ddd;
+            padding: 10px;
         }
 
     </style>
@@ -94,13 +96,17 @@
             </div>
 
             <h3 style="color: #3545D6;padding-bottom: 0px;padding-top: 15px;font-weight:700" class="table-content">Table of Contents</h3>
-            <ul>
+            <ul class="table-of-contents">
                 @foreach($headings as $heading)
+                    @if($heading['text'])
                     <li class="table-content"  >
-                        <a href="#{{ $heading['id'] }}" style="padding: 0; margin: 0; display: inline;">
+                        <a
+                            href="#{{ $heading['id'] }}"
+                            style="padding: 0; margin: 0; display: inline;">
                             {{ $heading['text'] }}
                         </a>
                     </li>
+                    @endif
                 @endforeach
             </ul>
 
