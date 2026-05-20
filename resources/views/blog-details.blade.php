@@ -139,6 +139,9 @@
             .sticky-top {
                 background-color: #fff8f82b;
             }
+            .sticky-top .table-of-contents {
+                background-image: linear-gradient(to top, #fff8f82b, #fff8f82b);
+            }
         }
 
     </style>
