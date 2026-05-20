@@ -41,9 +41,24 @@
             overflow-y: auto;
             border: 1px solid #ddd;
             padding: 10px;
+            background-color: #f9f9f9; /* Light gray background */
+            border-radius: 5px; /* Rounded corners */
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Subtle shadow */
         }
-        .sidebar ul.table-of-contents li:nth-child(odd) a {
-            color: #1E3F5B;
+
+        .sidebar ul.table-of-contents li {
+            margin-bottom: 5px; /* Space between items */
+        }
+
+        .sidebar ul.table-of-contents li a {
+            color: #1E3F5B; /* Dark blue text */
+            font-weight: bold; /* Bold text */
+            transition: color 0.3s ease; /* Smooth color transition */
+        }
+
+        .sidebar ul.table-of-contents li a:hover {
+            color: #3545D6; /* Brighter blue on hover */
+            text-decoration: underline; /* Underline on hover */
         }
 
     </style>
@@ -101,7 +116,6 @@
             <h3 style="color: #3545D6;padding-bottom: 0px;padding-top: 15px;font-weight:700" class="table-content">Table of Contents</h3>
             <ul class="table-of-contents">
                 @foreach($headings as $heading)
-                    {{-- @if(trim($heading['text'])) --}}
                     <li class="table-content"  >
                         <a
                             href="#{{ $heading['id'] }}"
@@ -109,7 +123,6 @@
                             {{ $heading['text'] }}
                         </a>
                     </li>
-                    {{-- @endif --}}
                 @endforeach
             </ul>
 
