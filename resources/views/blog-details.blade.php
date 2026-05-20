@@ -140,8 +140,11 @@
                 background-color: #fff8f82b;
             }
             .sticky-top .table-of-contents {
-                background-image: linear-gradient(to bottom, #fff8f887, #fff8f82b);
+                background-image: linear-gradient(to bottom, #fff8f887, #fff8f857);
                 padding: 15px;
+                margin-top: -15px;
+                width: 100%;
+                border-radius: 8px;
             }
         }
 
