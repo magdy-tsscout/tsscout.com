@@ -290,26 +290,26 @@
 
 <script>
     document.getElementById('like-button').addEventListener('click', function() {
-    const blogId = {{ $blog->id }};
-    const likeButton = document.getElementById('like-button');
-    const likeCount = document.getElementById('like-count');
+        const blogId = {{ $blog->id }};
+        const likeButton = document.getElementById('like-button');
+        const likeCount = document.getElementById('like-count');
 
-    alert('Thanks for the like!');
-    fetch(`/blogs/${blogId}/like`, {
-        method: 'POST',
-        headers: {
-            'X-CSRF-TOKEN': '{{ csrf_token() }}',
-            'Content-Type': 'application/json'
-        },
-    })
-    .then(response => response.json())
-    .then(data => {
-        likeCount.textContent = data.likes; // Update the likes count
-    })
-    .catch(error => {
-        console.error('Error:', error);
+        alert('Thanks for the like!');
+        fetch(`/blogs/${blogId}/like`, {
+            method: 'POST',
+            headers: {
+                'X-CSRF-TOKEN': '{{ csrf_token() }}',
+                'Content-Type': 'application/json'
+            },
+        })
+        .then(response => response.json())
+        .then(data => {
+            likeCount.textContent = data.likes; // Update the likes count
+        })
+        .catch(error => {
+            console.error('Error:', error);
+        });
     });
-});
 
 
     document.addEventListener('scroll', function() {
