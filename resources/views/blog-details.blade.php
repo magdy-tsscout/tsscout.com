@@ -323,6 +323,22 @@
             }
         }
     });
+
+    document.addEventListener('scroll', function() {
+        const headings = document.querySelectorAll('.table-of-contents a');
+        const contentHeadings = document.querySelectorAll('.content h1, .content h2, .content h3');
+
+        contentHeadings.forEach((heading, index) => {
+            const rect = heading.getBoundingClientRect();
+            const link = headings[index];
+
+            if (rect.top >= 0 && rect.top <= window.innerHeight / 2) {
+                link.style.fontWeight = 'bold';
+            } else {
+                link.style.fontWeight = 'normal';
+            }
+        });
+    });
 </script>
 
 
