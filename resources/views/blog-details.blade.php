@@ -334,10 +334,8 @@
 
             if (rect.top >= 0 && rect.top <= window.innerHeight / 2) {
                 link.style.fontWeight = 'bold';
-                link.style.color = 'blue';
             } else {
                 link.style.fontWeight = 'normal';
-                link.style.color = '';
             }
         });
     });
