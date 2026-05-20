@@ -95,6 +95,7 @@
         .sidebar ul.table-of-contents li a {
             color: #1E3F5B; /* Dark blue text */
             font-weight: bold; /* Bold text */
+            font-family: 'Inter', sans-serif;
             transition: color 0.3s ease; /* Smooth color transition */
         }
 
