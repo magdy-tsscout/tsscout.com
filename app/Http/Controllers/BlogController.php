@@ -232,13 +232,16 @@ class BlogController extends Controller
        for ($i = 1; $i <= 6; $i++) {
            $tags = $dom->getElementsByTagName('h' . $i);
            foreach ($tags as $tag) {
-               $tag->setAttribute('id', 'header' . count($headings)); // Add unique ID to each heading
-               $headings[] = [
-                   'level' => $i,
-                   'text' => $tag->textContent,
-                   'id' => 'header' . count($headings)
-               ];
-           }
+                $text = $this->normalizeTitles($tag->textContent);
+                if ($text) {
+                    $tag->setAttribute('id', 'header' . count($headings));
+                    $headings[] = [
+                        'level' => $i,
+                        'text' => $text,
+                        'id' => 'header' . count($headings)
+                    ];
+            }
+        }
        }
 
        $blog->content = $dom->saveHTML();
@@ -269,6 +272,13 @@ class BlogController extends Controller
            ->header('Cache-Control', 'public, max-age=3600');
    }
 
+   # ##########################################################
+   private function normalizeTitles( string $text='') : string {
+        $text = trim($text);
+        $text= preg_replace('/\s+/', ' ', $text);
+        $text= preg_replace('/\r|\n|\t/', '', $text);
+        return $text;
+   }
 
 
 
