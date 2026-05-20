@@ -65,7 +65,7 @@
             .sidebar {
                 position: sticky;
                 top: 0; /* Stick to the top of the viewport */
-                height: 100vh; /* Full viewport height */
+                height: calc(100vh - 20px); /* Take the rest of the viewport height minus padding */
                 overflow-y: auto; /* Scrollable if content overflows */
                 padding-top: 20px; /* Add some spacing */
                 background-color: #fff; /* Ensure background is visible */
