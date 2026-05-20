@@ -229,19 +229,14 @@ class BlogController extends Controller
        @$dom->loadHTML($blog->content); // Suppress warnings with @
        $headings = [];
 
-       $j=1;
        for ($i = 1; $i <= 6; $i++) {
            $tags = $dom->getElementsByTagName('h' . $i);
            foreach ($tags as $tag) {
-               $tagText=  preg_replace('/\t|\n|\r|\s+/', ' ', trim($tag->textContent));
-               if($tagText) {
-                    $headings[] = [
-                        'level' => $j,
-                        'text' => $tagText,
-                        'id' => 'header' . count($headings)
-                    ];
-                    $j++;
-               }
+               $headings[] = [
+                   'level' => $i,
+                   'text' => $tag->textContent,
+                   'id' => 'header' . count($headings)
+               ];
            }
        }
 
