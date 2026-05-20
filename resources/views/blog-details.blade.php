@@ -233,4 +233,25 @@
 });
 
 </script>
+
+<script>
+    document.addEventListener('scroll', function() {
+        const sidebar = document.querySelector('.sidebar');
+        if (sidebar) {
+            const rect = sidebar.getBoundingClientRect();
+            if (rect.top === 0) {
+                sidebar.classList.add('sticky-top');
+            } else {
+                sidebar.classList.remove('sticky-top');
+            }
+        }
+    });
+</script>
+
+<style>
+    .sticky-top {
+        background-color: #f0f0f0; /* Example styling for when sticky */
+        border-bottom: 2px solid #3545D6; /* Example border */
+    }
+</style>
 @endsection
