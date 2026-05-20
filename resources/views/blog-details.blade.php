@@ -42,6 +42,9 @@
             border: 1px solid #ddd;
             padding: 10px;
         }
+        .sidebar ul.table-of-contents li:nth-child(odd) a {
+            color: #1E3F5B;
+        }
 
     </style>
 @endsection
@@ -98,7 +101,7 @@
             <h3 style="color: #3545D6;padding-bottom: 0px;padding-top: 15px;font-weight:700" class="table-content">Table of Contents</h3>
             <ul class="table-of-contents">
                 @foreach($headings as $heading)
-                    @if($heading['text'])
+                    @if(trim($heading['text']))
                     <li class="table-content"  >
                         <a
                             href="#{{ $heading['id'] }}"
