@@ -17,16 +17,16 @@
 
     <style>
         .table-content {
-            white-space: normal; /* Allow text to wrap */
-            word-wrap: break-word; /* Break long words to the next line */
-            overflow-wrap: break-word; /* Ensure wrapping for long words */
-            margin-bottom: 10px; /* Optional: Add spacing between list items */
+            white-space: normal;
+            word-wrap: break-word;
+            overflow-wrap: break-word;
+            margin-bottom: 10px;
         }
 
         .table-content a {
-            display: inline-block; /* Ensure the link behaves like a block for better wrapping */
-            text-decoration: none; /* Optional: Remove underline from links */
-            color: inherit; /* Inherit text color */
+            display: inline-block;
+            text-decoration: none;
+            color: inherit;
         }
         .blog-details-container .content-container .content {
             width: 100%;
@@ -34,6 +34,11 @@
 
         img {
             height: auto;
+        }
+
+        .sidebar ul {
+            max-height: 400px;
+            overflow-y: auto;
         }
 
     </style>
