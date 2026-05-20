@@ -334,7 +334,7 @@
             if( headings.length >=1 ) {
                 // get last heading and scroll to it if we are at the bottom of .table-of-contents
             }
-            console.log('Heading:', heading, 'Rect:', rect);
+            // console.log('Heading:', heading, 'Rect:', rect);
             if (rect.top >= 0 && rect.top <= window.innerHeight / 2) {
                 link.style.fontWeight = 'bold';
                 link.style.color = 'blue';
