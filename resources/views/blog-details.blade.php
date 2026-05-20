@@ -331,7 +331,7 @@
         contentHeadings.forEach((heading, index) => {
             const rect = heading.getBoundingClientRect();
             const link = headings[index];
-            if (!link) return; // Guard: skip if no matching TOC link
+
             if (rect.top >= 0 && rect.top <= window.innerHeight / 2) {
                 link.style.fontWeight = 'bold';
                 link.style.color = 'blue';
@@ -340,21 +340,6 @@
                 link.style.color = '';
             }
         });
-    });
-
-    document.addEventListener('scroll', function() {
-        const sidebar = document.querySelector('.table-of-contents');
-        const headings = document.querySelectorAll('.content h1, .content h2, .content h3');
-
-        if (sidebar) {
-            const sidebarRect = sidebar.getBoundingClientRect();
-            const isAtBottom = Math.abs(sidebarRect.bottom - window.innerHeight) < 5; // Check if near bottom
-
-            if (isAtBottom && headings.length > 0) {
-                const lastHeading = headings[headings.length - 1];
-                lastHeading.scrollIntoView({ behavior: 'smooth', block: 'start' });
-            }
-        }
     });
 </script>
 
