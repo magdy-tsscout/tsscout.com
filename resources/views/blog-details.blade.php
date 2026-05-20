@@ -17,20 +17,24 @@
 
     <style>
         .table-content {
-    white-space: normal; /* Allow text to wrap */
-    word-wrap: break-word; /* Break long words to the next line */
-    overflow-wrap: break-word; /* Ensure wrapping for long words */
-    margin-bottom: 10px; /* Optional: Add spacing between list items */
-}
+            white-space: normal; /* Allow text to wrap */
+            word-wrap: break-word; /* Break long words to the next line */
+            overflow-wrap: break-word; /* Ensure wrapping for long words */
+            margin-bottom: 10px; /* Optional: Add spacing between list items */
+        }
 
-.table-content a {
-    display: inline-block; /* Ensure the link behaves like a block for better wrapping */
-    text-decoration: none; /* Optional: Remove underline from links */
-    color: inherit; /* Inherit text color */
-}
-.blog-details-container .content-container .content {
-    width: 100%;
-}
+        .table-content a {
+            display: inline-block; /* Ensure the link behaves like a block for better wrapping */
+            text-decoration: none; /* Optional: Remove underline from links */
+            color: inherit; /* Inherit text color */
+        }
+        .blog-details-container .content-container .content {
+            width: 100%;
+        }
+
+        img {
+            height: auto;
+        }
 
     </style>
 @endsection

@@ -124,7 +124,7 @@ class BlogController extends Controller
         return view('blogs.edit', compact('blog'));
     }
 
-    public function update(Request $request, $id)
+    public function update(Request $request, int $id): \Illuminate\Http\RedirectResponse
     {
 
         $blog = Blog::findOrFail($id);
@@ -214,7 +214,7 @@ class BlogController extends Controller
 
 
 
-   public function show($slug)
+   public function show(string $slug): \Illuminate\Contracts\View\View|\Illuminate\Http\Response
    {
        // Find the blog by slug
        $blog = Blog::where('slug', $slug)->first();
