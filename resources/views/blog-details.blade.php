@@ -59,7 +59,7 @@
             .sidebar {
                 position: sticky;
                 top: 0;
-                height: calc(100vh - 20px);
+                height: 100vh;
                 overflow-y: auto;
                 padding-top: 20px;
                 display: flex;
