@@ -76,6 +76,7 @@
             text-decoration: none;
             color: inherit;
         }
+
         .blog-details-container .content-container .content {
             width: 100%;
         }
@@ -160,6 +161,16 @@
                 color: #1E3F5B;
                 font-family: 'Inter', sans-serif;
                 font-weight: normal;
+            }
+        }
+
+        @media (max-width: 991px) {
+            .blog-details-container .content-container {
+                margin-right: 0;
+                margin-left: 0;
+            }
+            .blog-details-container .content-container .content {
+                padding: 0;
             }
         }
 
