@@ -20,7 +20,7 @@
         .content {
             font-family: 'Inter', sans-serif;
             font-size: 16px;
-            line-height: 1.6;
+            line-height: 1.8;
             color: #334155;
             margin-bottom: 16px;
         }
@@ -39,7 +39,7 @@
             padding-left: 0;
         }
         .content h1 {
-            font-size: clamp(42px, 5vw, 64px);
+            font-size: clamp(42px, 5vw, 55px);
             font-weight: 700;
             line-height: 1.05;
             letter-spacing: -0.03em;
@@ -47,7 +47,7 @@
         }
 
         .content h2 {
-            font-size: clamp(30px, 3vw, 40px);
+            font-size: clamp(30px, 3vw, 35px);
             font-weight: 700;
             line-height: 1.15;
             letter-spacing: -0.02em;
