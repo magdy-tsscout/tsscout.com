@@ -61,6 +61,18 @@
             text-decoration: underline; /* Underline on hover */
         }
 
+        @media (min-width: 992px) {
+            .sidebar {
+                position: sticky;
+                top: 0; /* Stick to the top of the viewport */
+                height: 100vh; /* Full viewport height */
+                overflow-y: auto; /* Scrollable if content overflows */
+                padding-top: 20px; /* Add some spacing */
+                background-color: #fff; /* Ensure background is visible */
+                box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Subtle shadow */
+            }
+        }
+
     </style>
 @endsection
 
