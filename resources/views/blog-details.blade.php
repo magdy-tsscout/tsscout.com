@@ -313,29 +313,33 @@
 
 
     document.addEventListener('scroll', function() {
+        const sidebar = document.querySelector('.sidebar');
+        if (sidebar) {
+            const rect = sidebar.getBoundingClientRect();
+            if (rect.top === 0) {
+                sidebar.classList.add('sticky-top');
+            } else {
+                sidebar.classList.remove('sticky-top');
+            }
+        }
+    });
+
+    document.addEventListener('scroll', function() {
         const headings = document.querySelectorAll('.table-of-contents a');
         const contentHeadings = document.querySelectorAll('.content h1, .content h2, .content h3');
-        const sidebar = document.querySelector('.table-of-contents');
 
-        if (scrollTimeout) {
-            clearTimeout(scrollTimeout);
-        }
+        contentHeadings.forEach((heading, index) => {
+            const rect = heading.getBoundingClientRect();
+            const link = headings[index];
 
-        scrollTimeout = setTimeout(() => {
-            contentHeadings.forEach((heading, index) => {
-                const rect = heading.getBoundingClientRect();
-                const link = headings[index];
-
-                if (rect.top >= 0 && rect.top <= window.innerHeight / 2) {
-                    link.style.fontWeight = 'bold';
-                    if (sidebar) {
-                        link.scrollIntoView({ behavior: 'smooth', block: 'nearest', inline: 'start' });
-                    }
-                } else {
-                    link.style.fontWeight = 'normal';
-                }
-            });
-        }, 150); // Adjust timeout as needed
+            if (rect.top >= 0 && rect.top <= window.innerHeight / 2) {
+                link.style.fontWeight = 'bold';
+                link.style.color = 'blue';
+            } else {
+                link.style.fontWeight = 'normal';
+                link.style.color = '';
+            }
+        });
     });
 </script>
 
