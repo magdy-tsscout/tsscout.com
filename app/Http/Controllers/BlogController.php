@@ -232,6 +232,7 @@ class BlogController extends Controller
        for ($i = 1; $i <= 6; $i++) {
            $tags = $dom->getElementsByTagName('h' . $i);
            foreach ($tags as $tag) {
+               $tag->setAttribute('id', 'header' . count($headings)); // Add unique ID to each heading
                $headings[] = [
                    'level' => $i,
                    'text' => $tag->textContent,
