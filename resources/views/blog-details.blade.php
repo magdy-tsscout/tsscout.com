@@ -331,7 +331,7 @@
         contentHeadings.forEach((heading, index) => {
             const rect = heading.getBoundingClientRect();
             const link = headings[index];
-
+            console.log('Heading:', heading, 'Rect:', rect);
             if (rect.top >= 0 && rect.top <= window.innerHeight / 2) {
                 link.style.fontWeight = 'bold';
                 link.style.color = 'blue';
