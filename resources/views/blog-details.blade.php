@@ -103,7 +103,11 @@
             text-decoration: underline; /* Underline on hover */
         }
 
-        .rowElements, .rowElements .button-shopify {
+        .rowElements,
+        .rowElements .author,
+        .rowElements .date,
+        .rowElements .number,
+        .rowElements .button-shopify {
             font-family: 'Inter', sans-serif;
             font-size: 14px;
             font-weight: 500;
