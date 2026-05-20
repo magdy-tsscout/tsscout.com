@@ -122,6 +122,8 @@
                 height: 100vh;
                 overflow-y: auto;
                 padding-top: 20px;
+                padding-right: 0;
+                padding-left: 0;
                 display: flex;
                 flex-direction: column;
                 gap: 20px;
