@@ -110,10 +110,8 @@
 
         .sidebar ul.table-of-contents li.toc-active {
             background-color: #fff8f8cf;
-            margin-right: -15px;
-            margin-left: -15px;
-            padding-right: 15px;
-            padding-left: 15px;
+            margin-inline: calc(var(--gutter-space) * -1);
+            padding-inline: var(--gutter-space);
         }
 
         .sidebar ul.table-of-contents li.toc-active > a {
