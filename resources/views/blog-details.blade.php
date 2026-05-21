@@ -49,7 +49,7 @@
         .content h2 {
             font-size: clamp(30px, 3vw, 35px);
             font-weight: 700;
-            line-height: 1.15;
+            line-height: 1.75rem;
             letter-spacing: -0.02em;
             margin-top: 72px;
             margin-bottom: 20px;
@@ -58,7 +58,7 @@
         .content h3 {
             font-size: 24px;
             font-weight: 600;
-            line-height: 1.3;
+            line-height: 1.5rem;
             letter-spacing: -0.01em;
             margin-top: 48px;
             margin-bottom: 16px;

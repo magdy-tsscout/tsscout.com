@@ -229,8 +229,9 @@ class BlogController extends Controller
        @$dom->loadHTML($blog->content); // Suppress warnings with @
        $headings = [];
 
-       for ($i = 1; $i <= 6; $i++) {
-           $tags = $dom->getElementsByTagName('h' . $i);
+    //    for ($i = 1; $i <= 6; $i++) {
+            $i=0;
+           $tags = $dom->getElementsByTagName('h2');
            foreach ($tags as $tag) {
                 $text = $this->normalizeTitles($tag->textContent);
                 if ($text) {
@@ -240,9 +241,10 @@ class BlogController extends Controller
                         'text' => $text,
                         'id' => 'header' . count($headings)
                     ];
+                    $i++;
+                }
             }
-        }
-       }
+    //    }
 
        $blog->content = $dom->saveHTML();
 
