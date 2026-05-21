@@ -77,8 +77,7 @@
             color: inherit;
         }
         .table-content a::before {
-            content: "• ";
-            color: #1E3F5B;
+            content: "- ";
         }
 
         .blog-details-container .content-container .content {
