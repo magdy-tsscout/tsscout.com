@@ -76,6 +76,10 @@
             text-decoration: none;
             color: inherit;
         }
+        .table-content a::before {
+            content: "• ";
+            color: #1E3F5B;
+        }
 
         .blog-details-container .content-container .content {
             width: 100%;
