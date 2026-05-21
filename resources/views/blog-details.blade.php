@@ -108,6 +108,19 @@
             text-decoration: underline; /* Underline on hover */
         }
 
+        .sidebar ul.table-of-contents li.toc-active {
+            background-color: #fff8f8cf;
+            margin-right: -15px;
+            margin-left: -15px;
+            padding-right: 15px;
+            padding-left: 15px;
+        }
+
+        .sidebar ul.table-of-contents li.toc-active > a {
+            font-weight: bold;
+            color: #3545D6;
+        }
+
         .rowElements,
         .rowElements .author,
         .rowElements .date,
@@ -360,25 +373,11 @@
 
         if (activeId !== null) {
             tocLinks.forEach((link) => {
-                const href = link.getAttribute('href'); // e.g. "#header1"
-                if (href === '#' + activeId) {
-                    link.style.fontWeight = 'bold';
-                    link.style.color = '#3545D6';
-                    link.parentElement.style.backgroundColor = '#fff8f8cf';
-                    link.parentElement.style.marginRight = '-15px';
-                    link.parentElement.style.marginLeft = '-15px';
-                    link.parentElement.style.paddingRight = '15px';
-                    link.parentElement.style.paddingLeft = '15px';
-
+                const href = link.getAttribute('href');
+                const isActive = href === '#' + activeId;
+                link.parentElement.classList.toggle('toc-active', isActive);
+                if (isActive) {
                     link.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
-                } else {
-                    link.style.fontWeight = 'normal';
-                    link.style.color = '';
-                    link.parentElement.style.backgroundColor = '';
-                    link.parentElement.style.marginRight = '';
-                    link.parentElement.style.marginLeft = '';
-                    link.parentElement.style.paddingRight = '';
-                    link.parentElement.style.paddingLeft = '';
                 }
             });
         }
