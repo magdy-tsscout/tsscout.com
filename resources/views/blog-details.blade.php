@@ -363,10 +363,12 @@
             if (href === '#' + activeId) {
                 link.style.fontWeight = 'bold';
                 link.style.color = '#3545D6';
+                link.parentElement.style.backgroundColor = '##fff8f8cf';
                 link.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
             } else {
                 link.style.fontWeight = 'normal';
                 link.style.color = '';
+                link.parentElement.style.backgroundColor = '';
             }
         });
     });
