@@ -364,11 +364,20 @@
                 link.style.fontWeight = 'bold';
                 link.style.color = '#3545D6';
                 link.parentElement.style.backgroundColor = '#fff8f8cf';
+                link.parentElement.style.marginRight = '-15px';
+                link.parentElement.style.marginLeft = '-15px';
+                link.parentElement.style.paddingRight = '15px';
+                link.parentElement.style.paddingLeft = '15px';
+
                 link.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
             } else {
                 link.style.fontWeight = 'normal';
                 link.style.color = '';
                 link.parentElement.style.backgroundColor = '';
+                link.parentElement.style.marginRight = '';
+                link.parentElement.style.marginLeft = '';
+                link.parentElement.style.paddingRight = '';
+                link.parentElement.style.paddingLeft = '';
             }
         });
     });
