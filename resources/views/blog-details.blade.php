@@ -82,9 +82,8 @@
             border-left: none;
         }
 
-        .content table thead th,
-        .content table tr:first-child th,
-        .content table tr:first-child td {
+        .content table thead th
+    {
             background: rgba(8, 20, 38, 0.7);
             color: #ffffff;
             font-weight: 700;
