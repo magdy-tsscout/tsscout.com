@@ -14,7 +14,10 @@ use App\Http\Controllers\EbayCalculatorController;
 use App\Http\Controllers\PageBackupController;
 use App\Http\Controllers\ShopifyDetectorController;
 use App\Http\Controllers\ThemeController;
+use App\Http\Controllers\LandingPageController;
 use App\Http\Controllers\TitleBuilderController;
+
+
 
 
 #home page route
@@ -172,5 +175,13 @@ Route::fallback(function () {
     return response()->view('404', [], 404);
 });
 
+Route::prefix('landing-pages')->group(function () {
+    Route::get(
+        '/{slug?}',
+        [LandingPageController::class, 'showLandingPage']
+        )->name('landing-page.show');
+});
+
 // Dynamic Page Route
 Route::get('/{slug}', [PagesController::class, 'show'])->name('pages.show');
+
