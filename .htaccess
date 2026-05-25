@@ -14,7 +14,7 @@
     RewriteRule ^public/(.*)$ /$1 [L,R=301]
 
     # Canonicalize image requests so SVG assets are always served from /public/images.
-    RewriteRule ^images/(.*)$ /public/images/$1 [L,R=301]
+    RewriteRule ^images/(.*)$ /public/images/$1 [L]
 
     # Handle Trailing Slashes (if not a directory)
     RewriteCond %{REQUEST_FILENAME} !-d
