@@ -63,7 +63,7 @@
             border-radius: 12px;
             overflow: hidden;
             margin: 24px 0;
-            background: linear-gradient(120deg, #0f213c 0%, #17365e 52%, #1f4a7a 100%);
+            background: linear-gradient(120deg, #0c1b33 0%, #123056 52%, #1a406c 100%);
             box-shadow: 0 10px 28px rgba(9, 22, 45, 0.24);
             color: #e9f1fb;
         }
@@ -87,7 +87,7 @@
         .content table thead th,
         .content table tr:first-child th,
         .content table tr:first-child td {
-            background: rgba(8, 20, 38, 0.42);
+            background: rgba(8, 20, 38, 0.7);
             color: #ffffff;
             font-weight: 700;
             text-align: center;
@@ -95,14 +95,14 @@
 
         .content table tbody td,
         .content table tbody th {
-            background: rgba(20, 44, 75, 0.36);
+            background: rgba(20, 44, 75, 0.62);
             color: #edf4ff;
             font-weight: 500;
         }
 
         .content table tbody tr:nth-child(even) td,
         .content table tbody tr:nth-child(even) th {
-            background: rgba(24, 52, 88, 0.56);
+            background: rgba(24, 52, 88, 0.78);
         }
 
         .content table tr:last-child td,
