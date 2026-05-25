@@ -553,7 +553,7 @@
 
 					<div class="stats-grid">
 						<article class="stat-card">
-							<img src="{{ asset('images/landing/home/icon-cart.svg') }}" alt="Sell Through icon" width="22" height="22">
+							<img src="{{ asset('images/landing/home/icon-cart.svg') }}" alt="Sell Through icon" width="22" height="22" loading="eager" fetchpriority="high" decoding="async">
 							<p class="stat-label">Sell Through</p>
 							<p class="stat-value">1813.4%</p>
 							<p class="stat-change">↑ 24.6%</p>
@@ -567,7 +567,7 @@
 						</article>
 
 						<article class="stat-card">
-							<img src="{{ asset('images/landing/home/icon-tag.svg') }}" alt="Sold Item icon" width="22" height="22" loading="eager" fetchpriority="high" decoding="async">
+							<img src="{{ asset('images/landing/home/icon-tag.svg') }}" alt="Sold Item icon" width="22" height="22" decoding="async">
 							<p class="stat-label">Sold Item</p>
 							<p class="stat-value">1759</p>
 							<p class="stat-change">↑ 156</p>

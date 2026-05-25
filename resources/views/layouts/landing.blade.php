@@ -44,12 +44,6 @@
     </style>
 
     @yield('styles')
-
-    <script defer>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
-new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
-j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
-'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
-})(window,document,'script','dataLayer','GTM-KV3N43LJ');</script>
 </head>
 <body>
     <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-KV3N43LJ" height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
@@ -57,5 +51,38 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
     @yield('content')
 
     @yield('script')
+
+    <script>
+        (function (w, d) {
+            w.dataLayer = w.dataLayer || [];
+
+            function loadGtm() {
+                if (w.__gtmLoaded) {
+                    return;
+                }
+                w.__gtmLoaded = true;
+                w.dataLayer.push({ 'gtm.start': new Date().getTime(), event: 'gtm.js' });
+
+                var script = d.createElement('script');
+                script.async = true;
+                script.src = 'https://www.googletagmanager.com/gtm.js?id=GTM-KV3N43LJ';
+                d.head.appendChild(script);
+            }
+
+            function scheduleGtm() {
+                if ('requestIdleCallback' in w) {
+                    w.requestIdleCallback(loadGtm, { timeout: 2500 });
+                } else {
+                    w.setTimeout(loadGtm, 1500);
+                }
+            }
+
+            if (d.readyState === 'complete') {
+                scheduleGtm();
+            } else {
+                w.addEventListener('load', scheduleGtm, { once: true });
+            }
+        })(window, document);
+    </script>
 </body>
 </html>
