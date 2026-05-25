@@ -105,8 +105,9 @@ class BlogController extends Controller
             });
         }
 
-        if ($category !== '') {
-            $blogsQuery->where('category', $category);
+        $published = trim((string) request('published', ''));
+        if ($published !== '') {
+            $blogsQuery->where('published', $published);
         }
 
         // Retrieve blogs for display

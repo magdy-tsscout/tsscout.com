@@ -101,6 +101,15 @@
                     @endforeach
                 </select>
             </div>
+            <div class="form-group mr-2 mb-2">
+                <select name="published" class="form-control">
+                    <option value="">All Statuses</option>
+                    <option value="1" {{ request('published') === '1' ? 'selected' : '' }}>Published</option>
+                    <option value="0" {{ request('published') === '0' ? 'selected' : '' }}>Unpublished</option>
+                        </option>
+                    @endforeach
+                </select>
+            </div>
             <button type="submit" class="btn btn-primary mb-2 mr-2">Search</button>
             @if (request()->filled('search') || request()->filled('category'))
                 <a href="{{ route('blogs.index') }}" class="btn btn-outline-dark mb-2">Reset</a>
