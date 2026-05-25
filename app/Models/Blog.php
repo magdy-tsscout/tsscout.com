@@ -8,7 +8,9 @@ use Illuminate\Support\Str;
 class Blog extends Model
 {
     protected $fillable = [
-        'title', 'excerpt', 'author',
+        'title',
+        'excerpt',
+        'author',
         'publish_date',
         'image',
         'category',
@@ -17,7 +19,16 @@ class Blog extends Model
         'meta_description',
         'meta_keywords',
         'meta_author',
-        'video_url'
+        'video_url',
+        'published'
+    ];
+
+    protected $casts = [
+        'published' => 'boolean',
+    ];
+
+    protected $attributes = [
+        'published' => true,
     ];
 
     // Automatically generate a slug from the title if not provided
@@ -32,8 +43,15 @@ class Blog extends Model
         });
     }
 
+    public function setPublishedAttribute($value)
+    {
+        $this->attributes['published'] = is_null($value) ? true : (bool) $value;
+    }
+
     public static function blogsCountByCategory($category)
     {
         return self::where('category', $category)->count();
     }
+
+
 }

@@ -114,7 +114,7 @@
             <div class="col-lg-6 mb-4">
                 <div class="card blog-card mb-4">
                     <div class="card-header text-white">
-                        <span class="blog-card-title">{{ $blog->title }}</span>
+                        <span class="blog-card-title {{ $blog->published==true?'':' text-muted' }}">{{ $blog->title }}</span>
                         <a
                             target="_blank"
                             class="btn btn-sm btn-secondary"
@@ -136,7 +136,11 @@
                             @endif
                             </div>
                             <div class="col-lg-9">
-                                <p class="mb-1">{{ Str::limit($blog->excerpt, 50) }}</p>
+                                <p class="mb-1">
+                                    @if($blog->published==false)
+                                        <span class="badge badge-secondary">Draft</span>
+                                    @endif
+                                    {{ Str::limit($blog->excerpt, 50) }}</p>
 
                                 <p class="text-muted mb-1 text-right">
                                     <span class="fa fa-calendar"></span>

@@ -48,7 +48,13 @@ class BlogController extends Controller
             'slug' => 'required|string|max:60|unique:blogs',
             'category' => 'required|string|max:255',
             'content' => 'required|string',
+            'published' => 'boolean',
         ]);
+
+        if( $request->input('published') === null ) {
+            $validatedData['published'] = false;
+        }
+
 
 
         if ($validatedData['media_type'] === 'image') {
@@ -106,6 +112,7 @@ class BlogController extends Controller
         // Retrieve blogs for display
         $blogs = $blogsQuery->orderByDesc('publish_date')->paginate(20)->appends(request()->query());
 
+
         $categories = Blog::query()
             ->whereNotNull('category')
             ->where('category', '!=', '')
@@ -143,6 +150,7 @@ class BlogController extends Controller
             'meta_author' => 'nullable',
             'category' => 'required|string|max:255',
             'content' => 'required|string',
+            'published'=> 'boolean',
         ]);
 
         if ($validatedData['media_type'] === 'image') {
@@ -155,6 +163,9 @@ class BlogController extends Controller
             $validatedData['video_url'] = $request->input('video_url'); // Set the video URL
         }
 
+        if( $request->input('published') === null ) {
+            $validatedData['published'] = false;
+        }
 
 
         // Update the blog entry with the validated data
@@ -217,7 +228,11 @@ class BlogController extends Controller
    public function show(string $slug): \Illuminate\Contracts\View\View|\Illuminate\Http\Response
    {
        // Find the blog by slug
-       $blog = Blog::where('slug', $slug)->first();
+       $blog = Blog::where('slug', $slug);
+       if( !Auth::check() ) {
+           $blog->where('published', true);
+       }
+       $blog= $blog->first();
 
        // If the blog does not exist, return the custom 404 view
        if (!$blog) {
@@ -259,6 +274,7 @@ class BlogController extends Controller
        $relatedBlogs = Blog::where('category', $blog->category)
                            ->where('id', '!=', $blog->id)
                            ->take(3)
+                           ->where('published', true)
                            ->get();
 
        return view('blog-details', compact('blog', 'headings', 'page', 'relatedBlogs'));

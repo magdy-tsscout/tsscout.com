@@ -194,7 +194,12 @@
 @endsection
 
 @section('content')
-
+@if( !$blog->published && Auth::check() )
+    <div class="alert alert-warning text-center" style="margin-right: -15px;margin-left: -15px;" role="alert">
+        This blog is currently in draft mode and not visible to the public.
+        <a href="{{ route('blogs.edit', $blog->id) }}" class="btn btn-sm btn-warning">Edit Blog</a>
+    </div>
+@endif
 <div class="container blog-details-container">
     <a href="{{ route('blogs.userIndex') }}"><img src="{{ asset('images/left-arrow.svg') }}" class="back-arrow" alt="Back"></a>
     <h1 class="title">{{ $blog->title }}</h1>

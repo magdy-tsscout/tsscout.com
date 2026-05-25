@@ -26,9 +26,21 @@
         <div class="card-body">
             <form action="{{ route('blogs.store') }}" method="POST" enctype="multipart/form-data" novalidate>
                 @csrf
-                <div class="form-group mb-3">
-                    <label for="title" class="form-label">Title</label>
-                    <input type="text" class="form-control" id="title" name="title" required>
+                <div class="row">
+                    <div class="col-lg-8">
+                        <div class="form-group mb-3">
+                            <label for="title" class="form-label">Title</label>
+                            <input type="text" class="form-control" id="title" name="title" required>
+                        </div>
+                    </div>
+                    <div class="col-lg-3">
+                        <div class="form-group mt-lg-4 pt-lg-2 mb-3 row">
+                            <input type="checkbox" class="col-2" id="published" name="published" {{ old('published') ? 'checked' : '' }} value="1">
+                            <label for="published" class="col-8 form-label pt-lg-1">
+                                Published?
+                            </label>
+                        </div>
+                    </div>
                 </div>
 
                 <div class="form-group mb-3">
