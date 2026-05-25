@@ -55,12 +55,25 @@
             margin-bottom: 20px;
         }
 
+        table {
+            border-right: 1px solid #e5e7eb;
+            border-left: 1px solid #e5e7eb;
+        }
+
+        table tbody tr {
+            border-right: 1px solid #e5e7eb;
+            border-left: 1px solid #e5e7eb;
+        }
+        table tbody tr td {
+            padding: 12px;
+            border-bottom: 1px solid #e5e7eb;
+        }
         table tbody tr:nth-child(odd) td {
-            background-color: #f8f9fa;
+            background-color: #f8f9fa3d;
         }
 
         table tbody tr:nth-child(even) td {
-            background-color: #718ca8;
+            background-color: #718ca86b;
         }
 
         .content h3 {
