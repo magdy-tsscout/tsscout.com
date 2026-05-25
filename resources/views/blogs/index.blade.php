@@ -106,8 +106,6 @@
                     <option value="">All Statuses</option>
                     <option value="1" {{ request('published') === '1' ? 'selected' : '' }}>Published</option>
                     <option value="0" {{ request('published') === '0' ? 'selected' : '' }}>Unpublished</option>
-                        </option>
-                    @endforeach
                 </select>
             </div>
             <button type="submit" class="btn btn-primary mb-2 mr-2">Search</button>
