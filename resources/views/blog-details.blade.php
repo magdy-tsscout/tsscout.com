@@ -57,10 +57,11 @@
 
         .content table {
             width: 100%;
-            border-collapse: collapse;
+            border-collapse: separate;
             border-spacing: 0;
             border: 1px solid rgba(148, 176, 214, 0.35);
             border-radius: 12px;
+            overflow: hidden;
             margin: 24px 0;
             background: linear-gradient(120deg, #0c1b33 0%, #123056 52%, #1a406c 100%);
             box-shadow: 0 10px 28px rgba(9, 22, 45, 0.24);
@@ -68,17 +69,18 @@
         }
 
         .content table thead th,
-        .content table tbody td,
-        .content table tbody th {
+        .content table tbody td
+         {
             border-left: 1px solid rgba(162, 190, 224, 0.22);
             border-bottom: 1px solid rgba(162, 190, 224, 0.22);
             padding: 12px 14px;
             font-family: 'Inter', sans-serif;
             word-break: break-word;
-            background-clip: padding-box;
         }
 
-        .content table tr > *:first-child { border-left: none; }
+        .content table tr > *:first-child {
+            border-left: none;
+        }
 
         .content table thead th
     {
