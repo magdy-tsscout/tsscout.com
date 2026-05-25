@@ -11,6 +11,7 @@
 
 @section('styles')
 	<link rel="preload" as="image" href="{{ asset('images/landing/home/icon-cart.svg') }}" type="image/svg+xml">
+	<link rel="preload" as="image" href="{{ asset('images/landing/home/icon-tag.svg') }}" type="image/svg+xml">
 	<link rel="preload" as="image" href="{{ asset('images/landing/home/feature-search.svg') }}" type="image/svg+xml">
 	<style>
 		:root {
@@ -566,7 +567,7 @@
 						</article>
 
 						<article class="stat-card">
-							<img src="{{ asset('images/landing/home/icon-tag.svg') }}" alt="Sold Item icon" width="22" height="22">
+							<img src="{{ asset('images/landing/home/icon-tag.svg') }}" alt="Sold Item icon" width="22" height="22" loading="eager" fetchpriority="high" decoding="async">
 							<p class="stat-label">Sold Item</p>
 							<p class="stat-value">1759</p>
 							<p class="stat-change">↑ 156</p>
