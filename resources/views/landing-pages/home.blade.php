@@ -517,7 +517,7 @@
 					<h1>You checked out TSSCOUT before — here’s what’s new.</h1>
 					<p class="hero-copy">We’ve upgraded our tools and data to help you find winning products, track competitors, and spot trends faster than ever.</p>
 
-					<a class="cta-button" href="https://app.tsscout.com" rel="noopener">
+					<a class="cta-button" href="https://app.tsscout.com/pricing" rel="noopener">
 						<span>Take Another Look</span>
 						<span class="cta-button-icon" aria-hidden="true">➜</span>
 					</a>
@@ -626,17 +626,18 @@
 					<h2>Ready to Explore TSSCOUT Again?</h2>
 					<p>Explore the updated platform.</p>
 
-					<a class="cta-button" href="https://app.tsscout.com" rel="noopener">
+					<a class="cta-button" href="https://tsscout.com" rel="noopener">
 						<span>Explore TSSCOUT</span>
 						<span class="cta-button-icon" aria-hidden="true">➜</span>
 					</a>
-
-					<p class="sub-note">
-						<img src="{{ asset('images/landing/home/icon-shield.svg') }}" alt="Shield icon" width="18" height="18" loading="lazy">
-						<span>No commitment</span>
-						<span aria-hidden="true">•</span>
-						<span>Cancel anytime</span>
-					</p>
+                    <div>
+                        <p class="sub-note">
+                            <img src="{{ asset('images/landing/home/icon-shield.svg') }}" alt="Shield icon" width="18" height="18" loading="lazy">
+                            <span>No commitment</span>
+                            <span aria-hidden="true">•</span>
+                            <span>Cancel anytime</span>
+                        </p>
+                    </div>
 				</div>
 			</div>
 		</section>
