@@ -44,7 +44,7 @@ class GenerateSitemap extends Command
         }
 
         // Dynamic Blog Routes
-        $blogs = Blog::all();
+        $blogs = Blog::where('published', true)->get();
         foreach ($blogs as $blog) {
             $sitemap->add(Url::create("/blogs/{$blog->slug}")
                 ->setLastModificationDate($blog->updated_at)

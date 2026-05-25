@@ -168,7 +168,7 @@ private function getFaqsByPageName($pageName)
 
     private function loadIndexPage($page)
     {
-        $blogs = Blog::orderBy('created_at', 'desc')->limit(3)->get();
+        $blogs = Blog::orderBy('created_at', 'desc')->where('published', true)->limit(3)->get();
         return view('index', ['page' => $page, 'blogs' => $blogs]);
     }
 
