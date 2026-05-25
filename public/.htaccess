@@ -35,7 +35,11 @@
 </IfModule>
 
 <IfModule mod_headers.c>
-    <FilesMatch "\.(?:css|js|mjs|svg|ico|webp|png|jpe?g|woff2?|ttf|otf)$">
+    <FilesMatch "\.svg$">
+        Header always unset Cache-Control
+        Header always set Cache-Control "public, max-age=31536000, s-maxage=31536000, immutable"
+    </FilesMatch>
+    <FilesMatch "\.(?:css|js|mjs|ico|webp|png|jpe?g|woff2?|ttf|otf)$">
         Header always unset Cache-Control
         Header always set Cache-Control "public, max-age=31536000, immutable"
     </FilesMatch>
