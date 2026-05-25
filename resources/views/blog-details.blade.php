@@ -69,10 +69,8 @@
         }
 
         .content table thead th,
-        .content table tbody td,
-        .content table tbody th,
-        .content table tr:first-child th,
-        .content table tr:first-child td {
+        .content table tbody td
+         {
             border-left: 1px solid rgba(162, 190, 224, 0.22);
             border-bottom: 1px solid rgba(162, 190, 224, 0.22);
             padding: 12px 14px;
