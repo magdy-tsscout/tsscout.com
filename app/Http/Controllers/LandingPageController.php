@@ -11,6 +11,7 @@ class LandingPageController extends Controller
     {
         $this->allowed_slugs = [
             'home',
+            'reengage',
         ];
     }
 
