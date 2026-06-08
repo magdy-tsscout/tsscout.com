@@ -197,8 +197,8 @@ class BlogController extends Controller
         // Retrieve all blogs
         $blogs = Blog::whereNotNull('image')
                 ->where('published', true)
-                 ->whereNull('video_url')->orderBy('created_at', 'desc')
-                 ->get();
+                ->whereNull('video_url')->orderBy('publish_date', 'desc')
+                ->get();
 
         // Retrieve the page data where 'view_name' equals 'blogs'
         $page = Page::where('view_name', 'blogs')->first();

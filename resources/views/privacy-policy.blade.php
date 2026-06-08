@@ -15,10 +15,10 @@
 
 @section('content')
    
-    <div class="container">
-        <div class="content">
+    <div class="container" bis_skin_checked="1">
+        <div class="content" bis_skin_checked="1">
             <h5 class="privacy1">Introduction</h5>
-            <p>At DROPSHIPPINGSCOUT.COM, we are committed to protecting the privacy and security of our users' personal information. This Privacy Policy outlines our practices concerning the collection, use, and disclosure of personal information provided by users of our services, including our website (www.Dropshippingscout.com) and any related services (collectively, the "Service"). By accessing or using our Service, you agree to the terms of this Privacy Policy.</p>           
+            <p>At tsscout.com, we are committed to protecting the privacy and security of our users' personal information. This Privacy Policy outlines our practices concerning the collection, use, and disclosure of personal information provided by users of our services, including our website (tsscout.com) and any related services (collectively, the "Service"). By accessing or using our Service, you agree to the terms of this Privacy Policy.</p>           
             <h5 class="privacy1">Information We Collect</h5>
             <h6>Personal Information</h6>
             <p>We collect personal information that you provide to us directly when you:</p>
@@ -78,10 +78,10 @@
             <h5>Changes to This Policy</h5>
             <p>We may update this Privacy Policy from time to time. We will notify you of any changes by posting the new Privacy Policy on our website. We encourage you to review this Privacy Policy periodically for any changes.</p>
             <h5>Contact Us</h5>
-            <p>If you have any questions about this Privacy Policy or our privacy practices, please contact us at <a href="mailto:privacy@Dropshippingscout.com">privacy@Dropshippingscout.com</a></p>
+            <p>If you have any questions about this Privacy Policy or our privacy practices, please contact us at <a href="mailto:privacy@Dropshippingscout.com">privacy@tsscout.com</a></p>
         </div>
     </div>
 
                   
-</div>
+
 @endsection
