@@ -187,6 +187,8 @@
             display: none;
         }
     </style>
+    <!-- Refgrow: referral tracking cookie script -->
+    <script src="https://scripts.refgrowcdn.com/latest.js" data-project-id="499" async defer></script>
     <!-- Google Tag Manager -->
 <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
 new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
@@ -201,6 +203,21 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 <!-- End Google Tag Manager (noscript) -->
     <div class="container">
+
+        <!-- Refgrow Affiliate Dashboard Widget -->
+        <div style="margin: 30px 0;">
+            @if(auth()->check())
+            <div id="refgrow"
+                data-project-id="499"
+                data-project-email="{{ auth()->user()->email }}">
+            </div>
+            @else
+            <div id="refgrow"
+                data-project-id="499">
+            </div>
+            @endif
+        </div>
+
         <div class="affiliate-header">
             <div>
                 <div><strong>Affiliate Status:</strong> <span class="active-status">Active</span></div>

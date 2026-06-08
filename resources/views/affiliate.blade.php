@@ -16,27 +16,29 @@
         <h5 class="title" style="margin-top:20px ; font-size: 20px; color: #1E3F5B; font-weight: 400;">Join the SCOUT Affiliate Program and turn your network into a revenue stream! <br> Partner with us and start making money effortlessly!</h5>
         <br>
 
-       
+
           <div class="con-left">
             <div class="left-column">
               <h2>Up to 20% Lifetime Recurring Commission!</h2>
-              
+
               <br>
               <p style="color: #1E3F5B;">Become a part of our growth journey and unlock the potential of earning up to 20% lifetime recurring commission. By promoting our powerful analytics platform, you’ll not only generate consistent revenue but also empower online businesses to succeed.</p>
 
               <p style="color: #1E3F5B;">Let’s grow together and reach new heights of success!</p>
                  <br>
+              <a href="{{ route('affiliate-program') }}">
               <button class="btn-default" style="background: var(--primary-500) 0% 0% no-repeat padding-box;
               border: 1px solid var(--primary-500);
               background: #3545D6 0% 0% no-repeat padding-box;
               border: 1px solid #3545D6; border-radius: 8px; opacity: 1;">Earn NOW!</button>
+              </a>
             </div>
             <div class="right-column">
               <img src="{{asset('./images/Group 7747@2x.png')}}" alt="Example Image">
             </div>
           </div>
-        
-    
+
+
           <div class="custom-container">
             <div class="custom-title">
               <h1>How You Can Reap the <span style="color: #3545D6;">Rewards</span></h1>
@@ -71,20 +73,20 @@
                   </div>
                   <div class="custom-content">
                     <h4 style="padding-bottom: 10px;">Earn NOW!</h4>
-                    
+
                     <p style="color: #1E3F5B;">Earn right from the moment your traffic converts. Check out More.</p>
-                    
+
                   </div>
                 </div>
               </div>
-              
+
             </div>
             <div class="button-container">
                 <a href="https://app.tsscout.com/pricing">
                 <button class="btn-default">Start For 1$</button>
                 </a>
           </div>
-         
+
 
           <section class="container my-5">
             <!-- Centered Title and Subtitle -->
@@ -93,7 +95,7 @@
                 <br>
                 <h5 class="section-subtitle" style="font-size: 18px;">SCOUT offers high earning potential and a strong partnership for growth</h5>
             </div>
-            
+
             <!-- First Row -->
             <div class="row">
                 <div class="col-md-4 mb-4">
@@ -134,7 +136,7 @@
                     </div>
                 </div>
             </div>
-            
+
             <!-- Second Row -->
             <div class="row">
                 <div class="col-md-4 mb-4">
@@ -188,9 +190,9 @@
 
 
             </div>
-        
+
         </section>
-        
+
 
 </div>
 
@@ -306,6 +308,6 @@
     </div>
     <!-- FAQs Page Ends -->
 
-    
+
 
    @endsection

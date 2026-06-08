@@ -182,6 +182,11 @@ Route::prefix('landing-pages')->group(function () {
         )->name('landing-page.show');
 });
 
+// Affiliate / Referral Program
+Route::get('/affiliate-program', function () {
+    return view('affiliate-dashboard');
+})->name('affiliate-program');
+
 // Dynamic Page Route
 Route::get('/{slug}', [PagesController::class, 'show'])->name('pages.show');
 
