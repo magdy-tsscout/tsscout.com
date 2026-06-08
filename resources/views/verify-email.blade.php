@@ -123,5 +123,6 @@
       <script src="{{asset('js/wow.js')}}"></script>
       <!-- Main Custom js file -->
       <script src="{{asset('js/function.js')}}"></script>
+      <x-refgrow />
 </body>
 </html>

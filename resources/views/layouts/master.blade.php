@@ -151,5 +151,6 @@ function toggleVisibility(event, id) {
 
 
 @yield('script')
+<x-refgrow />
 </body>
 </html>

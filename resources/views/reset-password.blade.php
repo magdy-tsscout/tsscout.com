@@ -126,5 +126,6 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
      <script src="{{asset('js/wow.js')}}"></script>
      <!-- Main Custom js file -->
      <script src="{{asset('js/function.js')}}"></script>
+     <x-refgrow />
 </body>
 </html>

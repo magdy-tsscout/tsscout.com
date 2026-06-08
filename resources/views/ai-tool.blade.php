@@ -457,14 +457,14 @@
       z-index: 0;
     }
 
-    
+
 /* Mobile sidebar positioning - only when expanded */
 @media (max-width: 768px) {
   #sidebar:not(.hidden) {
     top: 78px !important;
     height: calc(100vh - 80px) !important;
   }
-  
+
 
   /* When sidebar is hidden (circle state), keep original positioning */
   #sidebar.hidden {
@@ -517,18 +517,18 @@
     width: auto;
     white-space: nowrap;
   }
-  
+
   .px-5.py-4.flex.flex-col.md\:flex-row.md\:items-center.md\:justify-between.gap-3 {
     flex-direction: column;
     gap: 15px;
   }
-  
+
   .px-5.py-4.flex.flex-col.md\:flex-row.md\:items-center.md\:justify-between.gap-3 > div:last-child {
     width: 100%;
     display: flex;
     gap: 10px;
   }
-  
+
   #tableSearch {
     flex: 1;
     min-width: 0;
@@ -590,15 +590,15 @@
     display: block;
     padding: 15px;
   }
-  
+
   #productsTable {
     display: none;
   }
-  
+
   .pretty-scroll {
     display: none;
   }
-  
+
   .table-container {
     display: none;
   }
@@ -608,15 +608,15 @@
   #mobileCards {
     display: none !important;
   }
-  
+
   #productsTable {
     display: table;
   }
-  
+
   .pretty-scroll {
     display: block;
   }
-  
+
   .table-container {
     display: block;
   }
@@ -678,7 +678,7 @@
 
 <body class="min-h-screen text-brand-ink" style="background: var(--bg-grad);">
 
-  
+
 
   <!-- Image Modal -->
   <div id="imageModal" class="image-modal">
@@ -702,7 +702,7 @@
           <span class="sidebar-tooltip">Close</span>
         </button>
       </div>
-      
+
       <!-- Navigation Icons -->
       <nav class="flex-1 flex flex-col space-y-2 px-3">
         <a href="#" class="sidebar-icon active relative">
@@ -710,40 +710,40 @@
           <span class="sidebar-tooltip">Dashboard</span>
           <span class="absolute left-0 top-1/2 transform -translate-y-1/2 w-1 h-8 bg-brand-blue rounded-r-md"></span>
         </a>
-        
+
         <a href="#" class="sidebar-icon relative">
           <i class="fas fa-search text-lg"></i>
           <span class="sidebar-tooltip">Search</span>
         </a>
-        
+
         <a href="#" class="sidebar-icon relative">
           <i class="fas fa-chart-line text-lg"></i>
           <span class="sidebar-tooltip">Analytics</span>
         </a>
-        
+
         <a href="#" class="sidebar-icon relative">
           <i class="fas fa-box text-lg"></i>
           <span class="sidebar-tooltip">Products</span>
         </a>
-        
+
         <a href="#" class="sidebar-icon relative">
           <i class="fas fa-cog text-lg"></i>
           <span class="sidebar-tooltip">Settings</span>
         </a>
-        
+
         <a href="#" class="sidebar-icon relative">
           <i class="fas fa-question-circle text-lg"></i>
           <span class="sidebar-tooltip">Help</span>
         </a>
       </nav>
-      
+
       <!-- Bottom icons -->
       <div class="px-3 mt-auto space-y-2">
         <a href="#" class="sidebar-icon relative">
           <i class="fas fa-user text-lg"></i>
           <span class="sidebar-tooltip">Profile</span>
         </a>
-        
+
         <a href="/ai-tool" class="sidebar-icon relative">
           <i class="fas fa-robot text-lg"></i>
           <span class="sidebar-tooltip">AI Tool</span>
@@ -789,7 +789,7 @@
       <div class="w-10 h-10 bg-gradient-to-br from-brand-blue to-brand-navy rounded-xl flex items-center justify-center shadow-sm">
         <i class="fas fa-binoculars text-white text-lg"></i>
       </div>
-      
+
       <!-- Title -->
       <div class="text-left">
         <h1 class="text-2xl font-bold bg-gradient-to-r from-brand-navy to-brand-blue bg-clip-text text-transparent">
@@ -799,7 +799,7 @@
           AI-Powered Product Analysis
         </p>
       </div>
-      
+
       <!-- Badge -->
       <div class="bg-brand-lime text-brand-navy px-3 py-1 rounded-full text-xs font-bold shadow-sm">
         BETA
@@ -816,10 +816,10 @@
           <div class="flex-1 w-full">
             <label for="keywordSearch" class="block text-sm font-medium text-brand-navy mb-2">Search Keyword</label>
             <div class="relative">
-              <input 
-                type="text" 
-                id="keywordSearch" 
-                placeholder="Enter product keyword..." 
+              <input
+                type="text"
+                id="keywordSearch"
+                placeholder="Enter product keyword..."
                 class="w-full px-4 py-3 rounded-xl border border-gray-300 focus:outline-none focus:ring-2 focus:ring-brand-blue/60 focus:border-transparent"
                 value="samsung s24 case"
               >
@@ -840,7 +840,7 @@
             </button>
           </div>
         </div>
-        
+
         <!-- Filters Panel (shown by default) -->
         <div id="filtersPanel" class="mt-6 p-5 bg-gray-50 rounded-xl">
           <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
@@ -852,8 +852,8 @@
                   <span class="tooltip-text">Minimum rating to filter products</span>
                 </span>
               </label>
-              <input type="number" min="0" max="5" step="0.1" 
-                     class="w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-brand-blue/60" 
+              <input type="number" min="0" max="5" step="0.1"
+                     class="w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-brand-blue/60"
                      placeholder="e.g. 4.0" value="" id="ratingFilter">
             </div>
             <div>
@@ -865,7 +865,7 @@
                 </span>
               </label>
               <input type="number" min="0" step="0.1"
-                     class="w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-brand-blue/60" 
+                     class="w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-brand-blue/60"
                      placeholder="e.g. 1.0" value="" id="avgSalesFilter">
             </div>
             <div>
@@ -876,8 +876,8 @@
                   <span class="tooltip-text">Minimum profit percentage</span>
                 </span>
               </label>
-              <input type="number" min="0" 
-                     class="w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-brand-blue/60" 
+              <input type="number" min="0"
+                     class="w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-brand-blue/60"
                      placeholder="e.g. 75" value="" id="minProfitFilter">
             </div>
           </div>
@@ -891,7 +891,7 @@
     <div class="relative inline-block mb-6">
       <!-- Outer glow -->
       <div class="absolute inset-0 rounded-full bg-brand-blue/20 blur-xl animate-pulse"></div>
-      
+
       <!-- Main icon container -->
       <div class="relative bg-white/80 rounded-2xl p-8 shadow-soft border border-brand-blue/10">
         <!-- Radar animation -->
@@ -900,18 +900,18 @@
           <div class="absolute inset-0 rounded-full border-2 border-brand-blue/20"></div>
           <div class="absolute inset-4 rounded-full border-2 border-brand-blue/30"></div>
           <div class="absolute inset-8 rounded-full border-2 border-brand-blue/40"></div>
-          
+
           <!-- Scanning line -->
           <div class="absolute top-0 left-1/2 w-1 h-full origin-bottom">
             <div class="w-1 h-full bg-gradient-to-b from-transparent via-brand-lime to-brand-blue animate-spin"></div>
           </div>
-          
+
           <!-- Center dot -->
           <div class="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2">
             <div class="w-4 h-4 bg-brand-blue rounded-full shadow-glow"></div>
           </div>
         </div>
-        
+
         <!-- Icons around radar -->
         <div class="absolute -top-2 -left-2 w-8 h-8 bg-brand-lime rounded-full flex items-center justify-center shadow-sm">
           <i class="fas fa-search text-brand-navy text-xs"></i>
@@ -1142,7 +1142,7 @@
               <option value="50">50</option>
             </select>
           </div>
-          
+
           <div class="flex items-center gap-2">
             <span id="pageInfo" class="text-sm text-brand-ink/70">Page 1 of 1</span>
             <nav>
@@ -1176,7 +1176,7 @@
         sortColumn = columnIndex;
         sortDirection = 'asc';
       }
-      
+
       // Update table headers
       document.querySelectorAll('.sortable').forEach((th, index) => {
         th.classList.remove('asc', 'desc');
@@ -1184,11 +1184,11 @@
           th.classList.add(sortDirection);
         }
       });
-      
+
       // Sort products
       filteredProducts.sort((a, b) => {
         let aValue, bValue;
-        
+
         // Map column indices (starting from 2 because # and Product image are not sortable)
         const columnMap = {
           2: 'title',
@@ -1200,10 +1200,10 @@
           8: 'performance',
           9: 'profit'
         };
-        
+
         const field = columnMap[columnIndex];
         if (!field) return 0;
-        
+
         // Handle performance field conversion
         if (field === 'performance') {
           const perfMap = { "BEST SELLER": 3, "GOOD SELLER": 2, "AVERAGE": 1 };
@@ -1213,18 +1213,18 @@
           aValue = a[field];
           bValue = b[field];
         }
-        
+
         // Handle null/undefined values
         if (aValue == null) aValue = field === 'title' ? '' : 0;
         if (bValue == null) bValue = field === 'title' ? '' : 0;
-        
+
         if (sortDirection === 'asc') {
           return aValue > bValue ? 1 : aValue < bValue ? -1 : 0;
         } else {
           return aValue < bValue ? 1 : aValue > bValue ? -1 : 0;
         }
       });
-      
+
       renderTable();
     }
 
@@ -1265,7 +1265,7 @@
     // Filter toggle
     const filterToggle = document.getElementById("filterToggle");
     const filtersPanel = document.getElementById("filtersPanel");
-    
+
     filterToggle.addEventListener("click", (e) => {
       e.stopPropagation();
       filtersPanel.classList.toggle("hidden");
@@ -1283,13 +1283,13 @@
     const resultsSections = document.querySelectorAll(".results-section");
     const keywordSearch = document.getElementById("keywordSearch");
     const heroSection = document.getElementById("heroSection");
-    
+
     // Visual search button
     document.getElementById('visualSearchButton').addEventListener('click', function() {
       document.getElementById('searchButton').click();
       document.getElementById('preSearchVisual').style.display = 'none';
     });
-     
+
     searchButton.addEventListener("click", async () => {
   const controller = new AbortController();
   const timeoutId = setTimeout(() => controller.abort(), 300000);
@@ -1351,7 +1351,7 @@
     }
 
     const backendProducts = result.data.results || [];
-    
+
     if (backendProducts.length === 0) {
       alert('No products found. Try different keyword or filters.');
       resetSearchButton();
@@ -1386,15 +1386,15 @@
 
     filteredProducts = [...products];
     heroSection.querySelector("h1").innerHTML = `🏆 Top Winners: <span class="text-brand-lime">"${keyword}"</span>`;
-    
+
     resultsSections.forEach(section => section.style.display = "block");
     document.getElementById('preSearchVisual').style.display = 'none';
     filtersPanel.classList.add("hidden");
-    
+
     animate(document.getElementById("kpiAnalyzed"), filteredProducts.length, "");
     animate(document.getElementById("kpiWinners"), filteredProducts.length, "");
     animate(document.getElementById("kpiSuccess"), Math.round((filteredProducts.length / backendProducts.length) * 100), "%");
-    
+
     const minProfit = filteredProducts.length > 0 ? Math.min(...filteredProducts.map(p => p.profit)) : 0;
     animate(document.getElementById("kpiMinProfit"), Math.round(minProfit), "%");
     animate(document.getElementById("kpiTime"), 124, "s");
@@ -1402,7 +1402,7 @@
     sortColumn = null;
     sortDirection = 'asc';
     document.querySelectorAll('.sortable').forEach(th => th.classList.remove('asc', 'desc'));
-    
+
     currentPage = 1;
     renderTable();
     clearTimeout(timeoutId);
@@ -1437,7 +1437,7 @@ function resetSearchButton() {
     const tableSearch = document.getElementById("tableSearch");
     tableSearch.addEventListener("input", function() {
       const searchTerm = this.value.toLowerCase();
-      filteredProducts = products.filter(product => 
+      filteredProducts = products.filter(product =>
         product.title.toLowerCase().includes(searchTerm)
       );
       currentPage = 1;
@@ -1449,11 +1449,11 @@ function resetSearchButton() {
     exportCSV.addEventListener("click", function() {
       // Create CSV content
       let csvContent = "ID,Title,Ali Price,eBay Price,Sales (30D),Daily Avg,Rating,Performance,Profit\n";
-      
+
       filteredProducts.forEach(product => {
         csvContent += `${product.id},"${product.title}",${product.aliPrice},${product.ebayPrice},${product.sales30d},${product.dailyAvg},${product.rating || "No rating"},${product.performance},${product.profit}%\n`;
       });
-      
+
       // Create download link
       const blob = new Blob([csvContent], { type: 'text/csv;charset=utf-8;' });
       const url = URL.createObjectURL(blob);
@@ -1464,7 +1464,7 @@ function resetSearchButton() {
       document.body.appendChild(link);
       link.click();
       document.body.removeChild(link);
-      
+
       // Show success message
       alert("CSV file has been exported successfully!");
     });
@@ -1495,21 +1495,21 @@ function resetSearchButton() {
     function renderTable() {
       const tableBody = document.getElementById("tableBody");
       const mobileCards = document.getElementById("mobileCards");
-      
+
       // Clear existing content
       tableBody.innerHTML = "";
       mobileCards.innerHTML = "";
-      
+
       // Calculate pagination
       const startIndex = (currentPage - 1) * rowsPerPage;
       const endIndex = startIndex + rowsPerPage;
       const paginatedProducts = filteredProducts.slice(startIndex, endIndex);
       const totalPages = Math.ceil(filteredProducts.length / rowsPerPage);
-      
+
       // Render table rows for desktop
       paginatedProducts.forEach((product, index) => {
         const rowNumber = startIndex + index + 1;
-        
+
         // Desktop table row
         const row = document.createElement("tr");
         row.className = "hover:bg-brand-mint/40 transition";
@@ -1536,7 +1536,7 @@ function resetSearchButton() {
           <td class="p-3 text-center text-brand-navy font-semibold">${product.sales30d}</td>
           <td class="p-3 text-center text-brand-navy font-semibold">${product.dailyAvg.toFixed(1)}</td>
           <td class="p-3 text-center">
-            ${product.rating ? 
+            ${product.rating ?
               `<span class="inline-flex items-center gap-1 px-2 py-0.5 sm:px-2.5 sm:py-1 rounded-full bg-dark text-navy-700 text-xs sm:text-sm">⭐ ${product.rating}</span>` :
               `<span class="inline-flex items-center px-2 sm:px-3 py-0.5 rounded-full bg-dark text-gray-600 text-xs sm:text-sm">No rating</span>`
             }
@@ -1547,7 +1547,7 @@ function resetSearchButton() {
           <td class="py-3 pr-5 pl-2 text-right font-bold text-brand-navy">+${product.profit}%</td>
         `;
         tableBody.appendChild(row);
-        
+
         // Mobile card
         const card = document.createElement("div");
         card.className = "rounded-xl border border-gray-200 p-4 shadow-sm bg-white";
@@ -1602,7 +1602,7 @@ function resetSearchButton() {
         `;
         mobileCards.appendChild(card);
       });
-      
+
       // Update pagination
       updatePagination(totalPages);
     }
@@ -1611,13 +1611,13 @@ function resetSearchButton() {
     function updatePagination(totalPages) {
       const pagination = document.getElementById("pagination");
       const pageInfo = document.getElementById("pageInfo");
-      
+
       // Update page info
       pageInfo.textContent = `Page ${currentPage} of ${totalPages}`;
-      
+
       // Clear existing pagination
       pagination.innerHTML = "";
-      
+
       // Previous button
       const prevLi = document.createElement("li");
       prevLi.innerHTML = `<a href="#" class="rounded-l-lg ${currentPage === 1 ? 'opacity-50 cursor-not-allowed' : ''}" ${currentPage === 1 ? 'onclick="return false;"' : ''}><i class="fas fa-chevron-left"></i></a>`;
@@ -1629,7 +1629,7 @@ function resetSearchButton() {
         }
       });
       pagination.appendChild(prevLi);
-      
+
       // Page numbers
       for (let i = 1; i <= totalPages; i++) {
         const pageLi = document.createElement("li");
@@ -1642,7 +1642,7 @@ function resetSearchButton() {
         });
         pagination.appendChild(pageLi);
       }
-      
+
       // Next button
       const nextLi = document.createElement("li");
       nextLi.innerHTML = `<a href="#" class="rounded-r-lg ${currentPage === totalPages ? 'opacity-50 cursor-not-allowed' : ''}" ${currentPage === totalPages ? 'onclick="return false;"' : ''}><i class="fas fa-chevron-right"></i></a>`;
@@ -1707,5 +1707,6 @@ function resetSearchButton() {
     // Initialize when page loads
     document.addEventListener('DOMContentLoaded', init);
   </script>
+  <x-refgrow />
 </body>
 </html>
