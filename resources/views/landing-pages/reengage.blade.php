@@ -410,15 +410,10 @@
 			max-height: 19px;
 		}
 
-		.rg-card-icon {
-			background: #f1f6ff;
-		}
-
 		.rg-card-icon-img {
 			display: block;
-			width: 24px;
-			height: 24px;
-			object-fit: contain;
+			width: 28px;
+			height: 28px;
 		}
 
 		.rg-section {
@@ -455,12 +450,13 @@
 		}
 
 		.rg-card-icon {
-			width: 36px;
-			height: 36px;
-			margin: 0 auto 0.45rem;
-			border-radius: 9px;
-			background: #eaf2ff;
-			color: #1f57d7;
+			width: 62px;
+			height: 62px;
+			border-radius: 50%;
+			margin: 0 auto 0.7rem;
+			background: linear-gradient(145deg, #4785ff 0%, #1d4ed8 52%, #1231a6 100%);
+			box-shadow: 0 8px 22px rgba(18, 49, 166, 0.42);
+			color: #ffffff;
 			display: inline-flex;
 			align-items: center;
 			justify-content: center;
@@ -736,6 +732,14 @@
 			font-size: 0.74rem;
 		}
 
+		.rg-stars {
+			color: #f59e0b;
+			font-size: 0.9rem;
+			letter-spacing: 0.05em;
+			display: block;
+			margin-bottom: 0.42rem;
+		}
+
 		.rg-faq-item {
 			border: 1px solid #dce7ff;
 			border-radius: 12px;
@@ -822,29 +826,130 @@
 			min-width: 180px;
 		}
 
+		.rg-cta-right {
+			display: flex;
+			flex-direction: column;
+			align-items: flex-start;
+			gap: 0.3rem;
+		}
+
+		.rg-cta-trust {
+			margin: 0;
+			color: rgba(217, 231, 255, 0.8);
+			font-size: 0.76rem;
+		}
+
 		.rg-footer {
 			border-top: 1px solid #d6e3ff;
-			padding: 0.9rem 0 1.4rem;
+			padding: 1.4rem 0 0;
 			color: #6378a4;
 			font-size: 0.74rem;
+			background: #f8fbff;
 		}
 
-		.rg-footer-grid {
+		.rg-footer-main {
 			display: grid;
 			grid-template-columns: 1fr;
-			gap: 0.55rem;
+			gap: 1.4rem;
+			padding-bottom: 1.2rem;
 		}
 
-		.rg-footer-links {
+		.rg-footer-brand {
 			display: flex;
-			flex-wrap: wrap;
-			gap: 0.6rem;
+			flex-direction: column;
+			gap: 0.4rem;
 		}
 
-		.rg-footer-links a {
+		.rg-footer-brand-name {
+			display: inline-flex;
+			align-items: center;
+			gap: 0.42rem;
+			color: #0f2e80;
+			font-weight: 800;
+			font-size: 0.96rem;
+			text-decoration: none;
+		}
+
+		.rg-footer-brand-name .rg-logo {
+			width: 24px;
+			height: 24px;
+		}
+
+		.rg-footer-brand p {
+			margin: 0.22rem 0 0;
+			color: #6378a4;
+			font-size: 0.74rem;
+			line-height: 1.55;
+			max-width: 26ch;
+		}
+
+		.rg-footer-cols {
+			display: grid;
+			grid-template-columns: repeat(2, 1fr);
+			gap: 1rem 1.2rem;
+		}
+
+		.rg-footer-col h4 {
+			margin: 0 0 0.5rem;
+			color: #0f2e80;
+			font-size: 0.69rem;
+			font-weight: 800;
+			letter-spacing: 0.08em;
+			text-transform: uppercase;
+		}
+
+		.rg-footer-col ul {
+			margin: 0;
+			padding: 0;
+			list-style: none;
+			display: grid;
+			gap: 0.3rem;
+		}
+
+		.rg-footer-col li a {
+			color: #506492;
+			text-decoration: none;
+			font-size: 0.76rem;
+			font-weight: 600;
+			transition: color 0.2s;
+		}
+
+		.rg-footer-col li a:hover {
+			color: #1642a8;
+		}
+
+		.rg-footer-bottom {
+			border-top: 1px solid #dde8ff;
+			padding: 0.7rem 0 1rem;
+			display: flex;
+			align-items: center;
+			justify-content: space-between;
+			flex-wrap: wrap;
+			gap: 0.5rem;
+		}
+
+		.rg-footer-social {
+			display: flex;
+			align-items: center;
+			gap: 0.42rem;
+		}
+
+		.rg-footer-social a {
+			display: inline-flex;
+			align-items: center;
+			justify-content: center;
+			width: 28px;
+			height: 28px;
+			border-radius: 7px;
+			background: #edf3ff;
 			color: #4d6394;
 			text-decoration: none;
-			font-weight: 700;
+			transition: background 0.2s, color 0.2s;
+		}
+
+		.rg-footer-social a:hover {
+			background: #1642a8;
+			color: #ffffff;
 		}
 
 		@media (min-width: 680px) {
@@ -878,9 +983,12 @@
 				grid-column: span 2;
 			}
 
-			.rg-footer-grid {
-				grid-template-columns: 1fr auto;
-				align-items: center;
+			.rg-metrics {
+				grid-template-columns: repeat(3, minmax(0, 1fr));
+			}
+
+			.rg-footer-cols {
+				grid-template-columns: repeat(4, 1fr);
 			}
 		}
 
@@ -930,7 +1038,12 @@
 			}
 
 			.rg-metrics {
-				grid-template-columns: repeat(6, minmax(0, 1fr));
+				grid-template-columns: repeat(5, minmax(0, 1fr));
+			}
+
+			.rg-footer-main {
+				grid-template-columns: 1.1fr 2fr;
+				align-items: start;
 			}
 
 			.rg-price-grid {
@@ -1058,28 +1171,53 @@
 			<div class="rg-grid-4">
 				<article class="rg-card">
 					<span class="rg-card-icon" aria-hidden="true">
-						<img class="rg-card-icon-img" src="{{ asset('images/icon-whyus-1.svg') }}" alt="" loading="lazy" decoding="async">
+						<!-- Person + magnifying glass: searching a saturated market -->
+						<svg class="rg-card-icon-img" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" xmlns="http://www.w3.org/2000/svg">
+							<circle cx="9" cy="6" r="3.5"/>
+							<path d="M1.5 20c0-4.14 3.36-7.5 7.5-7.5"/>
+							<circle cx="17.5" cy="16.5" r="3.5"/>
+							<line x1="20" y1="19" x2="22.5" y2="21.5"/>
+						</svg>
 					</span>
 					<h3>Choosing saturated products</h3>
 					<p>Most sellers enter crowded markets too late.</p>
 				</article>
 				<article class="rg-card">
 					<span class="rg-card-icon" aria-hidden="true">
-						<img class="rg-card-icon-img" src="{{ asset('images/icon-whyus-2.svg') }}" alt="" loading="lazy" decoding="async">
+						<!-- Table with full-width header + 3-column cell rows below -->
+						<svg class="rg-card-icon-img" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" xmlns="http://www.w3.org/2000/svg">
+							<rect x="2" y="3" width="20" height="18" rx="2"/>
+							<path d="M2 9h20"/>
+							<path d="M2 15h20"/>
+							<path d="M9 9v12"/>
+							<path d="M16 9v12"/>
+						</svg>
 					</span>
 					<h3>Running stores without real data</h3>
 					<p>Guessing products leads to wasted time and poor sales.</p>
 				</article>
 				<article class="rg-card">
 					<span class="rg-card-icon" aria-hidden="true">
-						<img class="rg-card-icon-img" src="{{ asset('images/icon-whyus-3.svg') }}" alt="" loading="lazy" decoding="async">
+						<!-- Eye: copying / watching competitors blindly -->
+						<svg class="rg-card-icon-img" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" xmlns="http://www.w3.org/2000/svg">
+							<path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/>
+							<circle cx="12" cy="12" r="3"/>
+						</svg>
 					</span>
 					<h3>Copying competitors blindly</h3>
 					<p>Without competitor insight, sellers stay behind.</p>
 				</article>
 				<article class="rg-card">
 					<span class="rg-card-icon" aria-hidden="true">
-						<img class="rg-card-icon-img" src="{{ asset('images/icon-whyus-4.svg') }}" alt="" loading="lazy" decoding="async">
+						<!-- Clock: hours wasted finding suppliers -->
+						<svg class="rg-card-icon-img" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" xmlns="http://www.w3.org/2000/svg">
+							<circle cx="12" cy="12" r="10"/>
+							<polyline points="12 6 12 12 16 14"/>
+							<line x1="12" y1="2" x2="12" y2="3"/>
+							<line x1="12" y1="21" x2="12" y2="22"/>
+							<line x1="2" y1="12" x2="3" y2="12"/>
+							<line x1="21" y1="12" x2="22" y2="12"/>
+						</svg>
 					</span>
 					<h3>Spending hours finding suppliers</h3>
 					<p>Manual supplier research wastes valuable time.</p>
@@ -1089,12 +1227,80 @@
 
 			<h2 style="margin-top: 1rem;" aria-label="Research capabilities">Everything You Need To Research Winning Products</h2>
 			<div class="rg-grid-6">
-				<article class="rg-card"><span class="rg-card-icon" aria-hidden="true"><img class="rg-card-icon-img" src="{{ asset('images/icon-choice-1.svg') }}" alt="" loading="lazy" decoding="async"></span><h3>Product Research</h3><p>Analyze best-selling products by category, timeframe, and sales history.</p></article>
-				<article class="rg-card"><span class="rg-card-icon" aria-hidden="true"><img class="rg-card-icon-img" src="{{ asset('images/icon-choice-2.svg') }}" alt="" loading="lazy" decoding="async"></span><h3>Competitor Analysis</h3><p>Track seller performance, ratings, history, and product activity.</p></article>
-				<article class="rg-card"><span class="rg-card-icon" aria-hidden="true"><img class="rg-card-icon-img" src="{{ asset('images/icon-choice-3.svg') }}" alt="" loading="lazy" decoding="async"></span><h3>Supplier Finder</h3><p>Compare eBay listings with AliExpress supplier prices.</p></article>
-				<article class="rg-card"><span class="rg-card-icon" aria-hidden="true"><img class="rg-card-icon-img" src="{{ asset('images/landing/home/feature-trend.svg') }}" alt="" loading="lazy" decoding="async"></span><h3>TikTok Trend Scanner</h3><p>Discover trending TikTok Shop products before they become saturated.</p></article>
-				<article class="rg-card"><span class="rg-card-icon" aria-hidden="true"><img class="rg-card-icon-img" src="{{ asset('images/landing/home/feature-bars.svg') }}" alt="" loading="lazy" decoding="async"></span><h3>Shopify Store Analysis</h3><p>Analyze Shopify stores and spot under-performing product lists.</p></article>
-				<article class="rg-card"><span class="rg-card-icon" aria-hidden="true"><img class="rg-card-icon-img" src="{{ asset('images/landing/home/feature-search.svg') }}" alt="" loading="lazy" decoding="async"></span><h3>SmartTitles</h3><p>Generate optimized listing titles to improve visibility and clicks.</p></article>
+				<article class="rg-card">
+					<span class="rg-card-icon" aria-hidden="true">
+						<!-- Product Research: magnifying glass over product box -->
+						<svg class="rg-card-icon-img" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" xmlns="http://www.w3.org/2000/svg">
+							<circle cx="11" cy="11" r="7"/>
+							<line x1="21" y1="21" x2="16.65" y2="16.65"/>
+							<path d="M8 11h6M11 8v6"/>
+						</svg>
+					</span>
+					<h3>Product Research</h3>
+					<p>Analyze best-selling products by category, timeframe, and sales history.</p>
+				</article>
+				<article class="rg-card">
+					<span class="rg-card-icon" aria-hidden="true">
+						<!-- Competitor Analysis: bar chart with trend arrow -->
+						<svg class="rg-card-icon-img" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" xmlns="http://www.w3.org/2000/svg">
+							<line x1="18" y1="20" x2="18" y2="10"/>
+							<line x1="12" y1="20" x2="12" y2="4"/>
+							<line x1="6" y1="20" x2="6" y2="14"/>
+							<line x1="2" y1="20" x2="22" y2="20"/>
+							<polyline points="4 9 8 5 12 9 16 5 20 5"/>
+							<polyline points="17 5 20 5 20 8"/>
+						</svg>
+					</span>
+					<h3>Competitor Analysis</h3>
+					<p>Track seller performance, ratings, history, and product activity.</p>
+				</article>
+				<article class="rg-card">
+					<span class="rg-card-icon" aria-hidden="true">
+						<!-- Supplier Finder: chain link -->
+						<svg class="rg-card-icon-img" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" xmlns="http://www.w3.org/2000/svg">
+							<path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"/>
+							<path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"/>
+						</svg>
+					</span>
+					<h3>Supplier Finder</h3>
+					<p>Compare eBay listings with AliExpress supplier prices.</p>
+				</article>
+				<article class="rg-card">
+					<span class="rg-card-icon" aria-hidden="true">
+						<!-- TikTok Trend Scanner: flame icon -->
+						<svg class="rg-card-icon-img" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" xmlns="http://www.w3.org/2000/svg">
+							<path d="M8.5 14.5A2.5 2.5 0 0 0 11 12c0-1.38-.5-2-1-3-1.072-2.143-.224-4.054 2-6 .5 2.5 2 4.9 4 6.5 2 1.6 3 3.5 3 5.5a7 7 0 1 1-14 0c0-1.153.433-2.294 1-3a2.5 2.5 0 0 0 2.5 2.5z"/>
+						</svg>
+					</span>
+					<h3>TikTok Trend Scanner</h3>
+					<p>Discover trending TikTok Shop products before they become saturated.</p>
+				</article>
+				<article class="rg-card">
+					<span class="rg-card-icon" aria-hidden="true">
+						<!-- Shopify Store Analysis: storefront / shopping bag -->
+						<svg class="rg-card-icon-img" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" xmlns="http://www.w3.org/2000/svg">
+							<path d="M6 2L3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z"/>
+							<line x1="3" y1="6" x2="21" y2="6"/>
+							<path d="M16 10a4 4 0 0 1-8 0"/>
+						</svg>
+					</span>
+					<h3>Shopify Store Analysis</h3>
+					<p>Analyze Shopify stores and spot under-performing product lists.</p>
+				</article>
+				<article class="rg-card">
+					<span class="rg-card-icon" aria-hidden="true">
+						<!-- SmartTitles: document with AI sparkle -->
+						<svg class="rg-card-icon-img" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" xmlns="http://www.w3.org/2000/svg">
+							<path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/>
+							<polyline points="14 2 14 8 20 8"/>
+							<line x1="8" y1="13" x2="14" y2="13"/>
+							<line x1="8" y1="17" x2="12" y2="17"/>
+							<path d="M18 13l.67 1.33L20 15l-1.33.67L18 17l-.67-1.33L16 15l1.33-.67L18 13z"/>
+						</svg>
+					</span>
+					<h3>SmartTitles</h3>
+					<p>Generate optimized listing titles to improve visibility and clicks.</p>
+				</article>
 			</div>
 		</section>
 
@@ -1137,9 +1343,13 @@
 				<article class="rg-metric"><h3>Last Sold Date</h3><p>2 hours ago</p></article>
 				<article class="rg-metric"><h3>Seller Name</h3><p>bestshop.store</p></article>
 				<article class="rg-metric"><h3>Product Rating</h3><p>4.8 / 5</p></article>
-				<article class="rg-metric"><h3>Estimated Profit</h3><p>$15.55</p></article>
-				<article class="rg-metric"><h3>Competition</h3><p>92 / 100</p></article>
+				<article class="rg-metric"><h3>Estimated Demand</h3><p>High</p></article>
+				<article class="rg-metric"><h3>Supplier Price</h3><p>$8.45</p></article>
+				<article class="rg-metric"><h3>Profit Opportunity</h3><p>$15.55</p></article>
+				<article class="rg-metric"><h3>Competitor Activity</h3><p>Active</p></article>
+				<article class="rg-metric"><h3>Trending Score</h3><p>92 / 100</p></article>
 			</div>
+			<p class="rg-line-note">Stop guessing. Start selling with real market data.</p>
 		</section>
 
 		<section class="rg-shell rg-section" aria-label="Feature comparison">
@@ -1195,14 +1405,17 @@
 			<h2>What Sellers Are Saying</h2>
 			<div class="rg-grid-3">
 				<article class="rg-quote">
+					<span class="rg-stars" aria-label="5 out of 5 stars">★★★★★</span>
 					<p>TSScout helped me find my first winning product in less than a week.</p>
 					<small>Sarah M. • eBay Seller</small>
 				</article>
 				<article class="rg-quote">
+					<span class="rg-stars" aria-label="5 out of 5 stars">★★★★★</span>
 					<p>This tool saved me hours of product research every week.</p>
 					<small>James R. • Shopify Store Owner</small>
 				</article>
 				<article class="rg-quote">
+					<span class="rg-stars" aria-label="5 out of 5 stars">★★★★★</span>
 					<p>Competitor tracking alone makes TSScout worth it.</p>
 					<small>Emily T. • Amazon Seller</small>
 				</article>
@@ -1251,17 +1464,75 @@
 				<h2>Ready To Find Your Next Winning Product?</h2>
 				<p>Stop guessing. Start selling with real market data.</p>
 			</div>
-			<a class="rg-primary-cta" href="https://app.tsscout.com/pricing" rel="noopener">Start Your $1 Trial</a>
+			<div class="rg-cta-right">
+				<a class="rg-primary-cta" href="https://app.tsscout.com/pricing" rel="noopener">Start Your $1 Trial</a>
+				<p class="rg-cta-trust">Full premium access • Cancel anytime</p>
+			</div>
 		</section>
 
 		<footer class="rg-footer">
-			<div class="rg-shell rg-footer-grid">
+			<div class="rg-shell rg-footer-main">
+				<div class="rg-footer-brand">
+					<a class="rg-footer-brand-name" href="{{ url('/') }}">
+						<span class="rg-logo" aria-hidden="true">
+							<svg viewBox="0 0 24 24" width="14" height="14" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M6 8h12M6 12h9M6 16h6" stroke="#fff" stroke-width="2" stroke-linecap="round"/></svg>
+						</span>
+						TSScout
+					</a>
+					<p>Product &amp; competitor research platform for eCommerce sellers.</p>
+				</div>
+				<div class="rg-footer-cols">
+					<div class="rg-footer-col">
+						<h4>Product</h4>
+						<ul>
+							<li><a href="https://app.tsscout.com" rel="noopener">Product Research</a></li>
+							<li><a href="https://app.tsscout.com" rel="noopener">Competitor Analysis</a></li>
+							<li><a href="https://app.tsscout.com" rel="noopener">Supplier Finder</a></li>
+							<li><a href="https://app.tsscout.com" rel="noopener">TikTok Trends</a></li>
+							<li><a href="https://app.tsscout.com" rel="noopener">SmartTitles</a></li>
+						</ul>
+					</div>
+					<div class="rg-footer-col">
+						<h4>Company</h4>
+						<ul>
+							<li><a href="https://tsscout.com/about" rel="noopener">About Us</a></li>
+							<li><a href="{{ url('/blog') }}">Blog</a></li>
+							<li><a href="https://tsscout.com/contact" rel="noopener">Contact</a></li>
+						</ul>
+					</div>
+					<div class="rg-footer-col">
+						<h4>Resources</h4>
+						<ul>
+							<li><a href="https://tsscout.com/help" rel="noopener">Help Center</a></li>
+							<li><a href="https://tsscout.com/guides" rel="noopener">Guides</a></li>
+							<li><a href="https://tsscout.com/api" rel="noopener">API</a></li>
+						</ul>
+					</div>
+					<div class="rg-footer-col">
+						<h4>Legal</h4>
+						<ul>
+							<li><a href="https://tsscout.com/terms" rel="noopener">Terms of Service</a></li>
+							<li><a href="https://tsscout.com/privacy" rel="noopener">Privacy Policy</a></li>
+							<li><a href="https://tsscout.com/refund" rel="noopener">Refund Policy</a></li>
+						</ul>
+					</div>
+				</div>
+			</div>
+			<div class="rg-shell rg-footer-bottom">
 				<div>© {{ date('Y') }} TSScout. All rights reserved.</div>
-				<nav class="rg-footer-links" aria-label="Footer">
-					<a href="{{ url('/') }}">Home</a>
-					<a href="https://tsscout.com/guides" rel="noopener">Guides</a>
-					<a href="https://tsscout.com/pricing" rel="noopener">Pricing</a>
-					<a href="https://tsscout.com/contact" rel="noopener">Contact</a>
+				<nav class="rg-footer-social" aria-label="Social media">
+					<a href="https://facebook.com" rel="noopener noreferrer" aria-label="Facebook">
+						<svg viewBox="0 0 24 24" width="14" height="14" fill="currentColor" xmlns="http://www.w3.org/2000/svg"><path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"/></svg>
+					</a>
+					<a href="https://twitter.com" rel="noopener noreferrer" aria-label="Twitter / X">
+						<svg viewBox="0 0 24 24" width="14" height="14" fill="currentColor" xmlns="http://www.w3.org/2000/svg"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg>
+					</a>
+					<a href="https://youtube.com" rel="noopener noreferrer" aria-label="YouTube">
+						<svg viewBox="0 0 24 24" width="14" height="14" fill="currentColor" xmlns="http://www.w3.org/2000/svg"><path d="M22.54 6.42a2.78 2.78 0 0 0-1.95-1.96C18.88 4 12 4 12 4s-6.88 0-8.59.46A2.78 2.78 0 0 0 1.46 6.42 29 29 0 0 0 1 12a29 29 0 0 0 .46 5.58 2.78 2.78 0 0 0 1.95 1.96C5.12 20 12 20 12 20s6.88 0 8.59-.46a2.78 2.78 0 0 0 1.95-1.96A29 29 0 0 0 23 12a29 29 0 0 0-.46-5.58zM9.75 15.02V8.98L15.5 12z"/></svg>
+					</a>
+					<a href="https://instagram.com" rel="noopener noreferrer" aria-label="Instagram">
+						<svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" xmlns="http://www.w3.org/2000/svg"><rect width="20" height="20" x="2" y="2" rx="5" ry="5"/><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/><line x1="17.5" x2="17.51" y1="6.5" y2="6.5"/></svg>
+					</a>
 				</nav>
 			</div>
 		</footer>
