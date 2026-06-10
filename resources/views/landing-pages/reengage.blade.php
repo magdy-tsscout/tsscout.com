@@ -1,14 +1,20 @@
-@extends('layouts.landing')
-
-@section('title', 'TSScout – Find Winning Products Before Your Competitors')
-@section('meta_description', 'Analyze eBay, Shopify, Walmart & TikTok Shop data to discover trending products, track competitors, compare supplier prices, and build better listings faster.')
-@section('meta_keywords', 'product research, competitor analysis, supplier finder, TikTok trends, Shopify analysis, eBay tools, ecommerce tools')
-@section('meta_author', 'TSScout')
-@section('og_title', 'TSScout – Find Winning Products Before Your Competitors')
-@section('og_description', 'Analyze eBay, Shopify, Walmart & TikTok Shop data to discover trending products, track competitors, compare supplier prices, and build better listings faster.')
-@section('og_image', asset('images/landing/reengage/dashboard.jpg'))
-
-@section('styles')
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Analyze eBay, Shopify, Walmart &amp; TikTok Shop data to discover trending products, track competitors, compare supplier prices, and build better listings faster.">
+  <meta name="keywords" content="product research, competitor analysis, supplier finder, TikTok trends, Shopify analysis, eBay tools, ecommerce tools">
+  <meta name="author" content="TSScout">
+  <meta property="og:title" content="TSScout – Find Winning Products Before Your Competitors">
+  <meta property="og:description" content="Analyze eBay, Shopify, Walmart &amp; TikTok Shop data to discover trending products, track competitors, compare supplier prices, and build better listings faster.">
+  <meta property="og:image" content="{{ asset('images/landing/reengage/dashboard.jpg') }}">
+  <meta property="og:url" content="{{ url()->current() }}">
+  <meta property="og:type" content="website">
+  <meta property="og:site_name" content="tsscout">
+  <title>TSScout – Find Winning Products Before Your Competitors</title>
+  <link rel="canonical" href="{{ url()->current() }}">
+  <link rel="shortcut icon" type="image/x-icon" href="{{ asset('images/Scout-Logo%2020x20-01.svg') }}">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,400;0,500;0,600;0,700;1,700&display=swap" rel="stylesheet">
@@ -913,9 +919,9 @@ ul { list-style: none; }
 .lp-social:hover { background: rgba(255,255,255,.14); color: #fff; }
 .lp-social svg { width: 15px; height: 15px; }
 </style>
-@endsection
-
-@section('content')
+</head>
+<body>
+<noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-KV3N43LJ" height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 
 {{-- ════ NAVIGATION ════ --}}
 <nav class="lp-nav" aria-label="Main navigation">
@@ -1730,9 +1736,6 @@ ul { list-style: none; }
   </div>
 </footer>
 
-@endsection
-
-@section('script')
 <script>
 (function () {
   // FAQ accordion
@@ -1759,4 +1762,6 @@ ul { list-style: none; }
   });
 })();
 </script>
-@endsection
+<x-refgrow />
+</body>
+</html>
