@@ -1710,28 +1710,8 @@
     </div>
     <div class="lp-faq-list">
 
-      @php
-      $faqs = [
-        [
-          'q' => 'How does the $1 trial work?',
-          'a' => 'Start your full-access trial for just $1. After the trial period, your subscription continues at the regular premium price. Cancel anytime before the trial ends and you won\'t be charged anything more.',
-        ],
-        [
-          'q' => 'Can I cancel anytime?',
-          'a' => 'Yes, you can cancel your subscription at any time with no questions asked. There are no long-term contracts or hidden fees.',
-        ],
-        [
-          'q' => 'Which marketplaces does TSScout support?',
-          'a' => 'TSScout supports eBay, Shopify, Walmart, TikTok Shop, and AliExpress — giving you a complete view of the eCommerce landscape.',
-        ],
-        [
-          'q' => 'Is TSScout beginner friendly?',
-          'a' => 'Absolutely! TSScout is designed for sellers of all experience levels. Whether you\'re just starting out or scaling an existing store, our tools are intuitive and easy to use.',
-        ],
-      ];
-      @endphp
 
-      @foreach($faqs as $idx => $faq)
+      @foreach(\App\Models\Faq::get() as $idx => $faq)
       <div class="lp-faq-item" id="faq-{{ $idx }}">
         <button
           class="lp-faq-btn"
@@ -1739,7 +1719,7 @@
           aria-expanded="false"
           aria-controls="faq-body-{{ $idx }}"
         >
-          <span>{{ $faq['q'] }}</span>
+          <span>{{ $faq->question }}</span>
           <span class="lp-faq-chevron" aria-hidden="true">
             <svg viewBox="0 0 11 7" fill="none">
               <path d="M1 1l4.5 4.5L10 1" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>
@@ -1747,7 +1727,7 @@
           </span>
         </button>
         <div class="lp-faq-body" id="faq-body-{{ $idx }}" role="region" aria-labelledby="faq-{{ $idx }}">
-          <p>{{ $faq['a'] }}</p>
+          <p>{!! $faq->answer !!}</p>
         </div>
       </div>
       @endforeach
