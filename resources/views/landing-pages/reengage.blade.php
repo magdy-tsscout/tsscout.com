@@ -15,13 +15,10 @@
   <title>TSScout – Find Winning Products Before Your Competitors</title>
   <link rel="canonical" href="{{ url()->current() }}">
   <link rel="shortcut icon" type="image/x-icon" href="{{ asset('images/Scout-Logo%2020x20-01.svg') }}">
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,400;0,500;0,600;0,700;1,700&display=swap" rel="stylesheet">
 <style type="text/css">
     /* ── RESET & BASE ── */
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-    body { font-family: 'Poppins', 'Segoe UI', Tahoma, sans-serif; color: #1d2a4f; background: #fff; line-height: 1.5; }
+    body { font-family: 'Segoe UI', Tahoma, Arial, sans-serif; color: #1d2a4f; background: #fff; line-height: 1.5; }
     img { max-width: 100%; height: auto; display: block; }
     a { text-decoration: none; color: inherit; }
     ul { list-style: none; }
@@ -437,8 +434,10 @@
     filter: none;
     transition: transform .2s ease;
     }
+    .lp-trust-logos picture { display: block; }
     .lp-trust-logos img:hover { transform: translateY(-1px); }
-    .tiktok-shop { height: 80px !important; max-width: 150px !important;}
+    .lp-trust-logo-shopify { height: 34px !important; max-width: 140px !important; }
+    .lp-trust-logo-tiktok { height: 42px !important; max-width: 150px !important; }
 
     /* ════════════════════════════════════════
     PROBLEM SECTION
@@ -1250,15 +1249,23 @@
 
       {{-- Right – dashboard preview --}}
       <div class="lp-hero-img dashed-border">
-        <img
-          src="{{ asset('images/landing/reengage/dashboard-preview.png') }}"
-          alt="TSScout Dashboard Preview"
-          width="957"
-          height="441"
-          loading="eager"
-          fetchpriority="high"
-          style="max-width:100%;border-radius:12px;box-shadow:0 20px 60px rgba(47,87,246,.2);"
-        >
+        <picture>
+          <source
+            type="image/webp"
+            srcset="{{ asset('images/landing/reengage/dashboard-preview-640.webp') }} 640w, {{ asset('images/landing/reengage/dashboard-preview-960.webp') }} 960w"
+            sizes="(min-width: 1024px) 58vw, 100vw"
+          >
+          <img
+            src="{{ asset('images/landing/reengage/dashboard-preview.png') }}"
+            alt="TSScout Dashboard Preview"
+            width="957"
+            height="441"
+            loading="eager"
+            fetchpriority="high"
+            decoding="async"
+            style="max-width:100%;border-radius:12px;box-shadow:0 20px 60px rgba(47,87,246,.2);"
+          >
+        </picture>
       </div>
 
     </div>
@@ -1273,8 +1280,11 @@
       <div class="lp-trust-logos">
         <img src="{{ asset('images/amazon-logo.jpg') }}"     alt="Amazon"      height="26" loading="lazy">
         <img src="{{ asset('images/ebay.jpg') }}"            alt="eBay"         height="26" loading="lazy">
-        <img src="{{ asset('images/shopify-logo-black.png') }}" alt="Shopify"   height="26" class="tiktok-shop" loading="lazy">
-        <img src="{{ asset('images/tiktok_shop_logo.png') }}" class="tiktok-shop" alt="TikTok Shop" height="26" loading="lazy">
+        <img src="{{ asset('images/shopify-logo-black.svg') }}" alt="Shopify" class="lp-trust-logo-shopify" width="140" height="40" loading="lazy" decoding="async">
+        <picture>
+          <source srcset="{{ asset('images/tiktok_shop_logo-320.webp') }}" type="image/webp">
+          <img src="{{ asset('images/tiktok_shop_logo.png') }}" class="lp-trust-logo-tiktok" alt="TikTok Shop" width="150" height="81" loading="lazy" decoding="async">
+        </picture>
         <img src="{{ asset('images/aliexpress-logo.jpg') }}" alt="AliExpress"   height="26" loading="lazy">
         <img src="{{ asset('images/walmart.jpg') }}"         alt="Walmart"      height="26" loading="lazy">
       </div>
