@@ -22,6 +22,17 @@
     img { max-width: 100%; height: auto; display: block; }
     a { text-decoration: none; color: inherit; }
     ul { list-style: none; }
+    .lp-sr-only {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    padding: 0;
+    margin: -1px;
+    overflow: hidden;
+    clip: rect(0, 0, 0, 0);
+    white-space: nowrap;
+    border: 0;
+    }
 
     /* ── TOKENS ── */
     :root {
@@ -1145,7 +1156,7 @@
 <nav class="lp-nav" aria-label="Main navigation">
   <div class="lp-shell lp-nav-inner">
     <a href="/" class="lp-nav-logo" aria-label="TSScout home">
-      <img src="{{ asset('images/logo.svg') }}" alt="TSScout" height="34">
+      <img src="{{ asset('images/logo.svg') }}" alt="TSScout" width="102" height="34">
     </a>
 
     <button class="lp-nav-toggle" type="button" aria-expanded="false" aria-controls="lp-nav-menu" aria-label="Toggle menu">
@@ -1278,15 +1289,15 @@
     <div class="lp-trust-inner">
       <p class="lp-trust-label">Trusted By eCommerce Sellers Worldwide</p>
       <div class="lp-trust-logos">
-        <img src="{{ asset('images/amazon-logo.jpg') }}"     alt="Amazon"      height="26" loading="lazy">
-        <img src="{{ asset('images/ebay.jpg') }}"            alt="eBay"         height="26" loading="lazy">
+        <img src="{{ asset('images/amazon-logo.jpg') }}"     alt="Amazon"      width="86" height="26" loading="lazy">
+        <img src="{{ asset('images/ebay.jpg') }}"            alt="eBay"         width="68" height="26" loading="lazy">
         <img src="{{ asset('images/shopify-logo-black.svg') }}" alt="Shopify" class="lp-trust-logo-shopify" width="140" height="40" loading="lazy" decoding="async">
         <picture>
           <source srcset="{{ asset('images/tiktok_shop_logo-320.webp') }}" type="image/webp">
           <img src="{{ asset('images/tiktok_shop_logo.png') }}" class="lp-trust-logo-tiktok" alt="TikTok Shop" width="150" height="81" loading="lazy" decoding="async">
         </picture>
-        <img src="{{ asset('images/aliexpress-logo.jpg') }}" alt="AliExpress"   height="26" loading="lazy">
-        <img src="{{ asset('images/walmart.jpg') }}"         alt="Walmart"      height="26" loading="lazy">
+        <img src="{{ asset('images/aliexpress-logo.jpg') }}" alt="AliExpress"   width="109" height="26" loading="lazy">
+        <img src="{{ asset('images/walmart.jpg') }}"         alt="Walmart"      width="109" height="26" loading="lazy">
       </div>
     </div>
   </div>
@@ -1678,18 +1689,20 @@
           <tr>
             <td>{{ $row }}</td>
             <td>
-              <span class="lp-tick" aria-label="Available in TSScout">
+              <span class="lp-tick" aria-hidden="true">
                 <svg viewBox="0 0 13 11" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
                   <path d="M1 5.5l3.5 3.5L12 1"/>
                 </svg>
               </span>
+              <span class="lp-sr-only">Available in TSScout</span>
             </td>
             <td>
-              <span class="lp-cross" aria-label="Not available in other tools">
+              <span class="lp-cross" aria-hidden="true">
                 <svg viewBox="0 0 11 11" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round">
                   <path d="M1 1l9 9M10 1L1 10"/>
                 </svg>
               </span>
+              <span class="lp-sr-only">Not available in other tools</span>
             </td>
           </tr>
           @endforeach
@@ -1763,13 +1776,14 @@
 
       @foreach($testimonials as $t)
       <div class="lp-testi-card">
-        <div class="lp-stars" aria-label="5 out of 5 stars">
+        <div class="lp-stars" aria-hidden="true">
           @for($i = 0; $i < 5; $i++)
           <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
             <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01z"/>
           </svg>
           @endfor
         </div>
+        <span class="lp-sr-only">5 out of 5 stars</span>
         <p class="lp-testi-text">{{ $t['quote'] }}</p>
         <div class="lp-testi-author">
           <div class="lp-avatar" aria-hidden="true">
@@ -1881,7 +1895,7 @@
     <div class="lp-footer-grid">
 
       <div class="lp-footer-brand">
-        <img src="{{ asset('images/footer-logo.svg') }}" alt="TSScout" height="32" loading="lazy">
+        <img src="{{ asset('images/footer-logo.svg') }}" alt="TSScout" width="96" height="32" loading="lazy">
         <p>Product &amp; competitor research platform for eCommerce sellers.</p>
       </div>
 
