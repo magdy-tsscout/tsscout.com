@@ -110,7 +110,7 @@
     .lp-h2 {
     font-size: clamp(1.6rem, 3.5vw, 2.25rem);
     font-weight: 700;
-    color: var(--blue-dark);
+    color: #3545D6;
     line-height: 1.14;
     }
 
@@ -400,13 +400,14 @@
     width: 58px;
     height: 58px;
     border-radius: 50%;
-    background: var(--blue-light);
+    background: var(--blue);
     display: flex;
     align-items: center;
     justify-content: center;
     margin: 0 auto 1.1rem;
+    box-shadow: 0 10px 22px rgba(47,87,246,.26);
     }
-    .lp-icon-circle svg { width: 26px; height: 26px; color: var(--blue); }
+    .lp-icon-circle svg { width: 26px; height: 26px; color: #fff; }
     .lp-problem-card h3 {
     font-size: .96rem;
     font-weight: 700;
@@ -1049,6 +1050,7 @@
     .dm-cd { width: .65em; height: .65em; border-radius: 50%; background: #2f57f6; flex-shrink: 0; }
     .dm-cn { font-size: .73em; color: #374162; flex: 1; min-width: 0; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
     .dm-cv { font-size: .73em; font-weight: 700; color: #1d2a4f; flex-shrink: 0; }
+    .dashed-border { border: 2px dashed var(--blue) !important;border-radius: 10px; }
 </style>
 </head>
 <body>
@@ -1151,7 +1153,7 @@
       </div>
 
       {{-- Right – dashboard preview --}}
-      <div class="lp-hero-img">
+      <div class="lp-hero-img dashed-border">
         <img
           src="{{ asset('images/landing/reengage/dashboard-preview.png') }}"
           alt="TSScout Dashboard Preview"
@@ -1208,8 +1210,9 @@
       <div class="lp-problem-card">
         <div class="lp-icon-circle" aria-hidden="true">
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.65">
-            <path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/>
-            <polyline points="9,22 9,12 15,12 15,22"/>
+            <path d="M6 7h12a2 2 0 0 1 2 2v8a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V9a2 2 0 0 1 2-2z"/>
+            <path d="M9 7V6a3 3 0 0 1 6 0v1"/>
+            <path d="M4 11h16"/>
           </svg>
         </div>
         <h3>Running stores without real data</h3>
