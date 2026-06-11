@@ -444,28 +444,46 @@
     gap: 1.2rem;
     margin-top: 2.5rem;
     }
+    @media (min-width: 1280px) {
+    .lp-features-grid {
+      grid-template-columns: repeat(6, minmax(0, 1fr));
+      gap: .85rem;
+    }
+    }
     .lp-feat-card {
     background: #fff;
     border: 1px solid var(--border);
     border-radius: 16px;
     padding: 1.75rem 1.5rem;
+    text-align: center;
     box-shadow: 0 4px 16px rgba(24,41,93,.05);
     transition: transform .22s, box-shadow .22s;
+    }
+    @media (min-width: 1280px) {
+    .lp-feat-card {
+      padding: 1.2rem .85rem 1.1rem;
+    }
     }
     .lp-feat-card:hover { transform: translateY(-3px); box-shadow: 0 10px 28px rgba(24,41,93,.10); }
     .lp-feat-icon {
     width: 50px;
     height: 50px;
-    border-radius: 13px;
-    background: var(--blue-light);
+    border-radius: 999px;
+    background: var(--blue);
     display: flex;
     align-items: center;
     justify-content: center;
-    margin-bottom: 1.1rem;
+    margin: 0 auto 1.1rem;
+    box-shadow: 0 8px 20px rgba(47,87,246,.24);
     }
-    .lp-feat-icon svg { width: 24px; height: 24px; color: var(--blue); }
+    .lp-feat-icon svg { width: 24px; height: 24px; color: #fff; }
+    .lp-feat-icon-shopify { background: #22a15b; box-shadow: 0 8px 20px rgba(34,161,91,.26); }
     .lp-feat-card h3 { font-size: .98rem; font-weight: 700; color: var(--blue-dark); margin-bottom: .45rem; }
     .lp-feat-card p { color: var(--muted); font-size: .87rem; line-height: 1.65; }
+    @media (min-width: 1280px) {
+    .lp-feat-card h3 { font-size: .88rem; }
+    .lp-feat-card p { font-size: .76rem; line-height: 1.5; }
+    }
 
     /* ════════════════════════════════════════
     HOW IT WORKS
@@ -547,7 +565,7 @@
     }
     .lp-metrics {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+    grid-template-columns: repeat(auto-fit, minmax(195px, 1fr));
     gap: 1rem;
     margin-top: 2.5rem;
     margin-bottom: 1.5rem;
@@ -1288,11 +1306,10 @@
 
       <div class="lp-feat-card">
         <div class="lp-feat-icon" aria-hidden="true">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7">
-            <rect x="1" y="3" width="15" height="13" rx="1"/>
-            <polygon points="16 8 20 8 23 11 23 16 16 16 16 8"/>
-            <circle cx="5.5" cy="18.5" r="2.5"/>
-            <circle cx="18.5" cy="18.5" r="2.5"/>
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linejoin="round">
+            <path d="M12 3l8 4.5-8 4.5-8-4.5L12 3z"/>
+            <path d="M4 7.5V16.5L12 21l8-4.5V7.5"/>
+            <path d="M12 12v9"/>
           </svg>
         </div>
         <h3>Supplier Finder</h3>
@@ -1311,11 +1328,11 @@
       </div>
 
       <div class="lp-feat-card">
-        <div class="lp-feat-icon" aria-hidden="true">
+        <div class="lp-feat-icon lp-feat-icon-shopify" aria-hidden="true">
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7">
-            <path d="M6 2L3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z"/>
-            <line x1="3" y1="6" x2="21" y2="6"/>
-            <path d="M16 10a4 4 0 0 1-8 0"/>
+            <path d="M6.5 8h11l-1 11.5H7.5L6.5 8z"/>
+            <path d="M9 8V6.5a3 3 0 0 1 6 0V8"/>
+            <path d="M11 16.8c.45.45 1.3.75 2.1.48.57-.19.9-.69.86-1.16-.04-.5-.5-.89-1.22-1.06l-.9-.2c-.79-.18-1.27-.66-1.3-1.26-.03-.66.48-1.28 1.3-1.48.8-.2 1.63.07 2.13.52"/>
           </svg>
         </div>
         <h3>Shopify Store Analysis</h3>
@@ -1324,10 +1341,10 @@
 
       <div class="lp-feat-card">
         <div class="lp-feat-icon" aria-hidden="true">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7">
-            <polyline points="4 7 4 4 20 4 20 7"/>
-            <line x1="9" y1="20" x2="15" y2="20"/>
-            <line x1="12" y1="4" x2="12" y2="20"/>
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round">
+            <rect x="4" y="5" width="16" height="14" rx="2"/>
+            <path d="M8 15l2.4-3 2.2 2 2.4-3 3 4"/>
+            <circle cx="9" cy="9" r="1"/>
           </svg>
         </div>
         <h3>SmartTitles</h3>
