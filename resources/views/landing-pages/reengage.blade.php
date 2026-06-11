@@ -127,15 +127,44 @@
     .lp-nav-inner {
     display: flex;
     align-items: center;
+    flex-wrap: wrap;
     gap: 1rem;
     padding-block: .85rem;
     }
     .lp-nav-logo img { height: 34px; }
 
-    .lp-nav-links {
+    .lp-nav-toggle {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    margin-inline-start: auto;
+    width: 42px;
+    height: 42px;
+    border: 1px solid rgba(255,255,255,.28);
+    border-radius: 10px;
+    background: transparent;
+    color: #fff;
+    cursor: pointer;
+    }
+    .lp-nav-toggle svg { width: 20px; height: 20px; }
+
+    .lp-nav-menu {
     display: none;
+    width: 100%;
+    order: 3;
+    margin-top: .55rem;
+    border: 1px solid rgba(255,255,255,.16);
+    border-radius: 12px;
+    background: #0c1848;
+    padding: .5rem;
+    }
+    .lp-nav.is-open .lp-nav-menu { display: block; }
+
+    .lp-nav-links {
+    display: flex;
+    flex-direction: column;
     gap: .1rem;
-    margin-inline-start: 1.25rem;
+    margin-inline-start: 0;
     }
     .lp-nav-link {
     display: block;
@@ -156,17 +185,16 @@
     .lp-nav-dd { position: relative; }
     .lp-nav-dd-menu {
     display: none;
-    position: absolute;
-    top: calc(100% + .5rem);
-    left: 0;
-    background: #fff;
-    border: 1px solid var(--border);
-    border-radius: 10px;
-    box-shadow: var(--shadow);
-    min-width: 155px;
-    padding: .4rem;
+    position: static;
+    background: transparent;
+    border: 0;
+    border-radius: 0;
+    box-shadow: none;
+    min-width: 0;
+    padding: .25rem 0 .25rem .8rem;
     }
     .lp-nav-dd:hover .lp-nav-dd-menu { display: block; }
+    .lp-nav-dd.is-open .lp-nav-dd-menu { display: block; }
     .lp-nav-dd-link {
     display: block;
     padding: .5rem .85rem;
@@ -178,10 +206,11 @@
     .lp-nav-dd-link:hover { background: var(--blue-light); color: var(--blue); }
 
     .lp-nav-actions {
-    display: none;
-    align-items: center;
-    gap: .8rem;
-    margin-inline-start: auto;
+    display: flex;
+    align-items: stretch;
+    flex-direction: column;
+    gap: .55rem;
+    margin-top: .4rem;
     }
     .lp-login {
     font-size: .9rem;
@@ -194,8 +223,47 @@
     .lp-login:hover { color: var(--blue); }
 
     @media (min-width: 960px) {
+    .lp-nav-toggle { display: none; }
+    .lp-nav-menu {
+      display: flex;
+      align-items: center;
+      width: auto;
+      order: 0;
+      margin-top: 0;
+      margin-inline-start: 1.25rem;
+      border: 0;
+      border-radius: 0;
+      background: transparent;
+      padding: 0;
+      gap: .5rem;
+      flex: 1;
+    }
     .lp-nav-links { display: flex; }
-    .lp-nav-actions { display: flex; }
+    .lp-nav-links {
+      flex-direction: row;
+      margin-inline-start: 0;
+    }
+    .lp-nav-dd { position: relative; }
+    .lp-nav-dd-menu {
+      position: absolute;
+      top: calc(100% + .5rem);
+      left: 0;
+      background: #fff;
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      box-shadow: var(--shadow);
+      min-width: 155px;
+      padding: .4rem;
+    }
+    .lp-nav-dd-link { color: #1d2a4f; }
+    .lp-nav-actions {
+      display: flex;
+      flex-direction: row;
+      align-items: center;
+      gap: .8rem;
+      margin-top: 0;
+      margin-inline-start: auto;
+    }
     }
 
     /* ════════════════════════════════════════
@@ -1081,28 +1149,38 @@
       <img src="{{ asset('images/logo.svg') }}" alt="TSScout" height="34">
     </a>
 
-    <ul class="lp-nav-links" role="list">
-      <li><a href="#features" class="lp-nav-link">Features</a></li>
-      <li><a href="#how-it-works" class="lp-nav-link">How it Works</a></li>
-      <li><a href="#pricing" class="lp-nav-link">Pricing</a></li>
-      <li class="lp-nav-dd">
-        <button class="lp-nav-link" type="button" aria-haspopup="true">
-          Resources
-          <svg width="11" height="7" viewBox="0 0 11 7" fill="none" style="vertical-align:middle;margin-left:.2rem" aria-hidden="true">
-            <path d="M1 1l4.5 4.5L10 1" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"/>
-          </svg>
-        </button>
-        <ul class="lp-nav-dd-menu" role="list">
-          <li><a href="/blog" class="lp-nav-dd-link">Blog</a></li>
-          <li><a href="/guides" class="lp-nav-dd-link">Guides</a></li>
-          <li><a href="/api" class="lp-nav-dd-link">API</a></li>
-        </ul>
-      </li>
-    </ul>
+    <button class="lp-nav-toggle" type="button" aria-expanded="false" aria-controls="lp-nav-menu" aria-label="Toggle menu">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+        <line x1="3" y1="6" x2="21" y2="6"></line>
+        <line x1="3" y1="12" x2="21" y2="12"></line>
+        <line x1="3" y1="18" x2="21" y2="18"></line>
+      </svg>
+    </button>
 
-    <div class="lp-nav-actions">
-      <a href="https://app.tsscout.com/login" class="lp-login">Log In</a>
-      <a href="https://app.tsscout.com/pricing" class="lp-btn lp-btn-primary lp-btn-sm">Start $1 Trial</a>
+    <div class="lp-nav-menu" id="lp-nav-menu">
+      <ul class="lp-nav-links" role="list">
+        <li><a href="#features" class="lp-nav-link">Features</a></li>
+        <li><a href="#how-it-works" class="lp-nav-link">How it Works</a></li>
+        <li><a href="#pricing" class="lp-nav-link">Pricing</a></li>
+        <li class="lp-nav-dd">
+          <button class="lp-nav-link" type="button" aria-haspopup="true" aria-expanded="false">
+            Resources
+            <svg width="11" height="7" viewBox="0 0 11 7" fill="none" style="vertical-align:middle;margin-left:.2rem" aria-hidden="true">
+              <path d="M1 1l4.5 4.5L10 1" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+          </button>
+          <ul class="lp-nav-dd-menu" role="list">
+            <li><a href="/blog" class="lp-nav-dd-link">Blog</a></li>
+            <li><a href="/guides" class="lp-nav-dd-link">Guides</a></li>
+            <li><a href="/api" class="lp-nav-dd-link">API</a></li>
+          </ul>
+        </li>
+      </ul>
+
+      <div class="lp-nav-actions">
+        <a href="https://app.tsscout.com/login" class="lp-login">Log In</a>
+        <a href="https://app.tsscout.com/pricing" class="lp-btn lp-btn-primary lp-btn-sm">Start $1 Trial</a>
+      </div>
     </div>
   </div>
 </nav>
@@ -1871,6 +1949,48 @@
 
 <script>
 (function () {
+  var nav = document.querySelector('.lp-nav');
+  var navToggle = document.querySelector('.lp-nav-toggle');
+  var navMenu = document.getElementById('lp-nav-menu');
+  var resourcesItem = document.querySelector('.lp-nav-dd');
+  var resourcesBtn = resourcesItem ? resourcesItem.querySelector('.lp-nav-link') : null;
+
+  if (nav && navToggle && navMenu) {
+    navToggle.addEventListener('click', function () {
+      var isOpen = nav.classList.toggle('is-open');
+      navToggle.setAttribute('aria-expanded', isOpen ? 'true' : 'false');
+    });
+
+    navMenu.querySelectorAll('a').forEach(function (link) {
+      link.addEventListener('click', function () {
+        if (window.innerWidth < 960) {
+          nav.classList.remove('is-open');
+          navToggle.setAttribute('aria-expanded', 'false');
+        }
+      });
+    });
+  }
+
+  if (resourcesItem && resourcesBtn) {
+    resourcesBtn.addEventListener('click', function () {
+      if (window.innerWidth < 960) {
+        var isOpen = resourcesItem.classList.toggle('is-open');
+        resourcesBtn.setAttribute('aria-expanded', isOpen ? 'true' : 'false');
+      }
+    });
+
+    window.addEventListener('resize', function () {
+      if (window.innerWidth >= 960) {
+        resourcesItem.classList.remove('is-open');
+        resourcesBtn.setAttribute('aria-expanded', 'false');
+        if (nav && navToggle) {
+          nav.classList.remove('is-open');
+          navToggle.setAttribute('aria-expanded', 'false');
+        }
+      }
+    });
+  }
+
   // FAQ accordion
   document.querySelectorAll('.lp-faq-btn').forEach(function (btn) {
     btn.addEventListener('click', function () {
