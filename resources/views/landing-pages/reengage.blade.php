@@ -447,8 +447,8 @@
     }
     .lp-trust-logos picture { display: block; }
     .lp-trust-logos img:hover { transform: translateY(-1px); }
-    .lp-trust-logo-shopify { height: 34px !important; max-width: 140px !important; }
-    .lp-trust-logo-tiktok { height: 42px !important; max-width: 150px !important; }
+    .lp-trust-logo-shopify { height: 74px !important; max-width: 140px !important; }
+    .lp-trust-logo-tiktok { height: 74px !important; max-width: 150px !important; }
 
     /* ════════════════════════════════════════
     PROBLEM SECTION
