@@ -980,7 +980,7 @@
     ════════════════════════════════════════ */
     .lp-footer {
     background: #090f24;
-    padding: 3.5rem 0 2rem;
+    padding: 2.5rem 0 2rem;
     }
     .lp-footer-grid {
     display: grid;
@@ -1005,8 +1005,6 @@
     .lp-footer-col a { color: #7a8aad; font-size: .87rem; transition: color .14s; }
     .lp-footer-col a:hover { color: #fff; }
     .lp-footer-bottom {
-    border-top: 1px solid rgba(255,255,255,.08);
-    padding-top: 1.5rem;
     display: flex;
     flex-wrap: wrap;
     justify-content: space-between;
@@ -1154,6 +1152,7 @@
     .dm-cn { font-size: .73em; color: #374162; flex: 1; min-width: 0; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
     .dm-cv { font-size: .73em; font-weight: 700; color: #1d2a4f; flex-shrink: 0; }
     .dashed-border { border: 2px dashed var(--blue) !important;border-radius: 10px; }
+    .footer-logo{ width: 96px; float: left; margin-top: -12px; margin-right: 10px; }
 </style>
 </head>
 <body>
@@ -1179,23 +1178,9 @@
         <li><a href="#features" class="lp-nav-link">Features</a></li>
         <li><a href="#how-it-works" class="lp-nav-link">How it Works</a></li>
         <li><a href="#pricing" class="lp-nav-link">Pricing</a></li>
-        <li class="lp-nav-dd">
-          <button class="lp-nav-link" type="button" aria-haspopup="true" aria-expanded="false">
-            Resources
-            <svg width="11" height="7" viewBox="0 0 11 7" fill="none" style="vertical-align:middle;margin-left:.2rem" aria-hidden="true">
-              <path d="M1 1l4.5 4.5L10 1" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"/>
-            </svg>
-          </button>
-          <ul class="lp-nav-dd-menu" role="list">
-            <li><a href="/blog" class="lp-nav-dd-link">Blog</a></li>
-            <li><a href="/guides" class="lp-nav-dd-link">Guides</a></li>
-            <li><a href="/api" class="lp-nav-dd-link">API</a></li>
-          </ul>
-        </li>
       </ul>
 
       <div class="lp-nav-actions">
-        <a href="https://app.tsscout.com/login" class="lp-login">Log In</a>
         <a href="https://app.tsscout.com/pricing" class="lp-btn lp-btn-primary lp-btn-sm">Start $1 Trial</a>
       </div>
     </div>
@@ -1899,56 +1884,18 @@
 {{-- ════ FOOTER ════ --}}
 <footer class="lp-footer" aria-label="Site footer">
   <div class="lp-shell">
-    <div class="lp-footer-grid">
 
-      <div class="lp-footer-brand">
-        <img src="{{ asset('images/footer-logo.svg') }}" alt="TSScout" width="96" height="32" loading="lazy">
-        <p>Product &amp; competitor research platform for eCommerce sellers.</p>
-      </div>
-
-      <div class="lp-footer-col">
-        <h4>Product</h4>
-        <ul>
-          <li><a href="/product-research">Product Research</a></li>
-          <li><a href="/competitor-analysis">Competitor Analysis</a></li>
-          <li><a href="/supplier-finder">Supplier Finder</a></li>
-          <li><a href="/tiktok-trends">TikTok Trends</a></li>
-          <li><a href="/smart-titles">SmartTitles</a></li>
-        </ul>
-      </div>
-
-      <div class="lp-footer-col">
-        <h4>Company</h4>
-        <ul>
-          <li><a href="/about">About Us</a></li>
-          <li><a href="/pricing">Pricing</a></li>
-          <li><a href="/blog">Blog</a></li>
-          <li><a href="/contact">Contact</a></li>
-        </ul>
-      </div>
-
-      <div class="lp-footer-col">
-        <h4>Resources</h4>
-        <ul>
-          <li><a href="/help">Help Center</a></li>
-          <li><a href="/guides">Guides</a></li>
-          <li><a href="/api">API</a></li>
-        </ul>
-      </div>
-
-      <div class="lp-footer-col">
-        <h4>Legal</h4>
-        <ul>
-          <li><a href="/terms">Terms of Service</a></li>
-          <li><a href="/privacy">Privacy Policy</a></li>
-          <li><a href="/refund">Refund Policy</a></li>
-        </ul>
-      </div>
-
-    </div>
 
     <div class="lp-footer-bottom">
-      <p class="lp-footer-copy">© 2024 TSScout. All rights reserved.</p>
+      <p class="lp-footer-copy">
+        <img
+            src="{{ asset('images/footer-logo.svg') }}"
+            class="footer-logo"
+            alt="TSScout"
+            width="75"
+            loading="lazy">
+        © {{ date('Y') }} TSScout. All rights reserved.
+        </p>
       <div class="lp-socials">
         <a href="#" class="lp-social" aria-label="Facebook">
           <svg viewBox="0 0 24 24" fill="currentColor">
