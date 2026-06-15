@@ -1275,6 +1275,76 @@
   </div>
 </section>
 
+
+{{-- ════ HOW IT WORKS ════ --}}
+<section class="lp-how" id="how-it-works" aria-labelledby="how-h">
+  <div class="lp-shell">
+    <div class="lp-center">
+      <h2 id="how-h" class="lp-h2">How TSScout Works</h2>
+    </div>
+    <div class="lp-how-steps">
+
+      <div class="lp-how-step">
+        <div class="lp-step-wrap">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7">
+            <circle cx="11" cy="11" r="8"/>
+            <line x1="21" y1="21" x2="16.65" y2="16.65"/>
+          </svg>
+          <span class="lp-step-num" aria-hidden="true">1</span>
+        </div>
+        <h3>Choose a category or keyword</h3>
+        <p>Start your research with any product or niche.</p>
+      </div>
+
+      <div class="lp-how-arrow" aria-hidden="true">→</div>
+
+      <div class="lp-how-step">
+        <div class="lp-step-wrap">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7">
+            <line x1="18" y1="20" x2="18" y2="10"/>
+            <line x1="12" y1="20" x2="12" y2="4"/>
+            <line x1="6"  y1="20" x2="6"  y2="14"/>
+          </svg>
+          <span class="lp-step-num" aria-hidden="true">2</span>
+        </div>
+        <h3>Analyze best-selling products &amp; competitors</h3>
+        <p>See sales data, seller ratings, and competitor performance.</p>
+      </div>
+
+      <div class="lp-how-arrow" aria-hidden="true">→</div>
+
+      <div class="lp-how-step">
+        <div class="lp-step-wrap">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7">
+            <polyline points="23 6 13.5 15.5 8.5 10.5 1 18"/>
+            <polyline points="17 6 23 6 23 12"/>
+          </svg>
+          <span class="lp-step-num" aria-hidden="true">3</span>
+        </div>
+        <h3>Compare supplier prices on AliExpress</h3>
+        <p>Find the same products on AliExpress and compare prices.</p>
+      </div>
+
+      <div class="lp-how-arrow" aria-hidden="true">→</div>
+
+      <div class="lp-how-step">
+        <div class="lp-step-wrap">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7">
+            <path d="M12 2c0 0 5 2.5 5 10 0 5-3.3 7.5-5 7.5S7 17 7 12C7 4.5 12 2 12 2z"/>
+            <line x1="12" y1="19.5" x2="12" y2="22"/>
+            <path d="M8.5 15.5C7 17 5 18 4 20"/>
+            <path d="M15.5 15.5C17 17 19 18 20 20"/>
+          </svg>
+          <span class="lp-step-num" aria-hidden="true">4</span>
+        </div>
+        <h3>Launch products using real market data</h3>
+        <p>Make smarter decisions and increase your profits.</p>
+      </div>
+
+    </div>
+  </div>
+</section>
+
 {{-- ════ TRUST BAR ════ --}}
 <section class="lp-trust" aria-label="Trusted by eCommerce sellers">
   <div class="lp-shell">
@@ -1440,75 +1510,6 @@
         </div>
         <h3>SmartTitles</h3>
         <p>Generate optimized listing titles to improve visibility and clicks.</p>
-      </div>
-
-    </div>
-  </div>
-</section>
-
-{{-- ════ HOW IT WORKS ════ --}}
-<section class="lp-how" id="how-it-works" aria-labelledby="how-h">
-  <div class="lp-shell">
-    <div class="lp-center">
-      <h2 id="how-h" class="lp-h2">How TSScout Works</h2>
-    </div>
-    <div class="lp-how-steps">
-
-      <div class="lp-how-step">
-        <div class="lp-step-wrap">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7">
-            <circle cx="11" cy="11" r="8"/>
-            <line x1="21" y1="21" x2="16.65" y2="16.65"/>
-          </svg>
-          <span class="lp-step-num" aria-hidden="true">1</span>
-        </div>
-        <h3>Choose a category or keyword</h3>
-        <p>Start your research with any product or niche.</p>
-      </div>
-
-      <div class="lp-how-arrow" aria-hidden="true">→</div>
-
-      <div class="lp-how-step">
-        <div class="lp-step-wrap">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7">
-            <line x1="18" y1="20" x2="18" y2="10"/>
-            <line x1="12" y1="20" x2="12" y2="4"/>
-            <line x1="6"  y1="20" x2="6"  y2="14"/>
-          </svg>
-          <span class="lp-step-num" aria-hidden="true">2</span>
-        </div>
-        <h3>Analyze best-selling products &amp; competitors</h3>
-        <p>See sales data, seller ratings, and competitor performance.</p>
-      </div>
-
-      <div class="lp-how-arrow" aria-hidden="true">→</div>
-
-      <div class="lp-how-step">
-        <div class="lp-step-wrap">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7">
-            <polyline points="23 6 13.5 15.5 8.5 10.5 1 18"/>
-            <polyline points="17 6 23 6 23 12"/>
-          </svg>
-          <span class="lp-step-num" aria-hidden="true">3</span>
-        </div>
-        <h3>Compare supplier prices on AliExpress</h3>
-        <p>Find the same products on AliExpress and compare prices.</p>
-      </div>
-
-      <div class="lp-how-arrow" aria-hidden="true">→</div>
-
-      <div class="lp-how-step">
-        <div class="lp-step-wrap">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7">
-            <path d="M12 2c0 0 5 2.5 5 10 0 5-3.3 7.5-5 7.5S7 17 7 12C7 4.5 12 2 12 2z"/>
-            <line x1="12" y1="19.5" x2="12" y2="22"/>
-            <path d="M8.5 15.5C7 17 5 18 4 20"/>
-            <path d="M15.5 15.5C17 17 19 18 20 20"/>
-          </svg>
-          <span class="lp-step-num" aria-hidden="true">4</span>
-        </div>
-        <h3>Launch products using real market data</h3>
-        <p>Make smarter decisions and increase your profits.</p>
       </div>
 
     </div>
