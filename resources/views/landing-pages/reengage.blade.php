@@ -25,7 +25,35 @@
 <style type="text/css">
     /* ── RESET & BASE ── */
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-    body { font-family: 'Segoe UI', Tahoma, Arial, sans-serif; color: #1d2a4f; background: #fff; line-height: 1.5; }
+    @font-face {
+        font-family: 'Montserrat-Arabic';
+        src: url('{{ asset('webfonts/Montserrat-Arabic Regular 400.otf') }}') format('opentype');
+        font-weight: normal;
+        font-style: normal;
+    }
+
+    @font-face {
+        font-family: 'Montserrat-Arabic';
+        src: url('{{ asset('webfonts/Montserrat-Arabic Medium 500.otf') }}') format('opentype');
+        font-weight: 500;
+        font-style: normal;
+    }
+
+    @font-face {
+        font-family: 'Montserrat-Arabic';
+        src: url('{{ asset('webfonts/Montserrat-Arabic SemiBold 600.otf') }}') format('opentype');
+        font-weight: 600;
+        font-style: normal;
+    }
+
+    @font-face {
+        font-family: 'Montserrat-Arabic';
+        src: url('{{ asset('webfonts/Montserrat-Arabic Bold 700.otf') }}') format('opentype');
+        font-weight: bold;
+        font-style: normal;
+    }
+
+    body { font-family: 'Montserrat-Arabic', Tahoma, Arial, sans-serif; color: #1d2a4f; background: #fff; line-height: 1.5; }
     img { max-width: 100%; height: auto; display: block; }
     a { text-decoration: none; color: inherit; }
     ul { list-style: none; }
