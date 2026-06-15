@@ -1161,7 +1161,7 @@
     .dm-cn { font-size: .73em; color: #374162; flex: 1; min-width: 0; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
     .dm-cv { font-size: .73em; font-weight: 700; color: #1d2a4f; flex-shrink: 0; }
     .dashed-border { border: 2px dashed var(--blue) !important;border-radius: 10px; }
-    .footer-logo{ width: 96px; float: left; margin-top: -12px; margin-right: 10px; }
+    .footer-logo{ width: 96px; float: left; margin-top: -16px; margin-right: 10px; }
 </style>
 </head>
 <body>
@@ -1171,7 +1171,7 @@
 <nav class="lp-nav" aria-label="Main navigation">
   <div class="lp-shell lp-nav-inner">
     <a href="/" class="lp-nav-logo" aria-label="TSScout home">
-      <img src="{{ asset('images/logo.svg') }}" alt="TSScout" width="102" height="34">
+      <img src="{{ asset('images/tssscout-logo.webp') }}" alt="TSScout" width="102" height="34">
     </a>
 
     <button class="lp-nav-toggle" type="button" aria-expanded="false" aria-controls="lp-nav-menu" aria-label="Toggle menu">
@@ -1910,7 +1910,7 @@
     <div class="lp-footer-bottom">
       <p class="lp-footer-copy">
         <img
-            src="{{ asset('images/footer-logo.svg') }}"
+            src="{{ asset('images/tssscout-logo.webp') }}"
             class="footer-logo"
             alt="TSScout"
             width="75"
