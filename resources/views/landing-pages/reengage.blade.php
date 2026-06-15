@@ -1181,7 +1181,7 @@
       </ul>
 
       <div class="lp-nav-actions">
-        <a href="https://app.tsscout.com/pricing" class="lp-btn lp-btn-primary lp-btn-sm">Start $1 Trial</a>
+        <a href="https://app.tsscout.com/pricing" class="lp-btn lp-btn-primary lp-btn-sm">Start for $1</a>
       </div>
     </div>
   </div>
@@ -1227,7 +1227,7 @@
         </ul>
 
         <div class="lp-hero-ctas">
-          <a href="https://app.tsscout.com/pricing" class="lp-btn lp-btn-primary">Start Your $1 Trial</a>
+          <a href="https://app.tsscout.com/pricing" class="lp-btn lp-btn-primary">Start for $1</a>
           <a href="#how-it-works" class="lp-btn lp-btn-outline">
             <span class="lp-play-circle" aria-hidden="true">
               <svg viewBox="0 0 10 12" fill="currentColor"><path d="M1 1l8 5-8 5V1z"/></svg>
@@ -1676,7 +1676,6 @@
             'TikTok trend scanner',
             'Shopify store insights',
             'Smart title generation',
-            '$1 trial',
           ] as $row)
           <tr>
             <td>{{ $row }}</td>
@@ -1715,7 +1714,7 @@
       <div class="lp-price-card">
         <p class="lp-price-lbl">Premium Plan</p>
         <p class="lp-price-amt">$1</p>
-        <p class="lp-price-tag">Trial</p>
+        <p class="lp-price-tag">only</p>
         <p class="lp-price-note">Then continues at regular premium pricing.</p>
       </div>
 
@@ -1741,7 +1740,7 @@
         </ul>
 
         <a href="https://app.tsscout.com/pricing" class="lp-btn lp-btn-primary" style="width:100%;justify-content:center">
-          Start My $1 Trial
+          Start for $1
         </a>
         <p class="lp-pricing-sub">Cancel anytime &nbsp;•&nbsp; No hidden fees</p>
       </div>
