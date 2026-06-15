@@ -688,6 +688,15 @@
     font-size: .9rem;
     font-style: italic;
     }
+    .lp-analyze-note a:hover {
+        color: var(--blue);
+        text-decoration: underline;
+        text-decoration-thickness: 2.5px;
+        text-underline-offset: 5px;
+        transition: color 0.5s, text-decoration 0.5s;
+        position: relative;
+    }
+
     .lp-analyze-note svg { color: var(--blue); }
 
     /* ════════════════════════════════════════
