@@ -154,14 +154,6 @@ Route::group(['prefix'=>'calculator'], function() {
     Route::get('de', [EbayCalculatorController::class, 'de'])->name('calculator.de');
     Route::get('fr', [EbayCalculatorController::class, 'fr'])->name('calculator.fr');
     Route::get('it', [EbayCalculatorController::class, 'it'])->name('calculator.it');
-
-    Route::post('usa', [EbayCalculatorController::class, 'calculateFees'])->name('calculator.calculateFees');
-    Route::post('uk', [EbayCalculatorController::class, 'ukFees'])->name('calculator.uk.search');
-    Route::post('au', [EbayCalculatorController::class, 'auFees'])->name('calculator.au.search');
-    Route::post('ca', [EbayCalculatorController::class, 'caFees'])->name('calculator.ca.search');
-    Route::post('de', [EbayCalculatorController::class, 'deFees'])->name('calculator.de.search');
-    Route::post('fr', [EbayCalculatorController::class, 'frFees'])->name('calculator.fr.search');
-    Route::post('it', [EbayCalculatorController::class, 'itFees'])->name('calculator.it.search');
 });
 
 
