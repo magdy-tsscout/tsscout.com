@@ -146,7 +146,7 @@
     gap: 1rem;
     padding-block: .85rem;
     }
-    .lp-nav-logo img { height: 34px; }
+    /* .lp-nav-logo img { height: 34px; } */
 
     .lp-nav-toggle {
     display: inline-flex;
@@ -1909,12 +1909,14 @@
 
     <div class="lp-footer-bottom">
       <p class="lp-footer-copy">
-        <img
-            src="{{ asset('images/tssscout-logo.webp') }}"
-            class="footer-logo"
-            alt="TSScout"
-            width="75"
-            loading="lazy">
+        <a href="https://tsscout.com">
+            <img
+                src="{{ asset('images/tssscout-logo.webp') }}"
+                class="footer-logo"
+                alt="TSScout"
+                width="75"
+                loading="lazy">
+        </a>
         © {{ date('Y') }} TSScout. All rights reserved.
         </p>
       <div class="lp-socials">
