@@ -1759,9 +1759,9 @@
 
       @php
       $testimonials = [
-        ['quote' => '"TSScout helped me find my first winning product in less than a week."',    'name' => 'Sarah M.',  'role' => 'eBay Seller'],
-        ['quote' => '"This tool saved me hours of product research every week."',                'name' => 'James R.',  'role' => 'Shopify Store Owner'],
-        ['quote' => '"Competitor tracking alone makes TSScout worth it."',                      'name' => 'Emily T.',  'role' => 'Amazon Seller'],
+        ['quote' => '"TSScout helped me find my first winning product in less than a week."',    'name' => 'Liam S.',  'role' => 'eBay Seller'],
+        ['quote' => '"This tool saved me hours of product research every week."',                'name' => 'Ethan J.',  'role' => 'Shopify Store Owner'],
+        ['quote' => '"Competitor tracking alone makes TSScout worth it."',                      'name' => 'Charlotte T.',  'role' => 'Amazon Seller'],
       ];
       @endphp
 
