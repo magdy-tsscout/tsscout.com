@@ -1906,7 +1906,6 @@
 <footer class="lp-footer" aria-label="Site footer">
   <div class="lp-shell">
 
-
     <div class="lp-footer-bottom">
       <p class="lp-footer-copy">
         <a href="https://tsscout.com">
