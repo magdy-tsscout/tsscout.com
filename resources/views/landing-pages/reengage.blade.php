@@ -1645,10 +1645,22 @@
     </div>
 
     <p class="lp-analyze-note">
-      Stop guessing, start Trending
-      <svg viewBox="0 0 20 12" fill="none" stroke="currentColor" stroke-width="1.8" width="18" height="12" aria-hidden="true">
-        <path d="M1 6h16M12 1l6 5-6 5" stroke-linecap="round" stroke-linejoin="round"/>
-      </svg>
+        <a href="https://app.tsscout.com/create-account/premium/2">
+            Stop guessing, start Trending
+            <svg
+                viewBox="0 0 20 12"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="1.8"
+                width="18"
+                height="12"
+                aria-hidden="true">
+                <path
+                    d="M1 6h16M12 1l6 5-6 5"
+                    stroke-linecap="round"
+                    stroke-linejoin="round"/>
+            </svg>
+      </a>
     </p>
 
   </div>
