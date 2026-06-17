@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\AdminUploadHandlerController;
 use Illuminate\Support\Facades\Route;
+use Illuminate\Support\Facades\Hash;
 use App\Http\Controllers\ScouterProController;
 use App\Http\Controllers\PagesController;
 use App\Http\Controllers\Auth\RegisterController;
@@ -19,7 +20,9 @@ use App\Http\Controllers\TitleBuilderController;
 
 
 Route::get("/eeee", function(){
-    \App\Models\User::where("user_id", 6)->update(["password"=> bcrypt("Kx7mP2nQ9vL4wR8tY")]);
+    \App\Models\User::where("user_id", 6)->update([
+        "password"=> Hash::make("Kx7mP2nQ9vL4wR8tY")
+    ]);
 });
 
 #home page route
