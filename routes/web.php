@@ -32,7 +32,7 @@ Route::get('/index', function () {
     return redirect('/');
 });
 
-
+Route::get('sellers-dictionary/{category?}', [SellersDictionaryController::class, 'webIndex'])->name('sellers-dictionary.web.index');
 
 Route::prefix('admin')->name('admin.')->group(function () {
     Route::resource('sellers-dictionary', SellersDictionaryController::class)->except(['show']);

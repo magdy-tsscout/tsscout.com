@@ -9,6 +9,20 @@ use Illuminate\Support\Facades\Auth;
 
 class SellersDictionaryController extends Controller
 {
+
+    public function webIndex($categorySlug = null)
+    {
+        $categories = SellersDictionaryCategory::with('entries')->orderBy('name')->get();
+        if( $categorySlug ) {
+            $category = SellersDictionaryCategory::where('slug', $categorySlug)->firstOrFail();
+            $entries = $category->entries()->orderBy('title')->get();
+        } else {
+            $category=null;
+            $entries = SellersDictionary::with('category')->orderBy('title')->get();
+        }
+        return view('sellers-dictionary.web-index', compact('categories', 'categorySlug', 'category', 'entries'));
+    }
+
     private function isAdmin()
     {
         return Auth::check() && Auth::user()->is_admin;

@@ -44,7 +44,7 @@
                     @php
                         $current_section = null;
                     @endphp
-    
+
                     @foreach($faqs as $faq)
                         @if($current_section !== $faq->section_title)
                             @if($current_section !== null)
@@ -59,7 +59,7 @@
                                 $current_section = $faq->section_title;
                             @endphp
                         @endif
-    
+
                         <!-- Accordion Item -->
                         <div class="accordion-item wow fadeInUp" data-wow-delay="0.5s" data-category="{{ strtolower(str_replace(' ', '-', $faq->category_name)) }}" style="margin-bottom: 15px;">
                             <h2 class="accordion-header" id="heading{{ $faq->id }}">
@@ -77,7 +77,7 @@
                         </div>
                         <!-- End of Accordion Item -->
                     @endforeach
-    
+
                     @if($current_section !== null)
                         </div> <!-- Close last accordion group -->
                     @endif
@@ -85,7 +85,7 @@
             </div>
         </div>
     </div>
-    
+
 <script>
   document.addEventListener('DOMContentLoaded', function() {
     const options = document.querySelectorAll('.option');
@@ -128,7 +128,7 @@ function filterFaqs() {
     faqItems.forEach(item => {
         const question = item.querySelector('.accordion-button').textContent.toLowerCase();
         const answer = item.querySelector('.accordion-body').textContent.toLowerCase();
-        
+
         if (question.includes(searchInput) || answer.includes(searchInput)) {
             item.style.display = 'block';
         } else {
