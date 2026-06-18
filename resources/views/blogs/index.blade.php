@@ -155,6 +155,11 @@
                                     by
                                     <span class="fa fa-user"></span>
                                     {{ $blog->author }}
+
+                                    <br />
+                                    <span class="fa fa-calendar-alt"></span>
+                                    updated on:
+                                    {{ $blog->updated_at->format('Y-m-d') }}
                                 </p>
                             </div>
                         </div>
