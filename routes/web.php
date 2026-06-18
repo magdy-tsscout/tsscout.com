@@ -15,6 +15,8 @@ use App\Http\Controllers\PageBackupController;
 use App\Http\Controllers\ShopifyDetectorController;
 use App\Http\Controllers\ThemeController;
 use App\Http\Controllers\LandingPageController;
+use App\Http\Controllers\SellersDictionaryController;
+use App\Http\Controllers\SellersDictionaryCategoryController;
 use App\Http\Controllers\TitleBuilderController;
 
 
@@ -33,6 +35,8 @@ Route::get('/index', function () {
 
 
 Route::prefix('admin')->name('admin.')->group(function () {
+    Route::resource('sellers-dictionary', SellersDictionaryController::class)->except(['show']);
+    Route::resource('sellers-dictionary-categories', SellersDictionaryCategoryController::class)->except(['show']);
     Route::get('edit-html/{id}', [PagesController::class, 'editHtml'])->name('pages.edit-html');
     Route::post('edit-html/{id}', [PagesController::class, 'storeHtml'])->name('pages.store-html');
     Route::resource('pages', PagesController::class);
