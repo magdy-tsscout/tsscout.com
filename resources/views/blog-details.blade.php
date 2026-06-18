@@ -96,6 +96,11 @@
             color: #edf4ff;
             font-weight: 500;
         }
+        .content table tbody td p, .content table tbody th p,
+        .content table tbody td span, .content table tbody th span
+         {
+            color: #edf4ff !important;
+        }
 
         .content table tbody tr:nth-child(even) td,
         .content table tbody tr:nth-child(even) th {
