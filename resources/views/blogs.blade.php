@@ -31,6 +31,7 @@
         <div class="option">Aliexpress</div>
         <div class="option">Walmart</div>
         <div class="option">Amazon</div>
+        <div class="option">Tiktook</div>
     </div>
 </div>
 <!-- Options End -->
