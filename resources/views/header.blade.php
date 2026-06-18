@@ -138,6 +138,16 @@
                                                 </div>
                                             </div>
                                         </a>
+
+                                        <a href="{{ route('sellers-dictionary.web.index') }}" class="resource-link">
+                                            <div class="resource-item">
+                                                <img src="{{ asset('images/header icons/faq.svg') }}" alt="FAQs Icon" class="resource-icon">
+                                                <div>
+                                                    <div class="h6">Sellers Dictionary</div>
+                                                    <p>Explore our comprehensive Sellers Dictionary to understand key terms and concepts.</p>
+                                                </div>
+                                            </div>
+                                        </a>
                                     </li>
 
                                 </ul>
