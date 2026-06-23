@@ -22,7 +22,7 @@ return new class extends Migration
 
         Schema::table('blogs', function (Blueprint $table) {
             $table->unsignedBigInteger('author_id')->nullable()->after('id');
-            $table->foreign('author_id')->references('id')->on('users')->onDelete('set null');
+            // $table->foreign('author_id')->references('id')->on('users')->onDelete('set null');
         });
 
 
