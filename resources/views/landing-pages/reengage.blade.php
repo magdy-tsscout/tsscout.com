@@ -1265,12 +1265,12 @@
 
         <div class="lp-hero-ctas">
           <a href="https://app.tsscout.com/create-account/premium/2" class="lp-btn lp-btn-primary">Start for $1</a>
-          <a href="#how-it-works" class="lp-btn lp-btn-outline">
+          {{-- <a href="#how-it-works" class="lp-btn lp-btn-outline">
             <span class="lp-play-circle" aria-hidden="true">
               <svg viewBox="0 0 10 12" fill="currentColor"><path d="M1 1l8 5-8 5V1z"/></svg>
             </span>
             Watch Demo
-          </a>
+          </a> --}}
         </div>
 
         <div class="lp-hero-sub">
