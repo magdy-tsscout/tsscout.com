@@ -14,10 +14,14 @@ return new class extends Migration
     public function up(): void
     {
         Schema::table('users', function (Blueprint $table) {
-            $table->string('author_name')->nullable()->after('email');
-            $table->string('author_card')->nullable()->after('author_name');
-            $table->string('author_slug')->nullable()->after('author_card');
-            $table->string('author_img')->nullable()->after('author_slug');
+            if(Schema::hasColumn('users', 'author_name') && Schema::hasColumn('users', 'author_card') && Schema::hasColumn('users', 'author_slug') && Schema::hasColumn('users', 'author_img')) {
+
+            }else{
+                $table->string('author_name')->nullable()->after('email');
+                $table->string('author_card')->nullable()->after('author_name');
+                $table->string('author_slug')->nullable()->after('author_card');
+                $table->string('author_img')->nullable()->after('author_slug');
+            }
         });
 
         Schema::table('blogs', function (Blueprint $table) {
