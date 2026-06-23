@@ -26,7 +26,8 @@ class SellersDictionaryController extends Controller
 
     public static function webIndexHome() {
         $content = SellersDictionaryHome::first();
-        return view('sellers-dictionary.web-index-home', compact('content'));
+        $categories = SellersDictionaryCategory::get();
+        return view('sellers-dictionary.web-index-home', compact('content', 'categories'));
     }
 
     private function isAdmin()
