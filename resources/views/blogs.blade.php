@@ -31,7 +31,7 @@
         <div class="option">Aliexpress</div>
         <div class="option">Walmart</div>
         <div class="option">Amazon</div>
-        <div class="option">Tiktook</div>
+        <div class="option" data-category="Tiktook">TikTok</div>
     </div>
 </div>
 <!-- Options End -->
@@ -141,8 +141,16 @@ document.addEventListener('DOMContentLoaded', function () {
             });
 
             option.classList.add('selected');
-            filterByCategory(option.textContent);
+            if (option.getAttribute('data-category')) {
+                const category = option.getAttribute('data-category');
+                filterByCategory(category);
+            } else {
+                const text = option.textContent;
+                filterByCategory(text);
+            }
         });
+
+
     });
 
     const allOption = Array.from(options).find(function (option) {
