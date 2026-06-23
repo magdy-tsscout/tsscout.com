@@ -13,7 +13,7 @@ return new class extends Migration
     {
         Schema::table('users', function (Blueprint $table) {
             if (!Schema::hasColumn('users', 'id')) {
-                $table->id();
+                $table->unsignedBigInteger('id')->primary()->first();
             }
         });
     }
