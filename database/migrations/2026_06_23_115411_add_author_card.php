@@ -25,8 +25,11 @@ return new class extends Migration
         });
 
         Schema::table('blogs', function (Blueprint $table) {
-            $table->unsignedBigInteger('author_id')->nullable()->after('id');
-            // $table->foreign('author_id')->references('id')->on('users')->onDelete('set null');
+            if( !Schema::hasColumn('blogs', 'author_id')) {
+
+                $table->unsignedBigInteger('author_id')->nullable()->after('id');
+                // $table->foreign('author_id')->references('id')->on('users')->onDelete('set null');
+            }
         });
 
 
