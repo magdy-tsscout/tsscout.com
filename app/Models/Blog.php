@@ -20,7 +20,8 @@ class Blog extends Model
         'meta_keywords',
         'meta_author',
         'video_url',
-        'published'
+        'published',
+        'author_id'
     ];
 
     protected $casts = [
@@ -53,5 +54,7 @@ class Blog extends Model
         return self::where('category', $category)->count();
     }
 
-
+    public function author_data() {
+        return $this->hasOne(User::class, 'id', 'author_id')->select('id', 'author_name', 'author_card', 'author_slug', 'author_img');
+    }
 }

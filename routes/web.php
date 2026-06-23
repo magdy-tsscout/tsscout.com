@@ -6,6 +6,7 @@ use App\Http\Controllers\ScouterProController;
 use App\Http\Controllers\PagesController;
 use App\Http\Controllers\Auth\RegisterController;
 use App\Http\Controllers\Auth\LoginController;
+use App\Http\Controllers\AuthorDataController;
 use App\Http\Controllers\BlogController;
 use App\Http\Controllers\FaqController;
 use App\Http\Controllers\toolsController;
@@ -35,8 +36,13 @@ Route::get('/index', function () {
 
 Route::get('sellers-dictionary/{category?}', [SellersDictionaryController::class, 'webIndex'])->name('sellers-dictionary.web.index');
 Route::get('sellers-dictionary/{category}/{slug}', [SellersDictionaryController::class, 'webIndex'])->name('sellers-dictionary.web.show');
+Route::get('author/{slug}', [AuthorDataController::class, 'show'])->name('author.show');
 
 Route::prefix('admin')->name('admin.')->group(function () {
+
+    Route::get('author-data', [AuthorDataController::class, 'edit'])->name('author-data.edit');
+    Route::post('author-data', [AuthorDataController::class, 'update'])->name('author-data.update');
+
     Route::get('sellers-dictionary-home', [SellersDictionaryHomeController::class, 'edit'])->name('sellers-dictionary.web.edit');
     Route::post('sellers-dictionary-home', [SellersDictionaryHomeController::class, 'update'])->name('sellers-dictionary.web.update');
     Route::resource('sellers-dictionary', SellersDictionaryController::class)->except(['show']);

@@ -195,10 +195,14 @@ class BlogController extends Controller
     public function userIndex()
     {
         // Retrieve all blogs
-        $blogs = Blog::whereNotNull('image')
-                ->where('published', true)
-                ->whereNull('video_url')->orderBy('publish_date', 'desc')
-                ->get();
+        $blogsQuery = Blog::where( function($query){
+            $query->whereNotNull('image')
+                  ->where('image', '!=', 'NULL')
+                  ->where('image', '!=', '')
+                  ->whereNotNull('image');
+            } )
+            ->orderBy('publish_date', 'desc');
+            $blogs=  $blogsQuery->get();
 
         // Retrieve the page data where 'view_name' equals 'blogs'
         $page = Page::where('view_name', 'blogs')->first();
@@ -231,6 +235,7 @@ class BlogController extends Controller
    {
        // Find the blog by slug
        $blog = Blog::where('slug', $slug);
+    //    dd($slug,$blog);
        if( !Auth::check() ) {
            $blog->where('published', true);
        }

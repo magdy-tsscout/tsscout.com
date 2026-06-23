@@ -105,6 +105,9 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
                 <li class="nav-item">
                     <a class="nav-link" href="{{ route('admin.themes.index') }}">Themes</a>
                 </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="{{ route('admin.author-data.edit') }}">Author Data</a>
+                </li>
             </ul>
         </div>
     </nav>

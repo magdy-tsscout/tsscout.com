@@ -25,12 +25,12 @@
 <div class="options-wrapper">
     <div class="options-container">
         <div class="option">All</div>
-        <div class="option">eCommerce</div>
-        <div class="option">eBay</div>
-        <div class="option">Shopify</div>
-        <div class="option">Aliexpress</div>
-        <div class="option">Walmart</div>
-        <div class="option">Amazon</div>
+        <div class="option" data-category="eCommerce">eCommerce</div>
+        <div class="option" data-category="eBay">eBay</div>
+        <div class="option" data-category="Shopify">Shopify</div>
+        <div class="option" data-category="Aliexpress">Aliexpress</div>
+        <div class="option" data-category="Walmart">Walmart</div>
+        <div class="option" data-category="Amazon">Amazon</div>
         <div class="option" data-category="Tiktook">TikTok</div>
     </div>
 </div>
@@ -45,13 +45,13 @@
                     <div class="blog-item w-100">
                         <div class="post-featured-image">
                             <figure class="image-anime">
-                                @if ($blog->video_url)
+                                {{-- @if ($blog->video_url)
                                     <iframe width="100%" height="315" src="https://www.youtube.com/embed/{{ \Str::after($blog->video_url, 'v=') }}" frameborder="0" allowfullscreen></iframe>
-                                @else
+                                @else --}}
                                     <a href="{{ route('blogs.show', $blog->slug) }}">
                                         <img src="{{ 'https://tsscout.com/storage/app/public/' .$blog->image }}" alt="{{ $blog->title }}">
                                     </a>
-                                @endif
+                                {{-- @endif --}}
                             </figure>
                         </div>
 

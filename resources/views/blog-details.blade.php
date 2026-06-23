@@ -83,7 +83,7 @@
         }
 
         .content table thead th
-    {
+        {
             background: rgba(8, 20, 38, 0.7);
             color: #ffffff;
             font-weight: 700;
@@ -292,7 +292,7 @@
         <button class="button-shopify">{{ $blog->category }}</button>
         <ul class="info-list">
             <li><span class="date">{{ $blog->publish_date }}</span></li>
-            <li><span class="author">By: {{ $blog->author }}</span></li>
+            {{-- <li><span class="author">By: {{ $blog->author }}</span></li> --}}
             <li>
                 <img id="" src="{{ asset('images/heart.svg') }}" alt="Likes" >
                 <span id="like-count" class="number">{{ $blog->likes }}</span>
@@ -317,6 +317,21 @@
             like?
             <img id="like-button" src="{{ asset('images/heart.svg') }}" alt="Likes" style="cursor: pointer;">
 
+            <div class="card">
+                <div class="card-body">
+                    <div class="row">
+                        <div class="col-lg-3">
+                            <a href="{{ route('author.show', $blog->author_data->author_slug) }}"><img src="{{ $blog->author_data?->author_img ? asset('images/'.$blog->author_data->author_img) : asset('images/icon-client.svg') }}" alt="{{ $blog->author_data->author_name }}" class="img-fluid rounded"></a>
+                        </div>
+                        <div class="col-lg-9">
+                            <a href="{{ route('author.show', $blog->author_data->author_slug) }}">
+                            <h4>{{ $blog->author_data->author_name }}</h4>
+                            <p>{!! nl2br($blog->author_data->author_card) !!}</p>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
         </div>
         <div class="sidebar">
             <div class="social">
