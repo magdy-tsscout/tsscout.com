@@ -82,6 +82,9 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
         <div class="collapse navbar-collapse" id="navbarNav">
             <ul class="navbar-nav">
                 <li class="nav-item">
+                    <a class="nav-link" href="{{ route('admin.sellers-dictionary.web.edit') }}">Sellers Dictionary Home</a>
+                </li>
+                <li class="nav-item">
                     <a class="nav-link" href="{{ route('admin.sellers-dictionary-categories.index') }}">Sellers Dictionary Categories</a>
                 </li>
                 <li class="nav-item">

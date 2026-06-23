@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\SellersDictionary;
 use App\Models\SellersDictionaryCategory;
+use App\Models\SellersDictionaryHome;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
@@ -12,15 +13,20 @@ class SellersDictionaryController extends Controller
 
     public function webIndex($categorySlug = null)
     {
-        $categories = SellersDictionaryCategory::with('entries')->orderBy('name')->get();
-        if( $categorySlug ) {
-            $category = SellersDictionaryCategory::where('slug', $categorySlug)->firstOrFail();
-            $entries = $category->entries()->orderBy('title')->get();
-        } else {
-            $category=null;
-            $entries = SellersDictionary::with('category')->orderBy('title')->get();
+        if ( ! $categorySlug ) {
+            return self::webIndexHome();
         }
+        $categories = SellersDictionaryCategory::with('entries')->orderBy('name')->get();
+
+        $category = SellersDictionaryCategory::where('slug', $categorySlug)->firstOrFail();
+        $entries = $category->entries()->orderBy('title')->get();
+
         return view('sellers-dictionary.web-index', compact('categories', 'categorySlug', 'category', 'entries'));
+    }
+
+    public static function webIndexHome() {
+        $content = SellersDictionaryHome::first();
+        return view('sellers-dictionary.web-index-home', compact('content'));
     }
 
     private function isAdmin()

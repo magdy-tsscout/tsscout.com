@@ -26,28 +26,22 @@
             @endforeach
         </div>
     </div>
-    <div class="row">
-        <div class="col-lg-3">
-            <ul class="entry">
-            @foreach($entries as $entry)
-                <li><a href="#entry_{{ $entry->id }}">{{ $entry->title }}</a></li>
-            @endforeach
-            </ul>
-        </div>
-        <div class="col-lg-9">
-            <div class="entries-wrapper">
-                @foreach($entries as $entry)
-                <div class="card mb-4">
-                    <div class="card-body">
-                        <div class="entry">
-                            <h2><a name="entry_{{ $entry->id }}">{{ $entry->title }}</a></h2>
-                            <p>{{ $entry->content }}</p>
-                        </div>
-                    </div>
+
+
+
+    <div class="entries-wrapper">
+        @foreach($entries as $entry)
+        <div class="card mb-4">
+            <div class="card-body">
+                <div class="entry">
+                    <h2><a name="entry_{{ $entry->id }}">{{ $entry->title }}</a></h2>
+                    <p>{{ $entry->content }}</p>
                 </div>
-                @endforeach
             </div>
         </div>
+        @endforeach
     </div>
+
+
 </div>
 @endsection

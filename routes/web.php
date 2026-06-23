@@ -17,6 +17,7 @@ use App\Http\Controllers\ThemeController;
 use App\Http\Controllers\LandingPageController;
 use App\Http\Controllers\SellersDictionaryController;
 use App\Http\Controllers\SellersDictionaryCategoryController;
+use App\Http\Controllers\SellersDictionaryHomeController;
 use App\Http\Controllers\TitleBuilderController;
 
 
@@ -35,6 +36,8 @@ Route::get('/index', function () {
 Route::get('sellers-dictionary/{category?}', [SellersDictionaryController::class, 'webIndex'])->name('sellers-dictionary.web.index');
 
 Route::prefix('admin')->name('admin.')->group(function () {
+    Route::get('sellers-dictionary-home', [SellersDictionaryHomeController::class, 'edit'])->name('sellers-dictionary.web.edit');
+    Route::post('sellers-dictionary-home', [SellersDictionaryHomeController::class, 'update'])->name('sellers-dictionary.web.update');
     Route::resource('sellers-dictionary', SellersDictionaryController::class)->except(['show']);
     Route::resource('sellers-dictionary-categories', SellersDictionaryCategoryController::class)->except(['show']);
     Route::get('edit-html/{id}', [PagesController::class, 'editHtml'])->name('pages.edit-html');
