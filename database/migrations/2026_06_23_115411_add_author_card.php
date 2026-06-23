@@ -33,7 +33,7 @@ return new class extends Migration
         });
 
 
-        User::where('id','>=', 1)->update([
+        User::where('user_id','>=', 1)->update([
             'author_name' => 'Sara H.',
             'author_card' => 'This is the default author card.',
             'author_slug' => 'sara-h',
