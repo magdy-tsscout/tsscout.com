@@ -55,6 +55,6 @@ class Blog extends Model
     }
 
     public function author_data() {
-        return $this->hasOne(User::class, 'user_id', 'author_id')->select( 'author_name', 'author_card', 'author_slug', 'author_img');
+        return $this->hasOne(User::class, 'id', 'author_id')->select( 'author_name', 'author_card', 'author_slug', 'author_img');
     }
 }
