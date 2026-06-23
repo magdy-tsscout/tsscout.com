@@ -19,8 +19,6 @@
     <h1 class="h4 mb-0">Sellers Dictionary{{ $category?"::".$category->name:"" }}</h1>
     <div class="options-wrapper">
         <div class="options-container">
-            <div class="option {{ $categorySlug === null ? 'active' : '' }}">
-                <a href="{{ route('sellers-dictionary.web.index') }}">All</a></div>
             @foreach($categories as $category)
                 <div class="option {{ $categorySlug === $category->slug ? 'active' : '' }}"><a href="{{ route('sellers-dictionary.web.index', $category->slug) }}">{{ $category->name }}</a></div>
             @endforeach
@@ -35,7 +33,8 @@
             <div class="card-body">
                 <div class="entry">
                     <h2><a name="entry_{{ $entry->id }}">{{ $entry->title }}</a></h2>
-                    <p>{{ $entry->content }}</p>
+                    <p>{{ Str::words(strip_tags($entry->content), 10) }}</p>
+                    {{-- <a href="{{ route('sellers-dictionary.web.show', $entry->id) }}" class="btn btn-primary">Read More</a> --}}
                 </div>
             </div>
         </div>

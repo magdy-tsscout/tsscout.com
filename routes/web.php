@@ -34,6 +34,7 @@ Route::get('/index', function () {
 });
 
 Route::get('sellers-dictionary/{category?}', [SellersDictionaryController::class, 'webIndex'])->name('sellers-dictionary.web.index');
+Route::get('sellers-dictionary/{category}/{slug}', [SellersDictionaryController::class, 'webIndex'])->name('sellers-dictionary.web.show');
 
 Route::prefix('admin')->name('admin.')->group(function () {
     Route::get('sellers-dictionary-home', [SellersDictionaryHomeController::class, 'edit'])->name('sellers-dictionary.web.edit');
