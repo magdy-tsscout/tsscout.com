@@ -1707,7 +1707,7 @@
 <section class="lp-compare" aria-labelledby="compare-h">
   <div class="lp-shell">
     <div class="lp-center">
-      <h2 id="compare-h" class="lp-h2">Why Sellers Choose TSScout</h2>
+      <h2 id="compare-h" class="lp-h2">Why Sellers Choose TSScout Premium package</h2>
     </div>
     <div class="lp-compare-wrap">
       <table class="lp-compare-table" aria-label="Feature comparison between TSScout and other tools">
