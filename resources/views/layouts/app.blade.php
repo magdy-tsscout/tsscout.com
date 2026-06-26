@@ -81,15 +81,23 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
         </button>
         <div class="collapse navbar-collapse" id="navbarNav">
             <ul class="navbar-nav">
-                <li class="nav-item">
-                    <a class="nav-link" href="{{ route('admin.sellers-dictionary.web.edit') }}">Sellers Dictionary Home</a>
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                        Sellers Dictionary
+                    </a>
+                    <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+                        <li class="nav-item">
+                            <a class="nav-link" href="{{ route('admin.sellers-dictionary.web.edit') }}">Sellers Dictionary Home</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="{{ route('admin.sellers-dictionary-categories.index') }}">Sellers Dictionary Categories</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="{{ route('admin.sellers-dictionary.index') }}">Sellers Dictionary</a>
+                        </li>
+                    </ul>
                 </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="{{ route('admin.sellers-dictionary-categories.index') }}">Sellers Dictionary Categories</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="{{ route('admin.sellers-dictionary.index') }}">Sellers Dictionary</a>
-                </li>
+
                 <li class="nav-item">
                     <a class="nav-link" href="{{ route('admin.faqs.index') }}">FAQS</a>
                 </li>
