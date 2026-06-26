@@ -151,43 +151,6 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.3/dist/umd/popper.min.js"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
     @yield('scripts')
-    <script>
-  document.addEventListener("DOMContentLoaded", function() {
-    // Prevent closing the main dropdown when clicking nested toggles
-    document.querySelectorAll('.dropdown-menu a.dropdown-toggle').forEach(function(element) {
-      element.addEventListener('click', function(e) {
-        e.preventDefault();
-        e.stopPropagation();
 
-        let nextEl = this.nextElementSibling;
-
-        if (nextEl && nextEl.classList.contains('dropdown-menu')) {
-          // Close other submenus at the same nesting level
-          let parentUl = this.closest('ul');
-          if (parentUl) {
-            parentUl.querySelectorAll('.dropdown-menu.show').forEach(function(openedMenu) {
-              if (openedMenu !== nextEl) {
-                openedMenu.classList.remove('show');
-              }
-            });
-          }
-
-          // Toggle current submenu
-          nextEl.classList.toggle('show');
-        }
-      });
-    });
-
-    // Optional: Close all nested submenus when the main bootstrap dropdown is closed
-    document.querySelectorAll('.navbar .dropdown').forEach(function(dropdown) {
-      dropdown.addEventListener('hidden.bs.dropdown', function () {
-        this.querySelectorAll('.dropdown-menu.show').forEach(function(openedMenu) {
-          openedMenu.classList.remove('show');
-        });
-      });
-    });
-  });
-</script>
-    <x-refgrow />
 </body>
 </html>
