@@ -33,7 +33,7 @@
 
                 <div class="mb-3">
                     <label for="content" class="form-label">Content <span class="text-danger">*</span></label>
-                    <textarea class="form-control @error('content') is-invalid @enderror" id="content" name="content" rows="8" required>{{ old('content') }}</textarea>
+                    <textarea class="form-control" id="content" name="content" rows="8" required>{{ old('content') }}</textarea>
                     @error('content')<div class="invalid-feedback">{{ $message }}</div>@enderror
                 </div>
 
@@ -43,5 +43,5 @@
         </div>
     </div>
 </div>
-{{-- <x-editor-scripts /> --}}
+<x-editor-scripts />
 @endsection
