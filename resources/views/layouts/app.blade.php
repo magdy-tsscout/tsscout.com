@@ -62,6 +62,16 @@
             padding: 20px;
             box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
         }
+        @media all and ( max-width: 1000px ) {
+            .dropdown-menu {
+                background: transparent;
+                border: 0px none transparent;
+
+            }
+            .dropdown-menu .nav-link {
+                color: inherit !important;
+            }
+        }
     </style>
     @yield('styles')
     <!-- Google Tag Manager -->
