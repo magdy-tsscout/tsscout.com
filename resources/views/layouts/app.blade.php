@@ -39,6 +39,10 @@
             color: #ffffff !important;
         }
 
+        .dropdown-menu .nav-link {
+            color: #343a40 !important;
+        }
+
         .nav-link:hover {
             color: #d4e157 !important;
         }
