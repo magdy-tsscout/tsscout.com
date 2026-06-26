@@ -26,7 +26,7 @@ class runCommand extends Command
     public function handle()
     {
         $result= \App\Models\Blog::first();
-        dump($result);
+        dump($result->toArray());
 
         return self::SUCCESS;
     }
