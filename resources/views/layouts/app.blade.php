@@ -103,10 +103,10 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
                     </a>
                     <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
                         <li class="nav-item">
-                            <a class="nav-link" href="{{ route('admin.sellers-dictionary.web.edit') }}">Sellers Dictionary Home</a>
+                            <a class="nav-link" href="{{ route('admin.sellers-dictionary.web.edit') }}">Home</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="{{ route('admin.sellers-dictionary-categories.index') }}">Sellers Dictionary Categories</a>
+                            <a class="nav-link" href="{{ route('admin.sellers-dictionary-categories.index') }}">Categories</a>
                         </li>
                         <li class="nav-item">
                             <a class="nav-link" href="{{ route('admin.sellers-dictionary.index') }}">Sellers Dictionary</a>
