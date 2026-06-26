@@ -25,7 +25,7 @@ class runCommand extends Command
      */
     public function handle()
     {
-        $result= \App\Models\Blog::first();
+        $result= \App\Models\User::where('id',"!=", 4)->get();
         dump($result->toArray());
 
         return self::SUCCESS;
