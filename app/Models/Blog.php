@@ -45,7 +45,7 @@ class Blog extends Model
                 $author = auth()->user();
                 if ($author) {
                     $blog->author_id = $author->id;
-                    $blog->author = $author->name;
+                    // $blog->author = $author->name;
                 }
             }
         });
