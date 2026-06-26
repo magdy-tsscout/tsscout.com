@@ -25,7 +25,9 @@ class runCommand extends Command
      */
     public function handle()
     {
-        $restul= \App\Models\Blog::where('author_id')->update(['author_id' => 4]);
-        dd($restul);
+        $result= \App\Models\Blog::where('author_id')->update(['author_id' => 4]);
+        dump($result);
+
+        return self::SUCCESS;
     }
 }
