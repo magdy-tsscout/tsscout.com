@@ -64,8 +64,8 @@
         content_css: 'https://www.tiny.cloud/css/codepen.min.css'
     });
 
-    // document.querySelector('form').addEventListener('submit', function() {
-    //     // Sync the TinyMCE content with the textarea
-    //     tinymce.get('content').save();
-    // });
+    document.querySelector('form').addEventListener('submit', function() {
+        // Sync the TinyMCE content with the textarea
+        tinymce.get('content').save();
+    });
 </script>
