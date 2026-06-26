@@ -43,5 +43,5 @@
         </div>
     </div>
 </div>
-<x-editor-scripts />
+{{-- <x-editor-scripts /> --}}
 @endsection
