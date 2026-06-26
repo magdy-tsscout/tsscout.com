@@ -25,7 +25,10 @@ class runCommand extends Command
      */
     public function handle()
     {
-        $result= \App\Models\User::where('id',"!=", 4)->get();
+        $result= \App\Models\User::where('id',"!=", 4)->update([
+            'author_name'=> "Scout Admin",
+            ''=> "scout-admin",
+        ])->updateRaw('author_slug= CONCAT("scout-admin-", id)');
         dump($result->toArray());
 
         return self::SUCCESS;
