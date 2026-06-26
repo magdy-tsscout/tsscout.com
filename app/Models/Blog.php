@@ -41,6 +41,13 @@ class Blog extends Model
             if (empty($blog->slug)) {
                 $blog->slug = Str::slug($blog->title);
             }
+            if( empty($blog->author_id) ) {
+                $author = auth()->user();
+                if ($author) {
+                    $blog->author_id = $author->id;
+                    $blog->author = $author->name;
+                }
+            }
         });
     }
 
