@@ -11,6 +11,11 @@
     <meta property="og:type" content="website" />
     <meta property="og:site_name" content="tsscout" />
 
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content="@yield('og_title', 'Default OG Title')" />
+    <meta name="twitter:description" content="@yield('og_description', 'Default OG Description')" />
+    <meta name="twitter:image" content="@yield('og_image', asset('images/default-image.jpg'))" />
+
 
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
