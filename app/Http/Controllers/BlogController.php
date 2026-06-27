@@ -158,7 +158,7 @@ class BlogController extends Controller
             'category' => 'required|string|max:255',
             'content' => 'required|string',
             'published'=> 'boolean',
-            'scheduled_at' => 'nullable|date|after_or_equal:now',
+            'scheduled_at' => 'nullable|date',
             'meta_title' => 'nullable|string|max:255',
         ]);
 
