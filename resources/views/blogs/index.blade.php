@@ -156,114 +156,131 @@
 
 
     <div class="row blogs-grid">
-        @forelse ($blogs as $blog)
-            <div class="col-lg-6 mb-4">
-                <div class="card blog-card mb-4">
-                    <div class="card-header text-white">
-                        <span class="blog-card-title {{ $blog->published==true?'':' text-muted' }}">{{ $blog->title }}</span>
-                        <a
-                            target="_blank"
-                            class="btn btn-sm btn-secondary"
-                            href="{{ url("blogs/{$blog->slug}") }}">
-                            <span class="fa fa-link"></span>
-                        </a>
+    @forelse ($blogs as $blog)
+        <div class="col-lg-6 mb-4">
+            <div class="card blog-card h-100 shadow-sm border-0"> <!-- إضافة shadow-sm وإزالة الحدود تجعل الكارت عصرياً -->
+
+                <!-- رأس الكارت: العنوان وحالة النشر -->
+                <div class="card-header bg-transparent border-bottom d-flex justify-content-between align-items-center py-3">
+                    <div class="d-flex align-items-center gap-2">
+                        @if($blog->published == false)
+                            <span class="badge bg-secondary text-white">Draft</span>
+                        @endif
+                        <h5 class="card-title mb-0 {{ $blog->published ? '' : 'text-muted' }}" style="font-size: 1.1rem; font-weight: 600;">
+                            {{ $blog->title }}
+                        </h5>
                     </div>
-                    <div class="card-body">
-                        <div class="row">
-                            <div class="col-lg-3">
-                                @if($blog->image)
-                                <a href="{{ url('storage/app/public/' . $blog->image) }}" class="d-block w-100" target="_blank">
-                                    <img src="{{ url('storage/app/public/' . $blog->image) }}" alt="{{ $blog->title }}" class="img-fluid rounded border" loading="lazy">
+                    <a target="_blank" class="btn btn-sm btn-link text-secondary p-0" href="{{ url("blogs/{$blog->slug}") }}" title="View Blog">
+                        <span class="fa fa-external-link-alt"></span>
+                    </a>
+                </div>
+
+                <!-- محتوى الكارت -->
+                <div class="card-body">
+                    <div class="row align-items-start">
+                        <!-- مساحة الصورة -->
+                        <div class="col-sm-4 mb-3 mb-sm-0">
+                            @if($blog->image)
+                                <a href="{{ url('storage/app/public/' . $blog->image) }}" class="d-block ratio ratio-4x3" target="_blank">
+                                    <img src="{{ url('storage/app/public/' . $blog->image) }}" alt="{{ $blog->title }}" class="img-fluid rounded border object-fit-cover" loading="lazy">
                                 </a>
-                                @else
-                                <div class="d-flex align-items-center justify-content-center bg-light rounded border" style="height: 65px;">
-                                    <span class="text-muted">No Image</span>
+                            @else
+                                <div class="d-flex align-items-center justify-content-center bg-light rounded border w-100" style="height: 90px;">
+                                    <span class="text-muted small"><span class="fa fa-image d-block text-center mb-1"></span> No Image</span>
                                 </div>
                             @endif
-                            </div>
-                            <div class="col-lg-9">
-                                <p class="mb-1">
-                                    @if($blog->published==false)
-                                        <span class="badge badge-secondary">Draft</span>
-                                    @endif
-                                    {{ Str::limit($blog->excerpt, 50) }}</p>
-
-                                <p class="text-muted mb-1 text-right">
-                                    <span class="fa fa-calendar"></span>
-                                    {{ $blog->publish_date }} <br />
-                                    created by
-                                    <span class="fa fa-user"></span>
-                                    {{ $blog->author_data->author_name ?? $blog->author }} <br />
-
-                                    Last updated by
-                                    <span class="fa fa-user-edit"></span>
-                                    {{ $blog->updated_by_data->author_name ?? 'N/A' }} <br />
-
-
-                                    <br />
-                                    <span class="fa fa-calendar-alt"></span>
-                                    updated on:
-                                    {{ $blog->updated_at->format('Y-m-d') }}
-                                </p>
-                            </div>
                         </div>
 
-                        <div class="d-flex w-100">
-                            <div class="btn-group">
-                                <!-- share to facebook -->
-                                <a href="https://www.facebook.com/sharer/sharer.php?u={{ urlencode( url("blog/{$blog->slug}") ) }}" target="_blank" class="btn btn-outline-primary btn-sm">
-                                    <span class="fab fa-facebook"></span>
-                                </a>
+                        <!-- تفاصيل المقال -->
+                        <div class="col-sm-8 d-flex flex-column justify-content-between">
+                            <p class="text-secondary small mb-3">
+                                {{ Str::limit($blog->excerpt, 80) }} <!-- زيادة الليمت قليلاً لتملأ الفراغ بشكل أفضل -->
+                            </p>
 
-                                <!-- share to X (Twitter) -->
-                                <a href="https://x.com/intent/tweet?url={{ urlencode(url('blog/'.$blog->slug)) }}&text={{ urlencode($blog->title) }}" target="_blank" class="btn btn-outline-dark btn-sm">
-                                    <span class="fab fa-twitter"></span>
-                                </a>
-
-                                <!-- share to linkedin -->
-                                <a href="https://www.linkedin.com/sharing/share-offsite/?url={{ urlencode(url('blog/'.$blog->slug)) }}" target="_blank" class="btn btn-outline-primary btn-sm">
-                                    <span class="fab fa-linkedin-in"></span>
-                                </a>
-
-                                <!-- copy url -->
-                                <a href="#" class="btn btn-outline-info btn-sm copy-url-btn" data-clipboard-text="{{ url('blogs/'.$blog->slug) }}">
-                                    <span class="fa fa-copy"></span>
-                                    copy URL
-                                </a>
+                            <!-- بيانات الكاتب والتاريخ (مدمجة ومنظمة) -->
+                            <div class="text-muted small border-top pt-2">
+                                <div class="d-flex justify-content-between mb-1">
+                                    <span><span class="fa fa-user text-primary me-1"></span> {{ $blog->author_data->author_name ?? $blog->author }}</span>
+                                    <span><span class="fa fa-calendar-alt me-1"></span> {{ $blog->publish_date }}</span>
+                                </div>
+                                <!-- بيانات التحديث الفرعية بخط أصغر وباهت لمنع الزحمة -->
+                                <div class="d-flex justify-content-between x-small text-opacity-75" style="font-size: 0.75rem;" title="Last updated by {{ $blog->updated_by_data->author_name ?? 'N/A' }}">
+                                    <span><span class="fa fa-user-edit me-1"></span> {{ Str::limit($blog->updated_by_data->author_name ?? 'N/A', 15) }}</span>
+                                    <span><span class="fa fa-history me-1"></span> {{ $blog->updated_at->format('Y-m-d') }}</span>
+                                </div>
                             </div>
                         </div>
                     </div>
-                    <div class="card-footer text-muted">
-                        <span class="badge badge-info category-badge">
+                </div>
+
+                <!-- تذييل الكارت: الأزرار والتقسيمات -->
+                <div class="card-footer bg-transparent border-top-0 d-flex justify-content-between align-items-center pb-3">
+                    <div>
+                        <span class="badge bg-info text-dark rounded-pill px-3">
                             {{ $blog->category }}
                         </span>
-                        <form action="{{ route('blogs.destroy', $blog->id) }}" method="POST" class="d-inline-block float-right">
+                    </div>
+
+                    <div class="d-flex gap-2 align-items-center">
+                        <!-- زر نسخ الرابط السريع -->
+                        <button class="btn btn-light btn-sm text-info copy-url-btn border" data-clipboard-text="{{ url('blogs/'.$blog->slug) }}" title="Copy Link">
+                            <span class="fa fa-copy"></span>
+                        </button>
+
+                        <!-- قائمة قائمة منسدلة للمشاركة (Share Dropdown) تمنع زحمة الأزرار الكثيرة -->
+                        <div class="dropdown d-inline-block">
+                            <button class="btn btn-light btn-sm border text-secondary dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+                                <span class="fa fa-share-alt"></span>
+                            </button>
+                            <ul class="dropdown-menu dropdown-menu-end">
+                                <li>
+                                    <a class="dropdown-item text-primary" href="https://www.facebook.com/sharer/sharer.php?u={{ urlencode(url("blog/{$blog->slug}")) }}" target="_blank">
+                                        <span class="fab fa-facebook me-2"></span> Facebook
+                                    </a>
+                                </li>
+                                <li>
+                                    <a class="dropdown-item text-dark" href="https://x.com/intent/tweet?url={{ urlencode(url('blog/'.$blog->slug)) }}&text={{ urlencode($blog->title) }}" target="_blank">
+                                        <span class="fab fa-twitter me-2"></span> X (Twitter)
+                                    </a>
+                                </li>
+                                <li>
+                                    <a class="dropdown-item text-primary" href="https://www.linkedin.com/sharing/share-offsite/?url={{ urlencode(url('blog/'.$blog->slug)) }}" target="_blank">
+                                        <span class="fab fa-linkedin-in me-2"></span> LinkedIn
+                                    </a>
+                                </li>
+                            </ul>
+                        </div>
+
+                        <!-- أزرار التحكم (تعديل وحذف) -->
+                        <form action="{{ route('blogs.destroy', $blog->id) }}" method="POST" class="d-inline-block m-0">
                             @csrf
                             @method('DELETE')
                             <div class="btn-group">
-                            <a href="{{ route('blogs.edit', $blog->id) }}" class="btn btn-warning btn-sm">
-                                <span class="fa fa-edit"></span>
-                            </a>
-                            <button type="submit" class="btn btn-danger btn-sm" onclick="return confirm('Are you sure?')">
-                                <span class="fa fa-trash"></span>
-                            </button>
+                                <a href="{{ route('blogs.edit', $blog->id) }}" class="btn btn-light btn-sm text-warning border">
+                                    <span class="fa fa-edit"></span>
+                                </a>
+                                <button type="submit" class="btn btn-light btn-sm text-danger border" onclick="return confirm('Are you sure?')">
+                                    <span class="fa fa-trash"></span>
+                                </button>
                             </div>
                         </form>
                     </div>
                 </div>
+
             </div>
-        @empty
-            <div class="col-12 flex-column">
-                <div class="card empty-state-card mb-4">
-                    <div class="card-body d-flex flex-column align-items-center justify-content-center text-center">
-                        <span class="fa fa-search empty-state-icon mb-3"></span>
-                        <h5 class="mb-2">No Blogs Found</h5>
-                        <p class="text-muted mb-0">No blogs found for the current filters.</p>
-                    </div>
+        </div>
+    @empty
+        <div class="col-12">
+            <div class="card empty-state-card border-0 shadow-sm text-center py-5">
+                <div class="card-body">
+                    <span class="fa fa-search text-muted mb-3" style="font-size: 3rem;"></span>
+                    <h5 class="mb-2">No Blogs Found</h5>
+                    <p class="text-muted mb-0">No blogs found for the current filters.</p>
                 </div>
             </div>
-        @endforelse
-    </div>
+        </div>
+    @endforelse
+</div>
 
     <div class="d-flex justify-content-center">
         {{ $blogs->links('pagination::bootstrap-4', ['path' => request()->path(), 'query' => request()->query()]) }}
