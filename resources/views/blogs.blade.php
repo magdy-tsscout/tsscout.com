@@ -79,7 +79,7 @@
                                         @endif
                                     @endforeach
                                 @else
-                                    <p>{{ Str::limit(strip_tags($blog->content), 150) }}</p>
+                                    <p>{{ Str::limit(strip_tags($blog->excerpt), 150) }}</p>
                                 @endif
                             </div>
                         </div>
