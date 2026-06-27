@@ -51,7 +51,7 @@ class BlogController extends Controller
             'category' => 'required|string|max:255',
             'content' => 'required|string',
             'published' => 'boolean',
-            'scheduled_at' => 'nullable|date|after_or_equal:publish_date|after_or_equal:now',
+            'scheduled_at' => 'nullable|date|after_or_equal:now',
         ]);
 
         if( $request->input('published') === null ) {
@@ -156,7 +156,7 @@ class BlogController extends Controller
             'category' => 'required|string|max:255',
             'content' => 'required|string',
             'published'=> 'boolean',
-            'scheduled_at' => 'nullable|date|after_or_equal:publish_date|after_or_equal:now',
+            'scheduled_at' => 'nullable|date|after_or_equal:now',
         ]);
 
         if ($validatedData['media_type'] === 'image') {
