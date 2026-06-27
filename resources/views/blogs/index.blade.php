@@ -229,27 +229,27 @@
 
                         <!-- قائمة قائمة منسدلة للمشاركة (Share Dropdown) تمنع زحمة الأزرار الكثيرة -->
                         <div class="dropdown d-inline-block">
-                            <button class="btn btn-light btn-sm border text-secondary dropdown-toggle" type="button" data-toggle="dropdown" aria-expanded="false">
-                                <span class="fa fa-share-alt"></span>
-                            </button>
-                            <ul class="dropdown-menu dropdown-menu-end">
-                                <li>
-                                    <a class="dropdown-item text-primary" href="https://www.facebook.com/sharer/sharer.php?u={{ urlencode(url("blog/{$blog->slug}")) }}" target="_blank">
-                                        <span class="fab fa-facebook me-2"></span> Facebook
-                                    </a>
-                                </li>
-                                <li>
-                                    <a class="dropdown-item text-dark" href="https://x.com/intent/tweet?url={{ urlencode(url('blog/'.$blog->slug)) }}&text={{ urlencode($blog->title) }}" target="_blank">
-                                        <span class="fab fa-twitter me-2"></span> X (Twitter)
-                                    </a>
-                                </li>
-                                <li>
-                                    <a class="dropdown-item text-primary" href="https://www.linkedin.com/sharing/share-offsite/?url={{ urlencode(url('blog/'.$blog->slug)) }}" target="_blank">
-                                        <span class="fab fa-linkedin-in me-2"></span> LinkedIn
-                                    </a>
-                                </li>
-                            </ul>
-                        </div>
+    <button class="btn btn-light btn-sm border text-secondary dropdown-toggle" type="button" data-toggle="dropdown" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false" title="Share Blog">
+        <span class="fa fa-share-alt"></span>
+    </button>
+    <ul class="dropdown-menu dropdown-menu-right dropdown-menu-end">
+        <li>
+            <a class="dropdown-item text-primary" href="https://www.facebook.com/sharer/sharer.php?u={{ urlencode(url("blog/{$blog->slug}")) }}" target="_blank">
+                <span class="fab fa-facebook me-2"></span> Facebook
+            </a>
+        </li>
+        <li>
+            <a class="dropdown-item text-dark" href="https://x.com/intent/tweet?url={{ urlencode(url('blog/'.$blog->slug)) }}&text={{ urlencode($blog->title) }}" target="_blank">
+                <span class="fab fa-twitter me-2"></span> X (Twitter)
+            </a>
+        </li>
+        <li>
+            <a class="dropdown-item text-primary" href="https://www.linkedin.com/sharing/share-offsite/?url={{ urlencode(url('blog/'.$blog->slug)) }}" target="_blank">
+                <span class="fab fa-linkedin-in me-2"></span> LinkedIn
+            </a>
+        </li>
+    </ul>
+</div>
 
                         <!-- أزرار التحكم (تعديل وحذف) -->
                         <form action="{{ route('blogs.destroy', $blog->id) }}" method="POST" class="d-inline-block m-0">
