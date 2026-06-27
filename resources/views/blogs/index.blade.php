@@ -153,6 +153,8 @@
             @endif
         </div>
     @endif
+
+
     <div class="row blogs-grid">
         @forelse ($blogs as $blog)
             <div class="col-lg-6 mb-4">

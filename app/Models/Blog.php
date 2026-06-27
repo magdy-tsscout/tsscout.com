@@ -60,6 +60,34 @@ class Blog extends Model
         });
     }
 
+    public function scopePublished($query)
+    {
+        return $query->where('published', true);
+    }
+
+    public function scopeUnPublished($query)
+    {
+        return $query->where('published', false);
+    }
+
+    public function scopeScheduled7Days($query)
+    {
+        return $query
+            ->where('scheduled_at', '>=', now())
+            ->where('scheduled_at', '<=', now()->addDays(7));
+    }
+
+    public function scopeScheduled30Days($query)
+    {
+        return $query
+            ->where('scheduled_at', '>=', now())
+            ->where('scheduled_at', '<=', now()->addDays(30));
+    }
+
+
+
+
+
     public function setPublishedAttribute($value)
     {
         $this->attributes['published'] = is_null($value) ? true : (bool) $value;
