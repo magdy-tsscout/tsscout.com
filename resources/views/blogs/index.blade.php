@@ -158,9 +158,9 @@
     <div class="row blogs-grid">
     @forelse ($blogs as $blog)
         <div class="col-lg-6 mb-4">
-            <div class="card blog-card h-100 shadow-sm border-0"> <!-- إضافة shadow-sm وإزالة الحدود تجعل الكارت عصرياً -->
+            <div class="card blog-card h-100 shadow-sm border-0"> 
 
-                <!-- رأس الكارت: العنوان وحالة النشر -->
+                
                 <div class="card-header bg-transparent border-bottom d-flex justify-content-between align-items-center py-3">
                     <div class="d-flex align-items-center gap-2">
                         @if($blog->published == false)
@@ -175,10 +175,9 @@
                     </a>
                 </div>
 
-                <!-- محتوى الكارت -->
+                
                 <div class="card-body">
                     <div class="row align-items-start">
-                        <!-- مساحة الصورة -->
                         <div class="col-sm-4 mb-3 mb-sm-0">
                             @if($blog->image)
                                 <a href="{{ url('storage/app/public/' . $blog->image) }}" class="d-block ratio ratio-4x3" target="_blank">
@@ -191,19 +190,17 @@
                             @endif
                         </div>
 
-                        <!-- تفاصيل المقال -->
                         <div class="col-sm-8 d-flex flex-column justify-content-between">
                             <p class="text-secondary small mb-3">
-                                {{ Str::limit($blog->excerpt, 80) }} <!-- زيادة الليمت قليلاً لتملأ الفراغ بشكل أفضل -->
+                                {{ Str::limit($blog->excerpt, 80) }} 
                             </p>
 
-                            <!-- بيانات الكاتب والتاريخ (مدمجة ومنظمة) -->
                             <div class="text-muted small border-top pt-2">
                                 <div class="d-flex justify-content-between mb-1">
                                     <span><span class="fa fa-user text-primary me-1"></span> {{ $blog->author_data->author_name ?? $blog->author }}</span>
                                     <span><span class="fa fa-calendar-alt me-1"></span> {{ $blog->publish_date }}</span>
                                 </div>
-                                <!-- بيانات التحديث الفرعية بخط أصغر وباهت لمنع الزحمة -->
+
                                 <div class="d-flex justify-content-between x-small text-opacity-75" style="font-size: 0.75rem;" title="Last updated by {{ $blog->updated_by_data->author_name ?? 'N/A' }}">
                                     <span><span class="fa fa-user-edit me-1"></span> {{ Str::limit($blog->updated_by_data->author_name ?? 'N/A', 15) }}</span>
                                     <span><span class="fa fa-history me-1"></span> {{ $blog->updated_at->format('Y-m-d') }}</span>
@@ -213,7 +210,6 @@
                     </div>
                 </div>
 
-                <!-- تذييل الكارت: الأزرار والتقسيمات -->
                 <div class="card-footer bg-transparent border-top-0 d-flex justify-content-between align-items-center pb-3">
                     <div>
                         <span class="badge bg-info text-dark rounded-pill px-3">
@@ -222,36 +218,33 @@
                     </div>
 
                     <div class="d-flex gap-2 align-items-center">
-                        <!-- زر نسخ الرابط السريع -->
                         <button class="btn btn-light btn-sm text-info copy-url-btn border" data-clipboard-text="{{ url('blogs/'.$blog->slug) }}" title="Copy Link">
                             <span class="fa fa-copy"></span>
                         </button>
 
-                        <!-- قائمة قائمة منسدلة للمشاركة (Share Dropdown) تمنع زحمة الأزرار الكثيرة -->
                         <div class="dropdown d-inline-block">
-    <button class="btn btn-light btn-sm border text-secondary dropdown-toggle" type="button" data-toggle="dropdown" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false" title="Share Blog">
-        <span class="fa fa-share-alt"></span>
-    </button>
-    <ul class="dropdown-menu dropdown-menu-right dropdown-menu-end">
-        <li>
-            <a class="dropdown-item text-primary" href="https://www.facebook.com/sharer/sharer.php?u={{ urlencode(url("blog/{$blog->slug}")) }}" target="_blank">
-                <span class="fab fa-facebook me-2"></span> Facebook
-            </a>
-        </li>
-        <li>
-            <a class="dropdown-item text-dark" href="https://x.com/intent/tweet?url={{ urlencode(url('blog/'.$blog->slug)) }}&text={{ urlencode($blog->title) }}" target="_blank">
-                <span class="fab fa-twitter me-2"></span> X (Twitter)
-            </a>
-        </li>
-        <li>
-            <a class="dropdown-item text-primary" href="https://www.linkedin.com/sharing/share-offsite/?url={{ urlencode(url('blog/'.$blog->slug)) }}" target="_blank">
-                <span class="fab fa-linkedin-in me-2"></span> LinkedIn
-            </a>
-        </li>
-    </ul>
-</div>
+                            <button class="btn btn-light btn-sm border text-secondary dropdown-toggle" type="button" data-toggle="dropdown" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false" title="Share Blog">
+                                <span class="fa fa-share-alt"></span>
+                            </button>
+                            <ul class="dropdown-menu dropdown-menu-right dropdown-menu-end">
+                                <li>
+                                    <a class="dropdown-item text-primary" href="https://www.facebook.com/sharer/sharer.php?u={{ urlencode(url("blog/{$blog->slug}")) }}" target="_blank">
+                                        <span class="fab fa-facebook me-2"></span> Facebook
+                                    </a>
+                                </li>
+                                <li>
+                                    <a class="dropdown-item text-dark" href="https://x.com/intent/tweet?url={{ urlencode(url('blog/'.$blog->slug)) }}&text={{ urlencode($blog->title) }}" target="_blank">
+                                        <span class="fab fa-twitter me-2"></span> X (Twitter)
+                                    </a>
+                                </li>
+                                <li>
+                                    <a class="dropdown-item text-primary" href="https://www.linkedin.com/sharing/share-offsite/?url={{ urlencode(url('blog/'.$blog->slug)) }}" target="_blank">
+                                        <span class="fab fa-linkedin-in me-2"></span> LinkedIn
+                                    </a>
+                                </li>
+                            </ul>
+                        </div>
 
-                        <!-- أزرار التحكم (تعديل وحذف) -->
                         <form action="{{ route('blogs.destroy', $blog->id) }}" method="POST" class="d-inline-block m-0">
                             @csrf
                             @method('DELETE')
