@@ -192,7 +192,7 @@
 
                         <div class="col-sm-8 d-flex flex-column justify-content-between">
                             <p class="text-secondary small mb-3">
-                                {{ Str::limit( html_entity_decode($blog->excerpt), 80) }} 
+                                {{ Str::limit( html_entity_encode($blog->excerpt), 80) }} 
                             </p>
 
                             <div class="text-muted small border-top pt-2">
