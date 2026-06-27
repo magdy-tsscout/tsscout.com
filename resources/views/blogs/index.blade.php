@@ -116,6 +116,37 @@
     </div>
 </div>
 <div class="container-fluid mt-3">
+    @if( session('success'))
+        <div class="alert alert-success" role="alert">
+            {{ session('success') }}
+            @if( request()->filled('slug') && request()->filled('id') && request()->filled('saved'))
+                @if( request()->filled('draft') && request()->input('draft') == 1)
+                    @php $draft=true; @endphp
+                    <span class="badge bg-info text-white"> (as a draft.) </span>
+                @else
+                    @php $draft=false; @endphp
+                @endif
+                <div class=" d-block mt-2 w-100">
+
+                    <a href="{{ route('blogs.show', ['slug' => request('slug'), 'id' => request('id')]) }}" target="_blank" class="btn btn-sm btn-success">
+                        <span class="fa fa-eye"></span>
+                        View {!! !$draft?'Blog':'<b>Draft</b>' !!}
+                    </a>
+
+                    <a href="{{ route('blogs.edit', ['blog' => request('id')]) }}" class="btn btn-sm btn-warning">
+                        <span class="fa fa-edit"></span>
+                        reEdit Blog
+                    </a>
+
+                    <a href="{{ route('blogs.create') }}" class="btn btn-sm btn-primary float-right">
+                        <span class="fa fa-plus"></span>
+                        Create Blog
+                    </a>
+
+                </div>
+            @endif
+        </div>
+    @endif
     <div class="row blogs-grid">
         @forelse ($blogs as $blog)
             <div class="col-lg-6 mb-4">

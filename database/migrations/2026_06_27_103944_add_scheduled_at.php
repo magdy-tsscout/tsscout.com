@@ -11,11 +11,10 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::table('users', function (Blueprint $table) {
-            if (!Schema::hasColumn('users', 'id')) {
-                $table->unsignedBigInteger('id')->autoIncrement()->first();
-            }
+        Schema::table('blogs', function (Blueprint $table) {
+            $table->timestamp('scheduled_at')->nullable();
         });
+        \App\Models\Blog::where('published', true)->update(['scheduled_at' => now()]);
     }
 
     /**
@@ -23,10 +22,8 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::table('users', function (Blueprint $table) {
-            if (Schema::hasColumn('users', 'id')) {
-                // $table->dropColumn('id');
-            }
+        Schema::table('blogs', function (Blueprint $table) {
+            $table->dropColumn('scheduled_at');
         });
     }
 };

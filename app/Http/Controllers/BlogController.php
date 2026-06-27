@@ -33,6 +33,8 @@ class BlogController extends Controller
 
 
 
+
+
         //Validate the incoming request data
         $validatedData = $request->validate([
             'title' => 'required|string|max:255',
@@ -41,14 +43,15 @@ class BlogController extends Controller
             'publish_date' => 'required|date',
             'media_type' => 'required|string|in:image,video',
             'image' => 'nullable|image|max:2048',
-            'video_url' => 'nullable',
-            'meta_description' => 'nullable',
-            'meta_keywords' => 'nullable',
-            'meta_author' => 'nullable',
+            'video_url' => 'nullable|url',
+            'meta_description' => 'nullable|string|max:255',
+            'meta_keywords' => 'nullable|string|max:255',
+            'meta_author' => 'nullable|string|max:255',
             'slug' => 'required|string|max:60|unique:blogs',
             'category' => 'required|string|max:255',
             'content' => 'required|string',
             'published' => 'boolean',
+            'scheduled_at' => 'nullable|date|after_or_equal:publish_date|after_or_equal:now',
         ]);
 
         if( $request->input('published') === null ) {
@@ -63,22 +66,23 @@ class BlogController extends Controller
                 $validatedData['image'] = $request->file('image')->store('images', 'public');
 
             } else {
-                return back()->withErrors(['image' => 'Image is required if media type is set to image.']);
+                return back()->withErrors(['image' => 'Image is required if media type is set to image.'])->withInput();
             }
             $validatedData['video_url'] = null; // No video for this blog
         } elseif ($validatedData['media_type'] === 'video') {
             // Ensure video URL is present
             if (empty($request->video_url)) {
-                return back()->withErrors(['video_url' => 'Video URL is required if media type is set to video.']);
+                return back()->withErrors(['video_url' => 'Video URL is required if media type is set to video.'])->withInput();
             }
             $validatedData['image'] = null; // No image for this blog
             $validatedData['video_url'] = $request->input('video_url'); // Set the video URL
         }
 
-        // Create a new blog entry
-        Blog::create($validatedData);
 
-        return redirect()->route('blogs.index')->with('success', 'Blog created successfully.');
+        // Create a new blog entry
+        $blog=Blog::create($validatedData);
+
+        return redirect()->route('blogs.index', ['slug'=>$blog->slug,'id'=>$blog->id, 'saved'=>1, 'draft'=>$validatedData['published'] ? 0 : 1])->with('success', "Blog \"{$blog->title}\" created successfully.");
     }
 
 
@@ -144,14 +148,15 @@ class BlogController extends Controller
             'publish_date' => 'required|date',
             'media_type' => 'required|string|in:image,video',
             'image' => 'nullable|image|max:2048',
-            'video_url' => 'nullable',
+            'video_url' => 'nullable|url',
             'slug' => 'required|string|max:60|unique:blogs,slug,' . $blog->id,
-            'meta_description' => 'nullable',
-            'meta_keywords' => 'nullable',
-            'meta_author' => 'nullable',
+            'meta_description' => 'nullable|string|max:255',
+            'meta_keywords' => 'nullable|string|max:255',
+            'meta_author' => 'nullable|string|max:255',
             'category' => 'required|string|max:255',
             'content' => 'required|string',
             'published'=> 'boolean',
+            'scheduled_at' => 'nullable|date|after_or_equal:publish_date|after_or_equal:now',
         ]);
 
         if ($validatedData['media_type'] === 'image') {
@@ -172,7 +177,7 @@ class BlogController extends Controller
         // Update the blog entry with the validated data
         $blog->update($validatedData);
 
-        return redirect()->route('blogs.show', $blog->slug)->with('success', 'Blog updated successfully.');
+        return redirect()->route('blogs.index', ['slug'=>$blog->slug,'id'=>$blog->id, 'saved'=>1, 'draft'=>$validatedData['published'] ? 0 : 1])->with('success', "Blog \"{$blog->title}\" updated successfully.");
     }
 
 
@@ -201,6 +206,8 @@ class BlogController extends Controller
                   ->where('image', '!=', '')
                   ->whereNotNull('image');
             } )
+            ->where('published', true)
+            ->where('scheduled_at', '<=', now())
             ->orderBy('publish_date', 'desc');
             $blogs=  $blogsQuery->get();
 
@@ -221,6 +228,8 @@ class BlogController extends Controller
     // Retrieve blogs where video_url is not null and image is null
     $blogs = Blog::whereNotNull('video_url')
                  ->whereNull('image')
+                 ->where('published', true)
+                 ->where('scheduled_at', '<=', now())
                  ->get();
     // Retrieve the page data where 'view_name' equals 'blogs'
     $page = Page::where('view_name', 'blogs')->first();

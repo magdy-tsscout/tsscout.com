@@ -30,7 +30,10 @@
                     <div class="col-lg-8">
                         <div class="form-group mb-3">
                             <label for="title" class="form-label">Title</label>
-                            <input type="text" class="form-control" id="title" name="title" required>
+                            <input type="text" class="form-control" id="title" name="title" required value="{{ old('title') }}">
+                            @error('title')
+                                <div class="text-danger">{{ $message }}</div>
+                            @enderror
                         </div>
                     </div>
                     <div class="col-lg-3">
@@ -45,75 +48,124 @@
 
                 <div class="form-group mb-3">
                     <label for="excerpt" class="form-label">Excerpt</label>
-                    <textarea class="form-control" id="excerpt" name="excerpt" rows="3" required></textarea>
+                    <textarea class="form-control" id="excerpt" name="excerpt" rows="3" required>{{ old('excerpt') }}</textarea>
+                    @error('excerpt')
+                        <div class="text-danger">{{ $message }}</div>
+                    @enderror
                 </div>
 
                 <div class="form-group mb-3">
                     <label for="author" class="form-label">Author</label>
-                    <input type="text" class="form-control" id="author" name="author" required>
+                    <input type="text" class="form-control" id="author" name="author" required value="{{ old('author') }}">
+                    @error('author')
+                        <div class="text-danger">{{ $message }}</div>
+                    @enderror
                 </div>
 
-                <div class="form-group mb-3">
-                    <label for="publish_date" class="form-label">Publish Date</label>
-                    <input type="date" class="form-control" id="publish_date" name="publish_date" required>
+                <div class="row">
+                    <div class="col-lg-6">
+                        <div class="form-group mb-3">
+                            <label for="publish_date" class="form-label">Publish Date</label>
+                            <input type="date" class="form-control" id="publish_date" name="publish_date" required value="{{ old('publish_date') }}">
+                            @error('publish_date')
+                                <div class="text-danger">{{ $message }}</div>
+                            @enderror
+                        </div>
+                    </div>
+                    <div class="col-lg-6">
+                        <div class="form-group mb-3">
+                            <label for="scheduled_at" class="form-label">Scheduled At</label>
+                            <input type="datetime-local" class="form-control" id="scheduled_at" name="scheduled_at" value="{{ old('scheduled_at') }}">
+                            @error('scheduled_at')
+                                <div class="text-danger">{{ $message }}</div>
+                            @enderror
+                        </div>
+                    </div>
                 </div>
 
                 <div class="form-group mb-3">
                     <label for="media_type" class="form-label">Select Media Type</label>
                     <select class="form-control" id="media_type" name="media_type" required>
-                        <option value="image">Image</option>
-                        <option value="video">Video</option>
+                        <option value="image" {{ old('media_type') === 'image' ? 'selected' : '' }}>Image</option>
+                        <option value="video" {{ old('media_type') === 'video' ? 'selected' : '' }}>Video</option>
                     </select>
+                    @error('media_type')
+                        <div class="text-danger">{{ $message }}</div>
+                    @enderror
                 </div>
 
                 <div class="form-group mb-3" id="image-input">
                     <label for="image" class="form-label">Blog Image</label>
                     <input type="file" class="form-control" id="image" name="image">
+                    @error('image')
+                        <div class="text-danger">{{ $message }}</div>
+                    @enderror
                 </div>
 
                 <div class="form-group mb-3" id="video-input" style="display: none;">
                     <label for="video_url" class="form-label">YouTube Video URL</label>
-                    <input type="text" class="form-control" id="video_url" name="video_url" placeholder="https://www.youtube.com/watch?v=xyz">
+                    <input type="text" class="form-control" id="video_url" name="video_url" placeholder="https://www.youtube.com/watch?v=xyz" value="{{ old('video_url') }}">
+                    @error('video_url')
+                        <div class="text-danger">{{ $message }}</div>
+                    @enderror
                 </div>
 
 
                 <div class="form-group mb-3">
                     <label for="slug" class="form-label">Slug</label>
-                    <input type="text" class="form-control" id="slug" name="slug" required>
+                    <input type="text" class="form-control" id="slug" name="slug" required value="{{ old('slug') }}">
+                    @error('slug')
+                        <div class="text-danger">{{ $message }}</div>
+                    @enderror
                 </div>
 
                 <div class="form-group">
                     <label for="meta_description">Meta Description</label>
-                    <input type="text" class="form-control" id="meta_description" name="meta_description" required>
+                    <input type="text" class="form-control" id="meta_description" name="meta_description" required value="{{ old('meta_description') }}">
+                    @error('meta_description')
+                        <div class="text-danger">{{ $message }}</div>
+                    @enderror
                 </div>
 
                 <div class="form-group">
                     <label for="meta_keywords">Meta Keywords</label>
-                    <input type="text" class="form-control" id="meta_keywords" name="meta_keywords" required>
+                    <input type="text" class="form-control" id="meta_keywords" name="meta_keywords" required value="{{ old('meta_keywords') }}">
+                    @error('meta_keywords')
+                        <div class="text-danger">{{ $message }}</div>
+                    @enderror
                 </div>
 
                 <div class="form-group">
                     <label for="meta_author">Meta Author</label>
-                    <input type="text" class="form-control" id="meta_author" name="meta_author" required>
+                    <input type="text" class="form-control" id="meta_author" name="meta_author" required value="{{ old('meta_author') }}">
+                    @error('meta_author')
+                        <div class="text-danger">{{ $message }}</div>
+                    @enderror
                 </div>
 
                 <div class="form-group mb-3">
                     <label for="content" class="form-label">Content</label>
-                    <textarea id="content" name="content" rows="10" required></textarea>
+                    <textarea id="content" name="content" rows="10" required>{{ old('content') }}</textarea>
+                    @error('content')
+                        <div class="text-danger">{{ $message }}</div>
+                    @enderror
                 </div>
 
                 <div class="form-group mb-3">
                     <label for="category" class="form-label">Category</label>
                     <select class="form-control" id="category" name="category" required>
-                        <option value="eCommerce">eCommerce</option>
-                        <option value="eBay">eBay</option>
-                        <option value="Shopify">Shopify</option>
-                        <option value="WooCommerce">WooCommerce</option>
-                        <option value="Aliexpress">Aliexpress</option>
-                        <option value="Walmart">Walmart</option>
-                        <option value="Amazon">Amazon</option>
-                        <option value="Tiktook">TikTok</option>
+                        <option value="eCommerce" {{ old('category') === 'eCommerce' ? 'selected' : '' }}>eCommerce</option>
+                        <option value="eBay" {{ old('category') === 'eBay' ? 'selected' : '' }}>eBay</option>
+                        <option value="Shopify" {{ old('category') === 'Shopify' ? 'selected' : '' }}>Shopify</option>
+                        <option value="WooCommerce" {{ old('category') === 'WooCommerce' ? 'selected' : '' }}>WooCommerce</option>
+                        <option value="Aliexpress" {{ old('category') === 'Aliexpress' ? 'selected' : '' }}>Aliexpress</option>
+                        <option value="Walmart" {{ old('category') === 'Walmart' ? 'selected' : '' }}>Walmart</option>
+                        <option value="Amazon" {{ old('category') === 'Amazon' ? 'selected' : '' }}>Amazon</option>
+                        <option value="TikTok" {{ old('category') === 'TikTok' ? 'selected' : '' }}>TikTok</option>
                     </select>
+                    @error("category")
+                        <div class="text-danger">{{ $message }}</div>
+                    @enderror
                 </div>
                 <button type="submit" class="btn btn-primary" style="background: cadetblue;">Create Blog</button>
             </form>

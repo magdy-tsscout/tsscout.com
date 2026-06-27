@@ -21,11 +21,13 @@ class Blog extends Model
         'meta_author',
         'video_url',
         'published',
-        'author_id'
+        'author_id',
+        'scheduled_at'
     ];
 
     protected $casts = [
         'published' => 'boolean',
+        'scheduled_at' => 'datetime',
     ];
 
     protected $attributes = [
@@ -40,13 +42,17 @@ class Blog extends Model
         static::saving(function ($blog) {
             if (empty($blog->slug)) {
                 $blog->slug = Str::slug($blog->title);
+            }else {
+                $blog->slug = Str::slug($blog->slug);
             }
             if( empty($blog->author_id) ) {
                 $author = auth()->user();
                 if ($author) {
                     $blog->author_id = $author->id;
-                    // $blog->author = $author->name;
                 }
+            }
+            if( empty($blog->scheduled_at) ) {
+                $blog->scheduled_at = now();
             }
         });
     }
