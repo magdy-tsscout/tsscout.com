@@ -138,10 +138,16 @@
                         reEdit Blog
                     </a>
 
+                    <a href="#" class="btn btn-sm btn-info copy-url-btn" data-clipboard-text="{{ url('blogs/'.request('slug')) }}">
+                        <span class="fa fa-copy"></span>
+                        copy URL
+                    </a>
+
                     <a href="{{ route('blogs.create') }}" class="btn btn-sm btn-primary float-right">
                         <span class="fa fa-plus"></span>
                         Create Blog
                     </a>
+
 
                 </div>
             @endif
@@ -235,6 +241,15 @@
 
 @section('scripts')
 <script>
+    function copyToClipboard(text) {
+        navigator.clipboard.writeText(text)
+            .then(() => {
+                console.log('Text  updatedcopied to clipboard successfully!');
+            })
+            .catch(err => {
+                console.error('Failed to copy text: ', err);
+            });
+    }
     document.addEventListener('DOMContentLoaded', function () {
         var toggleButton = document.getElementById('toggleSearchBtn');
         var searchPanel = document.getElementById('searchPanel');
@@ -249,6 +264,22 @@
             toggleButton.innerHTML = isHidden
                 ? '<span class="fas fa-search me-1"></span> Close Search'
                 : '<span class="fas fa-search me-1"></span> Open Search';
+        });
+
+
+        // Clipboard functionality
+        document.querySelectorAll('.copy-url-btn').forEach(function(button) {
+            button.addEventListener('click', function(event) {
+                const element= this;
+                event.preventDefault();
+                var url = element.getAttribute('data-clipboard-text');
+                copyToClipboard(url);
+                // Optionally, provide feedback to the user
+                element.innerHTML = '<span class="fa fa-check"></span> Copied!';
+                setTimeout(function() {
+                    element.innerHTML = '<span class="fa fa-copy"></span> Copy URL';
+                }, 2000);
+            });
         });
     });
 </script>
