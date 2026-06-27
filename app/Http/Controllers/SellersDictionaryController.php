@@ -13,9 +13,6 @@ class SellersDictionaryController extends Controller
 
     public function webIndex($categorySlug = null)
     {
-        if ( ! $categorySlug ) {
-            return self::webIndexHome();
-        }
         $categories = SellersDictionaryCategory::with('entries')->orderBy('name')->get();
 
         $category = SellersDictionaryCategory::where('slug', $categorySlug)->firstOrFail();

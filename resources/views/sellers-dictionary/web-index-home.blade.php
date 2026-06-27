@@ -25,10 +25,8 @@
         {!! $content->content !!}
     </div>
     @foreach ($categories as $category)
-        <div class="card mt-3">
-            <div class="card-body">
+        <div class="mt-3">
             <h2 class="h5 p-0 m-0"><a href="{{ route('sellers-dictionary.web.index', $category->slug) }}" class="d-block">{{ $category->name }}</a></h2>
-            </div>
         </div>
     @endforeach
 

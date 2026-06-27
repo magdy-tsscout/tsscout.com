@@ -139,7 +139,7 @@
                                             </div>
                                         </a>
 
-                                        <a href="{{ route('sellers-dictionary.web.index') }}" class="resource-link">
+                                        <a href="{{ route('sellers-dictionary.web.home') }}" class="resource-link">
                                             <div class="resource-item">
                                                 <img src="{{ asset('images/header icons/faq.svg') }}" alt="FAQs Icon" class="resource-icon">
                                                 <div>

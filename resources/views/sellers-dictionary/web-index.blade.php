@@ -33,7 +33,7 @@
             <div class="card-body">
                 <div class="entry">
                     <h2><a name="entry_{{ $entry->id }}">{{ $entry->title }}</a></h2>
-                    <p>{{ Str::words(strip_tags($entry->content), 10) }}</p>
+                    <p>{{ $entry->content }}</p>
                     {{-- <a href="{{ route('sellers-dictionary.web.show', $entry->id) }}" class="btn btn-primary">Read More</a> --}}
                 </div>
             </div>
