@@ -193,7 +193,7 @@
                                     {{ $blog->publish_date }}
                                     by
                                     <span class="fa fa-user"></span>
-                                    {{ $blog->author_data->name ?? $blog->author }}
+                                    {{ $blog->author_data->author_name ?? $blog->author }}
 
                                     <br />
                                     <span class="fa fa-calendar-alt"></span>
