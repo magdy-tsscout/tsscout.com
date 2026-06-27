@@ -190,10 +190,15 @@
 
                                 <p class="text-muted mb-1 text-right">
                                     <span class="fa fa-calendar"></span>
-                                    {{ $blog->publish_date }}
-                                    by
+                                    {{ $blog->publish_date }} <br />
+                                    created by
                                     <span class="fa fa-user"></span>
-                                    {{ $blog->author_data->author_name ?? $blog->author }}
+                                    {{ $blog->author_data->author_name ?? $blog->author }} <br />
+
+                                    Last updated by
+                                    <span class="fa fa-user-edit"></span>
+                                    {{ $blog->updated_by_data->author_name ?? 'N/A' }} <br />
+
 
                                     <br />
                                     <span class="fa fa-calendar-alt"></span>

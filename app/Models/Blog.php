@@ -22,7 +22,8 @@ class Blog extends Model
         'video_url',
         'published',
         'author_id',
-        'scheduled_at'
+        'scheduled_at',
+        'updated_by'
     ];
 
     protected $casts = [
@@ -56,6 +57,12 @@ class Blog extends Model
             }
             if( empty($blog->scheduled_at) ) {
                 $blog->scheduled_at = now();
+            }
+            if( empty($blog->updated_by) ) {
+                $author = auth()->user();
+                if ($author) {
+                    $blog->updated_by = $author->id;
+                }
             }
         });
     }
@@ -100,5 +107,9 @@ class Blog extends Model
 
     public function author_data() {
         return $this->hasOne(User::class, 'id', 'author_id')->select( 'author_name', 'author_card', 'author_slug', 'author_img');
+    }
+
+    public function updated_by_data() {
+        return $this->hasOne(User::class, 'id', 'updated_by')->select( 'author_name', 'author_card', 'author_slug', 'author_img');
     }
 }
