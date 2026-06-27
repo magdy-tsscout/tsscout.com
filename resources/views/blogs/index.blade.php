@@ -223,6 +223,7 @@
                                 <!-- copy url -->
                                 <a href="#" class="btn btn-outline-info btn-sm copy-url-btn" data-clipboard-text="{{ url('blogs/'.$blog->slug) }}">
                                     <span class="fa fa-copy"></span>
+                                    copy URL
                                 </a>
                             </div>
                         </div>
