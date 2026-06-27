@@ -5,7 +5,7 @@
 @section('meta_keywords', $blog->meta_keywords)
 @section('meta_author', $blog->meta_author)
 
-@section('og_title', $blog->title)
+@section('og_title', $blog->meta_title)
 @section('og_description', $blog->meta_description)
 @section('og_image', 'https://tsscout.com/storage/app/public/' . $blog->image)
 

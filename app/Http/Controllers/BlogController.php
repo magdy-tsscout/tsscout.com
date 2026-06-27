@@ -52,6 +52,7 @@ class BlogController extends Controller
             'content' => 'required|string',
             'published' => 'boolean',
             'scheduled_at' => 'nullable|date',
+            'meta_title' => 'nullable|string|max:255',
         ]);
 
         if( $request->input('published') === null ) {
@@ -139,6 +140,7 @@ class BlogController extends Controller
     public function update(Request $request, int $id): \Illuminate\Http\RedirectResponse
     {
 
+        
         $blog = Blog::findOrFail($id);
 
         $validatedData = $request->validate([
@@ -157,6 +159,7 @@ class BlogController extends Controller
             'content' => 'required|string',
             'published'=> 'boolean',
             'scheduled_at' => 'nullable|date|after_or_equal:now',
+            'meta_title' => 'nullable|string|max:255',
         ]);
 
         if ($validatedData['media_type'] === 'image') {

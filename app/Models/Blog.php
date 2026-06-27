@@ -23,7 +23,8 @@ class Blog extends Model
         'published',
         'author_id',
         'scheduled_at',
-        'updated_by'
+        'updated_by',
+        'meta_title'
     ];
 
     protected $casts = [
@@ -49,6 +50,11 @@ class Blog extends Model
                     $blog->slug = Str::slug($blog->slug);
                 }
             }
+
+            if( empty($blog->meta_title) ) {
+                $blog->meta_title = $blog->title;
+            }
+            
             if( empty($blog->author_id) ) {
                 $author = auth()->user();
                 if ($author) {
