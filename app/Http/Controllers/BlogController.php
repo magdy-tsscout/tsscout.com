@@ -291,6 +291,7 @@ class BlogController extends Controller
                            ->where('id', '!=', $blog->id)
                            ->take(3)
                            ->where('published', true)
+                           ->where('scheduled_at', '<=', now())
                            ->get();
 
        return view('blog-details', compact('blog', 'headings', 'page', 'relatedBlogs'));
