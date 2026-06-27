@@ -29,14 +29,13 @@
 
     <div class="entries-wrapper">
         @foreach($entries as $entry)
-        <div class="card mb-4">
-            <div class="card-body">
+        <div class="">
+            
                 <div class="entry">
                     <h2><a name="entry_{{ $entry->id }}">{{ $entry->title }}</a></h2>
-                    <p>{{ $entry->content }}</p>
+                    <p>{!! $entry->content !!}</p>
                     {{-- <a href="{{ route('sellers-dictionary.web.show', $entry->id) }}" class="btn btn-primary">Read More</a> --}}
                 </div>
-            </div>
         </div>
         @endforeach
     </div>
