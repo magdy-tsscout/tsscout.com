@@ -202,6 +202,30 @@
                                 </p>
                             </div>
                         </div>
+
+                        <div class="d-flex w-100">
+                            <div class="btn-group">
+                                <!-- share to facebook -->
+                                <a href="https://www.facebook.com/sharer/sharer.php?u={{ urlencode( url("blog/{$blog->slug}") ) }}" target="_blank" class="btn btn-outline-primary btn-sm">
+                                    <span class="fab fa-facebook"></span>
+                                </a>
+
+                                <!-- share to X (Twitter) -->
+                                <a href="https://x.com/intent/tweet?url={{ urlencode(url('blog/'.$blog->slug)) }}&text={{ urlencode($blog->title) }}" target="_blank" class="btn btn-outline-dark btn-sm">
+                                    <span class="fab fa-twitter"></span>
+                                </a>
+
+                                <!-- share to linkedin -->
+                                <a href="https://www.linkedin.com/sharing/share-offsite/?url={{ urlencode(url('blog/'.$blog->slug)) }}" target="_blank" class="btn btn-outline-primary btn-sm">
+                                    <span class="fab fa-linkedin-in"></span>
+                                </a>
+
+                                <!-- copy url -->
+                                <a href="#" class="btn btn-outline-info btn-sm copy-url-btn" data-clipboard-text="{{ url('blogs/'.$blog->slug) }}">
+                                    <span class="fa fa-copy"></span>
+                                </a>
+                            </div>
+                        </div>
                     </div>
                     <div class="card-footer text-muted">
                         <span class="badge badge-info category-badge">
