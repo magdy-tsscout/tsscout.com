@@ -229,7 +229,7 @@
 
                         <!-- قائمة قائمة منسدلة للمشاركة (Share Dropdown) تمنع زحمة الأزرار الكثيرة -->
                         <div class="dropdown d-inline-block">
-                            <button class="btn btn-light btn-sm border text-secondary dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+                            <button class="btn btn-light btn-sm border text-secondary dropdown-toggle" type="button" data-toggle="dropdown" aria-expanded="false">
                                 <span class="fa fa-share-alt"></span>
                             </button>
                             <ul class="dropdown-menu dropdown-menu-end">
