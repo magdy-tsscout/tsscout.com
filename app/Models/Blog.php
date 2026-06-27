@@ -58,7 +58,7 @@ class Blog extends Model
             if( empty($blog->scheduled_at) ) {
                 $blog->scheduled_at = now();
             }
-            if( empty($blog->updated_by) ) {
+            if( isset($blog->id) ) {
                 $author = auth()->user();
                 if ($author) {
                     $blog->updated_by = $author->id;
