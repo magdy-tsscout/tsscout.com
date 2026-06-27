@@ -43,7 +43,10 @@ class Blog extends Model
             if (empty($blog->slug)) {
                 $blog->slug = Str::slug($blog->title);
             }else {
-                $blog->slug = Str::slug($blog->slug);
+                if(isset($blog->id) ) {
+                    // don't update old blogs
+                    $blog->slug = Str::slug($blog->slug);
+                }
             }
             if( empty($blog->author_id) ) {
                 $author = auth()->user();
