@@ -24,7 +24,7 @@
             <h3>Create New Blog</h3>
         </div>
         <div class="card-body">
-            <form action="{{ route('blogs.store') }}" method="POST" enctype="multipart/form-data" novalidate>
+            <form action="{{ route('blogs.store') }}" method="POST" enctype="multipart/form-data" novalidate id="blogForm">
                 @csrf
 
                 <div class="row">
@@ -195,11 +195,36 @@
 
 
 <script>
+    const blogForm = document.getElementById('blogForm');
+    const mediaTypeSelect = document.getElementById('media_type');
+    const imageInput = document.getElementById('image');
     // Toggle between image and video input fields
-    document.getElementById('media_type').addEventListener('change', function() {
+    mediaTypeSelect.addEventListener('change', function() {
         const mediaType = this.value;
         document.getElementById('image-input').style.display = mediaType === 'image' ? 'block' : 'none';
         document.getElementById('video-input').style.display = mediaType === 'video' ? 'block' : 'none';
+    });
+
+
+    function validateFileSize() {
+        const file = imageInput.files[0];
+        if (file) {
+            const fileSizeInMB = file.size / (1024 * 1024); 
+            if (fileSizeInMB > 2) {
+                alert('Sorry, the file size exceeds 2MB. Please choose a smaller file.');
+                imageInput.value = ''; 
+                return false;
+            }
+        }
+        return true;
+    }
+
+    imageInput.addEventListener('change', validateFileSize);
+
+    blogForm.addEventListener('submit', function (event) {
+        if (mediaTypeSelect.value === 'image' && !validateFileSize()) {
+            event.preventDefault(); 
+        }
     });
 </script>
 
