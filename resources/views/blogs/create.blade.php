@@ -98,8 +98,9 @@
                         </div>
 
                         <div class="form-group mb-3" id="image-input">
-                            <label for="image" class="form-label">Blog Image</label>
+                            <label for="image" class="form-label">Blog Image (Max 2MB)</label>
                             <input type="file" class="form-control" id="image" name="image">
+
                             @error('image')
                                 <div class="text-danger">{{ $message }}</div>
                             @enderror

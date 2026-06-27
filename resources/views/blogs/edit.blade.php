@@ -88,7 +88,7 @@
                         </div>
 
                         <div class="form-group mb-3" id="image-input" style="{{ old('media_type', $blog->media_type) === 'video' ? 'display: none;' : '' }}">
-                            <label for="image" class="form-label">Blog Image</label>
+                            <label for="image" class="form-label">Blog Image  (Max 2MB)</label>
                             <input type="file" class="form-control" id="image" name="image">
                             <img src="{{ 'https://tsscout.com/storage/app/public/' . $blog->image }}" alt="{{ $blog->title }}" class="img-fluid mt-3">
                         </div>
