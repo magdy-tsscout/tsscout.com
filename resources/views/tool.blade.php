@@ -220,3 +220,51 @@
 <!-- Latest News Section End -->
 
 @endsection
+
+@push('schema')
+<script type="application/ld+json">
+{
+    "@context": "https://schema.org",
+    "@graph": [
+        {
+        "@type": "WebPage",
+        "@id": "https://tsscout.com/product-scouting#webpage",
+        "url": "https://tsscout.com/product-scouting",
+        "name": "{{ $page->title }}",
+        "description": "{{ $page->meta_description }}",
+        "isPartOf": {
+            "@type": "WebApplication",
+            "@id": "https://tsscout.com/#webapp"
+        },
+        "breadcrumb": {
+            "@id": "https://tsscout.com/product-scouting#breadcrumb"
+        }
+        },
+        {
+        "@type": "BreadcrumbList",
+        "@id": "https://tsscout.com/product-scouting#breadcrumb",
+        "itemListElement": [
+            {
+                "@type": "ListItem",
+                "position": 1,
+                "name": "Home",
+                "item": "https://tsscout.com"
+            },
+            {
+                "@type": "ListItem",
+                "position": 2,
+                "name": "Product Scouting",
+                "item": "https://tsscout.com/product-scouting"
+            },
+            {
+                "@type": "ListItem",
+                "position": 3,
+                "name": "{{ $page->title }}",
+                "item": "{{ url()->current() }}"
+            }
+        ]
+        }
+    ]
+}
+</script>
+@endpush
