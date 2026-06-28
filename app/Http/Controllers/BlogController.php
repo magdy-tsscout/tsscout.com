@@ -140,7 +140,7 @@ class BlogController extends Controller
     public function update(Request $request, int $id): \Illuminate\Http\RedirectResponse
     {
 
-        
+
         $blog = Blog::findOrFail($id);
 
         $validatedData = $request->validate([
@@ -222,8 +222,26 @@ class BlogController extends Controller
             return response()->view('404', [], 404);
         }
 
+
+        $schemaBlogs = $blogs->map(function ($blog) {
+            return [
+                "@context" => "https://schema.org",
+                "@type" => "BlogPosting",
+                "headline" => $blog->title,
+                "image" => $blog->image ? asset('storage/' . $blog->image) : null,
+                "author" => [
+                    "@type" => "Person",
+                    "name" => $blog->author,
+                ],
+                "datePublished" => $blog->publish_date,
+                "dateModified" => $blog->updated_at,
+                "description" => $blog->excerpt,
+                "url" => route('blogs.show', ['slug' => $blog->slug]),
+            ];
+        });
+
         // Pass both blogs and page data to the view
-        return view('blogs', compact('blogs', 'page'));
+        return view('blogs', compact('blogs', 'page', 'schemaBlogs'));
     }
 
     public function userTutorial()
@@ -238,7 +256,24 @@ class BlogController extends Controller
     $page = Page::where('view_name', 'blogs')->first();
 
     // Pass both blogs and page data to the view
-    return view('blogs', compact('blogs', 'page'));
+    $schemaBlogs = $blogs->map(function ($blog) {
+        return [
+            "@context" => "https://schema.org",
+            "@type" => "BlogPosting",
+            "headline" => $blog->title,
+            "image" => $blog->image ? asset('storage/' . $blog->image) : null,
+            "author" => [
+                "@type" => "Person",
+                "name" => $blog->author,
+            ],
+            "datePublished" => $blog->publish_date,
+            "dateModified" => $blog->updated_at,
+            "description" => $blog->excerpt,
+            "url" => route('blogs.show', ['slug' => $blog->slug]),
+        ];
+    });
+
+    return view('blogs', compact('blogs', 'page', 'schemaBlogs'));
    }
 
 
