@@ -23,7 +23,8 @@ class AuthorDataController extends Controller
     }
 
     public static function update(Request $request) {
-        $authorData = \App\Models\AuthorData::first();
+        $user= auth()->user();
+        // $authorData = \App\Models\AuthorData::first();
         $validatedData = $request->validate([
             'author_name' => 'nullable|string|max:255',
             'author_card' => 'nullable|string|max:255',
@@ -38,7 +39,8 @@ class AuthorDataController extends Controller
             $validatedData['author_img'] = $imageName;
         }
 
-        $authorData->update($validatedData);
+        $user->update($validatedData);
+        $user->save();
 
         return redirect()->back()->with('success', 'Author data updated successfully.');
     }
