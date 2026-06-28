@@ -9,7 +9,7 @@ class AuthorDataController extends Controller
 
    public static function show($slug){
         $authorData = \App\Models\AuthorData::where('author_slug', $slug)->first();
-        // dd($authorData, $slug);
+        dd($authorData, $slug);
         if (!$authorData) {
             abort(404);
         }
