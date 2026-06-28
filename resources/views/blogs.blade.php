@@ -185,5 +185,6 @@
             {!! json_encode($schemaBlog, JSON_UNESCAPED_SLASHES | JSON_UNESCAPED_UNICODE) !!}@if(!$loop->last),@endif
         @endforeach
         ]
+    }
     </script>
 @endpush
