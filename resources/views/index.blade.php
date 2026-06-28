@@ -751,4 +751,4 @@
         "logo": "{{ url('/images/logo.svg') }}"
         }
     </script>
-@stop
+@endpush
