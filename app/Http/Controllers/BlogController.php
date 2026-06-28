@@ -233,8 +233,8 @@ class BlogController extends Controller
                     "@type" => "Person",
                     "name" => $blog->author,
                 ],
-                "datePublished" => $blog->publish_date,
-                "dateModified" => $blog->updated_at,
+                "datePublished" => $blog->publish_date->toIso8601String(),
+                "dateModified" => $blog->updated_at->toIso8601String(),
                 "description" => $blog->excerpt,
                 "url" => route('blogs.show', ['slug' => $blog->slug]),
             ];
@@ -266,8 +266,8 @@ class BlogController extends Controller
                 "@type" => "Person",
                 "name" => $blog->author,
             ],
-            "datePublished" => $blog->publish_date,
-            "dateModified" => $blog->updated_at,
+            "datePublished" => $blog->publish_date->toIso8601String(),
+            "dateModified" => $blog->updated_at->toIso8601String(),
             "description" => $blog->excerpt,
             "url" => route('blogs.show', ['slug' => $blog->slug]),
         ];
