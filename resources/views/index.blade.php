@@ -744,19 +744,22 @@
 @push('schema')
     <script type="application/ld+json">
     {
-        "@@context": "https://schema.org",
-        "@@type": "Organization",
+        "@context": "https://schema.org",
+        "@type": "Organization",
         "name": "TS Scout",
         "url": "{{ url("/") }}",
         "logo": "{{ url('/images/logo.svg') }}",
         "sameAs": [
             "https://www.facebook.com/tsscout",
-            "https://twitter.com/tsscout"
+            "https://www.instagram.com/tsscoutofficial/",
+            "https://youtube.com/@tsscout",
+            "https://www.linkedin.com/company/tsscout/",
+            "https://www.tiktok.com/@tsscout"
         ]
     },
     {
-      "@@type": "WebApplication",
-      "@@id": "https://tsscout.com/#webapp",
+      "@type": "WebApplication",
+      "@id": "https://tsscout.com/#webapp",
       "url": "https://tsscout.com",
       "name": "TS Scout",
       "applicationCategory": "BusinessApplication",
