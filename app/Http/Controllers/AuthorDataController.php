@@ -17,9 +17,11 @@ class AuthorDataController extends Controller
         $blogs= $blogs->get();
         return view('author-data.show', compact('authorData', 'blogs'));
    }
+
+
    public static function edit() {
-        $authorData = \App\Models\AuthorData::first();
-        return view('author-data.edit', compact('authorData'));
+        $user= auth()->user();
+        return view('author-data.edit', compact('user'));
     }
 
     public static function update(Request $request) {
