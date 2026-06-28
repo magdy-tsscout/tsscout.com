@@ -82,9 +82,9 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 
     @include('header')
 
-    <div class="content">
+    <main class="content">
         @yield('content')
-    </div>
+    </main>
 
     @include('footer')
 
