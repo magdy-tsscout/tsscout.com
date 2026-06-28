@@ -748,7 +748,7 @@
         "@@type": "Organization",
         "name": "TS Scout",
         "url": "{{ url("/") }}",
-        "logo": "{{ url('/images/logo.svg") }}"
+        "logo": "{{ url('/images/logo.svg') }}"
         }
-        </script>
+    </script>
 @stop
