@@ -157,3 +157,46 @@
 </div>
 
 @endsection
+
+
+@push('schema')
+<script type="application/ld+json">
+{
+    "@context": "https://schema.org",
+    "@graph": [
+        {
+        "@type": "WebPage",
+        "@id": "https://tsscout.com/product-scouting#webpage",
+        "url": "https://tsscout.com/product-scouting",
+        "name": "Product Scouting Tool - TS Scout",
+        "description": "{{ $page->meta_description }}",
+        "isPartOf": {
+            "@type": "WebApplication",
+            "@id": "https://tsscout.com/#webapp"
+        },
+        "breadcrumb": {
+            "@id": "https://tsscout.com/product-scouting#breadcrumb"
+        }
+        },
+        {
+        "@type": "BreadcrumbList",
+        "@id": "https://tsscout.com/product-scouting#breadcrumb",
+        "itemListElement": [
+            {
+            "@type": "ListItem",
+            "position": 1,
+            "name": "Home",
+            "item": "https://tsscout.com"
+            },
+            {
+            "@type": "ListItem",
+            "position": 2,
+            "name": "Product Scouting",
+            "item": "https://tsscout.com/product-scouting"
+            }
+        ]
+        }
+    ]
+}
+</script>
+@endpush
