@@ -531,34 +531,4 @@
             "dateModified": "{{ \Carbon\Carbon::parse($blog->updated_at)->toIso8601String() }}"
         }
     </script>
-
-    {{-- <script type="application/ld+json">
-    {
-        "@context": "https://schema.org",
-        "@type": "BlogPosting",
-        "mainEntityOfPage": {
-            "@type": "WebPage",
-            "@id": "{{ route('blogs.show', ['slug' => $blog->slug]) }}"
-        },
-        "headline": "{{ $blog->title }}",
-        "image": [
-            "{{ 'https://tsscout.com/storage/app/public/' .$blog->image }}"
-        ],
-        "author": {
-            "@type": "Person",
-            "name": "{{ $blog->author }}"
-        },
-        "publisher": {
-            "@type": "Organization",
-            "name": "TS Scout",
-            "logo": {
-                "@type": "ImageObject",
-                "url": "{{ asset('images/Scout-Logo%2020x20-03.svg') }}"
-            }
-        },
-        "datePublished": "{{ \Carbon\Carbon::parse($blog->publish_date)->toIso8601String() }}",
-        "dateModified": "{{ \Carbon\Carbon::parse($blog->updated_at)->toIso8601String() }}",
-        "description": "{{ $blog->excerpt }}"
-    }
-    </script> --}}
 @endpush
