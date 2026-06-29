@@ -509,7 +509,7 @@
             },
             "headline": "{{ $blog->title }}",
             "description": "{!! addslashes($blog->meta_description) !!}",
-            "articleBody": "{!! preg_replace("/\r|\n/", " ", addslashes(strip_tags($blog->content))) !!}",
+            "articleBody": {!! json_encode(preg_replace("/\r|\n|\s+/", " ", strip_tags($blog->content))) !!},
             "articleSection": "{{ $blog->category }}",
             "wordCount": "{{ str_word_count(strip_tags($blog->content)) }}",
             "image": [
