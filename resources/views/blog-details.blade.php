@@ -528,7 +528,7 @@
                 }
             },
             "datePublished": "{{ \Carbon\Carbon::parse($blog->publish_date)->toIso8601String() }}",
-            "dateModified": "{{ \Carbon\Carbon::parse($blog->updated_at)->toIso8601String() }}",
+            "dateModified": "{{ \Carbon\Carbon::parse($blog->updated_at)->toIso8601String() }}"
         }
     </script>
 
