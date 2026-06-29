@@ -509,7 +509,7 @@
             },
             "headline": "{{ $blog->title }}",
             "description": "{!! addslashes($blog->meta_description) !!}",
-            "articleBody": "{!! addslashes(strip_tags($blog->content)) !!}",
+            "articleBody": "{!! preg_replace("/\r|\n/", " ", addslashes(strip_tags($blog->content))) !!}",
             "articleSection": "{{ $blog->category }}",
             "wordCount": "{{ str_word_count(strip_tags($blog->content)) }}",
             "image": [
