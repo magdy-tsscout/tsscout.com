@@ -493,7 +493,46 @@
 @endsection
 
 @push("schema")
+
     <script type="application/ld+json">
+        {
+            "@context": "https://schema.org",
+            "@type": "Article",
+            "@id": "https://tsscout.com/blogs/{{ $blog->slug }}#article",
+            "mainEntityOfPage": {
+                "@type": "WebPage",
+                "@id": "https://tsscout.com/blogs/{{ $blog->slug }}"
+            },
+            "isPartOf": {
+                "@type": "WebPage",
+                "@id": "https://tsscout.com/blogs/{{ $blog->slug }}#webpage"
+            },
+            "headline": "{{ $blog->title }}",
+            "description": "{!! addslashes($blog->meta_description) !!}",
+            "articleBody": "{!! addslashes(strip_tags($blog->content)) !!}",
+            "articleSection": "{{ $blog->category }}",
+            "wordCount": "{{ str_word_count(strip_tags($blog->content)) }}",
+            "image": [
+                "{{ 'https://tsscout.com/storage/app/public/' .$blog->image }}"
+            ],
+            "author": {
+                "@type": "Person",
+                "name": "{{ $blog->author }}"
+            },
+            "publisher": {
+                "@type": "Organization",
+                "name": "TS Scout",
+                "logo": {
+                    "@type": "ImageObject",
+                    "url": "{{ asset('images/Scout-Logo%2020x20-03.svg') }}"
+                }
+            },
+            "datePublished": "{{ \Carbon\Carbon::parse($blog->publish_date)->toIso8601String() }}",
+            "dateModified": "{{ \Carbon\Carbon::parse($blog->updated_at)->toIso8601String() }}",
+        }
+    </script>
+
+    {{-- <script type="application/ld+json">
     {
         "@context": "https://schema.org",
         "@type": "BlogPosting",
@@ -521,5 +560,5 @@
         "dateModified": "{{ \Carbon\Carbon::parse($blog->updated_at)->toIso8601String() }}",
         "description": "{{ $blog->excerpt }}"
     }
-    </script>
+    </script> --}}
 @endpush
