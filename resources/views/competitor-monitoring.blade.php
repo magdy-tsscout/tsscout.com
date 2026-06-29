@@ -111,11 +111,7 @@
           <p class="rec-p" >Scouting for suppliers<span style="color: #C2F750;"> suppliers </span> <br>  can give your business a competitive edge.</p>
       </div>
       <button class="btn-default" style="background: var(--primary-500) 0% 0% no-repeat padding-box;
-      border: 1px solid var(--primary-500);
-      color: #1E3F5B
-      ;
-      background:#C2F750 0% 0% no-repeat padding-box;
-      border: 1px solid #C2F750; border-radius: 8px; opacity: 1; width: 342px; height: 51px; "   >Gain an edge now!</button>
+      border: 1px solid var(--primary-500);color: #1E3F5B;background:#C2F750 0% 0% no-repeat padding-box;border: 1px solid #C2F750; border-radius: 8px; opacity: 1; width: 342px; height: 51px;">Gain an edge now!</button>
   </div>
 </div>
 @endsection
