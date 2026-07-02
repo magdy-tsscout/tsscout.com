@@ -24,7 +24,7 @@
                     <div class="page-header-box">
                         <h1 class="text-anime-style-3">Contact Us</h1>
                         <h3>Reach out and we’ll get in touch with you so soon</h3>
-                         
+
                     </div>
                     <!-- Page Header Box End -->
                 </div>
@@ -97,7 +97,7 @@
                                 </div>
                             </div>
                         </form>
-                       
+
                     </div>
                     <!-- Contact Form End -->
 
@@ -122,6 +122,40 @@
     <a href="https://www.facebook.com/dropshipping.scout?mibextid=ZbWKwL"><img src="{{ asset('images/facebook.svg') }}" class="socialIcon" alt=""></a>
 
 </div>
-   
+
     <!-- clients testimonials Section End -->
 @endsection
+
+@push('schema')
+    <script type="application/ld+json">
+    {!! json_encode([
+        '@context' => 'https://schema.org',
+        '@graph' => [
+            [
+                '@type' => 'Organization',
+                '@id' => url('/') . '#organization',
+                'name' => 'TS Scout',
+                'url' => url('/'),
+                'logo' => url('/images/logo.svg'),
+                'sameAs' => [
+                    'https://www.facebook.com/tsscout',
+                    'https://www.instagram.com/tsscoutofficial/',
+                    'https://youtube.com/@tsscout',
+                    'https://www.linkedin.com/company/tsscout/',
+                    'https://www.tiktok.com/@tsscout',
+                ],
+            ],
+            [
+                '@type' => 'ContactPage',
+                '@id' => url()->current() . '#contact-page',
+                'url' => url()->current(),
+                'name' => $page->title,
+                'description' => $page->meta_description,
+                'mainEntity' => [
+                    '@id' => url('/') . '#organization',
+                ],
+            ],
+        ],
+    ], JSON_UNESCAPED_SLASHES | JSON_UNESCAPED_UNICODE) !!}
+    </script>
+@endpush
