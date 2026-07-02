@@ -3,6 +3,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Join the TS Scout affiliate program to track referrals, monitor earnings, and access marketing materials from one dashboard.">
+    <link rel="canonical" href="{{ url()->current() }}">
     <title>Affiliate Dashboard</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
     <style>
@@ -196,6 +198,66 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
 })(window,document,'script','dataLayer','GTM-KV3N43LJ');</script>
 <!-- End Google Tag Manager -->
+
+    <script type="application/ld+json">
+    {!! json_encode([
+        '@context' => 'https://schema.org',
+        '@graph' => [
+            [
+                '@type' => 'Organization',
+                '@id' => url('/') . '#organization',
+                'name' => 'TS Scout',
+                'url' => url('/'),
+                'logo' => url('/images/logo.svg'),
+                'sameAs' => [
+                    'https://www.facebook.com/tsscout',
+                    'https://www.instagram.com/tsscoutofficial/',
+                    'https://youtube.com/@tsscout',
+                    'https://www.linkedin.com/company/tsscout/',
+                    'https://www.tiktok.com/@tsscout',
+                ],
+            ],
+            [
+                '@type' => 'WebPage',
+                '@id' => url()->current() . '#webpage',
+                'url' => url()->current(),
+                'name' => 'Affiliate Program',
+                'description' => 'Join the TS Scout affiliate program to track referrals, monitor earnings, and access marketing materials from one dashboard.',
+                'text' => 'The TS Scout affiliate program dashboard helps affiliates monitor earnings, referral analytics, and marketing materials from one place.',
+                'isPartOf' => [
+                    '@type' => 'WebSite',
+                    '@id' => url('/') . '#website',
+                    'url' => url('/'),
+                    'name' => 'TS Scout',
+                ],
+                'about' => [
+                    '@id' => url('/') . '#organization',
+                ],
+                'breadcrumb' => [
+                    '@id' => url()->current() . '#breadcrumb',
+                ],
+            ],
+            [
+                '@type' => 'BreadcrumbList',
+                '@id' => url()->current() . '#breadcrumb',
+                'itemListElement' => [
+                    [
+                        '@type' => 'ListItem',
+                        'position' => 1,
+                        'name' => 'Home',
+                        'item' => url('/'),
+                    ],
+                    [
+                        '@type' => 'ListItem',
+                        'position' => 2,
+                        'name' => 'Affiliate Program',
+                        'item' => url()->current(),
+                    ],
+                ],
+            ],
+        ],
+    ], JSON_UNESCAPED_SLASHES | JSON_UNESCAPED_UNICODE) !!}
+    </script>
 </head>
 <body>
     <!-- Google Tag Manager (noscript) -->
