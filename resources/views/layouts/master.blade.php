@@ -134,7 +134,7 @@ function toggleVisibility(event, id) {
 <!-- SlickNav js file -->
 <script src="{{asset('js/jquery.slicknav.js')}}"></script>
 <!-- Counter js file -->
-<script src="{{asset('js/jquery.waypoints.min.js')}}"></script>
+<script src="{{asset('js/jque ry.waypoints.min.js')}}"></script>
 <script src="{{asset('js/jquery.counterup.min.js')}}"></script>
 <!-- Isotop js file -->
 <script src="{{asset('js/isotope.min.js')}}"></script>
@@ -150,9 +150,6 @@ function toggleVisibility(event, id) {
 <!-- Main Custom js file -->
 <script src="{{asset('js/function.js')}}"></script>
 
-<!-- Google Tag Manager -->
-<script async src="https://www.googletagmanager.com/gtm.js?id=GTM-PGTF43WX"></script>
-<!-- End Google Tag Manager -->
 
 
 @yield('script')
