@@ -83,7 +83,7 @@
                                         <div class="text-danger">{{ $message }}</div>
                                     @enderror
                                 </div>
-                                <div class="form-text text-muted">Hour now: {{ \Carbon\Carbon::now()->format('H:i') }}</div>
+                                <div class="form-text text-muted">Time now: {{ \Carbon\Carbon::now()->format('h:i A') }}</div>
                             </div>
                         </div>
 

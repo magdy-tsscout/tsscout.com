@@ -73,6 +73,7 @@
                                     @error('scheduled_at')
                                         <div class="text-danger">{{ $message }}</div>
                                     @enderror
+                                    <div class="form-text text-muted">Time now: {{ \Carbon\Carbon::now()->format('h:i A') }}</div>
                                 </div>
                             </div>
                         </div>
@@ -99,7 +100,7 @@
                         </div>
 
 
-                        
+
 
                         <!-- Content Sections (Handled by TinyMCE) -->
                         <div id="content-sections" class="mb-3">
@@ -180,10 +181,10 @@
     function validateFileSize() {
         const file = imageInput.files[0];
         if (file) {
-            const fileSizeInMB = file.size / (1024 * 1024); 
+            const fileSizeInMB = file.size / (1024 * 1024);
             if (fileSizeInMB > 2) {
                 alert('Sorry, the file size exceeds 2MB. Please choose a smaller file.');
-                imageInput.value = ''; 
+                imageInput.value = '';
                 return false;
             }
         }
@@ -194,7 +195,7 @@
 
     blogForm.addEventListener('submit', function (event) {
         if (mediaTypeSelect.value === 'image' && !validateFileSize()) {
-            event.preventDefault(); 
+            event.preventDefault();
         }
     });
 </script>
