@@ -30,7 +30,7 @@
     <div class="entries-wrapper">
         @foreach($entries as $entry)
         <div class="">
-            
+
                 <div class="entry">
                     <h2><a name="entry_{{ $entry->id }}">{{ $entry->title }}</a></h2>
                     <p>{!! $entry->content !!}</p>
