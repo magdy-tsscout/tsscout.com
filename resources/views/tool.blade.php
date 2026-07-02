@@ -241,7 +241,7 @@
             '@type' => 'Brand',
             'name' => 'TS Scout',
           ],
-          'category' => (string) \\Illuminate\\Support\\Str::of(request()->segment(1) ?? '')->replace('-', ' ')->title(),
+          'category' => (string) \Illuminate\Support\Str::of(request()->segment(1) ?? '')->replace('-', ' ')->title(),
           'url' => url()->current(),
           'mainEntityOfPage' => [
             '@id' => url()->current() . '#webpage',
