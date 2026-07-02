@@ -73,10 +73,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 <!-- End Google Tag Manager -->
 </head>
 <body>
-<!-- Google Tag Manager (noscript) -->
-<noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-KV3N43LJ"
-height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
-<!-- End Google Tag Manager (noscript) -->
+
 
     <div class="gredient">
 
@@ -117,8 +114,19 @@ function toggleVisibility(event, id) {
 
 <!-- Scripts -->
 <script src="{{ asset('js/bootstrap.bundle.min.js') }}"></script>
-<!-- Jquery Library File -->
-<script src="{{asset('js/jquery-3.7.1.min.js')}}"></script>
+<!-- Jquery Library File -->    <!-- Google Tag Manager -->
+
+<script>
+    window.addEventListener('load', function() {
+        var gtmScript = document.createElement('script');
+        gtmScript.async = true;
+        gtmScript.src = 'https://www.googletagmanager.com/gtm.js?id=GTM-PGTF43WX';
+        document.head.appendChild(gtmScript);
+    });
+</script>
+
+    <!-- End Google Tag Manager ---->
+<script src="{{asset('js/jquery-3.7.1.min.js')}}"></script>gtm
 <!-- Bootstrap js file -->
 <script src="{{asset('js/bootstrap.min.js')}}"></script>
 <!-- Validator js file -->
@@ -142,18 +150,9 @@ function toggleVisibility(event, id) {
 <!-- Main Custom js file -->
 <script src="{{asset('js/function.js')}}"></script>
 
-    <!-- Google Tag Manager -->
-
-<script>
-    window.addEventListener('load', function() {
-        var gtmScript = document.createElement('script');
-        gtmScript.async = true;
-        gtmScript.src = 'https://www.googletagmanager.com/gtm.js?id=GTM-PGTF43WX';
-        document.head.appendChild(gtmScript);
-    });
-</script>
-
-    <!-- End Google Tag Manager -->
+<!-- Google Tag Manager -->
+<script async src="https://www.googletagmanager.com/gtm.js?id=GTM-PGTF43WX"></script>
+<!-- End Google Tag Manager -->
 
 
 @yield('script')
