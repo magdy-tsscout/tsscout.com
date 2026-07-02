@@ -210,7 +210,7 @@ class BlogController extends Controller
                   ->whereNotNull('image');
             } )
             ->where('published', true)
-            ->where('scheduled_at', '<=', now())
+            ->where('scheduled_at', '<=', \Carbon\Carbon::now())
             ->orderBy('publish_date', 'desc');
             $blogs=  $blogsQuery->get();
 
@@ -250,7 +250,7 @@ class BlogController extends Controller
     $blogs = Blog::whereNotNull('video_url')
                  ->whereNull('image')
                  ->where('published', true)
-                 ->where('scheduled_at', '<=', now())
+                 ->where('scheduled_at', '<=', \Carbon\Carbon::now())
                  ->get();
     // Retrieve the page data where 'view_name' equals 'blogs'
     $page = Page::where('view_name', 'blogs')->first();
@@ -329,7 +329,7 @@ class BlogController extends Controller
                            ->where('id', '!=', $blog->id)
                            ->take(3)
                            ->where('published', true)
-                           ->where('scheduled_at', '<=', now())
+                           ->where('scheduled_at', '<=', \Carbon\Carbon::now())
                            ->get();
 
        return view('blog-details', compact('blog', 'headings', 'page', 'relatedBlogs'));

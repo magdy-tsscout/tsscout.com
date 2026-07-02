@@ -83,6 +83,7 @@
                                         <div class="text-danger">{{ $message }}</div>
                                     @enderror
                                 </div>
+                                <div class="form-text text-muted">Hour now: {{ \Carbon\Carbon::now()->format('H:i') }}</div>
                             </div>
                         </div>
 
@@ -183,7 +184,7 @@
                     </div>
                 </div>
 
-                
+
 
                 <button type="submit" class="btn btn-primary" style="background: cadetblue;">Create Blog</button>
             </form>
@@ -209,10 +210,10 @@
     function validateFileSize() {
         const file = imageInput.files[0];
         if (file) {
-            const fileSizeInMB = file.size / (1024 * 1024); 
+            const fileSizeInMB = file.size / (1024 * 1024);
             if (fileSizeInMB > 2) {
                 alert('Sorry, the file size exceeds 2MB. Please choose a smaller file.');
-                imageInput.value = ''; 
+                imageInput.value = '';
                 return false;
             }
         }
@@ -223,7 +224,7 @@
 
     blogForm.addEventListener('submit', function (event) {
         if (mediaTypeSelect.value === 'image' && !validateFileSize()) {
-            event.preventDefault(); 
+            event.preventDefault();
         }
     });
 </script>
