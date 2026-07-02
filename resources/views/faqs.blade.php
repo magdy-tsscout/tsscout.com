@@ -151,3 +151,27 @@ function filterFaqs() {
 
 </script>
 @endsection
+
+@push('schema')
+    @php
+        $faqSchema = [
+            '@context' => 'https://schema.org',
+            '@type' => 'FAQPage',
+            '@id' => url()->current() . '#faqpage',
+            'url' => url()->current(),
+            'name' => $page->title,
+            'description' => $page->meta_description,
+            'mainEntity' => $faqs->map(function ($faq) {
+                return [
+                    '@type' => 'Question',
+                    'name' => $faq->question,
+                    'acceptedAnswer' => [
+                        '@type' => 'Answer',
+                        'text' => $faq->answer,
+                    ],
+                ];
+            })->values()->all(),
+        ];
+    @endphp
+    <script type="application/ld+json">{!! json_encode($faqSchema, JSON_UNESCAPED_SLASHES | JSON_UNESCAPED_UNICODE) !!}</script>
+@endpush
