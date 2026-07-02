@@ -220,3 +220,66 @@
 <!-- Latest News Section End -->
 
 @endsection
+
+@push('schema')
+  @php
+    $productSchema = [
+      '@context' => 'https://schema.org',
+      '@graph' => [
+        [
+          '@type' => 'Product',
+          '@id' => url()->current() . '#product',
+          'name' => $page->content_header ?: $page->title,
+          'description' => $page->content_subheader ?: $page->meta_description,
+          'image' => array_values(array_filter([
+            $page->img(1),
+            !empty($page->image_2) ? $page->img(2) : null,
+            !empty($page->image_3) ? $page->img(3) : null,
+            !empty($page->image_4) ? $page->img(4) : null,
+          ])),
+          'brand' => [
+            '@type' => 'Brand',
+            'name' => 'TS Scout',
+          ],
+          'category' => (string) \\Illuminate\\Support\\Str::of(request()->segment(1) ?? '')->replace('-', ' ')->title(),
+          'url' => url()->current(),
+          'mainEntityOfPage' => [
+            '@id' => url()->current() . '#webpage',
+          ],
+          'additionalProperty' => collect($page->sections())->map(function ($section) {
+            $value = trim(implode(' ', array_filter([$section['header'] ?? null, $section['paragraph'] ?? null])));
+
+            if ($value === '') {
+              return null;
+            }
+
+            return [
+              '@type' => 'PropertyValue',
+              'name' => $section['header'] ?: 'Feature',
+              'value' => $value,
+            ];
+          })->filter()->values()->all(),
+        ],
+      ],
+    ];
+
+    if ($Faq->isNotEmpty()) {
+      $productSchema['@graph'][] = [
+        '@type' => 'FAQPage',
+        '@id' => url()->current() . '#faqpage',
+        'url' => url()->current(),
+        'mainEntity' => $Faq->map(function ($faq) {
+          return [
+            '@type' => 'Question',
+            'name' => $faq->question,
+            'acceptedAnswer' => [
+              '@type' => 'Answer',
+              'text' => $faq->answer,
+            ],
+          ];
+        })->values()->all(),
+      ];
+    }
+  @endphp
+  <script type="application/ld+json">{!! json_encode($productSchema, JSON_UNESCAPED_SLASHES | JSON_UNESCAPED_UNICODE) !!}</script>
+@endpush
