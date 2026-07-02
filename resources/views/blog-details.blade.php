@@ -493,42 +493,60 @@
 @endsection
 
 @push("schema")
+    @php
+        $authorSchema = [
+            '@type' => 'Person',
+            'name' => $blog->author,
+        ];
 
-    <script type="application/ld+json">
-        {
-            "@context": "https://schema.org",
-            "@type": "Article",
-            "@id": "https://tsscout.com/blogs/{{ $blog->slug }}#article",
-            "mainEntityOfPage": {
-                "@type": "WebPage",
-                "@id": "https://tsscout.com/blogs/{{ $blog->slug }}"
-            },
-            "isPartOf": {
-                "@type": "WebPage",
-                "@id": "https://tsscout.com/blogs/{{ $blog->slug }}#webpage"
-            },
-            "headline": "{{ $blog->title }}",
-            "description": "{!! addslashes($blog->meta_description) !!}",
-            "articleBody": {!! json_encode(preg_replace("/\r|\n|\s+/", " ", strip_tags($blog->content))) !!},
-            "articleSection": "{{ $blog->category }}",
-            "wordCount": "{{ str_word_count(strip_tags($blog->content)) }}",
-            "image": [
-                "{{ 'https://tsscout.com/storage/app/public/' .$blog->image }}"
-            ],
-            "author": {
-                "@type": "Person",
-                "name": "{{ $blog->author }}"
-            },
-            "publisher": {
-                "@type": "Organization",
-                "name": "TS Scout",
-                "logo": {
-                    "@type": "ImageObject",
-                    "url": "{{ asset('images/Scout-Logo%2020x20-03.svg') }}"
-                }
-            },
-            "datePublished": "{{ \Carbon\Carbon::parse($blog->publish_date)->toIso8601String() }}",
-            "dateModified": "{{ \Carbon\Carbon::parse($blog->updated_at)->toIso8601String() }}"
+        if ($blog->author_data) {
+            $authorSchema['name'] = $blog->author_data->author_name ?: $blog->author;
+
+            if (!empty($blog->author_data->author_slug)) {
+                $authorSchema['url'] = route('author.show', $blog->author_data->author_slug);
+            }
+
+            if (!empty($blog->author_data->author_img)) {
+                $authorSchema['image'] = asset('images/' . $blog->author_data->author_img);
+            }
+
+            if (!empty($blog->author_data->author_card)) {
+                $authorSchema['description'] = trim(preg_replace('/\s+/', ' ', strip_tags($blog->author_data->author_card)));
+            }
         }
-    </script>
+
+        $articleSchema = [
+            '@context' => 'https://schema.org',
+            '@type' => 'Article',
+            '@id' => 'https://tsscout.com/blogs/' . $blog->slug . '#article',
+            'mainEntityOfPage' => [
+                '@type' => 'WebPage',
+                '@id' => 'https://tsscout.com/blogs/' . $blog->slug,
+            ],
+            'isPartOf' => [
+                '@type' => 'WebPage',
+                '@id' => 'https://tsscout.com/blogs/' . $blog->slug . '#webpage',
+            ],
+            'headline' => $blog->title,
+            'description' => $blog->meta_description,
+            'articleBody' => preg_replace('/\r|\n|\s+/', ' ', strip_tags($blog->content)),
+            'articleSection' => $blog->category,
+            'wordCount' => str_word_count(strip_tags($blog->content)),
+            'image' => [
+                'https://tsscout.com/storage/app/public/' . $blog->image,
+            ],
+            'author' => $authorSchema,
+            'publisher' => [
+                '@type' => 'Organization',
+                'name' => 'TS Scout',
+                'logo' => [
+                    '@type' => 'ImageObject',
+                    'url' => asset('images/Scout-Logo%2020x20-03.svg'),
+                ],
+            ],
+            'datePublished' => \Carbon\Carbon::parse($blog->publish_date)->toIso8601String(),
+            'dateModified' => \Carbon\Carbon::parse($blog->updated_at)->toIso8601String(),
+        ];
+    @endphp
+    <script type="application/ld+json">{!! json_encode($articleSchema, JSON_UNESCAPED_SLASHES | JSON_UNESCAPED_UNICODE) !!}</script>
 @endpush
