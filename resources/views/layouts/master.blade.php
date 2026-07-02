@@ -78,6 +78,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
     <div class="gredient">
 
     @include('header')
+    @include('partials.public-seo')
 
     <main class="content">
         @yield('content')
