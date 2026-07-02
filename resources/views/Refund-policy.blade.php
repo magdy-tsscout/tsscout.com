@@ -7,6 +7,7 @@
 
 @section('og_title', $page->title)
 @section('og_description', $page->meta_description)
+@section('schema_text', 'At Tsscout, your satisfaction is our priority. You may request a full refund within 14 days of your initial subscription payment by contacting support-team@tsscout.com. After 14 days, payments are non-refundable, but you can cancel anytime to stop future billing. Refunds apply only to the initial subscription and do not cover subsequent billing cycles. For questions about billing or refunds, please reach out to support-team@tsscout.com.')
 
 @section('styles')
 <!-- Custom CSS for this view -->

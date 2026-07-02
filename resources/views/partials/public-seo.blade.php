@@ -4,6 +4,7 @@
     $segments = request()->segments();
     $pageTitle = trim($__env->yieldContent('title', ''));
     $pageDescription = trim($__env->yieldContent('meta_description', ''));
+    $schemaText = trim(preg_replace('/\s+/', ' ', strip_tags($__env->yieldContent('schema_text', ''))));
     $isHomePage = $currentPath === '';
     $segmentLabels = [
         'ai-tool' => 'AI Tool',
@@ -68,6 +69,10 @@
             'name' => config('app.name', 'TSSCOUT'),
         ],
     ];
+
+    if ($schemaText !== '') {
+        $webPageSchema['text'] = $schemaText;
+    }
 
     $breadcrumbSchema = null;
 
