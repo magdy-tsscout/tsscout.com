@@ -11,25 +11,76 @@
 @section('styles')
     <!-- Custom CSS for this view -->
     <link href="{{ asset('css/faqs.css') }}" rel="stylesheet">
+    <style>
+        .sd-card {
+            transition: transform 0.25s ease, box-shadow 0.25s ease;
+        }
+
+        .sd-link {
+            transition: color 0.2s ease;
+        }
+
+        .sd-arrow {
+            transition: transform 0.25s ease, color 0.2s ease;
+        }
+
+        .sd-card:hover {
+            transform: translateY(-6px);
+            box-shadow: 0 0.75rem 1.5rem rgba(0, 0, 0, 0.12) !important;
+        }
+
+        .sd-card:hover .sd-link {
+            color: var(--bs-primary) !important;
+        }
+
+        .sd-card:hover .sd-arrow {
+            transform: translateX(4px);
+            color: var(--bs-primary) !important;
+        }
+
+        @media (prefers-reduced-motion: reduce) {
+            .sd-card,
+            .sd-link,
+            .sd-arrow {
+                transition: none;
+            }
+        }
+    </style>
 
 @endsection
 
 @section('content')
 <div class="container my-5">
-    <h1 class="h4 mb-0">Sellers Dictionary</h1>
+    <div class="row justify-content-center">
+        <div class="col-12 col-lg-10">
+            <div class="d-flex flex-column flex-md-row align-items-md-center justify-content-between gap-2 mb-4">
+                <h1 class="h3 mb-0">Sellers Dictionary</h1>
+                <span class="badge text-bg-light border px-3 py-2">{{ $categories->count() }} Categories</span>
+            </div>
 
+            <div class="entries-wrapper mb-0">
+                {!! $content->content !!}
+            </div>
 
-
-
-    <div class="entries-wrapper mt-4">
-        {!! $content->content !!}
-    </div>
-    @foreach ($categories as $category)
-        <div class="mt-3">
-            <h2 class="h5 p-0 m-0"><a href="{{ route('sellers-dictionary.web.index', $category->slug) }}" class="d-block">{{ $category->name }}</a></h2>
+            <div class="row g-3 mt-4">
+                @foreach ($categories as $category)
+                    <div class="col-12 col-sm-6 col-lg-4">
+                        <div class="card h-100 border-0 shadow-sm sd-card">
+                            <div class="card-body d-flex align-items-center justify-content-between gap-3 p-3 p-md-4">
+                                <h2 class="h6 p-0 m-0 flex-grow-1">
+                                    <a href="{{ route('sellers-dictionary.web.index', $category->slug) }}" class="stretched-link text-decoration-none text-dark sd-link">
+                                        {{ $category->name }}
+                                    </a>
+                                </h2>
+                                <span class="text-primary sd-arrow">
+                                    <span class="fa fa-chevron-right"></span>
+                                </span>
+                            </div>
+                        </div>
+                    </div>
+                @endforeach
+            </div>
         </div>
-    @endforeach
-
-
+    </div>
 </div>
 @endsection
