@@ -90,3 +90,53 @@
     </div>
 </div>
 @endsection
+
+@push('schema')
+    @php
+        $definedTerms = $entries->map(function ($entry) {
+            $entrySlug = optional($entry->category)->slug;
+            $entryUrl = $entrySlug
+                ? route('sellers-dictionary.web.index', $entrySlug) . '#entry_' . $entry->id
+                : url()->current() . '#entry_' . $entry->id;
+
+            return [
+                '@type' => 'DefinedTerm',
+                '@id' => $entryUrl,
+                'name' => $entry->title,
+                'description' => trim(html_entity_decode(strip_tags($entry->content))),
+                'url' => $entryUrl,
+                'inDefinedTermSet' => url()->current() . '#defined-term-set',
+            ];
+        })->values();
+
+        $homeSchema = [
+            '@context' => 'https://schema.org',
+            '@graph' => [
+                [
+                    '@type' => 'DefinedTermSet',
+                    '@id' => url()->current() . '#defined-term-set',
+                    'name' => 'Sellers Dictionary',
+                    'description' => 'A glossary of seller terms and definitions.',
+                    'url' => url()->current(),
+                    'hasDefinedTerm' => $definedTerms->all(),
+                ],
+                [
+                    '@type' => 'FAQPage',
+                    '@id' => url()->current() . '#faqpage',
+                    'url' => url()->current(),
+                    'mainEntity' => $entries->map(function ($entry) {
+                        return [
+                            '@type' => 'Question',
+                            'name' => $entry->title,
+                            'acceptedAnswer' => [
+                                '@type' => 'Answer',
+                                'text' => trim(html_entity_decode(strip_tags($entry->content))),
+                            ],
+                        ];
+                    })->values()->all(),
+                ],
+            ],
+        ];
+    @endphp
+    <script type="application/ld+json">{!! json_encode($homeSchema, JSON_UNESCAPED_SLASHES | JSON_UNESCAPED_UNICODE) !!}</script>
+@endpush
