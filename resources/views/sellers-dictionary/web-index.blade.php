@@ -11,7 +11,12 @@
 @section('styles')
     <!-- Custom CSS for this view -->
     <link href="{{ asset('css/faqs.css') }}" rel="stylesheet">
-
+    <style>
+        .option.active a {
+            color: #fff;
+            font-weight: 600;
+        }
+    </style>
 @endsection
 
 @section('content')
@@ -29,12 +34,10 @@
 
     <div class="entries-wrapper">
         @foreach($entries as $entry)
-        <div class="">
-
+        <div class="mt-4">
                 <div class="entry">
                     <h2><a name="entry_{{ $entry->id }}">{{ $entry->title }}</a></h2>
                     <p>{!! $entry->content !!}</p>
-                    {{-- <a href="{{ route('sellers-dictionary.web.show', $entry->id) }}" class="btn btn-primary">Read More</a> --}}
                 </div>
         </div>
         @endforeach
