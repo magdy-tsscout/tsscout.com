@@ -42,11 +42,15 @@ class SellersDictionaryCategoryController extends Controller
         $request->validate([
             'name' => 'required|string|max:255',
             'slug' => 'nullable|string|max:255|unique:sellers_dictionary_categories,slug',
+            'image' => 'nullable|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
         ]);
+
+        $imagePath = $request->file('image') ? $request->file('image')->store('sellers-dictionary-categories', 'public') : null;
 
         SellersDictionaryCategory::create([
             'name' => $request->name,
             'slug' => $request->slug ?: Str::slug($request->name),
+            'image' => $imagePath,
         ]);
 
         return redirect()->route('admin.sellers-dictionary-categories.index')->with('success', 'Category created successfully.');
@@ -70,11 +74,15 @@ class SellersDictionaryCategoryController extends Controller
         $request->validate([
             'name' => 'required|string|max:255',
             'slug' => 'nullable|string|max:255|unique:sellers_dictionary_categories,slug,' . $sellersDictionaryCategory->id,
+            'image' => 'nullable|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
         ]);
+
+        $imagePath = $request->file('image') ? $request->file('image')->store('sellers-dictionary-categories', 'public') : $sellersDictionaryCategory->image;
 
         $sellersDictionaryCategory->update([
             'name' => $request->name,
             'slug' => $request->slug ?: Str::slug($request->name),
+            'image' => $imagePath,
         ]);
 
         return redirect()->route('admin.sellers-dictionary-categories.index')->with('success', 'Category updated successfully.');

@@ -7,7 +7,7 @@ use Illuminate\Support\Str;
 
 class SellersDictionaryCategory extends Model
 {
-    protected $fillable = ['name', 'slug'];
+    protected $fillable = ['name', 'slug', 'image'];
 
     protected static function booted(): void
     {
@@ -22,4 +22,5 @@ class SellersDictionaryCategory extends Model
     {
         return $this->hasMany(SellersDictionary::class, 'category_id');
     }
+
 }

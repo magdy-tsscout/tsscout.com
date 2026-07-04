@@ -62,23 +62,29 @@
                 {!! $content->content !!}
             </div>
 
-            <div class="row g-3 mt-4">
+            <div class="row g-3 my-4">
                 @foreach ($categories as $category)
                     <div class="col-12 col-sm-6 col-lg-4">
                         <div class="card h-100 border-0 shadow-sm sd-card">
-                            <div class="card-body d-flex align-items-center justify-content-between gap-3 p-3 p-md-4">
-                                <h2 class="h6 p-0 m-0 flex-grow-1">
-                                    <a href="{{ route('sellers-dictionary.web.index', $category->slug) }}" class="stretched-link text-decoration-none text-dark sd-link">
-                                        {{ $category->name }}
-                                    </a>
-                                </h2>
-                                <span class="text-primary sd-arrow">
-                                    <span class="fa fa-chevron-right"></span>
-                                </span>
+                            <div class="card-body p-0">
+                                <figure class="m-0 w-100" style="height: 170px;">
+                                    <img src="{{ $category->image ? asset('storage/' . $category->image) : asset('images/logo.svg') }}" alt="{{ $category->name }}" class="img-fluid w-100 rounded-top" style="height: 100%; object-fit: cover;">
+                                </figure>
+                                <div class="d-flex align-items-center justify-content-between gap-3 p-3 p-md-4">
+                                    <h2 class="h6 p-0 m-0 flex-grow-1">
+                                        <a href="{{ route('sellers-dictionary.web.index', $category->slug) }}" class="stretched-link text-decoration-none text-dark sd-link">
+                                            {{ $category->name }}
+                                        </a>
+                                    </h2>
+                                    <span class="text-primary sd-arrow">
+                                        <span class="fa fa-chevron-right"></span>
+                                    </span>
+                                </div>
                             </div>
                         </div>
                     </div>
                 @endforeach
+                </div>
             </div>
         </div>
     </div>
