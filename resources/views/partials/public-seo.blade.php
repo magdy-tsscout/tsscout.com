@@ -45,6 +45,10 @@
 
         if ($isLast && $pageTitle !== '') {
             $label = $pageTitle;
+
+            if (($segments[0] ?? null) === 'sellers-dictionary' && \Illuminate\Support\Str::startsWith($label, 'Sellers Dictionary: ')) {
+                $label = trim((string) \Illuminate\Support\Str::after($label, 'Sellers Dictionary: '));
+            }
         }
 
         $breadcrumbItems[] = [
