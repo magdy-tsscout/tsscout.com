@@ -16,7 +16,7 @@
 
 @section('content')
 <div class="container my-5">
-    <h1 class="h4 mb-0">Sellers Dictionary{{ $category?"::".$category->name:"" }}</h1>
+    <h1 class="h4 mb-0">{{ $category->name:"" }}</h1>
     <div class="options-wrapper">
         <div class="options-container">
             @foreach($categories as $category)
