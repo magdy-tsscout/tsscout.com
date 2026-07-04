@@ -1,6 +1,6 @@
 @extends('layouts.master')
 
-@section('title', $blog->title)
+@section('title', $blog->meta_title)
 @section('meta_description', $blog->meta_description)
 @section('meta_keywords', $blog->meta_keywords)
 @section('meta_author', $blog->meta_author)
