@@ -144,7 +144,7 @@ class BlogController extends Controller
 
 
         $blog = Blog::findOrFail($id);
-
+        dd($blog);
         $validatedData = $request->validate([
             'title' => 'required|string|max:255',
             'excerpt' => 'required|string',
@@ -164,7 +164,7 @@ class BlogController extends Controller
             'meta_title' => 'nullable|string|max:255',
         ]);
 
-        dd($validatedData);
+
 
         if ($validatedData['media_type'] === 'image') {
             if ($request->hasFile('image')) {
