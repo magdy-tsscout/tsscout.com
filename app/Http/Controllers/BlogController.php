@@ -28,7 +28,7 @@ class BlogController extends Controller
     public function store(Request $request)
     {
         if (!$this->isAdmin()) {
-            return redirect()->route('Adminlogin')->with('error', 'Access denied.');
+            // return redirect()->route('Adminlogin')->with('error', 'Access denied.');
         }
 
 
@@ -49,11 +49,13 @@ class BlogController extends Controller
             'meta_author' => 'nullable|string|max:255',
             'slug' => 'required|string|max:60|unique:blogs',
             'category' => 'required|string|max:255',
-            'content' => 'required|string',
+            'content' => 'required',
             'published' => 'boolean',
             'scheduled_at' => 'nullable|date',
             'meta_title' => 'nullable|string|max:255',
         ]);
+
+        dd($validatedData);
 
         if( $request->input('published') === null ) {
             $validatedData['published'] = false;
