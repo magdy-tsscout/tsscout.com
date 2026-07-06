@@ -12,8 +12,8 @@ class BlogController extends Controller
 
     private function isAdmin()
     {
-        return true;
-        // return Auth::check() && Auth::user()->is_admin; // Ensure user is authenticated and is an admin
+        // return true;
+        return Auth::check() && Auth::user()->is_admin; // Ensure user is authenticated and is an admin
     }
     public function create()
     {
@@ -145,7 +145,7 @@ class BlogController extends Controller
 
 
         $blog = Blog::findOrFail($id);
-        dd($blog);
+
         $validatedData = $request->validate([
             'title' => 'required|string|max:255',
             'excerpt' => 'required|string',
