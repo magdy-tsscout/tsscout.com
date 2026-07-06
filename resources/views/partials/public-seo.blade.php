@@ -5,6 +5,7 @@
     $pageTitle = trim($__env->yieldContent('title', ''));
     $pageDescription = trim($__env->yieldContent('meta_description', ''));
     $schemaText = trim(preg_replace('/\s+/', ' ', strip_tags($__env->yieldContent('schema_text', ''))));
+    $disableBreadcrumbs = trim($__env->yieldContent('disable_breadcrumbs', '')) === '1';
     $isHomePage = $currentPath === '';
     $segmentLabels = [
         'ai-tool' => 'AI Tool',
@@ -57,7 +58,7 @@
         ];
     }
 
-    $shouldShowBreadcrumbs = !$isHomePage && count($breadcrumbItems) > 1;
+    $shouldShowBreadcrumbs = !$disableBreadcrumbs && !$isHomePage && count($breadcrumbItems) > 1;
 
     $webPageSchema = [
         '@context' => 'https://schema.org',

@@ -1,5 +1,7 @@
 @extends('layouts.master')
 
+@section('disable_breadcrumbs', '1')
+
 @section('meta')
     <meta name="robots" content="noindex, nofollow">
 @endsection
