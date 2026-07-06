@@ -116,8 +116,17 @@
                         </div>
 
                         <div class="form-group mb-3">
+                            <label for="word_file" class="form-label">Upload Word File (.doc/.docx)</label>
+                            <input type="file" class="form-control" id="word_file" name="word_file" accept=".doc,.docx,application/msword,application/vnd.openxmlformats-officedocument.wordprocessingml.document">
+                            <div class="form-text text-muted">If uploaded, the Word file will be converted to HTML and used as blog content.</div>
+                            @error('word_file')
+                                <div class="text-danger">{{ $message }}</div>
+                            @enderror
+                        </div>
+
+                        <div class="form-group mb-3">
                             <label for="content" class="form-label">Content</label>
-                            <textarea id="content" name="content" rows="10" required>{{ old('content') }}</textarea>
+                            <textarea id="content" name="content" rows="10">{{ old('content') }}</textarea>
                             @error('content')
                                 <div class="text-danger">{{ $message }}</div>
                             @enderror

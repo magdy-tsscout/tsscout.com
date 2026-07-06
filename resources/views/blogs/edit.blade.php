@@ -99,13 +99,22 @@
                             <input type="text" class="form-control" id="video_url" name="video_url" value="{{ old('video_url', $blog->video_url) }}">
                         </div>
 
+                        <div class="form-group mb-3">
+                            <label for="word_file" class="form-label">Upload Word File (.doc/.docx)</label>
+                            <input type="file" class="form-control" id="word_file" name="word_file" accept=".doc,.docx,application/msword,application/vnd.openxmlformats-officedocument.wordprocessingml.document">
+                            <div class="form-text text-muted">If uploaded, this Word file will be converted to HTML and will replace current content.</div>
+                            @error('word_file')
+                                <div class="text-danger">{{ $message }}</div>
+                            @enderror
+                        </div>
+
 
 
 
                         <!-- Content Sections (Handled by TinyMCE) -->
                         <div id="content-sections" class="mb-3">
                             <h4>Content Sections</h4>
-                            <textarea class="form-control tinymce-editor" id="content" name="content" rows="10" required>{{ old('content', $blog->content) }}</textarea>
+                            <textarea class="form-control tinymce-editor" id="content" name="content" rows="10">{{ old('content', $blog->content) }}</textarea>
                         </div>
 
                         <!-- Blog Category -->

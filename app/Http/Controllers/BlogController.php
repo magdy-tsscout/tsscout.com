@@ -3,9 +3,11 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Illuminate\Http\UploadedFile;
 use App\Models\Blog;
 use App\Models\Page;
 use Illuminate\Support\Facades\Auth;
+use PhpOffice\PhpWord\IOFactory;
 
 class BlogController extends Controller
 {
@@ -50,11 +52,22 @@ class BlogController extends Controller
             'meta_author' => 'nullable|string|max:255',
             'slug' => 'required|string|max:60|unique:blogs',
             'category' => 'required|string|max:255',
-            'content' => 'required',
+            'content' => 'required_without:word_file',
+            'word_file' => 'nullable|file|mimes:doc,docx|max:10240',
             'published' => 'boolean',
             'scheduled_at' => 'nullable|date',
             'meta_title' => 'nullable|string|max:255',
         ]);
+
+        if ($request->hasFile('word_file')) {
+            try {
+                $validatedData['content'] = $this->convertWordToHtml($request->file('word_file'));
+            } catch (\Throwable $exception) {
+                return back()->withErrors(['word_file' => 'Unable to convert the uploaded Word file. Please verify the file and try again.'])->withInput();
+            }
+        }
+
+        unset($validatedData['word_file']);
 
 
 
@@ -159,11 +172,22 @@ class BlogController extends Controller
             'meta_keywords' => 'nullable|string|max:255',
             'meta_author' => 'nullable|string|max:255',
             'category' => 'required|string|max:255',
-            'content' => 'required',
+            'content' => 'required_without:word_file',
+            'word_file' => 'nullable|file|mimes:doc,docx|max:10240',
             'published'=> 'boolean',
             'scheduled_at' => 'nullable|date',
             'meta_title' => 'nullable|string|max:255',
         ]);
+
+        if ($request->hasFile('word_file')) {
+            try {
+                $validatedData['content'] = $this->convertWordToHtml($request->file('word_file'));
+            } catch (\Throwable $exception) {
+                return back()->withErrors(['word_file' => 'Unable to convert the uploaded Word file. Please verify the file and try again.'])->withInput();
+            }
+        }
+
+        unset($validatedData['word_file']);
 
 
 
@@ -356,6 +380,30 @@ class BlogController extends Controller
         $text= preg_replace('/\s+/', ' ', $text);
         $text= preg_replace('/\r|\n|\t/', '', $text);
         return $text;
+   }
+
+   private function convertWordToHtml(UploadedFile $wordFile): string
+   {
+       $phpWord = IOFactory::load($wordFile->getRealPath());
+       $tempHtmlPath = tempnam(sys_get_temp_dir(), 'blog_word_');
+
+       if ($tempHtmlPath === false) {
+           throw new \RuntimeException('Failed to prepare temporary file for Word conversion.');
+       }
+
+       IOFactory::createWriter($phpWord, 'HTML')->save($tempHtmlPath);
+       $fullHtml = (string) file_get_contents($tempHtmlPath);
+       @unlink($tempHtmlPath);
+
+       if ($fullHtml === '') {
+           throw new \RuntimeException('Converted Word document is empty.');
+       }
+
+       if (preg_match('/<body[^>]*>(.*?)<\/body>/is', $fullHtml, $matches) === 1) {
+           return trim($matches[1]);
+       }
+
+       return trim($fullHtml);
    }
 
 
