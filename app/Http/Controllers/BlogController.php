@@ -55,7 +55,7 @@ class BlogController extends Controller
             'meta_title' => 'nullable|string|max:255',
         ]);
 
-        dd($validatedData);
+
 
         if( $request->input('published') === null ) {
             $validatedData['published'] = false;
@@ -158,11 +158,13 @@ class BlogController extends Controller
             'meta_keywords' => 'nullable|string|max:255',
             'meta_author' => 'nullable|string|max:255',
             'category' => 'required|string|max:255',
-            'content' => 'required|string',
+            'content' => 'required',
             'published'=> 'boolean',
             'scheduled_at' => 'nullable|date',
             'meta_title' => 'nullable|string|max:255',
         ]);
+
+        dd($validatedData);
 
         if ($validatedData['media_type'] === 'image') {
             if ($request->hasFile('image')) {
