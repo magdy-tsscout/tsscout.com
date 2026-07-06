@@ -102,7 +102,7 @@
                         <div class="form-group mb-3">
                             <label for="word_file" class="form-label">Upload Word File (.doc/.docx)</label>
                             <input type="file" class="form-control" id="word_file" name="word_file" accept=".doc,.docx,application/msword,application/vnd.openxmlformats-officedocument.wordprocessingml.document">
-                            <div class="form-text text-muted">If uploaded, this Word file will be converted to HTML and will replace current content.</div>
+                            <div class="form-text text-muted">DOCX is converted in-browser with Mammoth.js and both DOC/DOCX are converted on server during save.</div>
                             @error('word_file')
                                 <div class="text-danger">{{ $message }}</div>
                             @enderror
@@ -175,10 +175,14 @@
 
 <x-editor-scripts />
 
+<script src="https://unpkg.com/mammoth/mammoth.browser.min.js"></script>
+
 <script>
     const blogForm = document.getElementById('blogForm');
     const mediaTypeSelect = document.getElementById('media_type');
     const imageInput = document.getElementById('image');
+    const wordFileInput = document.getElementById('word_file');
+    const contentTextarea = document.getElementById('content');
     // Toggle between image and video input fields
     mediaTypeSelect.addEventListener('change', function() {
         const mediaType = this.value;
@@ -201,6 +205,44 @@
     }
 
     imageInput.addEventListener('change', validateFileSize);
+
+    function setEditorContent(html) {
+        if (window.tinymce && tinymce.get('content')) {
+            tinymce.get('content').setContent(html);
+            tinymce.get('content').save();
+        }
+
+        contentTextarea.value = html;
+    }
+
+    async function previewDocxWithMammoth(file) {
+        const extension = (file.name.split('.').pop() || '').toLowerCase();
+
+        if (extension !== 'docx') {
+            return;
+        }
+
+        const arrayBuffer = await file.arrayBuffer();
+        const result = await mammoth.convertToHtml({ arrayBuffer });
+
+        if (result.value) {
+            setEditorContent(result.value);
+        }
+    }
+
+    wordFileInput.addEventListener('change', async function () {
+        const file = this.files && this.files[0];
+
+        if (!file) {
+            return;
+        }
+
+        try {
+            await previewDocxWithMammoth(file);
+        } catch (error) {
+            console.error('Mammoth conversion failed:', error);
+        }
+    });
 
     blogForm.addEventListener('submit', function (event) {
         if (mediaTypeSelect.value === 'image' && !validateFileSize()) {
