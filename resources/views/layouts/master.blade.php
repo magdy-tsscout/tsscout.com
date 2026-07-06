@@ -15,7 +15,7 @@
     <meta name="twitter:title" content="@yield('og_title', 'Default OG Title')" />
     <meta name="twitter:description" content="@yield('og_description', 'Default OG Description')" />
     <meta name="twitter:image" content="@yield('og_image', asset('images/default-image.jpg'))" />
-
+    @yield('meta')
 
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">

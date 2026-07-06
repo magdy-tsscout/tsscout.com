@@ -1,5 +1,8 @@
 @extends('layouts.master')
 
+@section('meta')
+    <meta name="robots" content="noindex, nofollow">
+@endsection
 @section('content')
 
     <!-- error section start -->
