@@ -62,6 +62,13 @@
             padding: 20px;
             box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
         }
+        .nav-link.active {
+            color: #d4e157 !important;
+        }
+        .dropdown-menu .nav-link.active {
+            color: #4f7c4b !important
+            font-weight: 600;
+        }
         @media all and ( max-width: 1000px ) {
             .dropdown-menu {
                 background: transparent;
@@ -72,6 +79,9 @@
             }
             .dropdown-menu .nav-link {
                 color: #FFF !important;
+            }
+            .dropdown-menu .nav-link.active {
+                color: #d4e157 !important;
             }
         }
     </style>
@@ -98,39 +108,40 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
         <div class="collapse navbar-collapse" id="navbarNav">
             <ul class="navbar-nav">
                 <li class="nav-item dropdown">
-                    <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-expanded="false">
+                    <a class="nav-link dropdown-toggle @if(request()->routeIs('admin.sellers-dictionary*')) active @endif" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-expanded="false">
                         Sellers Dictionary
                     </a>
                     <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
                         <li class="nav-item">
-                            <a class="nav-link" href="{{ route('admin.sellers-dictionary.web.edit') }}">Home</a>
+                            <a class="nav-link @if(request()->routeIs('admin.sellers-dictionary.web.edit')) active @endif" href="{{ route('admin.sellers-dictionary.web.edit') }}">Home</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="{{ route('admin.sellers-dictionary-categories.index') }}">Categories</a>
+                            <a class="nav-link @if(request()->routeIs('admin.sellers-dictionary-categories.index')) active @endif" href="{{ route('admin.sellers-dictionary-categories.index') }}">Categories</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="{{ route('admin.sellers-dictionary.index') }}">Sellers Dictionary</a>
+                            <a class="nav-link @if(request()->routeIs('admin.sellers-dictionary.index')) active @endif" href="{{ route('admin.sellers-dictionary.index') }}">Sellers Dictionary</a>
                         </li>
                     </ul>
                 </li>
 
+
                 <li class="nav-item">
-                    <a class="nav-link" href="{{ route('admin.faqs.index') }}">FAQS</a>
+                    <a class="nav-link @if(request()->routeIs('admin.faqs.*')) active @endif" href="{{ route('admin.faqs.index') }}">FAQS</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="{{ route('blogs.index') }}">Blogs</a>
+                    <a class="nav-link @if(request()->routeIs('blogs.*')) active @endif" href="{{ route('blogs.index') }}">Blogs</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="{{ route('tools.index') }}">Tools</a>
+                    <a class="nav-link @if(request()->routeIs('tools.*')) active @endif" href="{{ route('tools.index') }}">Tools</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="{{ route('admin.pages.index') }}">Slugs</a>
+                    <a class="nav-link @if(request()->is('admin/pages*')) active @endif" href="{{ route('admin.pages.index') }}">Slugs</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="{{ route('admin.themes.index') }}">Themes</a>
+                    <a class="nav-link @if(request()->is('admin/themes*')) active @endif" href="{{ route('admin.themes.index') }}">Themes</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="{{ route('admin.author-data.edit') }}">Author Data</a>
+                    <a class="nav-link @if(request()->is('admin/author-data*')) active @endif" href="{{ route('admin.author-data.edit') }}">Author Data</a>
                 </li>
             </ul>
         </div>
