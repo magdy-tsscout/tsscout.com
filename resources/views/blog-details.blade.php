@@ -14,140 +14,14 @@
 @section('styles')
     <!-- Custom CSS for this view -->
     <link href="{{asset('css/blog-details.css')}}" rel="stylesheet">
-    <link href="https://www.tiny.cloud/css/codepen.min.css" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400..900;1,400..900&display=swap" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@100..900&display=swap" rel="stylesheet">
     <style>
-        .content {
-            font-family: 'Inter', sans-serif;
-            font-size: 16px;
-            line-height: 1.8;
-            color: #334155;
-            margin-bottom: 16px;
-        }
-        .content p, .table-of-contents li a {
+        .table-of-contents li a {
             font-family: 'Inter', sans-serif;
             font-weight: normal;
             color: #334155;
             margin-bottom: 1.5em;
-        }
-        .content h1, .content h2, .content h3, .content h4, .content h5, .content h6 {
-            font-family: 'Playfair Display', serif;
-            color: #1D3F5B;
-        }
-        .content ol, .content ul {
-            padding-right: 0;
-            padding-left: 0;
-        }
-        .content h1 {
-            font-size: clamp(42px, 5vw, 55px);
-            font-weight: 700;
-            line-height: 1.05;
-            letter-spacing: -0.03em;
-            margin-bottom: 24px;
-        }
-
-        .content h2 {
-            font-size: clamp(30px, 3vw, 35px);
-            font-weight: 700;
-            line-height: 1.3em;
-            letter-spacing: -0.02em;
-            margin-top: 72px;
-            margin-bottom: 20px;
-        }
-
-        .content table {
-            width: 100%;
-            border-collapse: separate;
-            border-spacing: 0;
-            border: 1px solid rgba(148, 176, 214, 0.35);
-            border-radius: 12px;
-            overflow: hidden;
-            margin: 24px 0;
-            background: linear-gradient(120deg, #0c1b33 0%, #123056 52%, #1a406c 100%);
-            box-shadow: 0 10px 28px rgba(9, 22, 45, 0.24);
-            color: #e9f1fb;
-        }
-
-        .content table thead th,
-        .content table tbody td
-         {
-            border-left: 1px solid rgba(162, 190, 224, 0.22);
-            border-bottom: 1px solid rgba(162, 190, 224, 0.22);
-            padding: 12px 14px;
-            font-family: 'Inter', sans-serif;
-            word-break: break-word;
-        }
-
-        .content table tr > *:first-child {
-            border-left: none;
-        }
-
-        .content table thead th
-        {
-            background: rgba(8, 20, 38, 0.7);
-            color: #ffffff;
-            font-weight: 700;
-            text-align: center;
-        }
-
-        .content table tbody td,
-        .content table tbody th {
-            background: rgba(20, 44, 75, 0.62);
-            color: #edf4ff;
-            font-weight: 500;
-        }
-        .content table tbody td p, .content table tbody th p,
-        .content table tbody td span, .content table tbody th span
-         {
-            color: #edf4ff !important;
-        }
-
-        .content table tbody tr:nth-child(even) td,
-        .content table tbody tr:nth-child(even) th {
-            background: rgba(24, 52, 88, 0.78);
-        }
-
-        .content table tr:last-child td,
-        .content table tr:last-child th {
-            border-bottom: none;
-        }
-
-        .content table caption {
-            caption-side: top;
-            text-align: right;
-            color: #e6efff;
-            font-family: 'Playfair Display', serif;
-            font-size: 28px;
-            font-weight: 700;
-            margin-bottom: 12px;
-        }
-
-        @media (max-width: 767px) {
-            .content table {
-                display: block;
-                overflow-x: auto;
-                -webkit-overflow-scrolling: touch;
-            }
-
-            .content table thead th,
-            .content table tbody td,
-            .content table tbody th,
-            .content table tr:first-child th,
-            .content table tr:first-child td {
-                min-width: 140px;
-                font-size: 14px;
-                padding: 10px 12px;
-            }
-        }
-
-        .content h3 {
-            font-size: 24px;
-            font-weight: 600;
-            line-height: 1.5em;
-            letter-spacing: -0.01em;
-            margin-top: 48px;
-            margin-bottom: 16px;
         }
 
         .table-content {
@@ -168,10 +42,6 @@
 
         .blog-details-container .content-container .content {
             width: 100%;
-        }
-
-        img {
-            height: auto;
         }
 
         .sidebar ul.table-of-contents {

@@ -61,7 +61,19 @@
             {title: 'Hover Effect', value: 'table table-hover'},
             {title: 'Borderless', value: 'table table-borderless'}
         ],
-        content_css: 'https://www.tiny.cloud/css/codepen.min.css'
+        content_css: [
+            '{{ asset("css/bootstrap.min.css") }}',
+            '{{ asset("css/slicknav.min.css") }}',
+            '{{ asset("css/swiper-bundle.min.css") }}',
+            '{{ asset("css/all.css") }}',
+            '{{ asset("css/animate.css") }}',
+            '{{ asset("css/magnific-popup.css") }}',
+            '{{ asset("css/custom.css") }}',
+            '{{ asset("css/magicButtons.css") }}',
+            '{{ asset("css/header2.css") }}',
+            '{{ asset("css/footer.css") }}',
+            '{{ asset("css/blog-details.css") }}'
+        ]
     });
 
     document.querySelector('form').addEventListener('submit', function() {
