@@ -7,23 +7,77 @@
         officeThemeStyle.id = 'tinymce-office-theme';
         officeThemeStyle.textContent = `
             .tox.tox-tinymce {
-                border: 1px solid #d5dde8;
-                border-radius: 12px;
+                border: 1px solid #cfd7e3;
+                border-radius: 10px;
                 overflow: hidden;
-                box-shadow: 0 10px 24px rgba(15, 23, 42, 0.08);
-                background: #f3f5f8;
+                box-shadow: 0 8px 24px rgba(15, 23, 42, 0.10);
+                background: #eef2f7;
             }
 
             .tox .tox-editor-header {
-                background: linear-gradient(180deg, #f8fafc 0%, #eef2f7 100%);
-                border-bottom: 1px solid #d5dde8;
-                padding-top: 6px;
+                background: #f4f6f9;
+                border-bottom: 1px solid #d8deea;
+                padding-top: 0;
             }
 
-            .tox .tox-toolbar-overlord,
+            .tox .tox-menubar {
+                background: #f4f6f9;
+                border-bottom: 1px solid #d8deea;
+                padding: 0 10px;
+                min-height: 44px;
+                display: flex;
+                align-items: end;
+                gap: 2px;
+            }
+
+            .tox .tox-menubar .tox-mbtn {
+                border-radius: 8px 8px 0 0;
+                height: 36px;
+                padding: 0 14px;
+                font-size: 15px;
+                color: #2f3b4c;
+                margin-bottom: -1px;
+            }
+
+            .tox .tox-menubar .tox-mbtn:hover {
+                background: #e9eef7;
+            }
+
+            .tox .tox-menubar .tox-mbtn.office-tab-active {
+                background: #2b6ed2;
+                color: #ffffff;
+            }
+
+            .tox .tox-toolbar-overlord {
+                background: #ffffff !important;
+                border-bottom: 1px solid #d8deea;
+                padding: 8px 10px;
+            }
+
             .tox .tox-toolbar,
             .tox .tox-toolbar__primary {
                 background: transparent !important;
+            }
+
+            .tox .tox-tbtn,
+            .tox .tox-tbtn--select,
+            .tox .tox-listboxfield .tox-listbox--select,
+            .tox .tox-listboxfield .tox-listbox--select:focus {
+                border-radius: 6px;
+                border-color: #d1d8e4 !important;
+                min-height: 32px;
+            }
+
+            .tox .tox-toolbar__group {
+                border-right: 1px solid #dfe5ef;
+                padding-right: 10px;
+                margin-right: 8px;
+            }
+
+            .tox .tox-toolbar__group:last-child {
+                border-right: none;
+                margin-right: 0;
+                padding-right: 0;
             }
 
             .tox .tox-edit-area {
@@ -41,8 +95,18 @@
 
     tinymce.init({
         selector: '#content',
-        plugins: 'link image code table lists',
-        menubar: true,
+        plugins: 'link image code table lists advlist',
+        menubar: 'home insert pagelayout references review view section developer',
+        menu: {
+            home: { title: 'Home', items: 'undo redo | bold italic underline strikethrough | forecolor backcolor | blocks fontfamily fontsize | alignleft aligncenter alignright alignjustify | bullist numlist outdent indent | removeformat' },
+            insert: { title: 'Insert', items: 'link image table | hr charmap' },
+            pagelayout: { title: 'Page Layout', items: 'blocks lineheight' },
+            references: { title: 'References', items: 'code' },
+            review: { title: 'Review', items: 'spellcheckdialog' },
+            view: { title: 'View', items: 'visualaid | code' },
+            section: { title: 'Section', items: 'blocks' },
+            developer: { title: 'Developer', items: 'code' }
+        },
         toolbar_mode: 'wrap',
         image_title: true,
         automatic_uploads: true,
@@ -89,7 +153,10 @@
 
         image_list: '{{ route("get-images") }}',
 
-        toolbar: 'undo redo | blocks | fontsize | block_formats | fontsize_formats | bold italic backcolor | link image | alignleft aligncenter alignright alignjustify | bullist numlist outdent indent | removeformat | table | code',
+        toolbar: [
+            'undo redo | cut copy paste pastetext | blocks fontfamily fontsize',
+            'bold italic underline strikethrough forecolor backcolor | alignleft aligncenter alignright alignjustify | bullist numlist outdent indent | link image table | removeformat code'
+        ],
 
         table_default_attributes: {
             // class: 'table'
@@ -134,7 +201,33 @@
             '{{ asset("css/header2.css") }}',
             '{{ asset("css/footer.css") }}',
             '{{ asset("css/blog-details.css") }}'
-        ]
+        ],
+        setup: function (editor) {
+            editor.on('init', function () {
+                const container = editor.getContainer();
+                if (!container) {
+                    return;
+                }
+
+                const tabButtons = container.querySelectorAll('.tox-menubar .tox-mbtn');
+                if (tabButtons.length === 0) {
+                    return;
+                }
+
+                const setActiveTab = function (targetButton) {
+                    tabButtons.forEach((button) => button.classList.remove('office-tab-active'));
+                    targetButton.classList.add('office-tab-active');
+                };
+
+                setActiveTab(tabButtons[0]);
+
+                tabButtons.forEach((button) => {
+                    button.addEventListener('click', function () {
+                        setActiveTab(button);
+                    });
+                });
+            });
+        }
     });
 
     document.querySelector('form').addEventListener('submit', function() {
