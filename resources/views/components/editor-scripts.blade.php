@@ -21,31 +21,46 @@
             }
 
             .tox .tox-menubar {
-                background: #f4f6f9;
-                border-bottom: 1px solid #d8deea;
-                padding: 0 10px;
-                min-height: 44px;
+                background: linear-gradient(180deg, #f7f9fc 0%, #edf2f8 100%);
+                border-bottom: 1px solid #cfd8e6;
+                padding: 0 12px;
+                min-height: 50px;
                 display: flex;
                 align-items: end;
-                gap: 2px;
+                gap: 6px;
+                overflow-x: auto;
+                scrollbar-width: thin;
             }
 
             .tox .tox-menubar .tox-mbtn {
-                border-radius: 8px 8px 0 0;
-                height: 36px;
-                padding: 0 14px;
-                font-size: 15px;
-                color: #2f3b4c;
+                border: 1px solid transparent;
+                border-bottom: none;
+                border-radius: 10px 10px 0 0;
+                height: 40px;
+                padding: 0 16px;
+                font-size: 14px;
+                font-weight: 600;
+                color: #2a3442;
                 margin-bottom: -1px;
+                letter-spacing: 0.1px;
             }
 
             .tox .tox-menubar .tox-mbtn:hover {
-                background: #e9eef7;
+                background: #e8eef8;
+                border-color: #d7e1ef;
+                color: #1f2937;
             }
 
             .tox .tox-menubar .tox-mbtn.office-tab-active {
-                background: #2b6ed2;
-                color: #ffffff;
+                background: #ffffff;
+                color: #1d4ea3;
+                border-color: #c9d5e8;
+                box-shadow: inset 0 3px 0 #2f6fda;
+            }
+
+            .tox .tox-menubar .tox-mbtn:focus-visible {
+                outline: 2px solid #7fa7ea;
+                outline-offset: -2px;
             }
 
             .tox .tox-toolbar-overlord {
