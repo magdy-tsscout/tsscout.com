@@ -21,7 +21,7 @@
     <div class="card">
         <div class="card-header bg-warning text-white">
             <h3 class="d-inline">Edit Blog</h3>
-            <a href="{{ route("blogs.show",['slug'=>$blog->slug]) }}" class="btn btn-outline-light btn-sm float-right">
+            <a href="{{ route("blogs.show",['slug'=>$blog->slug]) }}" class="btn btn-outline-light btn-sm float-right" target="_blank">
                 <span class="me-1"><i class="fas fa-link"></i></span>
                 View Blog
             </a>
