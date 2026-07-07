@@ -322,29 +322,27 @@ class BlogController extends Controller
            return response()->view('404', [], 404);
        }
 
-       // Extract headings from the content (as in your original code)
-       $dom = new \DOMDocument();
-       @$dom->loadHTML($blog->content); // Suppress warnings with @
+       // Read headings for TOC without mutating stored HTML content.
        $headings = [];
-
-    //    for ($i = 1; $i <= 6; $i++) {
-            $i=0;
+       $dom = new \DOMDocument();
+       if (@$dom->loadHTML('<?xml encoding="utf-8" ?>' . $blog->content, LIBXML_HTML_NOIMPLIED | LIBXML_HTML_NODEFDTD)) {
            $tags = $dom->getElementsByTagName('h2');
-           foreach ($tags as $tag) {
-                $text = $this->normalizeTitles($tag->textContent);
-                if ($text) {
-                    $tag->setAttribute('id', 'header' . count($headings));
-                    $headings[] = [
-                        'level' => $i,
-                        'text' => $text,
-                        'id' => 'header' . count($headings)
-                    ];
-                    $i++;
-                }
-            }
-    //    }
+           foreach ($tags as $index => $tag) {
+               $text = $this->normalizeTitles($tag->textContent);
+               if ($text) {
+                   $headingId = trim((string) $tag->getAttribute('id'));
+                   if ($headingId === '') {
+                       $headingId = 'header' . $index;
+                   }
 
-       $blog->content = $dom->saveHTML();
+                   $headings[] = [
+                       'level' => 2,
+                       'text' => $text,
+                       'id' => $headingId,
+                   ];
+               }
+           }
+       }
 
        // Retrieve the page data
        $page = Page::where('view_name', 'blogs')->first();

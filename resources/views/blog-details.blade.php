@@ -14,6 +14,7 @@
 @section('styles')
     <!-- Custom CSS for this view -->
     <link href="{{asset('css/blog-details.css')}}" rel="stylesheet">
+    <link href="https://www.tiny.cloud/css/codepen.min.css" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400..900;1,400..900&display=swap" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@100..900&display=swap" rel="stylesheet">
     <style>
@@ -312,7 +313,7 @@
 
 
             <div class="content-container">
-                <div class="content">
+                <div class="content mce-content-body">
                     {!! $blog->content !!}
                     <br>
                     like?
@@ -428,6 +429,13 @@
     </article>
 
     <script>
+        // Keep TOC anchors stable when headings were saved without ids.
+        document.querySelectorAll('.content h2').forEach((heading, index) => {
+            if (!heading.id) {
+                heading.id = `header${index}`;
+            }
+        });
+
         document.getElementById('like-button').addEventListener('click', function() {
             const blogId = {{ $blog->id }};
             const likeButton = document.getElementById('like-button');
