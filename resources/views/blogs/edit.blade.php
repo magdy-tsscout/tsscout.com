@@ -1,5 +1,6 @@
 @extends('layouts.app')
 
+@section('main-class', 'container-fluid')
 @section('content')
 
     @if ($errors->any())

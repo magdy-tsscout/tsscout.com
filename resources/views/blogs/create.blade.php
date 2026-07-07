@@ -1,7 +1,6 @@
 @extends('layouts.app')
-
+@section('main-class', 'container-fluid')
 @section('content')
-<div class="container mt-5">
     @if ($errors->any())
         <div class="alert alert-danger alert-dismissible fade show" role="alert">
             <strong>Please fix the following errors:</strong>
@@ -199,7 +198,6 @@
             </form>
         </div>
     </div>
-</div>
 
 <x-editor-scripts />
 

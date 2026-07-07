@@ -137,7 +137,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     </nav>
 
     <!-- Main Content -->
-    <main class="container mt-4">
+    <main class="@yield('main-class', 'container') mt-4">
         @yield('content')
     </main>
 

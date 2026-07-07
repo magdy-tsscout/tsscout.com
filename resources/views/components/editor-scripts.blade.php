@@ -2,191 +2,42 @@
 <script>
     let currentPickerCallback;
 
-    if (!document.getElementById('tinymce-office-theme')) {
-        const officeThemeStyle = document.createElement('style');
-        officeThemeStyle.id = 'tinymce-office-theme';
-        officeThemeStyle.textContent = `
-            .tox.tox-tinymce {
-                border: 1px solid #cfd7e3;
-                border-radius: 10px;
-                overflow: hidden;
-                box-shadow: 0 8px 24px rgba(15, 23, 42, 0.10);
-                background: #eef2f7;
+    if (!document.getElementById('tinymce-extra-tools-style')) {
+        const extraToolsStyle = document.createElement('style');
+        extraToolsStyle.id = 'tinymce-extra-tools-style';
+        extraToolsStyle.textContent = `
+            .tox.tox-tinymce.tools-collapsed .tox-toolbar-overlord .tox-toolbar:last-of-type {
+                display: none;
             }
 
-            .tox .tox-editor-header {
-                background: #f4f6f9;
-                border-bottom: 1px solid #d8deea;
-                padding-top: 0;
-            }
-
-            .tox .tox-menubar {
-                background: linear-gradient(180deg, #f7f9fc 0%, #edf2f8 100%);
-                border-bottom: 1px solid #cfd8e6;
-                padding: 0 12px;
-                min-height: 42px;
-                display: flex;
-                align-items: end;
-                gap: 6px;
-                overflow-x: auto;
-                flex-wrap: nowrap;
-                white-space: nowrap;
-                scrollbar-width: thin;
-            }
-
-            .tox-ribbon-tabs {
-                display: flex;
-                align-items: end;
-                gap: 6px;
-                padding: 6px 10px 0;
-                background: linear-gradient(180deg, #f7f9fc 0%, #edf2f8 100%);
-                border-bottom: 1px solid #cfd8e6;
-                overflow-x: auto;
-            }
-
-            .tox-ribbon-tab {
-                border: 1px solid transparent;
-                border-bottom: none;
-                border-radius: 10px 10px 0 0;
-                height: 34px;
-                padding: 0 12px;
-                font-size: 13px;
-                font-weight: 600;
-                color: #2a3442;
-                background: transparent;
-                cursor: pointer;
-                margin-bottom: -1px;
-                white-space: nowrap;
-            }
-
-            .tox-ribbon-tab:hover {
-                background: #e8eef8;
-                border-color: #d7e1ef;
-            }
-
-            .tox-ribbon-tab.is-active {
-                background: #ffffff;
-                color: #1d4ea3;
-                border-color: #c9d5e8;
-                box-shadow: inset 0 3px 0 #2f6fda;
-            }
-
-            .tox .tox-menubar .tox-mbtn {
-                border: 1px solid transparent;
-                border-bottom: none;
-                border-radius: 10px 10px 0 0;
-                height: 34px;
-                padding: 0 12px;
-                font-size: 13px;
-                font-weight: 600;
-                color: #2a3442;
-                margin-bottom: -1px;
-                letter-spacing: 0.1px;
-            }
-
-            .tox .tox-menubar .tox-mbtn:hover {
-                background: #e8eef8;
-                border-color: #d7e1ef;
-                color: #1f2937;
-            }
-
-            .tox .tox-menubar .tox-mbtn.office-tab-active {
-                background: #ffffff;
-                color: #1d4ea3;
-                border-color: #c9d5e8;
-                box-shadow: inset 0 3px 0 #2f6fda;
-            }
-
-            .tox .tox-menubar .tox-mbtn.tox-mbtn--active {
-                background: #ffffff;
-                color: #1d4ea3;
-                border-color: #c9d5e8;
-                box-shadow: inset 0 3px 0 #2f6fda;
-            }
-
-            .tox .tox-menubar .tox-mbtn:focus-visible {
-                outline: 2px solid #7fa7ea;
-                outline-offset: -2px;
-            }
-
-            .tox .tox-toolbar-overlord {
-                background: #ffffff !important;
-                border-bottom: 1px solid #d8deea;
-                padding: 4px 8px;
-            }
-
-            .tox .tox-toolbar,
-            .tox .tox-toolbar__primary {
-                background: transparent !important;
-            }
-
-            .tox .tox-tbtn,
-            .tox .tox-tbtn--select,
-            .tox .tox-listboxfield .tox-listbox--select,
-            .tox .tox-listboxfield .tox-listbox--select:focus {
-                border-radius: 5px;
-                border-color: #d1d8e4 !important;
-                min-height: 28px;
-                height: 28px;
-                font-size: 12px;
-            }
-
-            .tox .tox-tbtn svg {
-                width: 18px;
-                height: 18px;
-            }
-
-            .tox .tox-toolbar__group {
-                border-right: 1px solid #dfe5ef;
-                padding-right: 7px;
-                margin-right: 6px;
-                padding-bottom: 12px;
-                position: relative;
-            }
-
-            .tox .tox-toolbar__group:last-child {
-                border-right: none;
-                margin-right: 0;
-                padding-right: 0;
-            }
-
-            .tox .tox-toolbar__group::after {
-                content: '';
-                position: absolute;
-                left: 0;
-                right: 0;
-                bottom: -1px;
-                text-align: center;
-                font-size: 10px;
-                line-height: 1;
-                color: #6b7280;
-            }
-
-            .tox .tox-toolbar__group:nth-child(1)::after { content: 'Clipboard'; }
-            .tox .tox-toolbar__group:nth-child(2)::after { content: 'Style'; }
-            .tox .tox-toolbar__group:nth-child(3)::after { content: 'Font'; }
-            .tox .tox-toolbar__group:nth-child(4)::after { content: 'Paragraph'; }
-            .tox .tox-toolbar__group:nth-child(5)::after { content: 'Insert'; }
-            .tox .tox-toolbar__group:nth-child(6)::after { content: 'Tools'; }
-
-            .tox .tox-edit-area {
-                background: #e9edf3;
-                padding: 28px 0;
-            }
-
-            .tox .tox-statusbar {
-                border-top: 1px solid #d5dde8;
-                background: #f8fafc;
+            .tox.tox-tinymce .tox-tbtn.tox-tbtn--select.editor-compact-select {
+                width: 80px !important;
+                max-width: 80px !important;
+                min-width: 80px !important;
             }
         `;
-        document.head.appendChild(officeThemeStyle);
+        document.head.appendChild(extraToolsStyle);
     }
 
     tinymce.init({
         selector: '#content',
-        plugins: 'link image code table lists advlist',
-        menubar: false,
-        toolbar_mode: 'sliding',
+        plugins: 'advlist autolink lists link image charmap preview anchor searchreplace visualblocks visualchars code fullscreen insertdatetime media table help wordcount autosave directionality nonbreaking pagebreak quickbars emoticons codesample',
+        menubar: 'file edit view insert format tools table help',
+        menu: {
+            file: { title: 'File', items: 'newdocument restoredraft | preview | print' },
+            edit: { title: 'Edit', items: 'undo redo | cut copy paste pastetext | selectall | searchreplace' },
+            view: { title: 'View', items: 'code | visualaid visualchars visualblocks | preview fullscreen' },
+            insert: { title: 'Insert', items: 'image media link anchor emoticons charmap nonbreaking pagebreak insertdatetime codesample' },
+            format: { title: 'Format', items: 'bold italic underline strikethrough superscript subscript | formats blocks fontfamily fontsize | forecolor backcolor | removeformat' },
+            tools: { title: 'Tools', items: 'spellchecker spellcheckerlanguage | a11ycheck code wordcount' },
+            table: { title: 'Table', items: 'inserttable | cell row column | tableprops deletetable' },
+            help: { title: 'Help', items: 'help' }
+        },
+        toolbar_mode: 'wrap',
+        autosave_ask_before_unload: true,
+        autosave_interval: '20s',
+        quickbars_selection_toolbar: 'bold italic underline | blocks | forecolor backcolor | quicklink blockquote',
+        quickbars_insert_toolbar: 'image media table hr',
         image_title: true,
         automatic_uploads: true,
         images_upload_url: "{{ route('upload-handler') }}",
@@ -232,7 +83,11 @@
 
         image_list: '{{ route("get-images") }}',
 
-        toolbar: 'undo redo | cut copy paste | blocks fontfamily fontsize | bold italic underline forecolor backcolor | alignleft aligncenter alignright alignjustify | bullist numlist | link image table | removeformat code',
+        toolbar: [
+            'cut copy paste pastetext | blocks fontfamily fontsize | toggleextratools',
+            'bold italic underline strikethrough forecolor backcolor | alignleft aligncenter alignright alignjustify | link anchor image media table fullscreen',
+            'superscript subscript | ltr rtl | blockquote | outdent indent | numlist bullist checklist | removeformat code | emoticons charmap nonbreaking pagebreak insertdatetime codesample | searchreplace visualchars visualblocks | preview wordcount help'
+        ],
 
         table_default_attributes: {
             // class: 'table'
@@ -246,23 +101,10 @@
         ],
         content_style: `
             body {
-                background: #e9edf3;
-                padding: 28px 0;
-            }
-            body#tinymce {
-                max-width: 900px;
-                margin: 0 auto !important;
-                padding: 48px 56px !important;
+                padding: 12px;
                 background: #ffffff;
-                border: 1px solid #d5dde8;
-                box-shadow: 0 12px 30px rgba(15, 23, 42, 0.12);
-                min-height: calc(100vh - 56px);
-            }
-            @media (max-width: 992px) {
-                body#tinymce {
-                    max-width: calc(100% - 24px);
-                    padding: 28px 22px !important;
-                }
+                font-size: 16px;
+                line-height: 1.6;
             }
         `,
         content_css: [
@@ -279,37 +121,32 @@
             '{{ asset("css/blog-details.css") }}'
         ],
         setup: function (editor) {
+            editor.ui.registry.addButton('toggleextratools', {
+                text: 'Tools',
+                tooltip: 'Show or hide extra tools',
+                onAction: function () {
+                    const container = editor.getContainer();
+                    if (!container) {
+                        return;
+                    }
+                    container.classList.toggle('tools-collapsed');
+                }
+            });
+
             editor.on('init', function () {
                 const container = editor.getContainer();
                 if (!container) {
                     return;
                 }
 
-                const header = container.querySelector('.tox-editor-header');
-                const toolbarOverlord = container.querySelector('.tox-toolbar-overlord');
-                if (!header || !toolbarOverlord) {
-                    return;
-                }
+                const compactSelects = container.querySelectorAll('.tox-toolbar:first-of-type .tox-tbtn--select');
+                compactSelects.forEach((selectButton, index) => {
+                    if (index < 3) {
+                        selectButton.classList.add('editor-compact-select');
+                    }
+                });
 
-                if (!header.querySelector('.tox-ribbon-tabs')) {
-                    const ribbonTabs = document.createElement('div');
-                    ribbonTabs.className = 'tox-ribbon-tabs';
-
-                    const tabs = ['Home', 'Insert', 'Page Layout', 'References', 'View', 'Developer'];
-                    tabs.forEach((tab, index) => {
-                        const btn = document.createElement('button');
-                        btn.type = 'button';
-                        btn.className = 'tox-ribbon-tab' + (index === 0 ? ' is-active' : '');
-                        btn.textContent = tab;
-                        btn.addEventListener('click', function () {
-                            ribbonTabs.querySelectorAll('.tox-ribbon-tab').forEach((node) => node.classList.remove('is-active'));
-                            btn.classList.add('is-active');
-                        });
-                        ribbonTabs.appendChild(btn);
-                    });
-
-                    header.insertBefore(ribbonTabs, toolbarOverlord);
-                }
+                container.classList.add('tools-collapsed');
             });
         }
     });
