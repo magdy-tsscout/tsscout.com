@@ -15,6 +15,32 @@
                 max-width: 80px !important;
                 min-width: 80px !important;
             }
+
+            .tox.tox-tinymce .tox-menubar {
+                display: flex;
+                flex-wrap: nowrap;
+                overflow-x: auto;
+                white-space: nowrap;
+            }
+
+            @media (max-width: 768px) {
+                .tox.tox-tinymce .tox-tbtn.tox-tbtn--select.editor-compact-select {
+                    width: auto !important;
+                    max-width: none !important;
+                    min-width: 96px !important;
+                }
+
+                .tox.tox-tinymce .tox-toolbar,
+                .tox.tox-tinymce .tox-toolbar__primary {
+                    flex-wrap: nowrap;
+                    overflow-x: auto;
+                }
+
+                .tox.tox-tinymce .tox-toolbar__group {
+                    flex-wrap: nowrap;
+                    margin-right: 4px;
+                }
+            }
         `;
         document.head.appendChild(extraToolsStyle);
     }
@@ -38,6 +64,15 @@
         autosave_interval: '20s',
         quickbars_selection_toolbar: 'bold italic underline | blocks | forecolor backcolor | quicklink blockquote',
         quickbars_insert_toolbar: 'image media table hr',
+        mobile: {
+            menubar: false,
+            toolbar_mode: 'sliding',
+            toolbar: [
+                'blocks fontfamily fontsize | toggleextratools',
+                'bold italic underline | alignleft aligncenter alignright | link image table fullscreen',
+                'numlist bullist | outdent indent | removeformat code | preview help'
+            ]
+        },
         image_title: true,
         automatic_uploads: true,
         images_upload_url: "{{ route('upload-handler') }}",
