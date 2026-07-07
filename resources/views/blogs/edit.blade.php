@@ -21,6 +21,7 @@
     <div class="card">
         <div class="card-header bg-warning text-white">
             <h3>Edit Blog</h3>
+            <a href="{{ route("blogs.show",['slug'=>$blog->slug]) }}" class="btn btn-light btn-sm float-end">View Blog</a>
         </div>
         <div class="card-body">
             <form action="{{ route('blogs.update', $blog->id) }}" method="POST" enctype="multipart/form-data"  id="blogForm">
