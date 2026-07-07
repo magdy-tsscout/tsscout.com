@@ -24,11 +24,13 @@
                 background: linear-gradient(180deg, #f7f9fc 0%, #edf2f8 100%);
                 border-bottom: 1px solid #cfd8e6;
                 padding: 0 12px;
-                min-height: 50px;
+                min-height: 42px;
                 display: flex;
                 align-items: end;
                 gap: 6px;
                 overflow-x: auto;
+                flex-wrap: nowrap;
+                white-space: nowrap;
                 scrollbar-width: thin;
             }
 
@@ -36,9 +38,9 @@
                 border: 1px solid transparent;
                 border-bottom: none;
                 border-radius: 10px 10px 0 0;
-                height: 40px;
-                padding: 0 16px;
-                font-size: 14px;
+                height: 34px;
+                padding: 0 12px;
+                font-size: 13px;
                 font-weight: 600;
                 color: #2a3442;
                 margin-bottom: -1px;
@@ -58,6 +60,13 @@
                 box-shadow: inset 0 3px 0 #2f6fda;
             }
 
+            .tox .tox-menubar .tox-mbtn.tox-mbtn--active {
+                background: #ffffff;
+                color: #1d4ea3;
+                border-color: #c9d5e8;
+                box-shadow: inset 0 3px 0 #2f6fda;
+            }
+
             .tox .tox-menubar .tox-mbtn:focus-visible {
                 outline: 2px solid #7fa7ea;
                 outline-offset: -2px;
@@ -66,7 +75,7 @@
             .tox .tox-toolbar-overlord {
                 background: #ffffff !important;
                 border-bottom: 1px solid #d8deea;
-                padding: 8px 10px;
+                padding: 4px 8px;
             }
 
             .tox .tox-toolbar,
@@ -78,15 +87,22 @@
             .tox .tox-tbtn--select,
             .tox .tox-listboxfield .tox-listbox--select,
             .tox .tox-listboxfield .tox-listbox--select:focus {
-                border-radius: 6px;
+                border-radius: 5px;
                 border-color: #d1d8e4 !important;
-                min-height: 32px;
+                min-height: 28px;
+                height: 28px;
+                font-size: 12px;
+            }
+
+            .tox .tox-tbtn svg {
+                width: 18px;
+                height: 18px;
             }
 
             .tox .tox-toolbar__group {
                 border-right: 1px solid #dfe5ef;
-                padding-right: 10px;
-                margin-right: 8px;
+                padding-right: 7px;
+                margin-right: 6px;
             }
 
             .tox .tox-toolbar__group:last-child {
@@ -111,18 +127,16 @@
     tinymce.init({
         selector: '#content',
         plugins: 'link image code table lists advlist',
-        menubar: 'home insert pagelayout references review view section developer',
+        menubar: 'home insert pagelayout references view developer',
         menu: {
             home: { title: 'Home', items: 'undo redo | bold italic underline strikethrough | forecolor backcolor | blocks fontfamily fontsize | alignleft aligncenter alignright alignjustify | bullist numlist outdent indent | removeformat' },
             insert: { title: 'Insert', items: 'link image table | hr charmap' },
             pagelayout: { title: 'Page Layout', items: 'blocks lineheight' },
             references: { title: 'References', items: 'code' },
-            review: { title: 'Review', items: 'spellcheckdialog' },
             view: { title: 'View', items: 'visualaid | code' },
-            section: { title: 'Section', items: 'blocks' },
             developer: { title: 'Developer', items: 'code' }
         },
-        toolbar_mode: 'wrap',
+        toolbar_mode: 'sliding',
         image_title: true,
         automatic_uploads: true,
         images_upload_url: "{{ route('upload-handler') }}",
@@ -168,10 +182,7 @@
 
         image_list: '{{ route("get-images") }}',
 
-        toolbar: [
-            'undo redo | cut copy paste pastetext | blocks fontfamily fontsize',
-            'bold italic underline strikethrough forecolor backcolor | alignleft aligncenter alignright alignjustify | bullist numlist outdent indent | link image table | removeformat code'
-        ],
+        toolbar: 'undo redo | cut copy paste | blocks fontfamily fontsize | bold italic underline forecolor backcolor | alignleft aligncenter alignright alignjustify | bullist numlist | link image table | removeformat code',
 
         table_default_attributes: {
             // class: 'table'
