@@ -1,6 +1,9 @@
 <script src="https://cdn.tiny.cloud/1/p0niww7r5y6397opob90p9fp4h496wn3iihrzp4gnq97y19i/tinymce/8/tinymce.min.js" referrerpolicy="origin" crossorigin="anonymous"></script>
 <script>
     let currentPickerCallback;
+    const siteBodyClasses = (document.body && document.body.className)
+        ? document.body.className.trim().replace(/\s+/g, ' ')
+        : '';
 
     if (!document.getElementById('tinymce-extra-tools-style')) {
         const extraToolsStyle = document.createElement('style');
@@ -47,6 +50,7 @@
 
     tinymce.init({
         selector: '#content',
+        body_class: siteBodyClasses,
         plugins: 'advlist autolink lists link image charmap preview anchor searchreplace visualblocks visualchars code fullscreen insertdatetime media table help wordcount autosave directionality nonbreaking pagebreak quickbars emoticons codesample',
         menubar: 'file edit view insert format tools table help',
         menu: {
