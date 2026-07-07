@@ -34,6 +34,43 @@
                 scrollbar-width: thin;
             }
 
+            .tox-ribbon-tabs {
+                display: flex;
+                align-items: end;
+                gap: 6px;
+                padding: 6px 10px 0;
+                background: linear-gradient(180deg, #f7f9fc 0%, #edf2f8 100%);
+                border-bottom: 1px solid #cfd8e6;
+                overflow-x: auto;
+            }
+
+            .tox-ribbon-tab {
+                border: 1px solid transparent;
+                border-bottom: none;
+                border-radius: 10px 10px 0 0;
+                height: 34px;
+                padding: 0 12px;
+                font-size: 13px;
+                font-weight: 600;
+                color: #2a3442;
+                background: transparent;
+                cursor: pointer;
+                margin-bottom: -1px;
+                white-space: nowrap;
+            }
+
+            .tox-ribbon-tab:hover {
+                background: #e8eef8;
+                border-color: #d7e1ef;
+            }
+
+            .tox-ribbon-tab.is-active {
+                background: #ffffff;
+                color: #1d4ea3;
+                border-color: #c9d5e8;
+                box-shadow: inset 0 3px 0 #2f6fda;
+            }
+
             .tox .tox-menubar .tox-mbtn {
                 border: 1px solid transparent;
                 border-bottom: none;
@@ -103,6 +140,8 @@
                 border-right: 1px solid #dfe5ef;
                 padding-right: 7px;
                 margin-right: 6px;
+                padding-bottom: 12px;
+                position: relative;
             }
 
             .tox .tox-toolbar__group:last-child {
@@ -110,6 +149,25 @@
                 margin-right: 0;
                 padding-right: 0;
             }
+
+            .tox .tox-toolbar__group::after {
+                content: '';
+                position: absolute;
+                left: 0;
+                right: 0;
+                bottom: -1px;
+                text-align: center;
+                font-size: 10px;
+                line-height: 1;
+                color: #6b7280;
+            }
+
+            .tox .tox-toolbar__group:nth-child(1)::after { content: 'Clipboard'; }
+            .tox .tox-toolbar__group:nth-child(2)::after { content: 'Style'; }
+            .tox .tox-toolbar__group:nth-child(3)::after { content: 'Font'; }
+            .tox .tox-toolbar__group:nth-child(4)::after { content: 'Paragraph'; }
+            .tox .tox-toolbar__group:nth-child(5)::after { content: 'Insert'; }
+            .tox .tox-toolbar__group:nth-child(6)::after { content: 'Tools'; }
 
             .tox .tox-edit-area {
                 background: #e9edf3;
@@ -127,15 +185,7 @@
     tinymce.init({
         selector: '#content',
         plugins: 'link image code table lists advlist',
-        menubar: 'home insert pagelayout references view developer',
-        menu: {
-            home: { title: 'Home', items: 'undo redo | bold italic underline strikethrough | forecolor backcolor | blocks fontfamily fontsize | alignleft aligncenter alignright alignjustify | bullist numlist outdent indent | removeformat' },
-            insert: { title: 'Insert', items: 'link image table | hr charmap' },
-            pagelayout: { title: 'Page Layout', items: 'blocks lineheight' },
-            references: { title: 'References', items: 'code' },
-            view: { title: 'View', items: 'visualaid | code' },
-            developer: { title: 'Developer', items: 'code' }
-        },
+        menubar: false,
         toolbar_mode: 'sliding',
         image_title: true,
         automatic_uploads: true,
@@ -235,23 +285,31 @@
                     return;
                 }
 
-                const tabButtons = container.querySelectorAll('.tox-menubar .tox-mbtn');
-                if (tabButtons.length === 0) {
+                const header = container.querySelector('.tox-editor-header');
+                const toolbarOverlord = container.querySelector('.tox-toolbar-overlord');
+                if (!header || !toolbarOverlord) {
                     return;
                 }
 
-                const setActiveTab = function (targetButton) {
-                    tabButtons.forEach((button) => button.classList.remove('office-tab-active'));
-                    targetButton.classList.add('office-tab-active');
-                };
+                if (!header.querySelector('.tox-ribbon-tabs')) {
+                    const ribbonTabs = document.createElement('div');
+                    ribbonTabs.className = 'tox-ribbon-tabs';
 
-                setActiveTab(tabButtons[0]);
-
-                tabButtons.forEach((button) => {
-                    button.addEventListener('click', function () {
-                        setActiveTab(button);
+                    const tabs = ['Home', 'Insert', 'Page Layout', 'References', 'View', 'Developer'];
+                    tabs.forEach((tab, index) => {
+                        const btn = document.createElement('button');
+                        btn.type = 'button';
+                        btn.className = 'tox-ribbon-tab' + (index === 0 ? ' is-active' : '');
+                        btn.textContent = tab;
+                        btn.addEventListener('click', function () {
+                            ribbonTabs.querySelectorAll('.tox-ribbon-tab').forEach((node) => node.classList.remove('is-active'));
+                            btn.classList.add('is-active');
+                        });
+                        ribbonTabs.appendChild(btn);
                     });
-                });
+
+                    header.insertBefore(ribbonTabs, toolbarOverlord);
+                }
             });
         }
     });
