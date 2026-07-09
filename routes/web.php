@@ -8,6 +8,7 @@ use App\Http\Controllers\Auth\RegisterController;
 use App\Http\Controllers\Auth\LoginController;
 use App\Http\Controllers\AuthorDataController;
 use App\Http\Controllers\BlogController;
+use App\Http\Controllers\BlogFaqController;
 use App\Http\Controllers\FaqController;
 use App\Http\Controllers\toolsController;
 use Illuminate\Support\Facades\Response;
@@ -42,6 +43,10 @@ Route::get('sellers-dictionary/{category}/{slug}', [SellersDictionaryController:
 Route::get('author/{slug}', [AuthorDataController::class, 'show'])->name('author.show');
 
 Route::prefix('admin')->name('admin.')->group(function () {
+
+    Route::get('blog-faqs/{blog_id}', [BlogFaqController::class, 'index'])->name('blog-faqs.index');
+    Route::post('blog-faqs/{blog_id}/store', [BlogFaqController::class, 'store'])->name('blog-faqs.store');
+    Route::put('blog-faqs/{blog_id}/update', [BlogFaqController::class, 'update'])->name('blog-faqs.update');
 
     Route::get('author-data', [AuthorDataController::class, 'edit'])->name('author-data.edit');
     Route::post('author-data', [AuthorDataController::class, 'update'])->name('author-data.update');

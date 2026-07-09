@@ -158,9 +158,9 @@
     <div class="row blogs-grid">
     @forelse ($blogs as $blog)
         <div class="col-lg-6 mb-4">
-            <div class="card blog-card h-100 shadow-sm border-0"> 
+            <div class="card blog-card h-100 shadow-sm border-0">
 
-                
+
                 <div class="card-header bg-transparent border-bottom d-flex justify-content-between align-items-center py-3">
                     <div class="d-flex align-items-center gap-2">
                         @if($blog->published == false)
@@ -175,7 +175,7 @@
                     </a>
                 </div>
 
-                
+
                 <div class="card-body">
                     <div class="row align-items-start">
                         <div class="col-sm-4 mb-3 mb-sm-0">
@@ -192,7 +192,7 @@
 
                         <div class="col-sm-8 d-flex flex-column justify-content-between">
                             <p class="text-secondary small mb-3">
-                                {{ Str::limit( preg_replace('/\s+/u', ' ',($blog->excerpt)), 80) }} 
+                                {{ Str::limit( preg_replace('/\s+/u', ' ',($blog->excerpt)), 80) }}
                             </p>
 
                             <div class="text-muted small border-top pt-2">
@@ -215,6 +215,9 @@
                         <span class="badge bg-info text-dark rounded-pill px-3">
                             {{ $blog->category }}
                         </span>
+                        <a href="{{ route('admin.blog-faqs.index', $blog->id) }}" class="badge  bg-warning" data-toggle="tooltip" title="Blog ID: {{ $blog->id }}">
+                            <span class="fa fa-question"></span> faqs {!! $blog->faqs_count()?' ('.$blog->faqs_count().')':'' !!}
+                        </a>
                     </div>
 
                     <div class="d-flex gap-2 align-items-center">

@@ -54,7 +54,7 @@ class Blog extends Model
             if( empty($blog->meta_title) ) {
                 $blog->meta_title = $blog->title;
             }
-            
+
             if( empty($blog->author_id) ) {
                 $author = auth()->user();
                 if ($author) {
@@ -117,5 +117,13 @@ class Blog extends Model
 
     public function updated_by_data() {
         return $this->hasOne(User::class, 'id', 'updated_by')->select( 'author_name', 'author_card', 'author_slug', 'author_img');
+    }
+
+    public function faqs() {
+        return $this->hasMany(BlogFaq::class, 'blog_id');
+    }
+
+    public function faqs_count() {
+        return $this->faqs()->count();
     }
 }
