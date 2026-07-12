@@ -174,6 +174,6 @@ class Blog extends Model
         }else if( $this->blog_type === 'podcast' && !empty($this->image) ) {
             return '<img src="'. $this->podcast_url .'" alt="'. $this->title .'">';
         }
-        return '<a href="'. $this->blogUrl .'"><img src="https://tsscout.com/public/images/logo.svg" alt="'. $this->title .'" height="315"></a>';
+        return '<a href="'. $this->blogUrl .'"><img src="https://tsscout.com/public/images/logo.svg" alt="'. $this->title .'" height=196></a>';
     }
 }
