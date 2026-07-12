@@ -129,7 +129,7 @@
         ],
 
         table_default_attributes: {
-            // class: 'table'
+            class: 'table'
         },
         table_class_list: [
             {title: 'none', value: ''},
@@ -141,9 +141,6 @@
         content_style: `
             body {
                 padding: 12px;
-                background: #ffffff;
-                font-size: 16px;
-                line-height: 1.6;
             }
         `,
         content_css: [
