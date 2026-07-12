@@ -325,34 +325,34 @@ class BlogController extends Controller
 
     public function userPodcast() {
     // Retrieve blogs where video_url is not null and image is null
-    $blogs = Blog
+        $blogs = Blog
                  ::where('blog_type', 'podcast')
                  ->where('published', true)
                  ->where('scheduled_at', '<=', \Carbon\Carbon::now());
-    // dd($blogs->toRawSql());
-    $blogs= $blogs->get();
-    // Retrieve the page data where 'view_name' equals 'blogs'
-    $page = Page::where('view_name', 'blogs')->first();
+        $blogs= $blogs->get();
+        // Retrieve the page data where 'view_name' equals 'blogs'
+        $page = Page::where('view_name', 'blogs')->first();
 
-    // Pass both blogs and page data to the view
-    $schemaBlogs = $blogs->map(function ($blog) {
-        return [
-            "@context" => "https://schema.org",
-            "@type" => "BlogPosting",
-            "headline" => $blog->title,
-            "image" => $blog->image ? asset('storage/' . $blog->image) : null,
-            "author" => [
-                "@type" => "Person",
-                "name" => $blog->author,
-            ],
-            "datePublished" => \Carbon\Carbon::parse($blog->publish_date)->toIso8601String(),
-            "dateModified" => \Carbon\Carbon::parse($blog->updated_at)->toIso8601String(),
-            "description" => $blog->excerpt,
-            "url" => route('blogs.show', ['slug' => $blog->slug]),
-        ];
-    });
-    $page_title = 'Podcasts';
-    return view('blogs', compact('blogs', 'page', 'schemaBlogs', 'page_title'));
+        // Pass both blogs and page data to the view
+        $schemaBlogs = $blogs->map(function ($blog) {
+            return [
+                "@context" => "https://schema.org",
+                "@type" => "BlogPosting",
+                "headline" => $blog->title,
+                "image" => $blog->image ? asset('storage/' . $blog->image) : null,
+                "author" => [
+                    "@type" => "Person",
+                    "name" => $blog->author,
+                ],
+                "datePublished" => \Carbon\Carbon::parse($blog->publish_date)->toIso8601String(),
+                "dateModified" => \Carbon\Carbon::parse($blog->updated_at)->toIso8601String(),
+                "description" => $blog->excerpt,
+                "url" => route('blogs.show', ['slug' => $blog->slug]),
+            ];
+        });
+        $page_title = 'Podcasts';
+
+        return view('blogs', compact('blogs', 'page', 'schemaBlogs', 'page_title'));
    }
 
 
@@ -408,8 +408,8 @@ class BlogController extends Controller
                            ->where('published', true)
                            ->where('scheduled_at', '<=', \Carbon\Carbon::now())
                            ->get();
-
-       return view('blog-details', compact('blog', 'headings', 'page', 'relatedBlogs'));
+       $display_author_card= route()->getName() !== 'podcast.show';
+       return view('blog-details', compact('blog', 'headings', 'page', 'relatedBlogs', 'display_author_card'));
    }
 
    public function sitemap()

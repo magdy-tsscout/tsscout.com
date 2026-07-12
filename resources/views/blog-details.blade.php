@@ -189,6 +189,7 @@
                     like?
                     <img id="like-button" src="{{ asset('images/heart.svg') }}" alt="Likes" style="cursor: pointer;">
 
+                    @if( $display_author_card)
                     <div class="card">
                         <div class="card-body">
                             <div class="row">
@@ -204,6 +205,7 @@
                             </div>
                         </div>
                     </div>
+                    @endif
                 </div>
                 <div class="sidebar">
                     <div class="social">
