@@ -258,12 +258,12 @@ class BlogController extends Controller
                 ->where('image', '!=', 'NULL')
                 ->where('image', '!=', '')
                 ->whereNotNull('image')
-                ->where('(blog_type', 'blog)');
+                ->where('blog_type', 'blog');
             } )
             ->where('published', true)
             ->where('scheduled_at', '<=', \Carbon\Carbon::now())
             ->orderBy('publish_date', 'desc');
-            @dd($blogsQuery->toRawSql());
+            // @dd($blogsQuery->toRawSql());
             $blogs=  $blogsQuery->get();
 
 
