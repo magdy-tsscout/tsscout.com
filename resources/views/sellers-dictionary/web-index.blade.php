@@ -34,6 +34,8 @@
 @section('styles')
     <!-- Custom CSS for this view -->
     <link href="{{ asset('css/faqs.css') }}" rel="stylesheet">
+    <link href="{{asset('css/blog-details.css')}}" rel="stylesheet">
+
     <style>
         .option.active a {
             color: #fff;
