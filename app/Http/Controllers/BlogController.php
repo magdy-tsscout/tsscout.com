@@ -251,7 +251,7 @@ class BlogController extends Controller
     }
 
     public function userIndex()
-    {
+     {
         // Retrieve all blogs
         $blogsQuery = Blog::where('blog_type', 'blog')
             ->where('published', true)

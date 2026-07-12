@@ -56,8 +56,8 @@
                             </div>
 
                             <div class="post-item-body">
-                                <p><a href="{{ route('blogs.show', $blog->slug) }}">{{ $blog->publish_date }}</a></p>
-                                <h3><a href="{{ route('blogs.show', $blog->slug) }}">{{ $blog->title }}</a></h3>
+                                <p><a href="{{ $blog->blog_url }}">{{ $blog->publish_date }}</a></p>
+                                <h3><a href="{{ $blog->blog_url }}">{{ $blog->title }}</a></h3>
                                 @php
                                     $content = json_decode($blog->content, true);
                                 @endphp
