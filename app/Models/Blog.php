@@ -4,6 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Casts\Attribute;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Str;
 
 class Blog extends Model
@@ -59,7 +60,7 @@ class Blog extends Model
             }
 
             if( empty($blog->author_id) ) {
-                $author = auth()->user();
+                $author = Auth::user();
                 if ($author) {
                     $blog->author_id = $author->id;
                 }
@@ -68,7 +69,7 @@ class Blog extends Model
                 $blog->scheduled_at = now();
             }
             if( isset($blog->id) ) {
-                $author = auth()->user();
+                $author = Auth::user();
                 if ($author) {
                     $blog->updated_by = $author->id;
                 }
