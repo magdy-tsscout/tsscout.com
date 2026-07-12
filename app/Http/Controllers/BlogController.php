@@ -253,10 +253,7 @@ class BlogController extends Controller
     public function userIndex()
     {
         // Retrieve all blogs
-        $blogsQuery = Blog::where( function($query){
-            $query
-                ->where('blog_type', 'blog');
-            } )
+        $blogsQuery = Blog::where('blog_type', 'blog')
             ->where('published', true)
             ->where('scheduled_at', '<=', \Carbon\Carbon::now())
             ->orderBy('publish_date', 'desc');
