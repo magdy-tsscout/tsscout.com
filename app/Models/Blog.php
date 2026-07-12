@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use Illuminate\Database\Eloquent\Casts\Attribute;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Str;
 
@@ -47,7 +48,7 @@ class Blog extends Model
             }else {
                 if(isset($blog->id) ) {
                     // don't update old blogs
-                    $blog->slug = Str::slug($blog->slug);
+                    // $blog->slug = Str::slug($blog->slug);
                 }
             }
 
@@ -68,6 +69,16 @@ class Blog extends Model
                 $author = auth()->user();
                 if ($author) {
                     $blog->updated_by = $author->id;
+                }
+            }
+
+            if( empty($blog->blog_type) ) {
+                if( !empty($blog->video_url) ) {
+                    $blog->blog_type = 'tutorial';
+                }else if( !empty($blog->podcast_url) ) {
+                    $blog->blog_type = 'podcast';
+                }else {
+                    $blog->blog_type = 'blog';
                 }
             }
         });
@@ -125,5 +136,29 @@ class Blog extends Model
 
     public function faqs_count() {
         return $this->faqs()->count();
+    }
+
+    public static function blogByType(string|null $blog_type) {
+        if( $blog_type === null ) {
+            return self::get();
+        }
+        return self::where('blog_type', $blog_type)->get();
+    }
+
+    public function blogUrl() : Attribute{
+        return Attribute::get(function () {
+            $type = $this->blog_type;
+
+            switch ($type) {
+                case 'blog':
+                    return route('blogs.show', ['slug' => $this->slug]);
+                case 'tutorial':
+                    return route('tutorial.show', ['slug' => $this->slug]);
+                case 'podcast':
+                    return route('blogs.podcast', ['slug' => $this->slug]);
+                default:
+                    return '#';
+            }
+        });
     }
 }

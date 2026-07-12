@@ -116,11 +116,12 @@ Route::get('/pricing', function () {
 Route::get('/blogs', [BlogController::class, 'userIndex'])->name('blogs.userIndex'); // Show all blogs
 Route::get('/tutorial', [BlogController::class, 'userTutorial'])->name('blogs.userTutorial'); // Show all blogs
 Route::get('/blogs/{slug}', [BlogController::class, 'show'])->name('blogs.show');
+Route::get('/tutorial/{slug}', [BlogController::class, 'show'])->name('tutorial.show');
 Route::post('/blogs/{id}/like', [BlogController::class, 'like'])->name('blogs.like');
 
 
 // Admin routes
-Route::get('/admin/blogs', [BlogController::class, 'index'])->name('blogs.index');
+Route::get('/admin/blogs/{blog_type?}', [BlogController::class, 'index'])->name('blogs.index');
 Route::get('/admin/blogs/create', [BlogController::class, 'create'])->name('blogs.create');
 Route::post('/admin/blogs', [BlogController::class, 'store'])->name('blogs.store');
 Route::get('/admin/blogs/{blog}/edit', [BlogController::class, 'edit'])->name('blogs.edit');

@@ -44,7 +44,7 @@ class BlogController extends Controller
             'excerpt' => 'required|string',
             'author' => 'required|string|max:255',
             'publish_date' => 'required|date',
-            'media_type' => 'required|string|in:image,video',
+            'media_type' => 'required|string|in:image,video,podcast',
             'image' => 'nullable|image|max:2048',
             'video_url' => 'nullable|url',
             'meta_description' => 'nullable|string|max:255',
@@ -57,6 +57,7 @@ class BlogController extends Controller
             'published' => 'boolean',
             'scheduled_at' => 'nullable|date',
             'meta_title' => 'nullable|string|max:255',
+            'podcast_url' => 'nullable|url',
         ]);
 
         if ($request->hasFile('word_file')) {
@@ -93,6 +94,14 @@ class BlogController extends Controller
             }
             $validatedData['image'] = null; // No image for this blog
             $validatedData['video_url'] = $request->input('video_url'); // Set the video URL
+        } elseif ($validatedData['media_type'] === 'podcast') {
+            // Ensure podcast URL is present
+            if (empty($request->podcast_url)) {
+                return back()->withErrors(['podcast_url' => 'Podcast URL is required if media type is set to podcast.'])->withInput();
+            }
+            $validatedData['image'] = null; // No image for this blog
+            $validatedData['video_url'] = null; // No video for this blog
+            $validatedData['podcast_url'] = $request->input('podcast_url'); // Set the podcast URL
         }
 
 
@@ -105,7 +114,7 @@ class BlogController extends Controller
 
 
 
-    public function index()
+    public function index(Request $request, $blog_type = null)
     {
         if (!$this->isAdmin()) {
             return redirect()->route('Adminlogin')->with('error', 'Access denied.');
@@ -115,6 +124,11 @@ class BlogController extends Controller
         $category = trim((string) request('category', ''));
 
         $blogsQuery = Blog::query();
+
+        if( $blog_type !== null ) {
+            $blogsQuery->where('blog_type', $blog_type);
+        }
+
 
         if ($search !== '') {
             $blogsQuery->where(function ($query) use ($search) {
@@ -164,7 +178,7 @@ class BlogController extends Controller
             'excerpt' => 'required|string',
             'author' => 'required|string|max:255',
             'publish_date' => 'required|date',
-            'media_type' => 'required|string|in:image,video',
+            'media_type' => 'required|string|in:image,video,podcast',
             'image' => 'nullable|image|max:2048',
             'video_url' => 'nullable|url',
             'slug' => 'required|string|max:60|unique:blogs,slug,' . $blog->id,
@@ -177,6 +191,7 @@ class BlogController extends Controller
             'published'=> 'boolean',
             'scheduled_at' => 'nullable|date',
             'meta_title' => 'nullable|string|max:255',
+            'podcast_url' => 'nullable|url',
         ]);
 
         if ($request->hasFile('word_file')) {
@@ -196,9 +211,15 @@ class BlogController extends Controller
                 $validatedData['image'] = $request->file('image')->store('images', 'public');
             }
             $validatedData['video_url'] = null; // No video for this blog
+            $validatedData['podcast_url'] = null; // No podcast for this blog
         } elseif ($validatedData['media_type'] === 'video') {
             $validatedData['image'] = null; // No image for this blog
             $validatedData['video_url'] = $request->input('video_url'); // Set the video URL
+            $validatedData['podcast_url'] = null; // No podcast for this blog
+        } elseif ($validatedData['media_type'] === 'podcast') {
+            $validatedData['image'] = null; // No image for this blog
+            $validatedData['video_url'] = null; // No video for this blog
+            $validatedData['podcast_url'] = $request->input('podcast_url'); // Set the podcast URL
         }
 
         if( $request->input('published') === null ) {
@@ -238,6 +259,7 @@ class BlogController extends Controller
                   ->where('image', '!=', '')
                   ->whereNotNull('image');
             } )
+            ->where('blog_type', 'blog')
             ->where('published', true)
             ->where('scheduled_at', '<=', \Carbon\Carbon::now())
             ->orderBy('publish_date', 'desc');
@@ -278,6 +300,7 @@ class BlogController extends Controller
     // Retrieve blogs where video_url is not null and image is null
     $blogs = Blog::whereNotNull('video_url')
                  ->whereNull('image')
+                 ->where('blog_type', 'tutorial')
                  ->where('published', true)
                  ->where('scheduled_at', '<=', \Carbon\Carbon::now())
                  ->get();

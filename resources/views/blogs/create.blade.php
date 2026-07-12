@@ -89,8 +89,9 @@
                         <div class="form-group mb-3">
                             <label for="media_type" class="form-label">Select Media Type</label>
                             <select class="form-control" id="media_type" name="media_type" required>
-                                <option value="image" {{ old('media_type') === 'image' ? 'selected' : '' }}>Image</option>
-                                <option value="video" {{ old('media_type') === 'video' ? 'selected' : '' }}>Video</option>
+                                <option value="image" {{ old('media_type') === 'image' ? 'selected' : '' }}>Image (Blog)</option>
+                                <option value="video" {{ old('media_type') === 'video' ? 'selected' : '' }}>Video (Tutorial)</option>
+                                <option value="podcast" {{ old('media_type') === 'podcast' ? 'selected' : '' }}>Podcast</option>
                             </select>
                             @error('media_type')
                                 <div class="text-danger">{{ $message }}</div>
@@ -110,6 +111,14 @@
                             <label for="video_url" class="form-label">YouTube Video URL</label>
                             <input type="text" class="form-control" id="video_url" name="video_url" placeholder="https://www.youtube.com/watch?v=xyz" value="{{ old('video_url') }}">
                             @error('video_url')
+                                <div class="text-danger">{{ $message }}</div>
+                            @enderror
+                        </div>
+
+                        <div class="form-group mb-3" id="podcast_url" style="display: none;">
+                            <label for="podcast_url" class="form-label">Podcast URL</label>
+                            <input type="text" class="form-control" id="podcast_url" name="podcast_url" placeholder="https://www.podcast.com/episode/xyz" value="{{ old('podcast_url') }}">
+                            @error('podcast_url')
                                 <div class="text-danger">{{ $message }}</div>
                             @enderror
                         </div>
@@ -213,8 +222,16 @@
     // Toggle between image and video input fields
     mediaTypeSelect.addEventListener('change', function() {
         const mediaType = this.value;
-        document.getElementById('image-input').style.display = mediaType === 'image' ? 'block' : 'none';
-        document.getElementById('video-input').style.display = mediaType === 'video' ? 'block' : 'none';
+        if( mediaType === 'podcast' ) {
+            document.getElementById('image-input').style.display = 'block';
+            document.getElementById('podcast_url').style.display = 'block';
+            document.getElementById('video-input').style.display = 'none';
+        }else {
+            document.getElementById('image-input').style.display = mediaType === 'image' ? 'block' : 'none';
+            document.getElementById('video-input').style.display = mediaType === 'video' ? 'block' : 'none';
+            document.getElementById('podcast_url').style.display = 'none';
+        }
+
     });
 
 
