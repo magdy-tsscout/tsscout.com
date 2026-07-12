@@ -45,7 +45,7 @@
                         <div class="blog-item w-100">
                             <div class="post-featured-image">
                                 <figure class="image-anime">
-                                    {!! $blog->blog_media !!}
+                                    {!! $blog->blogMedia() !!}
                                 </figure>
                             </div>
 
