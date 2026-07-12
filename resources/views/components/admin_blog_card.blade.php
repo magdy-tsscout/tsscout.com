@@ -20,7 +20,7 @@
                     <div class="row align-items-start">
                         <div class="col-sm-4 mb-3 mb-sm-0">
                             @if($blog->image)
-                                <a href="{{ url('storage/app/public/' . $blog->image) }}" class="d-block ratio ratio-4x3 ov-hidden" target="_blank">
+                                <a href="{{ url('storage/app/public/' . $blog->image) }}" class="d-block ratio ratio-4x3 overflow-hidden" target="_blank">
                                     {!! $blog->blogMedia() !!}
                                 </a>
                             @else
