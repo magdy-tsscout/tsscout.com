@@ -254,10 +254,7 @@ class BlogController extends Controller
     {
         // Retrieve all blogs
         $blogsQuery = Blog::where( function($query){
-            $query->whereNotNull('image')
-                ->where('image', '!=', 'NULL')
-                ->where('image', '!=', '')
-                ->whereNotNull('image')
+            $query
                 ->where('blog_type', 'blog');
             } )
             ->where('published', true)
