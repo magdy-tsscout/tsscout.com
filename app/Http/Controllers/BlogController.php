@@ -325,11 +325,11 @@ class BlogController extends Controller
 
     public function userPodcast() {
     // Retrieve blogs where video_url is not null and image is null
-    $blogs = Blog::whereNotNull('video_url')
-                 ->where('blog_type', 'podcast')
+    $blogs = Blog
+                 ::where('blog_type', 'podcast')
                  ->where('published', true)
                  ->where('scheduled_at', '<=', \Carbon\Carbon::now());
-    dd($blogs->toRawSql());
+    // dd($blogs->toRawSql());
     $blogs= $blogs->get();
     // Retrieve the page data where 'view_name' equals 'blogs'
     $page = Page::where('view_name', 'blogs')->first();
