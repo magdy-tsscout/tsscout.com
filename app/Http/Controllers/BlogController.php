@@ -263,6 +263,7 @@ class BlogController extends Controller
             ->where('published', true)
             ->where('scheduled_at', '<=', \Carbon\Carbon::now())
             ->orderBy('publish_date', 'desc');
+            @dd($blogsQuery->toRawSql());
             $blogs=  $blogsQuery->get();
 
 
