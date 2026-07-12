@@ -36,7 +36,7 @@ body {
 p {
     margin: 0 0 15px;
     color: #0F1A27;
-    
+
 }
 
 /* Responsive Design */
@@ -44,12 +44,12 @@ p {
     .container {
         padding: 20px;
     }
-    
+
     .title {
         font-size: 17px;
         font-weight: bold;
     }
-    
+
     .content {
         padding: 0 10px;
     }
@@ -61,7 +61,7 @@ p {
     align-items: center;
     gap: 20px;
     padding: 10px;
-   
+
   }
 
   .button-shopify {
@@ -88,7 +88,7 @@ p {
     font-family: 'Montserrat-Arabic';
   }
 
- 
+
 
   .number {
     font-size: 18px;
@@ -130,7 +130,7 @@ p {
     margin: 20px;
 }
 
- 
+
 
 .sidebar {
     width: 25%;
@@ -218,8 +218,8 @@ h3{
 }
 
 .sidebar ul li a {
-font-size: 13px;
-font-weight: 100;
+    font-size: 13px;
+    font-weight: 100;
 }
 @media (max-width: 768px) {
   .rowElements {
@@ -254,19 +254,19 @@ font-weight: 100;
 
 
 @media (min-width: 768px) {
-h1{
-    font-size: larger;
-    padding-bottom: 10px;
-    padding-top: 10px;
-}
-
-h2,h3,h4,h5{
- 
-        font-size: large;
+    h1{
+        font-size: larger;
         padding-bottom: 10px;
         padding-top: 10px;
-  
-}
+    }
+
+    h2,h3,h4,h5{
+
+            font-size: large;
+            padding-bottom: 10px;
+            padding-top: 10px;
+
+    }
 
 }
 
@@ -298,7 +298,7 @@ h2.text-anime-style-3 {
 }
 
 .section-row {
-    margin-bottom: 0px; 
+    margin-bottom: 0px;
 }
 
 .category-label {
@@ -322,8 +322,9 @@ height: 100%;
 }
 
 @media (max-width: 768px) {
-h1, h2, h3, h4, h5, h6 {
+    h1, h2, h3, h4, h5, h6 {
 
-    font-size: 17px !important;
-    line-height: normal;}
+        font-size: 17px !important;
+        line-height: normal;
+    }
 }
