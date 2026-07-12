@@ -21,7 +21,7 @@
                         <div class="col-sm-4 mb-3 mb-sm-0">
                             @if($blog->image)
                                 <a href="{{ url('storage/app/public/' . $blog->image) }}" class="d-block ratio ratio-4x3" target="_blank">
-                                    <img src="{{ url('storage/app/public/' . $blog->image) }}" alt="{{ $blog->title }}" class="img-fluid rounded border object-fit-cover" loading="lazy">
+                                    {{ $blog->blogMedia() }}
                                 </a>
                             @else
                                 <div class="d-flex align-items-center justify-content-center bg-light rounded border w-100" style="height: 90px;">
