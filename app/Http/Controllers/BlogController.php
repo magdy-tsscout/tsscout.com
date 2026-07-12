@@ -408,7 +408,7 @@ class BlogController extends Controller
                            ->where('published', true)
                            ->where('scheduled_at', '<=', \Carbon\Carbon::now())
                            ->get();
-       $display_author_card= route()->getName() !== 'podcast.show';
+       $display_author_card = request()->route() !== null && request()->route()->getName() !== 'podcast.show';
        return view('blog-details', compact('blog', 'headings', 'page', 'relatedBlogs', 'display_author_card'));
    }
 
