@@ -123,8 +123,8 @@ Route::post('/blogs/{id}/like', [BlogController::class, 'like'])->name('blogs.li
 
 
 // Admin routes
-Route::get('/admin/blogs/{blog_type?}', [BlogController::class, 'index'])->name('blogs.index');
 Route::get('/admin/blogs/create', [BlogController::class, 'create'])->name('blogs.create');
+Route::get('/admin/blogs/{blog_type?}', [BlogController::class, 'index'])->name('blogs.index');
 Route::post('/admin/blogs', [BlogController::class, 'store'])->name('blogs.store');
 Route::get('/admin/blogs/{blog}/edit', [BlogController::class, 'edit'])->name('blogs.edit');
 Route::put('/admin/blogs/{blog}', [BlogController::class, 'update'])->name('blogs.update');
