@@ -44,9 +44,11 @@
                     <div class="col-lg-4 col-md-6 d-flex blog-item-container" data-category="{{ $blog->category }}">
                         <div class="blog-item w-100">
                             <div class="post-featured-image">
-                                <figure class="image-anime">
-                                    {!! $blog->blogMedia() !!}
-                                </figure>
+                                <a href="{{ $blog->blog_url }}">
+                                    <figure class="image-anime">
+                                        {!! $blog->blogMedia() !!}
+                                    </figure>
+                                </a>
                             </div>
 
                             <div class="post-item-body">
