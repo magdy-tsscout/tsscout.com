@@ -115,8 +115,10 @@ Route::get('/pricing', function () {
 // User routes
 Route::get('/blogs', [BlogController::class, 'userIndex'])->name('blogs.userIndex'); // Show all blogs
 Route::get('/tutorial', [BlogController::class, 'userTutorial'])->name('blogs.userTutorial'); // Show all blogs
+Route::get('/podcast', [BlogController::class, 'userPodcast'])->name('blogs.userPodcast'); // Show all blogs
 Route::get('/blogs/{slug}', [BlogController::class, 'show'])->name('blogs.show');
 Route::get('/tutorial/{slug}', [BlogController::class, 'show'])->name('tutorial.show');
+Route::get('/podcast/{slug}', [BlogController::class, 'show'])->name('podcast.show');
 Route::post('/blogs/{id}/like', [BlogController::class, 'like'])->name('blogs.like');
 
 

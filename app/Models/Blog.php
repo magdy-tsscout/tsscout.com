@@ -157,7 +157,7 @@ class Blog extends Model
                 case 'tutorial':
                     return route('tutorial.show', ['slug' => $this->slug]);
                 case 'podcast':
-                    return route('blogs.podcast', ['slug' => $this->slug]);
+                    return route('podcast.show', ['slug' => $this->slug]);
                 default:
                     return '#';
             }
