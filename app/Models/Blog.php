@@ -25,7 +25,9 @@ class Blog extends Model
         'author_id',
         'scheduled_at',
         'updated_by',
-        'meta_title'
+        'meta_title',
+        'blog_type',
+        'podcast_url',
     ];
 
     protected $casts = [
