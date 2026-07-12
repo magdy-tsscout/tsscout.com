@@ -264,6 +264,7 @@ class BlogController extends Controller
             ->where('scheduled_at', '<=', \Carbon\Carbon::now())
             ->orderBy('publish_date', 'desc');
             $blogs=  $blogsQuery->get();
+            dd($blogs);
 
         // Retrieve the page data where 'view_name' equals 'blogs'
         $page = Page::where('view_name', 'blogs')->first();
