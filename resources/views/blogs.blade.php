@@ -45,13 +45,7 @@
                         <div class="blog-item w-100">
                             <div class="post-featured-image">
                                 <figure class="image-anime">
-                                    @if ($blog->video_url)
-                                        <iframe width="100%" height="315" src="https://www.youtube.com/embed/{{ \Str::after($blog->video_url, 'v=') }}" frameborder="0" allowfullscreen></iframe>
-                                    @else
-                                        <a href="{{ $blog->blogSlug }}">
-                                            <img src="{{ 'https://tsscout.com/storage/app/public/' .$blog->image }}" alt="{{ $blog->title }}">
-                                        </a>
-                                    @endif
+                                    {!! $blog->blog_media !!}
                                 </figure>
                             </div>
 
