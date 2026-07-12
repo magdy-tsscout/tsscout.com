@@ -166,11 +166,14 @@ class Blog extends Model
 
 
     function blogMedia() {
+        if( isset($this->image) && !empty($this->image) ) {
+            return '<a href="'. $this->blogUrl .'"><img src="'. 'https://tsscout.com/storage/app/public/' .$this->image .'" alt="'. $this->title .'"></a>';
+        }
         if( $this->blog_type === 'tutorial' && !empty($this->video_url) ) {
-            return '<iframe width="100%" height="315" src="https://www.youtube.com/embed/'. \Str::after($this->video_url, 'v=') .'" frameborder="0" allowfullscreen></iframe>';
+            return '<iframe width="100%" height="315" src="https://www.youtube.com/embed/'. Str::after($this->video_url, 'v=') .'" frameborder="0" allowfullscreen></iframe>';
         }else if( $this->blog_type === 'podcast' && !empty($this->image) ) {
             return '<img src="'. $this->podcast_url .'" alt="'. $this->title .'">';
         }
-        return '<a href="'. $this->blogUrl .'"><img src="'. 'https://tsscout.com/storage/app/public/' .$this->image .'" alt="'. $this->title .'"></a>';
+        return '<a href="'. $this->blogUrl .'"><img src="https://tsscout.com/public/images/logo.svg" alt="'. $this->title .'"></a>';
     }
 }
