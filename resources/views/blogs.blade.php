@@ -5,7 +5,7 @@
 @section('meta_keywords', $page->meta_keywords)
 @section('meta_author', $page->meta_author)
 
-@section('og_title', $page->title)
+@section('og_title', $page_title ?? $page->title)
 @section('og_description', $page->meta_description)
 
 
@@ -18,7 +18,7 @@
 @section('content')
 
 	<div class="container">
-        <h1 class="title" style="margin-top:0px;">Our blog</h1>
+        <h1 class="title" style="margin-top:0px;">{{ $page_title ?? 'Our blog' }}</h1>
         <h5  class="title" style="margin-top:20px ; font-size: 20px; color: #1E3F5B; font-weight: 400;">Delve into the flexibility and customization our services offer to help your product succeed.</h5>
         <br>
         <!-- Options Start -->

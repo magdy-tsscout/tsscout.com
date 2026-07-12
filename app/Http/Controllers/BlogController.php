@@ -320,8 +320,8 @@ class BlogController extends Controller
             "url" => route('blogs.show', ['slug' => $blog->slug]),
         ];
     });
-
-    return view('blogs', compact('blogs', 'page', 'schemaBlogs'));
+    $page_title = 'Tutorials';
+    return view('blogs', compact('blogs', 'page', 'schemaBlogs', 'page_title'));
    }
 
 
