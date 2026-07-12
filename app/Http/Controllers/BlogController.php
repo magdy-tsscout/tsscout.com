@@ -255,11 +255,11 @@ class BlogController extends Controller
         // Retrieve all blogs
         $blogsQuery = Blog::where( function($query){
             $query->whereNotNull('image')
-                  ->where('image', '!=', 'NULL')
-                  ->where('image', '!=', '')
-                  ->whereNotNull('image');
+                ->where('image', '!=', 'NULL')
+                ->where('image', '!=', '')
+                ->whereNotNull('image')
+                ->where('blog_type', 'blog');
             } )
-            // ->where('blog_type', 'blog')
             ->where('published', true)
             ->where('scheduled_at', '<=', \Carbon\Carbon::now())
             ->orderBy('publish_date', 'desc');
