@@ -150,6 +150,7 @@
 @endsection
 
 @section('content')
+    @dd($blog->stripFAQs())
     <article>
         @if( !$blog->published && Auth::check() )
             <div class="alert alert-warning text-center" style="margin-right: -15px;margin-left: -15px;" role="alert">

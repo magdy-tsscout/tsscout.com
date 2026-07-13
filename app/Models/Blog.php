@@ -177,4 +177,68 @@ class Blog extends Model
         }
         return '<a href="'. $this->blogUrl .'"><img src="https://tsscout.com/public/images/logo.svg" alt="'. $this->title .'" height=196></a>';
     }
+
+    // strip fasqs and return in array of faqs using dom
+        function stripFAQs() {
+        $content = $this->content;
+        $elements = ['h2'];
+        $keywords = [
+            'faq',
+            'faqs',
+            'frequently asked questions',
+            'common questions',
+            'Quick Answers'
+        ];
+        $faq_title_elements = ['h3'];
+        $faq_answer_elements = ['p'];
+
+        $dom = new \DOMDocument();
+        libxml_use_internal_errors(true);
+        $dom->loadHTML($content);
+        libxml_clear_errors();
+
+        $xpath = new \DOMXPath($dom);
+        $faqs = [];
+
+        foreach ($elements as $elementTag) {
+            $nodes = $xpath->query("//$elementTag");
+
+            foreach ($nodes as $node) {
+                $nodeText = trim($node->textContent);
+                $isFaqSection = false;
+
+                foreach ($keywords as $keyword) {
+                    // Check if the text starts with the keyword, ignoring case
+                    if (stripos($nodeText, $keyword) === 0) {
+                        $isFaqSection = true;
+                        break;
+                    }
+                }
+
+                if ($isFaqSection) {
+                    $questions = $xpath->query(".//$faq_title_elements[0]", $node);
+                    $answers = $xpath->query(".//$faq_answer_elements[0]", $node);
+
+                    $maxCount = max($questions->length, $answers->length);
+
+                    for ($i = 0; $i < $maxCount; $i++) {
+                        $questionNode = $questions->item($i);
+                        $answerNode = $answers->item($i);
+
+                        $question = $questionNode ? trim($questionNode->textContent) : '';
+                        $answer = $answerNode ? trim($answerNode->textContent) : '';
+
+                        if (!empty($question)) {
+                            $faqs[] = [
+                                'question' => $question,
+                                'answer' => $answer
+                            ];
+                        }
+                    }
+                }
+            }
+        }
+
+        return $faqs;
+    }
 }
