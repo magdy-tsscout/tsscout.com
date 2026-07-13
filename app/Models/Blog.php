@@ -204,7 +204,7 @@ class Blog extends Model
             $nodes = $xpath->query("//$elementTag");
 
             foreach ($nodes as $node) {
-                $nodeText = trim($node->textContent);
+                $nodeText = strtolower( trim($node->textContent) );
                 $isFaqSection = false;
 
                 foreach ($keywords as $keyword) {
