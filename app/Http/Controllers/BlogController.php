@@ -409,7 +409,19 @@ class BlogController extends Controller
                            ->where('scheduled_at', '<=', \Carbon\Carbon::now())
                            ->get();
        $display_author_card = request()->route() !== null && request()->route()->getName() !== 'podcast.show';
-       return view('blog-details', compact('blog', 'headings', 'page', 'relatedBlogs', 'display_author_card'));
+
+       $faqsAll = $blog->faqs()->get();
+       $faqs = [];
+       if (!empty($faqsAll)) {
+           foreach ( $faqsAll as $faq) {
+               $faqs[] = [
+                   'title' => $faq->title,
+                   'content' => $faq->content,
+               ];
+           }
+       }
+
+       return view('blog-details', compact('blog', 'headings', 'page', 'relatedBlogs', 'display_author_card', 'faqs'));
    }
 
    public function sitemap()

@@ -6,6 +6,9 @@ use Illuminate\Database\Eloquent\Casts\Attribute;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Str;
+use DOMDocument;
+use DOMXPath;
+use Illuminate\Support\Facades\Log;
 
 class Blog extends Model
 {
@@ -178,67 +181,65 @@ class Blog extends Model
         return '<a href="'. $this->blogUrl .'"><img src="https://tsscout.com/public/images/logo.svg" alt="'. $this->title .'" height=196></a>';
     }
 
-    // strip fasqs and return in array of faqs using dom
-        function stripFAQs() {
-        $content = $this->content;
-        $elements = ['h2'];
-        $keywords = [
-            'faq',
-            'faqs',
-            'frequently asked questions',
-            'common questions',
-            'Quick Answers'
-        ];
-        $faq_title_elements = ['h3'];
-        $faq_answer_elements = ['p'];
-
-        $dom = new \DOMDocument();
+    /**
+     * Strip FAQs from content and return them as an array.
+     *
+     * @return array
+     */
+    public function stripFAQs(string $content='')
+    {
+        // dd($content);
+        $content = $content;
+        $dom = new DOMDocument();
         libxml_use_internal_errors(true);
-        $dom->loadHTML($content);
+        $dom->loadHTML(
+            mb_convert_encoding($content, 'HTML-ENTITIES', 'UTF-8'),
+            LIBXML_HTML_NOIMPLIED | LIBXML_HTML_NODEFDTD
+        );
         libxml_clear_errors();
 
-        $xpath = new \DOMXPath($dom);
-        $faqs = [];
+        $xpath = new DOMXPath($dom);
+        $keywords = ['faq', 'faqs', 'frequently asked questions', 'common questions', 'quick answers'];
 
-        foreach ($elements as $elementTag) {
-            $nodes = $xpath->query("//$elementTag");
+        $beforeContent = '';
+        $matchedElement = null;
 
-            foreach ($nodes as $node) {
-                $nodeText = strtolower( trim($node->textContent) );
-                $isFaqSection = false;
-
-                foreach ($keywords as $keyword) {
-                    // Check if the text starts with the keyword, ignoring case
-                    if (stripos($nodeText, $keyword) === 0) {
-                        $isFaqSection = true;
-                        break;
-                    }
-                }
-
-                if ($isFaqSection) {
-                    $questions = $xpath->query(".//$faq_title_elements[0]", $node);
-                    $answers = $xpath->query(".//$faq_answer_elements[0]", $node);
-
-                    $maxCount = max($questions->length, $answers->length);
-
-                    for ($i = 0; $i < $maxCount; $i++) {
-                        $questionNode = $questions->item($i);
-                        $answerNode = $answers->item($i);
-
-                        $question = $questionNode ? trim($questionNode->textContent) : '';
-                        $answer = $answerNode ? trim($answerNode->textContent) : '';
-
-                        if (!empty($question)) {
-                            $faqs[] = [
-                                'question' => $question,
-                                'answer' => $answer
-                            ];
-                        }
-                    }
+        foreach ($xpath->query('//h2') as $h2) {
+            foreach ($keywords as $keyword) {
+                if (str_contains(strtolower(trim($h2->textContent)), $keyword)) {
+                    $matchedElement = $h2;
+                    break 2;
                 }
             }
         }
 
-        return $faqs;
+        if (!$matchedElement) {
+            return "";
+        }
+
+        $isAfter = false;
+
+        foreach ($dom->documentElement->childNodes as $node) {
+            if ($node === $matchedElement) {
+                $isAfter = true;
+                continue;
+            }
+
+            if (!$isAfter) {
+                $beforeContent .= $dom->saveHTML($node);
+            }
+        }
+
+
+        $beforeContent = strip_tags(trim($beforeContent??''));
+        $beforeContent = str_replace('&nbsp;', ' ', $beforeContent);
+        $beforeContent = preg_replace('/[ \t]+/', ' ', $beforeContent);
+        $beforeContent = preg_replace('/\n+/', "\n", $beforeContent);
+        $beforeContent = preg_replace('/\s+/', ' ', $beforeContent);
+        $beforeContent = trim($beforeContent);
+        return ($beforeContent );
     }
+
+
+
 }

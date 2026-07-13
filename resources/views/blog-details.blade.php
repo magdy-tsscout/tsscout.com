@@ -150,7 +150,7 @@
 @endsection
 
 @section('content')
-    {{-- @dd($blog->stripFAQs()) --}}
+    @php $stripped= ($blog->stripFAQs($blog->content)) @endphp
     <article>
         @if( !$blog->published && Auth::check() )
             <div class="alert alert-warning text-center" style="margin-right: -15px;margin-left: -15px;" role="alert">
@@ -374,10 +374,30 @@
 @endsection
 
 @push("schema")
+
     @php
         $authorSchema = [
             '@type' => 'Person',
             'name' => $blog->author,
+        ];
+
+        $faqSchema = [
+            '@context' => 'https://schema.org',
+            '@type' => 'FAQPage',
+            '@id' => url()->current() . '#faqpage',
+            'url' => url()->current(),
+            'name' => $page->title,
+            'description' => $page->meta_description,
+            'mainEntity' => collect($faqs)->map(function ($faq) {
+                return [
+                    '@type' => 'Question',
+                    'name' => $faq['title'],
+                    'acceptedAnswer' => [
+                        '@type' => 'Answer',
+                        'text' => $faq['content'],
+                    ],
+                ];
+            })->values()->all(),
         ];
 
         if ($blog->author_data) {
@@ -410,7 +430,7 @@
             ],
             'headline' => $blog->title,
             'description' => $blog->meta_description,
-            'articleBody' => preg_replace('/\r|\n|\s+/', ' ', strip_tags($blog->content)),
+            'articleBody' => $stripped,
             'articleSection' => $blog->category,
             'wordCount' => str_word_count(strip_tags($blog->content)),
             'image' => [
@@ -427,7 +447,19 @@
             ],
             'datePublished' => \Carbon\Carbon::parse($blog->publish_date)->toIso8601String(),
             'dateModified' => \Carbon\Carbon::parse($blog->updated_at)->toIso8601String(),
+            'mainEntity' => $faqSchema,
         ];
+
+        $hasFaqs = !empty($faqs);
     @endphp
-    <script type="application/ld+json">{!! json_encode($articleSchema, JSON_UNESCAPED_SLASHES | JSON_UNESCAPED_UNICODE) !!}</script>
+
+    <script type="application/ld+json">
+        {!! json_encode($articleSchema, JSON_UNESCAPED_SLASHES | JSON_UNESCAPED_UNICODE) !!}
+    </script>
+
+    @if($hasFaqs)
+    <script type="application/ld+json">
+        {!! json_encode($faqSchema, JSON_UNESCAPED_SLASHES | JSON_UNESCAPED_UNICODE) !!}
+    </script>
+    @endif
 @endpush
