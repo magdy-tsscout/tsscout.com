@@ -22,9 +22,12 @@
             @forelse($categories as $category)
                 <div class="col-lg-4">
                 <div class="card mb-3">
-                    <a href="{{ route('sellers-dictionary.web.index', $category->slug) }}" target="_blank">
-                            <img src="{{ $category->imageUrl() }}" alt="{{ $category->name }}" class="img-fluid rounded mb-2" style="height: 140px; object-fit: cover;">
-                        </a>
+                    <a
+                        href="{{ route('sellers-dictionary.web.index', $category->slug) }}"
+                        class="text-decoration-none d-block w-100"
+                        target="_blank">
+                        <img src="{{ $category->imageUrl() }}" alt="{{ $category->name }}" class="img-fluid rounded mb-2 w-100">
+                    </a>
                     <div class="card-body">
 
                         <div class="row">
