@@ -89,9 +89,9 @@
                         <div class="form-group mb-3">
                             <label for="media_type" class="form-label">Select Media Type</label>
                             <select class="form-control" id="media_type" name="media_type" required>
-                                <option value="image" {{ old('media_type') === 'image' ? 'selected' : '' }}>Image (Blog)</option>
-                                <option value="video" {{ old('media_type') === 'video' ? 'selected' : '' }}>Video (Tutorial)</option>
-                                <option value="podcast" {{ old('media_type') === 'podcast' ? 'selected' : '' }}>Podcast</option>
+                                <option value="image" {{ old('media_type', request('blog_type')) === 'image' ? 'selected' : '' }}>Image (Blog)</option>
+                                <option value="video" {{ old('media_type', request('blog_type')) === 'video' ? 'selected' : '' }}>Video (Tutorial)</option>
+                                <option value="podcast" {{ old('media_type', request('blog_type')) === 'podcast' ? 'selected' : '' }}>Podcast</option>
                             </select>
                             @error('media_type')
                                 <div class="text-danger">{{ $message }}</div>
@@ -233,6 +233,9 @@
         }
 
     });
+
+    mediaTypeSelect.dispatchEvent(new Event('change'));
+
 
 
     function validateFileSize() {

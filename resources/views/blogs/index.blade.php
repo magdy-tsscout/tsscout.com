@@ -69,22 +69,40 @@
 @endsection
 @section('content')
 <div class="container-fluid">
+    <div class="d-flex">
     <h3 class="d-inline-block mr-4">All Blogs</h3>
-    <div class="btn-group mb-4 mb-lg-0 mt-1">
-        <a href="{{ route("blogs.index") }}" class="btn btn-sm btn-{{ $blog_type === null ? 'primary' : 'info' }}">All <span class="badge bg-light text-dark">{{ \App\Models\Blog::blogByType(null)->count() }}</span></a>
-        <a href="{{ route("blogs.index", ['blog_type' => 'blog']) }}" class="btn btn-sm btn-{{ $blog_type === 'blog' ? 'primary' : 'info' }}">Blogs <span class="badge bg-light text-dark">{{ \App\Models\Blog::blogByType('blog')->count() }}</span></a>
-        <a href="{{ route("blogs.index", ['blog_type' => 'tutorial']) }}" class="btn btn-sm btn-{{ $blog_type === 'tutorial' ? 'primary' : 'info' }}">Tutorials <span class="badge bg-light text-dark">{{ \App\Models\Blog::blogByType('tutorial')->count() }}</span></a>
-        <a href="{{ route("blogs.index", ['blog_type' => 'podcast']) }}" class="btn btn-sm btn-{{ $blog_type === 'podcast' ? 'primary' : 'info' }}">Podcasts <span class="badge bg-light text-dark">{{ \App\Models\Blog::blogByType('podcast')->count() }}</span></a>
+    <div>
+        <div class="btn-group mb-lg-0 mt-1">
+            <a href="{{ route("blogs.index") }}" class="btn btn-sm btn-{{ $blog_type === null ? 'primary' : 'info' }}">All <span class="badge bg-light text-dark">{{ \App\Models\Blog::blogByType(null)->count() }}</span></a>
+            <a href="{{ route("blogs.index", ['blog_type' => 'blog']) }}" class="btn btn-sm btn-{{ $blog_type === 'blog' ? 'primary' : 'info' }}">Blogs <span class="badge bg-light text-dark">{{ \App\Models\Blog::blogByType('blog')->count() }}</span></a>
+            <a href="{{ route("blogs.index", ['blog_type' => 'tutorial']) }}" class="btn btn-sm btn-{{ $blog_type === 'tutorial' ? 'primary' : 'info' }}">Tutorials <span class="badge bg-light text-dark">{{ \App\Models\Blog::blogByType('tutorial')->count() }}</span></a>
+            <a href="{{ route("blogs.index", ['blog_type' => 'podcast']) }}" class="btn btn-sm btn-{{ $blog_type === 'podcast' ? 'primary' : 'info' }}">Podcasts <span class="badge bg-light text-dark">{{ \App\Models\Blog::blogByType('podcast')->count() }}</span></a>
+        </div>
     </div>
-    <button type="button" id="toggleSearchBtn" class="btn btn-outline-primary d-inline-block float-right ml-2">
-        <span class="fas fa-search me-1"></span>
-        {{ request()->filled('search') || request()->filled('category') ? 'Close Search' : 'Open Search' }}
-    </button>
-    <a href="{{ route('blogs.create') }}"
-        class="btn btn-primary d-inline-block float-right">
-        <span class="fas fa-plus-circle me-2"></span>
-        New Blog
-    </a>
+
+    <div class="flex-grow-1"></div>
+    <div class="d-flex mb-lg-0 mt-1">
+        <div class="dropdown">
+            <button type="button" class="btn btn-primary btn-sm dropdown-toggle" data-toggle="dropdown" aria-expanded="false">
+                    <span class="fas fa-plus-circle me-2"></span> New
+            </button>
+            <ul class="dropdown-menu">
+                <li><a class="dropdown-item" href="{{ route('blogs.create', ['blog_type'=>'image']) }}">Blog</a></li>
+                <li><a class="dropdown-item" href="{{ route('blogs.create', ['blog_type'=>'video']) }}">Tutorial</a></li>
+                <li><a class="dropdown-item" href="{{ route('blogs.create', ['blog_type'=>'podcast']) }}">Podcast</a></li>
+            </ul>
+        </div>
+
+        <div>
+            <button type="button" id="toggleSearchBtn" class="btn btn-outline-primary btn-sm d-inline-block float-right ml-2">
+                <span class="fas fa-search me-1"></span>
+                {{ request()->filled('search') || request()->filled('category') ? 'Close Search' : 'Open Search' }}
+            </button>
+        </div>
+    </div>
+
+    </div>
+
 </div>
 <div class="container-fluid mt-2">
     <div id="searchPanel" class="search-panel {{ request()->filled('search') || request()->filled('category') ? '' : 'd-none' }}">
