@@ -148,6 +148,16 @@
                                                 </div>
                                             </div>
                                         </a>
+
+                                        <a href="{{ route('blogs.userPodcast') }}" class="resource-link">
+                                            <div class="resource-item">
+                                                <img src="{{ asset('images/header icons/faq.svg') }}" alt="podcast Icon" class="resource-icon">
+                                                <div>
+                                                    <div class="h6">Our podcast</div>
+                                                    <p>Listen to our latest episodes and gain insights from industry experts.</p>
+                                                </div>
+                                            </div>
+                                        </a>
                                     </li>
 
                                 </ul>
