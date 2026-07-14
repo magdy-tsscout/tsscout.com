@@ -26,7 +26,7 @@
                         href="{{ route('sellers-dictionary.web.index', $category->slug) }}"
                         class="text-decoration-none w-100"
                         target="_blank" style="height: 170px; overflow: hidden; display: flex; align-items: center; justify-content: center;">
-                        <img src="{{ $category->imageUrl() }}" alt="{{ $category->name }}" class="img-fluid rounded mb-2 w-100">
+                        <img src="{{ $category->imageUrl() }}" alt="{{ $category->name }}" class="img-fluid rounded mb-2 w-100 d-flex h-100 w-auto border-bottom">
                     </a>
                     <div class="card-body">
                         <p class="card-title p-0 m-0"><a href="{{ route('sellers-dictionary.web.index', $category->slug) }}" target="_blank" class="font-weight-light size"><span class="fa fa-link"></span> {{ $category->name }}</a></p>
