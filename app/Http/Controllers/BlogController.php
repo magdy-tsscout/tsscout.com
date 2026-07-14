@@ -362,13 +362,14 @@ class BlogController extends Controller
    {
         // Find the blog by slug
         $blog = Blog::where('slug', $slug);
-        if( $blog->blog_type == 'tutorial' ) {
-            return redirect(route('tutorial.show', ['slug'=>$slug]), 301);
-        }
+
         if( !Auth::check() ) {
             $blog->where('published', true);
         }
         $blog= $blog->first();
+        if( $blog->blog_type == 'tutorial' ) {
+            return redirect(route('tutorial.show', ['slug'=>$slug]), 301);
+        }
 
         // If the blog does not exist, return the custom 404 view
         if (!$blog) {
