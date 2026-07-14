@@ -23,12 +23,10 @@
                 <div class="col-lg-4">
                 <div class="card mb-3">
                     <div class="card-body">
+                        <a href="{{ route('sellers-dictionary.web.index', $category->slug) }}" target="_blank">
+                            <img src="{{ $category->imageUrl() }}" alt="{{ $category->name }}" class="img-fluid rounded mb-2" style="height: 140px; object-fit: cover;">
+                        </a>
                         <div class="row">
-                            <div class="col-lg-12">
-                                <a href="{{ route('sellers-dictionary.web.index', $category->slug) }}" target="_blank">
-                                    <img src="{{ $category->imageUrl() }}" alt="{{ $category->name }}" class="img-fluid rounded">
-                                </a>
-                            </div>
                             <div class="col-lg-12">
                                 <h5 class="card-title"><a href="{{ route('sellers-dictionary.web.index', $category->slug) }}" target="_blank" class="font-weight-light size"><span class="fa fa-link"></span> {{ $category->name }}</a></h5>
                                 <p class="card-text text-right">
