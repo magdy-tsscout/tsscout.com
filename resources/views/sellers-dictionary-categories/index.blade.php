@@ -29,7 +29,7 @@
                         <img src="{{ $category->imageUrl() }}" alt="{{ $category->name }}" class="img-fluid rounded mb-2 w-100">
                     </a>
                     <div class="card-body">
-                        <p class="card-title"><a href="{{ route('sellers-dictionary.web.index', $category->slug) }}" target="_blank" class="font-weight-light size"><span class="fa fa-link"></span> {{ $category->name }}</a></p>
+                        <p class="card-title p-0 m-0"><a href="{{ route('sellers-dictionary.web.index', $category->slug) }}" target="_blank" class="font-weight-light size"><span class="fa fa-link"></span> {{ $category->name }}</a></p>
                         <p class="card-text text-right">
                             <strong>Slug:</strong>
                             <em class="text-muted">
