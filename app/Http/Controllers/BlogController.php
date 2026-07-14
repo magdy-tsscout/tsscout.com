@@ -428,6 +428,10 @@ class BlogController extends Controller
             }
         }
 
+        if( request()->route()->getName() === 'podcast.show' ) {
+            $blog->video_url= $blog->podcast_url;
+        }
+
        return view('blog-details', compact('blog', 'headings', 'page', 'relatedBlogs', 'display_author_card', 'faqs'));
    }
 

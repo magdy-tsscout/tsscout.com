@@ -174,7 +174,7 @@ class Blog extends Model
             return '<a href="'. $this->blogUrl .'"><img src="'. 'https://tsscout.com/storage/app/public/' .$this->image .'" alt="'. $this->title .'"></a>';
         }
         if( $this->blog_type === 'tutorial' && !empty($this->video_url) ) {
-            return '<iframe width="100%" height="315" src="https://www.youtube.com/embed/'. Str::after($this->video_url, 'v=') .'" frameborder="0" allowfullscreen></iframe>';
+            return '<iframe width="100%" height="315" src="'. $this->youtubeVideoEmbeddedUrl() .'" frameborder="0" allowfullscreen></iframe>';
         }else if( $this->blog_type === 'podcast' && !empty($this->image) ) {
             return '<img src="'. $this->podcast_url .'" alt="'. $this->title .'">';
         }
@@ -240,6 +240,24 @@ class Blog extends Model
         return ($beforeContent );
     }
 
+
+    function youtubeVideoEmbeddedUrl() {
+        if( !empty($this->video_url) || !empty($this->podcast_url) ) {
+            $url= !empty($this->video_url) ? $this->video_url : $this->podcast_url;
+            return 'https://www.youtube.com/embed/'. $this->getYouTubeVideoId($url);
+        }
+        return null;
+    }
+
+    private function getYouTubeVideoId($url) {
+        $pattern = '%(?:youtube(?:-nocookie)?\.com/(?:[^/]+/.+/|(?:v|e(?:mbed)?)/|.*[?&]v=|live/)|youtu\.be/)([^"&?/]{11})%i';
+
+        if (preg_match($pattern, $url, $match)) {
+            return $match[1];
+        }
+
+        return null;
+    }
 
 
 }

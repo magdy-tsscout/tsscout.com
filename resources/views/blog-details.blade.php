@@ -174,8 +174,8 @@
             </div>
 
 
-            @if ($blog->video_url)
-                <iframe width="100%" height="415" src="https://www.youtube.com/embed/{{ \Str::after($blog->video_url, 'v=') }}" frameborder="0" allowfullscreen></iframe>
+            @if ($blog->video_url || $blog->podcast_url)
+                <iframe width="100%" height="415" src="{{ $blog->youtubeVideoEmbeddedUrl() }}" frameborder="0" allowfullscreen></iframe>
             @else
                 <a href="{{ route('blogs.show', $blog->slug) }}">
                     <img src="{{ 'https://tsscout.com/storage/app/public/' .$blog->image }}" alt="{{ $blog->title }}">
