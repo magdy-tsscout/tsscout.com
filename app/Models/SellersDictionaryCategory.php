@@ -25,7 +25,7 @@ class SellersDictionaryCategory extends Model
 
     public function imageUrl()
     {
-        return $this->image ? asset('storage/' . $this->image) : null;
+        return $this->image ? asset('storage/' . $this->image) : 'https://tsscout.com/public/images/logo.svg';
     }
 
 }
