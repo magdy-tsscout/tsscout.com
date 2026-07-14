@@ -19,8 +19,9 @@
 
 
 
-
+            <div class="row">
             @forelse($categories as $category)
+                <div class="col-lg-6">
                 <div class="card mb-3">
                     <div class="card-body">
                         <div class="row">
@@ -30,7 +31,6 @@
                             <div class="col-lg-8">
                                 <h5 class="card-title">{{ $category->name }}</h5>
                                 <p class="card-text"><strong>Slug:</strong> {{ $category->slug }}</p>
-                                <p class="card-text"><strong>Entries:</strong> {{ $category->entries_count }}</p>
                             </div>
                         </div>
                     </div>
@@ -43,13 +43,16 @@
                         </form>
                     </div>
                 </div>
-            @empty
-                <div class="card">
-                    <div class="card-body text-center text-muted">
-                        No categories found.
-                    </div>
                 </div>
+            @empty
+                <div class="col-12">
+                    <div class="card">
+                        <div class="card-body text-center text-muted">
+                            No categories found.
+                        </div>
+                    </div>
             @endforelse
+            </div>
 
 
 
