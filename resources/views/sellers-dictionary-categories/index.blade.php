@@ -24,10 +24,10 @@
                 <div class="card mb-3">
                     <div class="card-body">
                         <div class="row">
-                            <div class="col-lg-2">
+                            <div class="col-lg-3">
                                 <img src="{{ $category->imageUrl() }}" alt="{{ $category->name }}" class="img-fluid rounded">
                             </div>
-                            <div class="col-lg-8">
+                            <div class="col-lg-9">
                                 <h5 class="card-title">{{ $category->name }}</h5>
                                 <p class="card-text"><strong>Slug:</strong> {{ $category->slug }}</p>
                             </div>
