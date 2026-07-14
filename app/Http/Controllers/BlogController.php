@@ -368,9 +368,10 @@ class BlogController extends Controller
         }
         $blog= $blog->first();
 
-        // if( $blog->blog_type == 'tutorial' && request()->route()->getName() !== 'tutorial.show' ) {
-        //     return redirect(route('tutorial.show', ['slug'=>$slug]), 301);
-        // }
+        if( $blog->blog_type == 'tutorial' && request()->route()->getName() !== 'tutorial.show' ) {
+            dd("xxx");
+            // return redirect(route('tutorial.show', ['slug'=>$slug]), 301);
+        }
 
         // If the blog does not exist, return the custom 404 view
         if (!$blog) {
