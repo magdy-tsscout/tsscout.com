@@ -24,8 +24,8 @@
                 <div class="card mb-3">
                     <a
                         href="{{ route('sellers-dictionary.web.index', $category->slug) }}"
-                        class="text-decoration-none d-block w-100"
-                        target="_blank">
+                        class="text-decoration-none w-100"
+                        target="_blank" style="height: 200px; overflow: hidden; display: flex; align-items: center; justify-content: center;">
                         <img src="{{ $category->imageUrl() }}" alt="{{ $category->name }}" class="img-fluid rounded mb-2 w-100">
                     </a>
                     <div class="card-body">
