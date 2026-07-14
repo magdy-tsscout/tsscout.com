@@ -3,7 +3,6 @@
 @section('title', 'Dictionary Categories')
 
 @section('content')
-<div class="container">
     <div class="card mt-4">
         <div class="card-header bg-primary text-white d-flex justify-content-between align-items-center">
             <h1 class="h4 mb-0">Dictionary Categories</h1>
@@ -62,5 +61,4 @@
             {{ $categories->links() }}
         </div>
     </div>
-</div>
 @endsection
