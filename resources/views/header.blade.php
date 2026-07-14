@@ -141,7 +141,7 @@
 
                                         <a href="{{ route('sellers-dictionary.web.home') }}" class="resource-link">
                                             <div class="resource-item">
-                                                <img src="{{ asset('images/header icons/faq.svg') }}" alt="FAQs Icon" class="resource-icon">
+                                                <img src="{{ asset('images/header icons/sellers-dictionary.svg') }}" alt="Sellers Dictionary Icon" class="resource-icon">
                                                 <div>
                                                     <div class="h6">Sellers Dictionary</div>
                                                     <p>Explore our comprehensive Sellers Dictionary to understand key terms and concepts.</p>
@@ -151,7 +151,7 @@
 
                                         <a href="{{ route('blogs.userPodcast') }}" class="resource-link">
                                             <div class="resource-item">
-                                                <img src="{{ asset('images/header icons/faq.svg') }}" alt="podcast Icon" class="resource-icon">
+                                                <img src="{{ asset('images/header icons/podcast.svg') }}" alt="podcast Icon" class="resource-icon">
                                                 <div>
                                                     <div class="h6">Our podcast</div>
                                                     <p>Listen to our latest episodes and gain insights from industry experts.</p>
