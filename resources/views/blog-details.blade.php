@@ -302,6 +302,9 @@
     </article>
 
     <script>
+        @if( count($headings) == 0 ) {
+            document.querySelector('.sidebar').style.display = 'none';
+        }
         // Keep TOC anchors stable when headings were saved without ids.
         document.querySelectorAll('.content h2').forEach((heading, index) => {
             if (!heading.id) {
