@@ -23,4 +23,9 @@ class SellersDictionaryCategory extends Model
         return $this->hasMany(SellersDictionary::class, 'category_id');
     }
 
+    public function imageUrl()
+    {
+        return $this->image ? asset('storage/' . $this->image) : null;
+    }
+
 }
