@@ -357,69 +357,72 @@ class BlogController extends Controller
 
 
 
-   public function show(string $slug): \Illuminate\Contracts\View\View|\Illuminate\Http\Response
+   public function show(string $slug): \Illuminate\Contracts\View\View|\Illuminate\Http\Response| \Illuminate\Http\RedirectResponse
+
    {
-       // Find the blog by slug
-       $blog = Blog::where('slug', $slug);
-    //    dd($slug,$blog);
-       if( !Auth::check() ) {
-           $blog->where('published', true);
-       }
-       $blog= $blog->first();
+        // Find the blog by slug
+        $blog = Blog::where('slug', $slug);
+        if( $blog->blog_type == 'tutorial' ) {
+            return redirect(route('tutorial.show', ['slug'=>$slug]), 301);
+        }
+        if( !Auth::check() ) {
+            $blog->where('published', true);
+        }
+        $blog= $blog->first();
 
-       // If the blog does not exist, return the custom 404 view
-       if (!$blog) {
-           return response()->view('404', [], 404);
-       }
+        // If the blog does not exist, return the custom 404 view
+        if (!$blog) {
+            return response()->view('404', [], 404);
+        }
 
-       // Read headings for TOC without mutating stored HTML content.
-       $headings = [];
-       $dom = new \DOMDocument();
-       if (@$dom->loadHTML('<?xml encoding="utf-8" ?>' . $blog->content, LIBXML_HTML_NOIMPLIED | LIBXML_HTML_NODEFDTD)) {
-           $tags = $dom->getElementsByTagName('h2');
-           foreach ($tags as $index => $tag) {
-               $text = $this->normalizeTitles($tag->textContent);
-               if ($text) {
-                   $headingId = trim((string) $tag->getAttribute('id'));
-                   if ($headingId === '') {
-                       $headingId = 'header' . $index;
-                   }
+        // Read headings for TOC without mutating stored HTML content.
+        $headings = [];
+        $dom = new \DOMDocument();
+        if (@$dom->loadHTML('<?xml encoding="utf-8" ?>' . $blog->content, LIBXML_HTML_NOIMPLIED | LIBXML_HTML_NODEFDTD)) {
+            $tags = $dom->getElementsByTagName('h2');
+            foreach ($tags as $index => $tag) {
+                $text = $this->normalizeTitles($tag->textContent);
+                if ($text) {
+                    $headingId = trim((string) $tag->getAttribute('id'));
+                    if ($headingId === '') {
+                        $headingId = 'header' . $index;
+                    }
 
-                   $headings[] = [
-                       'level' => 2,
-                       'text' => $text,
-                       'id' => $headingId,
-                   ];
-               }
-           }
-       }
+                    $headings[] = [
+                        'level' => 2,
+                        'text' => $text,
+                        'id' => $headingId,
+                    ];
+                }
+            }
+        }
 
-       // Retrieve the page data
-       $page = Page::where('view_name', 'blogs')->first();
+        // Retrieve the page data
+        $page = Page::where('view_name', 'blogs')->first();
 
-       if (!$page) {
-           return response()->view('404', [], 404);
-       }
+        if (!$page) {
+            return response()->view('404', [], 404);
+        }
 
-       // Related blogs
-       $relatedBlogs = Blog::where('category', $blog->category)
-                           ->where('id', '!=', $blog->id)
-                           ->take(3)
-                           ->where('published', true)
-                           ->where('scheduled_at', '<=', \Carbon\Carbon::now())
-                           ->get();
-       $display_author_card = request()->route() !== null && request()->route()->getName() !== 'podcast.show';
+        // Related blogs
+        $relatedBlogs = Blog::where('category', $blog->category)
+            ->where('id', '!=', $blog->id)
+            ->take(3)
+            ->where('published', true)
+            ->where('scheduled_at', '<=', \Carbon\Carbon::now())
+            ->get();
+        $display_author_card = request()->route() !== null && request()->route()->getName() !== 'podcast.show';
 
-       $faqsAll = $blog->faqs()->get();
-       $faqs = [];
-       if (!empty($faqsAll)) {
-           foreach ( $faqsAll as $faq) {
-               $faqs[] = [
-                   'title' => $faq->title,
-                   'content' => $faq->content,
-               ];
-           }
-       }
+        $faqsAll = $blog->faqs()->get();
+        $faqs = [];
+        if (!empty($faqsAll)) {
+            foreach ( $faqsAll as $faq) {
+                $faqs[] = [
+                    'title' => $faq->title,
+                    'content' => $faq->content,
+                ];
+            }
+        }
 
        return view('blog-details', compact('blog', 'headings', 'page', 'relatedBlogs', 'display_author_card', 'faqs'));
    }
