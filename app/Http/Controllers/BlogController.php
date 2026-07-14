@@ -369,7 +369,8 @@ class BlogController extends Controller
         $blog= $blog->first();
 
         if( $blog->blog_type == 'tutorial' && request()->route()->getName() !== 'tutorial.show' ) {
-            dd("xxx");
+            http_response_code(301);
+            return redirect(route('tutorial.show', ['slug'=>$slug]), 301);
             // return redirect(route('tutorial.show', ['slug'=>$slug]), 301);
         }
 
