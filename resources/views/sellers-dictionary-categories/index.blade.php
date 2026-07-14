@@ -17,6 +17,63 @@
                 <div class="alert alert-success">{{ session('success') }}</div>
             @endif
 
+
+
+
+            @forelse($categories as $category)
+                <div class="card mb-3">
+                    <div class="card-body">
+                        <div class="row">
+                            <div class="col-lg-2">
+                                <img src="{{ $category->image_url }}" alt="{{ $category->name }}" class="img-fluid rounded">
+                            </div>
+                            <div class="col-lg-8">
+                                <h5 class="card-title">{{ $category->name }}</h5>
+                                <p class="card-text"><strong>Slug:</strong> {{ $category->slug }}</p>
+                                <p class="card-text"><strong>Entries:</strong> {{ $category->entries_count }}</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="card-footer d-flex justify-content-end">
+                        <a href="{{ route('admin.sellers-dictionary-categories.edit', $category->id) }}" class="btn btn-warning btn-sm me-2">Edit</a>
+                        <form action="{{ route('admin.sellers-dictionary-categories.destroy', $category->id) }}" method="POST" class="d-inline" onsubmit="return confirm('Delete this category and all its entries?')">
+                            @csrf
+                            @method('DELETE')
+                            <button type="submit" class="btn btn-danger btn-sm">Delete</button>
+                        </form>
+                    </div>
+                </div>
+            @empty
+                <div class="card">
+                    <div class="card-body text-center text-muted">
+                        No categories found.
+                    </div>
+                </div>
+            @endforelse
+
+
+            <table class="table table-bordered table-striped">
+                <thead class="table-dark">
+                    <tr>
+                            <td>{{ $category->entries_count }}</td>
+                            <td>
+                                <a href="{{ route('admin.sellers-dictionary-categories.edit', $category->id) }}" class="btn btn-warning btn-sm">Edit</a>
+                                <form action="{{ route('admin.sellers-dictionary-categories.destroy', $category->id) }}" method="POST" class="d-inline" onsubmit="return confirm('Delete this category and all its entries?')">
+                                    @csrf
+                                    @method('DELETE')
+                                    <button type="submit" class="btn btn-danger btn-sm">Delete</button>
+                                </form>
+                            </td>
+                        </tr>
+                    @empty
+                        <div class="card">
+                            <div class="card-body text-center text-muted">
+                                No categories found.
+                            </div>
+                        </div>
+                    @endforelse
+
+
             <table class="table table-bordered table-striped">
                 <thead class="table-dark">
                     <tr>
