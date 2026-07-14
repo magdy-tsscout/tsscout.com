@@ -367,7 +367,7 @@ class BlogController extends Controller
             $blog->where('published', true);
         }
         $blog= $blog->first();
-        dd( response()->route()->getName());;
+        dd( request()->route()->getName());;
         if( $blog->blog_type == 'tutorial' ) {
             return redirect(route('tutorial.show', ['slug'=>$slug]), 301);
         }
