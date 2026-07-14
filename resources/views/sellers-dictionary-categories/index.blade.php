@@ -29,18 +29,13 @@
                         <img src="{{ $category->imageUrl() }}" alt="{{ $category->name }}" class="img-fluid rounded mb-2 w-100">
                     </a>
                     <div class="card-body">
-
-                        <div class="row">
-                            <div class="col-lg-12">
-                                <h5 class="card-title"><a href="{{ route('sellers-dictionary.web.index', $category->slug) }}" target="_blank" class="font-weight-light size"><span class="fa fa-link"></span> {{ $category->name }}</a></h5>
-                                <p class="card-text text-right">
-                                    <strong>Slug:</strong>
-                                    <em class="text-muted">
-                                    {{ $category->slug }}
-                                    </em>
-                                </p>
-                            </div>
-                        </div>
+                        <p class="card-title"><a href="{{ route('sellers-dictionary.web.index', $category->slug) }}" target="_blank" class="font-weight-light size"><span class="fa fa-link"></span> {{ $category->name }}</a></p>
+                        <p class="card-text text-right">
+                            <strong>Slug:</strong>
+                            <em class="text-muted">
+                            {{ $category->slug }}
+                            </em>
+                        </p>
                     </div>
                     <div class="card-footer d-flex justify-content-end">
                         <a href="{{ route('admin.sellers-dictionary-categories.edit', $category->id) }}" class="btn btn-warning btn-sm me-2">Edit</a>
