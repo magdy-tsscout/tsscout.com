@@ -25,7 +25,9 @@
                     <div class="card-body">
                         <div class="row">
                             <div class="col-lg-4">
-                                <img src="{{ $category->imageUrl() }}" alt="{{ $category->name }}" class="img-fluid rounded">
+                                <a href="{{ route('sellers-dictionary.web.index', $category->slug) }}" target="_blank">
+                                    <img src="{{ $category->imageUrl() }}" alt="{{ $category->name }}" class="img-fluid rounded">
+                                </a>
                             </div>
                             <div class="col-lg-8">
                                 <h5 class="card-title"><a href="{{ route('sellers-dictionary.web.index', $category->slug) }}" target="_blank"><span class="fa fa-link"></span> {{ $category->name }}</a></h5>
