@@ -74,17 +74,17 @@
             font-weight: 600;
         }
         @media all and ( max-width: 1000px ) {
-            .dropdown-menu {
+            #navbarNav .dropdown-menu {
                 background: transparent;
                 border: 0px none transparent;
                 margin-left: 10px;
                 padding-left: 10px;
                 border-left: 3px solid #ffffff0d;
             }
-            .dropdown-menu .nav-link {
+            #navbarNav .dropdown-menu .nav-link {
                 color: #FFF !important;
             }
-            .dropdown-menu .nav-link.active {
+            #navbarNav .dropdown-menu .nav-link.active {
                 color: #d4e157 !important;
             }
         }
