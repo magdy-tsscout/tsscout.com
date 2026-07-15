@@ -57,7 +57,7 @@
             margin: 0;
         }
 
-        .container {
+        main .container {
             background-color: #ffffff;
             border-radius: 8px;
             padding: 20px;
@@ -89,20 +89,21 @@
     </style>
     @yield('styles')
     <!-- Google Tag Manager -->
-<script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+{{-- <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
 new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
 j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
-})(window,document,'script','dataLayer','GTM-KV3N43LJ');</script>
+})(window,document,'script','dataLayer','GTM-KV3N43LJ');</script> --}}
 <!-- End Google Tag Manager -->
 </head>
 <body>
     <!-- Google Tag Manager (noscript) -->
-<noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-KV3N43LJ"
-height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+{{-- <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-KV3N43LJ"
+height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript> --}}
 <!-- End Google Tag Manager (noscript) -->
     <!-- Navbar -->
     <nav class="navbar navbar-expand-lg navbar-dark">
+        <div class="container">
         <a class="navbar-brand" href="{{ url('/') }}">Scout</a>
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
@@ -163,6 +164,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
                     <a class="nav-link @if(request()->is('admin/author-data*')) active @endif" href="{{ route('admin.author-data.edit') }}">Author Data</a>
                 </li>
             </ul>
+        </div>
         </div>
     </nav>
 
