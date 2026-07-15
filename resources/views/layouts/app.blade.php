@@ -65,9 +65,6 @@
         }
         .nav-link.active {
             font-weight: bolder;
-            border: 1px solid #cccccc36;
-            border-radius: 11px;
-            box-shadow: 0px 0px 1px #ea4d4d;
         }
         .dropdown-menu .nav-link.active {
             color: #4f7c4b !important;
@@ -112,6 +109,9 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
         </button>
         <div class="collapse navbar-collapse" id="navbarNav">
             <ul class="navbar-nav">
+                <li class="nav-item">
+                    <a class="nav-link @if(request()->routeIs('admin.dashboard')) active @endif" href="{{ route('admin.dashboard') }}"><i class="fas fa-tachometer-alt ml-1"></i> Dashboard</a>
+                    </li>
                 <li class="nav-item dropdown">
                     <a class="nav-link dropdown-toggle @if(request()->routeIs('admin.sellers-dictionary*')) active @endif" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-expanded="false">
                         <i class="fas fa-store ml-1"></i> Sellers Dictionary
