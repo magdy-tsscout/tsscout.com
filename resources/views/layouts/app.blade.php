@@ -28,9 +28,12 @@
             color: #343a40;
         }
 
-        .navbar {
-            background-color: #1e3f5b;
+        .navbar, .card-header {
+            background-color: #3a4182 !important; /* Dark blue for a professional look */
+            color: #FCFDFF !important; /* Light text color for contrast */
         }
+
+        
 
         .navbar-brand {
             font-weight: bold;
@@ -69,6 +72,24 @@
         .dropdown-menu .nav-link.active {
             color: #4f7c4b !important;
             font-weight: 600;
+        }
+        @media all and ( min-width: 991px ) {
+            .navbar-nav .fas {
+                display: block;
+                text-align: center;
+                font-size: 1.3rem;
+                height: 1em;
+                overflow: hidden;
+                margin-bottom: 0.1rem;
+            }
+            .dropdown-menu .fas {
+                display: inline;
+                text-align: inherit;
+                font-size: inherit;
+                height: auto;
+                overflow: visible;
+                margin-bottom: 0;
+            }
         }
         @media all and ( max-width: 1000px ) {
             #navbarNav .dropdown-menu {
