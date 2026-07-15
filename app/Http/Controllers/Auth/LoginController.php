@@ -40,9 +40,9 @@ class LoginController extends Controller
         'password' => $request->input('password'),
     ], $request->filled('remember'))) {
         // Authentication passed
-        return redirect()->route('tools.index')->with('success', 'you have logged successfully');
+        return redirect()->route('admin.dashboard')->with('success', 'you have logged successfully');
 
-      
+
     }
 
     // Authentication failed

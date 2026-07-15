@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\AdminDashboardController;
 use App\Http\Controllers\AdminUploadHandlerController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\ScouterProController;
@@ -43,7 +44,7 @@ Route::get('sellers-dictionary/{category}/{slug}', [SellersDictionaryController:
 Route::get('author/{slug}', [AuthorDataController::class, 'show'])->name('author.show');
 
 Route::prefix('admin')->name('admin.')->group(function () {
-
+    Route::get('dashboard', [AdminDashboardController::class, 'index'])->name('dashboard');
     Route::get('blog-faqs/{blog_id}', [BlogFaqController::class, 'index'])->name('blog-faqs.index');
     Route::post('blog-faqs/{blog_id}/store', [BlogFaqController::class, 'store'])->name('blog-faqs.store');
     Route::put('blog-faqs/{blog_id}/update', [BlogFaqController::class, 'update'])->name('blog-faqs.update');
