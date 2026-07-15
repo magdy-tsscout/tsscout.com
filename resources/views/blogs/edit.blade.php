@@ -28,7 +28,7 @@
             </a>
         </div>
         <div class="card-body">
-            <form action="{{ route('blogs.update', $blog->id) }}" method="POST" enctype="multipart/form-data"  id="blogForm">
+            <form action="{{ route('admin.blogs.update', $blog->id) }}" method="POST" enctype="multipart/form-data"  id="blogForm">
                 @csrf
                 @method('PUT')
                 <div class="row">

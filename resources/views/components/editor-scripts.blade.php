@@ -79,12 +79,12 @@
         },
         image_title: true,
         automatic_uploads: true,
-        images_upload_url: "{{ route('upload-handler') }}",
+        images_upload_url: "{{ route('admin.upload-handler') }}",
         images_upload_handler: function (blobInfo, progress) {
             return new Promise((resolve, reject) => {
                 const xhr = new XMLHttpRequest();
                 xhr.withCredentials = false;
-                xhr.open('POST', "{{ route('upload-handler') }}");
+                xhr.open('POST', "{{ route('admin.upload-handler') }}");
 
                 // إضافة الـ CSRF Token من الـ Meta Tag
                 const token = document.querySelector('meta[name="csrf-token"]').getAttribute('content');
@@ -120,7 +120,7 @@
         image_description: true,
         image_advtab: true,
 
-        image_list: '{{ route("get-images") }}',
+        image_list: '{{ route("admin.get-images") }}',
 
         toolbar: [
             'cut copy paste pastetext | blocks fontfamily fontsize | toggleextratools',

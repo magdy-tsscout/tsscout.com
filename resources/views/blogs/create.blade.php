@@ -23,7 +23,7 @@
             <h3>Create New Blog</h3>
         </div>
         <div class="card-body">
-            <form action="{{ route('blogs.store') }}" method="POST" enctype="multipart/form-data" novalidate id="blogForm">
+            <form action="{{ route('admin.blogs.store') }}" method="POST" enctype="multipart/form-data" novalidate id="blogForm">
                 @csrf
 
                 <div class="row">

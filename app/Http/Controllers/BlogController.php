@@ -108,7 +108,7 @@ class BlogController extends Controller
         // Create a new blog entry
         $blog=Blog::create($validatedData);
 
-        return redirect()->route('blogs.index', ['slug'=>$blog->slug,'id'=>$blog->id, 'saved'=>1, 'draft'=>$validatedData['published'] ? 0 : 1])->with('success', "Blog \"{$blog->title}\" created successfully.");
+        return redirect()->route('admin.blogs.index', ['slug'=>$blog->slug,'id'=>$blog->id, 'saved'=>1, 'draft'=>$validatedData['published'] ? 0 : 1])->with('success', "Blog \"{$blog->title}\" created successfully.");
     }
 
 
@@ -230,7 +230,7 @@ class BlogController extends Controller
         // Update the blog entry with the validated data
         $blog->update($validatedData);
 
-        return redirect()->route('blogs.index', ['slug'=>$blog->slug,'id'=>$blog->id, 'saved'=>1, 'draft'=>$validatedData['published'] ? 0 : 1])->with('success', "Blog \"{$blog->title}\" updated successfully.");
+        return redirect()->route('admin.blogs.index', ['slug'=>$blog->slug,'id'=>$blog->id, 'saved'=>1, 'draft'=>$validatedData['published'] ? 0 : 1])->with('success', "Blog \"{$blog->title}\" updated successfully.");
     }
 
 
@@ -247,7 +247,7 @@ class BlogController extends Controller
     {
         // Delete the blog entry
         $blog->delete();
-        return redirect()->route('blogs.index')->with('success', 'Blog deleted successfully.');
+        return redirect()->route('admin.blogs.index')->with('success', 'Blog deleted successfully.');
     }
 
     public function userIndex()

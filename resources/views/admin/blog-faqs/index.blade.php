@@ -6,7 +6,7 @@
 <div class="container mt-4">
 	<div class="d-flex justify-content-between align-items-center mb-3">
 		<h1 class="h4 mb-0">Blog FAQs ({{ $blog->title }})</h1>
-		<a href="{{ route('blogs.index') }}" class="btn btn-outline-secondary btn-sm">Back to Blogs</a>
+		<a href="{{ route('admin.blogs.index') }}" class="btn btn-outline-secondary btn-sm">Back to Blogs</a>
 	</div>
 
 	@if (session('success'))

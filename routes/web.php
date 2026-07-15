@@ -22,7 +22,79 @@ use App\Http\Controllers\SellersDictionaryController;
 use App\Http\Controllers\SellersDictionaryCategoryController;
 use App\Http\Controllers\SellersDictionaryHomeController;
 use App\Http\Controllers\TitleBuilderController;
+use App\Http\Middleware\AdminMiddleware;
 
+// Authentication Routes For Admin
+Route::middleware('guest')->group(function () {
+    Route::get('admin', [LoginController::class, 'showLoginForm']);
+    Route::get('admin/site/login', [LoginController::class, 'showLoginForm'])->name('Adminlogin');
+    Route::post('admin/site/login', [LoginController::class, 'login']);
+});
+
+
+Route::prefix('admin')->name('admin.')->middleware([AdminMiddleware::class])->group(function () {
+    Route::get('dashboard', [AdminDashboardController::class, 'index'])->name('dashboard');
+    Route::get('blog-faqs/{blog_id}', [BlogFaqController::class, 'index'])->name('blog-faqs.index');
+    Route::post('blog-faqs/{blog_id}/store', [BlogFaqController::class, 'store'])->name('blog-faqs.store');
+    Route::put('blog-faqs/{blog_id}/update', [BlogFaqController::class, 'update'])->name('blog-faqs.update');
+
+    Route::get('author-data', [AuthorDataController::class, 'edit'])->name('author-data.edit');
+    Route::post('author-data', [AuthorDataController::class, 'update'])->name('author-data.update');
+
+    Route::get('sellers-dictionary-home', [SellersDictionaryHomeController::class, 'edit'])->name('sellers-dictionary.web.edit');
+    Route::post('sellers-dictionary-home', [SellersDictionaryHomeController::class, 'update'])->name('sellers-dictionary.web.update');
+    Route::resource('sellers-dictionary', SellersDictionaryController::class)->except(['show']);
+    Route::resource('sellers-dictionary-categories', SellersDictionaryCategoryController::class)->except(['show']);
+    Route::get('edit-html/{id}', [PagesController::class, 'editHtml'])->name('pages.edit-html');
+    Route::post('edit-html/{id}', [PagesController::class, 'storeHtml'])->name('pages.store-html');
+    Route::resource('pages', PagesController::class);
+    Route::get('pages-backup/{view_name}', [PageBackupController::class,'index'])->name('pages.backup.index');
+    Route::get('pages-backup/{view_name}/preview/{id}/{base}', [PageBackupController::class,'preview'])->name('pages.backup.preview')->whereIn('base',['from','to','side-by-side']);
+    Route::post('pages-backup/{view_name}/restore/{id}/{base}', [PageBackupController::class,'restore'])->name('pages.backup.restore')->whereIn('base',['from','to']);
+
+
+    Route::get('blogs/create', [BlogController::class, 'create'])->name('blogs.create');
+    Route::get('blogs/{blog_type?}', [BlogController::class, 'index'])->name('blogs.index');
+    Route::post('blogs', [BlogController::class, 'store'])->name('blogs.store');
+    Route::get('blogs/{blog}/edit', [BlogController::class, 'edit'])->name('blogs.edit');
+    Route::put('blogs/{blog}', [BlogController::class, 'update'])->name('blogs.update');
+    Route::delete('blogs/{blog}', [BlogController::class, 'destroy'])->name('blogs.destroy');
+    Route::post('upload-handler', [AdminUploadHandlerController::class, 'handleUpload'])->name('upload-handler');
+    Route::get('/get-images', [AdminUploadHandlerController::class, 'getUploadedImages'])->name('get-images');
+    Route::get('/get-images-list', [AdminUploadHandlerController::class, 'getUploadedImages']);
+
+
+
+
+    Route::prefix('faqs')->name('faqs.')->group(function () {
+        Route::get('index', [FaqController::class, 'adminIndex'])->name('index');
+        Route::get('create', [FaqController::class, 'create'])->name('create');
+        Route::post('', [FaqController::class, 'store'])->name('store');
+        Route::get('{faq}/edit', [FaqController::class, 'edit'])->name('edit');
+        Route::put('{faq}', [FaqController::class, 'update'])->name('update');
+        Route::delete('{faq}', [FaqController::class, 'destroy'])->name('destroy');
+    });
+
+
+
+    Route::prefix('themes')->name('themes.')->group(function () {
+        Route::get('/', [ThemeController::class, 'index'])->name('index');
+        Route::get('{file}/edit', [ThemeController::class, 'edit'])->name('edit');
+        Route::post('{file}/store', [ThemeController::class, 'store'])->name('store');
+        Route::get('{file}/history', [ThemeController::class, 'history'])->name('history');
+        Route::get('{file}/show', [ThemeController::class, 'show'])->name('show');
+        Route::post('{file}/restore/{id}', [ThemeController::class, 'restore'])->name('restore');
+
+        Route::get('header/history', [ThemeController::class, 'history'])->name('header.history');
+        Route::get('header/edit', [ThemeController::class, 'editHeader'])->name('header.edit');
+        Route::get('footer/history', [ThemeController::class, 'history'])->name('footer.history');
+        Route::get('footer/edit', [ThemeController::class, 'editFooter'])->name('footer.edit');
+    });
+
+
+
+
+});
 
 
 
@@ -43,41 +115,10 @@ Route::get('sellers-dictionary/{category}', [SellersDictionaryController::class,
 Route::get('sellers-dictionary/{category}/{slug}', [SellersDictionaryController::class, 'webIndex'])->name('sellers-dictionary.web.show');
 Route::get('author/{slug}', [AuthorDataController::class, 'show'])->name('author.show');
 
-Route::prefix('admin')->name('admin.')->group(function () {
-    Route::get('dashboard', [AdminDashboardController::class, 'index'])->name('dashboard');
-    Route::get('blog-faqs/{blog_id}', [BlogFaqController::class, 'index'])->name('blog-faqs.index');
-    Route::post('blog-faqs/{blog_id}/store', [BlogFaqController::class, 'store'])->name('blog-faqs.store');
-    Route::put('blog-faqs/{blog_id}/update', [BlogFaqController::class, 'update'])->name('blog-faqs.update');
 
-    Route::get('author-data', [AuthorDataController::class, 'edit'])->name('author-data.edit');
-    Route::post('author-data', [AuthorDataController::class, 'update'])->name('author-data.update');
 
-    Route::get('sellers-dictionary-home', [SellersDictionaryHomeController::class, 'edit'])->name('sellers-dictionary.web.edit');
-    Route::post('sellers-dictionary-home', [SellersDictionaryHomeController::class, 'update'])->name('sellers-dictionary.web.update');
-    Route::resource('sellers-dictionary', SellersDictionaryController::class)->except(['show']);
-    Route::resource('sellers-dictionary-categories', SellersDictionaryCategoryController::class)->except(['show']);
-    Route::get('edit-html/{id}', [PagesController::class, 'editHtml'])->name('pages.edit-html');
-    Route::post('edit-html/{id}', [PagesController::class, 'storeHtml'])->name('pages.store-html');
-    Route::resource('pages', PagesController::class);
-    Route::get('pages-backup/{view_name}', [PageBackupController::class,'index'])->name('pages.backup.index');
-    Route::get('pages-backup/{view_name}/preview/{id}/{base}', [PageBackupController::class,'preview'])->name('pages.backup.preview')->whereIn('base',['from','to','side-by-side']);
-    Route::post('pages-backup/{view_name}/restore/{id}/{base}', [PageBackupController::class,'restore'])->name('pages.backup.restore')->whereIn('base',['from','to']);
 
-    Route::prefix('themes')->name('themes.')->group(function () {
-        Route::get('/', [ThemeController::class, 'index'])->name('index');
-        Route::get('{file}/edit', [ThemeController::class, 'edit'])->name('edit');
-        Route::post('{file}/store', [ThemeController::class, 'store'])->name('store');
-        Route::get('{file}/history', [ThemeController::class, 'history'])->name('history');
-        Route::get('{file}/show', [ThemeController::class, 'show'])->name('show');
-        Route::post('{file}/restore/{id}', [ThemeController::class, 'restore'])->name('restore');
 
-        Route::get('header/history', [ThemeController::class, 'history'])->name('header.history');
-        Route::get('header/edit', [ThemeController::class, 'editHeader'])->name('header.edit');
-        Route::get('footer/history', [ThemeController::class, 'history'])->name('footer.history');
-        Route::get('footer/edit', [ThemeController::class, 'editFooter'])->name('footer.edit');
-    });
-
-});
 
 // sitemap
 Route::group(['prefix' => 'sitemap'], function () {
@@ -92,10 +133,6 @@ Route::group(['prefix' => 'sitemap'], function () {
 
 
 
-// Authentication Routes For Admin
-Route::get('admin/site/login', [LoginController::class, 'showLoginForm'])->name('Adminlogin');
-Route::post('admin/site/login', [LoginController::class, 'login'])->name('Adminlogin');
-
 Route::get('/login', function () {
     return redirect('https://app.tsscout.com/login');
 });
@@ -106,13 +143,10 @@ Route::get('/register', function () {
 Route::get('/pricing', function () {
     return redirect('https://app.tsscout.com/pricing');
 });
-//Route::get('register', [RegisterController::class, 'showRegistrationForm'])->name('register');
-//Route::post('register', [RegisterController::class, 'register']);
-// Route::get('new-password', function () {
-//     return view('new-password');
-// });
 
-// Blog Routes
+
+
+
 // User routes
 Route::get('/blogs', [BlogController::class, 'userIndex'])->name('blogs.userIndex'); // Show all blogs
 Route::get('/tutorial', [BlogController::class, 'userTutorial'])->name('blogs.userTutorial'); // Show all blogs
@@ -123,29 +157,8 @@ Route::get('/podcast/{slug}', [BlogController::class, 'show'])->name('podcast.sh
 Route::post('/blogs/{id}/like', [BlogController::class, 'like'])->name('blogs.like');
 
 
-// Admin routes
-Route::get('/admin/blogs/create', [BlogController::class, 'create'])->name('blogs.create');
-Route::get('/admin/blogs/{blog_type?}', [BlogController::class, 'index'])->name('blogs.index');
-Route::post('/admin/blogs', [BlogController::class, 'store'])->name('blogs.store');
-Route::get('/admin/blogs/{blog}/edit', [BlogController::class, 'edit'])->name('blogs.edit');
-Route::put('/admin/blogs/{blog}', [BlogController::class, 'update'])->name('blogs.update');
-Route::delete('/admin/blogs/{blog}', [BlogController::class, 'destroy'])->name('blogs.destroy');
-Route::post('upload-handler', [AdminUploadHandlerController::class, 'handleUpload'])->name('upload-handler');
-Route::get('/get-images', [AdminUploadHandlerController::class, 'getUploadedImages'])->name('get-images');
-Route::get('/get-images-list', [AdminUploadHandlerController::class, 'getUploadedImages']);
-
-
 // FAQ Routes
 Route::get('faqs', [FaqController::class, 'userIndex'])->name('faqs');
-Route::prefix('admin/faqs')->name('admin.faqs.')->group(function () {
-    Route::get('index', [FaqController::class, 'adminIndex'])->name('index');
-    Route::get('create', [FaqController::class, 'create'])->name('create');
-    Route::post('', [FaqController::class, 'store'])->name('store');
-    Route::get('{faq}/edit', [FaqController::class, 'edit'])->name('edit');
-    Route::put('{faq}', [FaqController::class, 'update'])->name('update');
-    Route::delete('{faq}', [FaqController::class, 'destroy'])->name('destroy');
-});
-
 
 // tools pages
 Route::get('/Suppliers-Scouting/{slug}', [toolsController::class, 'show'])->name('tools-supplier.show');

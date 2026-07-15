@@ -15,6 +15,6 @@ class AdminMiddleware
             return $next($request);
         }
 
-        return redirect()->route('faqs')->with('error', 'Access denied.');
+        return redirect()->route('Adminlogin')->with('error', 'Access denied.');
     }
 }

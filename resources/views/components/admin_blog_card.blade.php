@@ -93,11 +93,11 @@
                             </ul>
                         </div>
 
-                        <form action="{{ route('blogs.destroy', $blog->id) }}" method="POST" class="d-inline-block m-0">
+                        <form action="{{ route('admin.blogs.destroy', $blog->id) }}" method="POST" class="d-inline-block m-0">
                             @csrf
                             @method('DELETE')
                             <div class="btn-group">
-                                <a href="{{ route('blogs.edit', $blog->id) }}" class="btn btn-light btn-sm text-warning border">
+                                <a href="{{ route('admin.blogs.edit', $blog->id) }}" class="btn btn-light btn-sm text-warning border">
                                     <span class="fa fa-edit"></span>
                                 </a>
                                 <button type="submit" class="btn btn-light btn-sm text-danger border" onclick="return confirm('Are you sure?')">

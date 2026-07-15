@@ -73,10 +73,10 @@
     <h3 class="d-inline-block mr-4">All Blogs</h3>
     <div>
         <div class="btn-group mb-lg-0 mt-1">
-            <a href="{{ route("blogs.index") }}" class="btn btn-sm btn-{{ $blog_type === null ? 'primary' : 'info' }}">All <span class="badge bg-light text-dark">{{ \App\Models\Blog::blogByType(null)->count() }}</span></a>
-            <a href="{{ route("blogs.index", ['blog_type' => 'blog']) }}" class="btn btn-sm btn-{{ $blog_type === 'blog' ? 'primary' : 'info' }}">Blogs <span class="badge bg-light text-dark">{{ \App\Models\Blog::blogByType('blog')->count() }}</span></a>
-            <a href="{{ route("blogs.index", ['blog_type' => 'tutorial']) }}" class="btn btn-sm btn-{{ $blog_type === 'tutorial' ? 'primary' : 'info' }}">Tutorials <span class="badge bg-light text-dark">{{ \App\Models\Blog::blogByType('tutorial')->count() }}</span></a>
-            <a href="{{ route("blogs.index", ['blog_type' => 'podcast']) }}" class="btn btn-sm btn-{{ $blog_type === 'podcast' ? 'primary' : 'info' }}">Podcasts <span class="badge bg-light text-dark">{{ \App\Models\Blog::blogByType('podcast')->count() }}</span></a>
+            <a href="{{ route("admin.blogs.index") }}" class="btn btn-sm btn-{{ $blog_type === null ? 'primary' : 'info' }}">All <span class="badge bg-light text-dark">{{ \App\Models\Blog::blogByType(null)->count() }}</span></a>
+            <a href="{{ route("admin.blogs.index", ['blog_type' => 'blog']) }}" class="btn btn-sm btn-{{ $blog_type === 'blog' ? 'primary' : 'info' }}">Blogs <span class="badge bg-light text-dark">{{ \App\Models\Blog::blogByType('blog')->count() }}</span></a>
+            <a href="{{ route("admin.blogs.index", ['blog_type' => 'tutorial']) }}" class="btn btn-sm btn-{{ $blog_type === 'tutorial' ? 'primary' : 'info' }}">Tutorials <span class="badge bg-light text-dark">{{ \App\Models\Blog::blogByType('tutorial')->count() }}</span></a>
+            <a href="{{ route("admin.blogs.index", ['blog_type' => 'podcast']) }}" class="btn btn-sm btn-{{ $blog_type === 'podcast' ? 'primary' : 'info' }}">Podcasts <span class="badge bg-light text-dark">{{ \App\Models\Blog::blogByType('podcast')->count() }}</span></a>
         </div>
     </div>
 
@@ -87,9 +87,9 @@
                     <span class="fas fa-plus-circle me-2"></span> New
             </button>
             <ul class="dropdown-menu">
-                <li><a class="dropdown-item" href="{{ route('blogs.create', ['blog_type'=>'image']) }}">Blog</a></li>
-                <li><a class="dropdown-item" href="{{ route('blogs.create', ['blog_type'=>'video']) }}">Tutorial</a></li>
-                <li><a class="dropdown-item" href="{{ route('blogs.create', ['blog_type'=>'podcast']) }}">Podcast</a></li>
+                <li><a class="dropdown-item" href="{{ route('admin.blogs.create', ['blog_type'=>'image']) }}">Blog</a></li>
+                <li><a class="dropdown-item" href="{{ route('admin.blogs.create', ['blog_type'=>'video']) }}">Tutorial</a></li>
+                <li><a class="dropdown-item" href="{{ route('admin.blogs.create', ['blog_type'=>'podcast']) }}">Podcast</a></li>
             </ul>
         </div>
 
@@ -106,7 +106,7 @@
 </div>
 <div class="container-fluid mt-2">
     <div id="searchPanel" class="search-panel {{ request()->filled('search') || request()->filled('category') ? '' : 'd-none' }}">
-        <form action="{{ route('blogs.index') }}" method="GET" class="form-inline justify-content-end flex-wrap">
+        <form action="{{ route('admin.blogs.index') }}" method="GET" class="form-inline justify-content-end flex-wrap">
             <div class="form-group mr-2 mb-2">
                 <input
                     type="text"
@@ -158,7 +158,7 @@
                         View {!! !$draft?'Blog':'<b>Draft</b>' !!}
                     </a>
 
-                    <a href="{{ route('blogs.edit', ['blog' => request('id')]) }}" class="btn btn-sm btn-warning">
+                    <a href="{{ route('admin.blogs.edit', ['blog' => request('id')]) }}" class="btn btn-sm btn-warning">
                         <span class="fa fa-edit"></span>
                         reEdit Blog
                     </a>
@@ -168,7 +168,7 @@
                         copy URL
                     </a>
 
-                    <a href="{{ route('blogs.create') }}" class="btn btn-sm btn-primary float-right">
+                    <a href="{{ route('admin.blogs.create') }}" class="btn btn-sm btn-primary float-right">
                         <span class="fa fa-plus"></span>
                         Create Blog
                     </a>

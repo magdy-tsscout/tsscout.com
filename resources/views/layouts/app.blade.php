@@ -131,22 +131,22 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
                     <a class="nav-link @if(request()->routeIs('admin.faqs.*')) active @endif" href="{{ route('admin.faqs.index') }}">FAQS</a>
                 </li>
                 <li class="nav-item dropdown">
-                    <a class="nav-link dropdown-toggle @if(request()->routeIs('blogs*')) active @endif" href="{{ route('blogs.index') }}" id="navbarDropdown" role="button" data-toggle="dropdown" aria-expanded="false">
+                    <a class="nav-link dropdown-toggle @if(request()->routeIs('admin.blogs*')) active @endif" href="{{ route('admin.blogs.index') }}" id="navbarDropdown" role="button" data-toggle="dropdown" aria-expanded="false">
                         Blogs
                     </a>
                     <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
                         <li class="nav-item">
 
-                            <a class="nav-link @if($blog_type === null) active @endif" href="{{ route('blogs.index') }}">All items</a>
+                            <a class="nav-link @if($blog_type === null) active @endif" href="{{ route('admin.blogs.index') }}">All items</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link @if($blog_type === 'blog') active @endif" href="{{ route('blogs.index', ['blog_type' => 'blog']) }}">Blogs</a>
+                            <a class="nav-link @if($blog_type === 'blog') active @endif" href="{{ route('admin.blogs.index', ['blog_type' => 'blog']) }}">Blogs</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link @if($blog_type === 'tutorial') active @endif" href="{{ route('blogs.index', ['blog_type' => 'tutorial']) }}">Tutorials</a>
+                            <a class="nav-link @if($blog_type === 'tutorial') active @endif" href="{{ route('admin.blogs.index', ['blog_type' => 'tutorial']) }}">Tutorials</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link @if($blog_type === 'podcast') active @endif" href="{{ route('blogs.index', ['blog_type' => 'podcast']) }}">Podcasts</a>
+                            <a class="nav-link @if($blog_type === 'podcast') active @endif" href="{{ route('admin.blogs.index', ['blog_type' => 'podcast']) }}">Podcasts</a>
                         </li>
                     </ul>
                 </li>

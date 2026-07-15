@@ -246,7 +246,7 @@
                 <div class="card-body pt-0">
                     <div class="row g-3 justify-content-center">
                         <div class="col-md-3 col-sm-6">
-                            <a href="{{ route('blogs.create') }}" class="action-card text-decoration-none">
+                            <a href="{{ route('admin.blogs.create') }}" class="action-card text-decoration-none">
                                 <div class="action-icon bg-success shadow-sm">
                                     <i class="fas fa-plus"></i>
                                 </div>
@@ -295,7 +295,7 @@
                 <!-- Added text-white -->
                 <div class="card-header bg-transparent py-3 d-flex justify-content-between align-items-center text-white">
                     <h5 class="fw-bold mb-0"><i class="fas fa-list-alt text-primary me-2"></i>Recent Blogs</h5>
-                    <a href="{{ route('blogs.index') }}" class="btn btn-sm btn-outline-white rounded-pill">View All</a>
+                    <a href="{{ route('admin.blogs.index') }}" class="btn btn-sm btn-outline-white rounded-pill">View All</a>
                 </div>
                 <div class="card-body p-0">
                     @if($recent_blogs->isEmpty())
@@ -343,11 +343,9 @@
                                             </td>
                                             <td class="text-end">
                                                 <div class="btn-group btn-group-sm">
-                                                    <a href="{{ route('blogs.edit', $blog->id) }}" class="btn btn-light text-primary" title="Edit">
+                                                    <a href="{{ route('admin.blogs.edit', $blog->id) }}" class="btn btn-light text-primary" title="Edit">
                                                         <i class="fas fa-pen"></i>
                                                     </a>
-                                                    <!-- Remove View, kept Edit and Added Remove -->
-                                                    <!-- Delete button removed -->
                                                 </div>
                                             </td>
                                         </tr>
