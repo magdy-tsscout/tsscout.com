@@ -154,7 +154,8 @@
             '{{ asset("css/magicButtons.css") }}',
             '{{ asset("css/header2.css") }}',
             '{{ asset("css/footer.css") }}',
-            '{{ asset("css/blog-details.css") }}'
+            '{{ asset("css/blog-details.css") }}',
+            '{{ asset("css/editor-content.css") }}'
         ],
         setup: function (editor) {
             editor.ui.registry.addButton('toggleextratools', {

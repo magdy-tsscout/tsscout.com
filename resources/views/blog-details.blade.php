@@ -14,6 +14,7 @@
 @section('styles')
     <!-- Custom CSS for this view -->
     <link href="{{asset('css/blog-details.css')}}" rel="stylesheet">
+    <link href="{{asset('css/editor-content.css')}}" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400..900;1,400..900&display=swap" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@100..900&display=swap" rel="stylesheet">
     <style>
