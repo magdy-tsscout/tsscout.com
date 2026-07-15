@@ -33,6 +33,7 @@ Route::middleware('guest')->group(function () {
 
 
 Route::prefix('admin')->name('admin.')->middleware([AdminMiddleware::class])->group(function () {
+    Route::post('logout', [LoginController::class, 'logout'])->name('logout');
     Route::get('dashboard', [AdminDashboardController::class, 'index'])->name('dashboard');
     Route::get('blog-faqs/{blog_id}', [BlogFaqController::class, 'index'])->name('blog-faqs.index');
     Route::post('blog-faqs/{blog_id}/store', [BlogFaqController::class, 'store'])->name('blog-faqs.store');

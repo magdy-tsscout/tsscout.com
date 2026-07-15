@@ -140,7 +140,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
                     <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
                         <li class="nav-item">
 
-                            <a class="nav-link @if($blog_type === null) active @endif" href="{{ route('admin.blogs.index') }}"><i class="fas fa-th-list ml-1"></i> All items</a>
+                            <a class="nav-link @if($blog_type === null && request()->routeIs('admin.blogs*')) active @endif" href="{{ route('admin.blogs.index') }}"><i class="fas fa-th-list ml-1"></i> All items</a>
                         </li>
                         <li class="nav-item">
                             <a class="nav-link @if($blog_type === 'blog') active @endif" href="{{ route('admin.blogs.index', ['blog_type' => 'blog']) }}"><i class="fas fa-book ml-1"></i> Blogs</a>
@@ -164,6 +164,16 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
                 </li>
                 <li class="nav-item">
                     <a class="nav-link @if(request()->is('admin/author-data*')) active @endif" href="{{ route('admin.author-data.edit') }}"><i class="fas fa-user-edit ml-1"></i> Author Data</a>
+                </li>
+            </ul>
+            <ul class="navbar-nav ml-auto">
+                <li class="nav-item">
+                    <a class="nav-link" href="{{ route('admin.logout') }}" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
+                        <i class="fas fa-sign-out-alt ml-1"></i> Logout
+                    </a>
+                    <form id="logout-form" action="{{ route('admin.logout') }}" method="POST" style="display: none;">
+                        @csrf
+                    </form>
                 </li>
             </ul>
         </div>
