@@ -69,7 +69,7 @@
 @endsection
 @section('content')
 <div class="container-fluid">
-    <div class="d-flex">
+    <div class="d-flex flex-column flex-md-row">
     <h3 class="d-inline-block mr-4">All Blogs</h3>
     <div>
         <div class="btn-group mb-lg-0 mt-1">
