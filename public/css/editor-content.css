@@ -174,7 +174,7 @@
 
 .content table,
 .mce-content-body table {
-    width: 100% !important;
+    min-width: 100% !important;
 }
 @media (max-width: 767px) {
     .content table,
