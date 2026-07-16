@@ -157,6 +157,7 @@
     height: auto;
 }
 
+.content th p, .mce-content-body td p { color: #fff !important; }
 @media (max-width: 767px) {
     .content table,
     .mce-content-body table {
