@@ -157,8 +157,20 @@
     height: auto;
 }
 
-.content th p, .mce-content-body td p { color: #fff !important; }
-.content th, .mce-content-body td { vertical-align: middle !important; }
+.content th p,
+.content td p,
+.mce-content-body td p,
+.mce-content-body th p
+{
+    color: #fff !important;
+}
+.content th,
+.content td,
+.mce-content-body td,
+.mce-content-body th
+{
+    vertical-align: middle !important;
+}
 @media (max-width: 767px) {
     .content table,
     .mce-content-body table {
