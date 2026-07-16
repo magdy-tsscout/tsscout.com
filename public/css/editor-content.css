@@ -158,6 +158,7 @@
 }
 
 .content th p, .mce-content-body td p { color: #fff !important; }
+.content th, .mce-content-body td { vertical-align: middle !important; }
 @media (max-width: 767px) {
     .content table,
     .mce-content-body table {
