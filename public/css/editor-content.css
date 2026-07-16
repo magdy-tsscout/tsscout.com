@@ -171,6 +171,11 @@
 {
     vertical-align: middle !important;
 }
+
+.mce-content-body table,
+.mce-content-body table {
+    width: 100% !important;
+}
 @media (max-width: 767px) {
     .content table,
     .mce-content-body table {
