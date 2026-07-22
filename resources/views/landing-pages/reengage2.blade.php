@@ -822,11 +822,11 @@ footer{background:var(--navy-deep); color:#8fa3b3; padding:56px 0 28px;}
       <table class="compare-table">
         <thead>
           <tr>
-            <th>Platform coverage</th>
-            <th class="brand-col">TSScout</th>
-            <th>ZIK Analytics</th>
-            <th>Dropship.io</th>
-            <th>Jungle Scout</th>
+            <th style="background-color: #fff">Platform coverage</th>
+            <th style="background-color: #fff" class="brand-col">TSScout</th>
+            <th style="background-color: #fff">ZIK Analytics</th>
+            <th style="background-color: #fff">Dropship.io</th>
+            <th style="background-color: #fff">Jungle Scout</th>
           </tr>
         </thead>
         <tbody>
