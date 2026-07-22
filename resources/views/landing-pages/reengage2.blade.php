@@ -822,21 +822,21 @@ footer{background:var(--navy-deep); color:#8fa3b3; padding:56px 0 28px;}
       <table class="compare-table">
         <thead>
           <tr>
-            <th style="background-color: #fff">Platform coverage</th>
-            <th style="background-color: #fff" class="brand-col">TSScout</th>
-            <th style="background-color: #fff">ZIK Analytics</th>
-            <th style="background-color: #fff">Dropship.io</th>
-            <th style="background-color: #fff">Jungle Scout</th>
+            <th>Platform coverage</th>
+            <th class="brand-col">TSScout</th>
+            <th>ZIK Analytics</th>
+            <th>Dropship.io</th>
+            <th>Jungle Scout</th>
           </tr>
         </thead>
         <tbody>
-          <tr><td>eBay</td><td class="brand-col yes">✓ Full suite</td><td class="yes">✓ Full suite</td><td class="no">—</td><td class="no">—</td></tr>
-          <tr><td>AliExpress</td><td class="brand-col yes">✓ Full suite</td><td class="partial">Sourcing only</td><td class="no">—</td><td class="no">—</td></tr>
-          <tr><td>Amazon</td><td class="brand-col yes">✓ Full suite</td><td class="partial">Coming soon</td><td class="no">—</td><td class="yes">✓ Core focus</td></tr>
-          <tr><td>Walmart</td><td class="brand-col yes">✓ Full suite</td><td class="partial">Sourcing only</td><td class="no">—</td><td class="no">—</td></tr>
-          <tr><td>Shopify</td><td class="brand-col yes">✓ Full suite</td><td class="yes">✓ Full suite</td><td class="partial">Theme detector only</td><td class="no">—</td></tr>
-          <tr><td>TikTok Shop</td><td class="brand-col yes">✓ Full suite</td><td class="no">—</td><td class="yes">✓ Core focus</td><td class="no">—</td></tr>
-          <tr><td>Single-tier pricing</td><td class="brand-col yes">✓ $79.98/mo, everything included</td><td class="partial">Tiered by feature</td><td class="partial">Tiered by feature</td><td class="partial">Enterprise / quote-based</td></tr>
+          <tr><td style="background-color: #fff">eBay</td><td class="brand-col yes">✓ Full suite</td><td class="yes">✓ Full suite</td><td class="no">—</td><td class="no">—</td></tr>
+          <tr><td style="background-color: #fff">AliExpress</td><td class="brand-col yes">✓ Full suite</td><td class="partial">Sourcing only</td><td class="no">—</td><td class="no">—</td></tr>
+          <tr><td style="background-color: #fff">Amazon</td><td class="brand-col yes">✓ Full suite</td><td class="partial">Coming soon</td><td class="no">—</td><td class="yes">✓ Core focus</td></tr>
+          <tr><td style="background-color: #fff">Walmart</td><td class="brand-col yes">✓ Full suite</td><td class="partial">Sourcing only</td><td class="no">—</td><td class="no">—</td></tr>
+          <tr><td style="background-color: #fff">Shopify</td><td class="brand-col yes">✓ Full suite</td><td class="yes">✓ Full suite</td><td class="partial">Theme detector only</td><td class="no">—</td></tr>
+          <tr><td style="background-color: #fff">TikTok Shop</td><td class="brand-col yes">✓ Full suite</td><td class="no">—</td><td class="yes">✓ Core focus</td><td class="no">—</td></tr>
+          <tr><td style="background-color: #fff">Single-tier pricing</td><td class="brand-col yes">✓ $79.98/mo, everything included</td><td class="partial">Tiered by feature</td><td class="partial">Tiered by feature</td><td class="partial">Enterprise / quote-based</td></tr>
         </tbody>
       </table>
     </div>
