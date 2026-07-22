@@ -899,7 +899,7 @@ footer{background:var(--navy-deep); color:#8fa3b3; padding:56px 0 28px;}
       <p>We're a young platform — this is our first Trustpilot review, shown in full and unedited. <span class="dev-note">DEV: replace this single-card layout with a multi-review grid once 3+ verified reviews are in</span></p>
     </div>
 
-    @for(int $i = 0; $i < 1; $i++)
+
     <div class="review-card">
       <div class="review-top">
         <div class="review-avatar">J</div>
@@ -916,7 +916,7 @@ footer{background:var(--navy-deep); color:#8fa3b3; padding:56px 0 28px;}
         <span class="review-tag review-tag-tp">★ Trustpilot</span>
       </div>
     </div>
-    @endfor
+
   </div>
 </section>
 
@@ -942,7 +942,7 @@ footer{background:var(--navy-deep); color:#8fa3b3; padding:56px 0 28px;}
       </details>
       <details class="faq-item">
         <summary>Is there one plan, or several tiers?<span class="plus">+</span></summary>
-        <p>TSScout Premium is a single plan with everything included. <span class="dev-note">DEV: update this answer if additional tiers are introduced later</span></p>
+        <p>TSScout Premium is a single plan with everything included. </p>
       </details>
       <details class="faq-item">
         <summary>Can I cancel anytime?<span class="plus">+</span></summary>
