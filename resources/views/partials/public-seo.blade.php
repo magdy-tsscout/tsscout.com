@@ -155,9 +155,9 @@
                 @foreach ($breadcrumbItems as $item)
                     <li class="site-breadcrumbs__item">
                         @if ($loop->last)
-                            <span aria-current="page">{{ $item['name'] }}</span>
+                            <span aria-current="page">{!! $item['name'] !!}</span>
                         @else
-                            <a href="{{ $item['url'] }}">{{ $item['name'] }}</a>
+                            <a href="{{ $item['url'] }}">{!! $item['name'] !!}</a>
                         @endif
                     </li>
                 @endforeach
