@@ -127,7 +127,7 @@ function toggleVisibility(event, id) {
 </script>
 
     <!-- End Google Tag Manager ---->
-<script src="{{asset('js/jquery-3.7.1.min.js')}}"></script>gtm
+<script src="{{asset('js/jquery-3.7.1.min.js')}}"></script>
 <!-- Bootstrap js file -->
 <script src="{{asset('js/bootstrap.min.js')}}"></script>
 <!-- Validator js file -->
