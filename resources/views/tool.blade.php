@@ -239,9 +239,6 @@
                     'image' => array_values(
                         array_filter([
                             $page->img(1),
-                            !empty($page->image_2) ? $page->img(2) : null,
-                            !empty($page->image_3) ? $page->img(3) : null,
-                            !empty($page->image_4) ? $page->img(4) : null,
                         ]),
                     ),
                     'brand' => [
