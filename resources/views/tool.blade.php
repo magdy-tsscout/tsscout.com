@@ -227,7 +227,7 @@
       '@context' => 'https://schema.org',
       '@graph' => [
         [
-          '@type' => 'Product',
+          '@type' => 'SoftwareApplication',
           '@id' => url()->current() . '#product',
           'name' => $page->content_header ?: $page->title,
           'description' => $page->content_subheader ?: $page->meta_description,
