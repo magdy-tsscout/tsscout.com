@@ -54,9 +54,9 @@
     <div class="pages-list" style="display: none;" id="ebay-pages">
         <a class="dropdown-link" href="{{ route('tools-product.show', ['slug' => 'ebay-product-research-tool']) }}">Product Research</a>
         <a class="dropdown-link" href="{{ route('tools-product.show', ['slug' => 'ebay-rivalview-tool']) }}">Competitors Research</a>
-        <a class="dropdown-link" href="{{ route('tools-product.show', ['slug' => 'topbay-picks']) }}">Best Items</a>
-        <a class="dropdown-link" href="{{ route('tools-product.show', ['slug' => 'ebay-niche-finder-tool']) }}">NicheFinder</a>
-        <a class="dropdown-link" href="{{ route('tools-product.show', ['slug' => 'ebay-title-master']) }}">Title Master</a>
+        {{-- <a class="dropdown-link" href="{{ route('tools-product.show', ['slug' => 'topbay-picks']) }}">Best Items</a> --}}
+        <a class="dropdown-link" href="{{ route('tools-product.show', ['slug' => 'ebay-niche-finder-tool']) }}">Segment Insight</a>
+        <a class="dropdown-link" href="{{ route('tools-product.show', ['slug' => 'ebay-title-master']) }}">Smart Titles</a>
     </div>
 
         <!-- Amazon Section -->
@@ -74,7 +74,7 @@
         <span class="tools-arrow">▶</span> <!-- Right-pointing arrow -->
     </a>
     <div class="pages-list" style="display: none;" id="Walmart-pages">
-        <a class="dropdown-link" href="{{ route('tools-product.show', ['slug' => 'walmart-watch-tool']) }}">Walmart Watch</a>
+        <a class="dropdown-link" href="{{ route('tools-product.show', ['slug' => 'walmart-watch-tool']) }}">Walmart Scanner</a>
     </div>
 
      <!-- AliExpress Section -->
@@ -83,9 +83,10 @@
         <span class="tools-arrow">▶</span> <!-- Right-pointing arrow -->
     </a>
     <div class="pages-list" style="display: none;" id="AliExpress-pages">
-        <a class="dropdown-link" href="{{ route('tools-product.show', ['slug' => 'express-finder-tool']) }}">Express Finder</a>
-        <a class="dropdown-link" href="{{ route('tools-product.show', ['slug' => 'express-scan-tool']) }}">Express Scanner</a>
+        <a class="dropdown-link" href="{{ route('tools-product.show', ['slug' => 'express-finder-tool']) }}">Product Research</a>
         <a class="dropdown-link" href="{{ route('tools-product.show', ['slug' => 'express-source-finder-tool']) }}">Source Finder</a>
+        <a class="dropdown-link" href="{{ route('tools-product.show', ['slug' => 'express-scan-tool']) }}">Express Scanner</a>
+
     </div>
 
      <!-- tiktook Section -->
@@ -103,9 +104,10 @@
         <span class="tools-arrow">▶</span> <!-- Right-pointing arrow -->
     </a>
     <div class="pages-list" style="display: none;" id="shopify-pages">
+        <a class="dropdown-link" href="{{ route('tools-product.show', ['slug' => 'shopify-store-finder']) }}">Find Stores</a>
+        <a class="dropdown-link" href="{{ route('tools-product.show', ['slug' => 'shopify-spy-tool']) }}">Competitors Research</a>
         <a class="dropdown-link" href="{{ route('tools-product.show', ['slug' => 'shopify-insight']) }}">Shopify Insight</a>
-        <a class="dropdown-link" href="{{ route('tools-product.show', ['slug' => 'shopify-spy-tool']) }}">Shopify Spy</a>
-        <a class="dropdown-link" href="{{ route('tools-product.show', ['slug' => 'shopify-store-finder']) }}">Shopify Store Finder</a>
+
     </div>
 </li>
 
