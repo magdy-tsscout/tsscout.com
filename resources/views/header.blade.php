@@ -29,11 +29,11 @@
                                 <ul class="dropdown toolsItem">
                                     <!-- Left Section -->
                                     <li class="dropdown-section left-section">
-                                        <a href="{{ route('pages.show', ['slug' => $pages->where('view_name', 'product-scouting')->first()->slug]) }}"><div class="h6">Product Scouting</div>
+                                        <a href="{{ route('pages.show', ['slug' => \App\Models\Page::where('view_name', 'product-scouting')->first()->slug]) }}"><div class="h6">Product Scouting</div>
                                         <p>Find your fellow competitors, identify the unique selling proposition of your product.</p></a>
-                                        <a href="{{ route('pages.show', ['slug' => $pages->where('view_name', 'competitor-monitoring')->first()->slug]) }}"><div class="h6">Competitor Monitoring</div>
+                                        <a href="{{ route('pages.show', ['slug' => \App\Models\Page::where('view_name', 'competitor-monitoring')->first()->slug]) }}"><div class="h6">Competitor Monitoring</div>
                                         <p>Find your fellow competitors, identify the unique selling proposition of your product.</p></a>
-                                        <a href="{{ route('pages.show', ['slug' => $pages->where('view_name', 'suppliers-scouting')->first()->slug]) }}"><div class="h6">Suppliers Scouting</div>
+                                        <a href="{{ route('pages.show', ['slug' => \App\Models\Page::where('view_name', 'suppliers-scouting')->first()->slug]) }}"><div class="h6">Suppliers Scouting</div>
                                         <p>Find your fellow competitors, identify the unique selling proposition of your product.</p></a>
 
 
@@ -168,7 +168,7 @@
 
                             <li class="nav-item"><a class="nav-link"
 href="https://app.tsscout.com/pricing">Pricing</a></li>
-                            <li class="nav-item"><a class="nav-link" href="{{ route('pages.show', ['slug' => $pages->where('view_name', 'affiliate')->first()->slug]) }}">Affiliate</a></li>
+                            <li class="nav-item"><a class="nav-link" href="{{ route('pages.show', ['slug' => \App\Models\Page::where('view_name', 'affiliate')->first()->slug]) }}">Affiliate</a></li>
 
                             <div class="magicButtons">
 
