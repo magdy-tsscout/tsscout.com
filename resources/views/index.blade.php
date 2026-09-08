@@ -19,9 +19,9 @@
     <div class="container">
         <div class="con-left">
             <div class="left-column">
-                <h2 style="font-size: 4rem;">
+                <h1 style="font-size: 4rem;">
                     Start your <span style="color: #CBF36D;">journey</span> <span class="underline">With Us</span>
-                </h2>
+                </h1>
                 <br>
                 <p><em>Smart Analytics SaaS for E-Commerce Growth</em></p>
                 <br>
@@ -182,8 +182,8 @@
                     <div class="col-lg-6 col-md-8">
                         <!-- Section Title Start -->
                         <div class="section-title">
-                            <h1 style="font-family: 'Montserrat-Arabic';font-size: 52px; font-weight:600"
-                                class="wow fadeInUp">Explore Our <span style="color: #3545D6">Powerful</span> Features</h1>
+                            <h2 style="font-family: 'Montserrat-Arabic';font-size: 52px; font-weight:600"
+                                class="wow fadeInUp">Explore Our <span style="color: #3545D6">Powerful</span> Features</h2>
                         </div>
                         <!-- Section Title End -->
                     </div>
@@ -264,10 +264,10 @@
                     <div class="col-lg-12">
                         <!-- Page Header Box Start -->
                         <div class="page-header-box">
-                            <h1 class="text-anime-style-3"
+                            <h2 class="text-anime-style-3"
                                 style="font-family: 'Montserrat-Arabic';font-size: 52px; font-weight:600;margin-top: 60px;">
                                 Take a deep dive into our most <br>powerful <span style="color: #3545D6">Store</span> Tools
-                            </h1>
+                            </h2>
                             <p style="font-family: 'Montserrat-Arabic'; font-size:20px; font-weight: 400;">in virtual space
                                 through communication platforms.</p>
 
@@ -701,7 +701,7 @@
         <div class="latest-news our-blog">
             <div class="container">
                 <div class="section-title">
-                    <h1 style="font-family: 'Montserrat-Arabic';font-size: 52px; font-weight:600" class="wow fadeInUp">Our <span style="color: #3545D6">Blog</span> </h1>
+                    <h2 style="font-family: 'Montserrat-Arabic';font-size: 52px; font-weight:600" class="wow fadeInUp">Our <span style="color: #3545D6">Blog</span> </h2>
                     <p style="font-family: 'Montserrat-Arabic'; font-size:20px; font-weight: 400;">Insights, tips, and trends to help you grow smarter and sell better.</p>
                 </div>
 
