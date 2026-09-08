@@ -700,10 +700,8 @@
         <!-- Blogs Section Start -->
         <div class="latest-news our-blog">
             <div class="container">
-                <div class="service-content-title">
-                    <h2>Blogs</h2>
-                    <a href="{{ route('blogs.userIndex') }}"><img
-                            src="{{ asset('images/arrow.svg') }}" alt=""></a>
+                <div class="section-title">
+                    <h1 style="font-family: 'Montserrat-Arabic';font-size: 52px; font-weight:600" class="wow fadeInUp">Our <span style="color: #3545D6">Blog</span> </h1>
                 </div>
                 <div class="row g-4">
                     @foreach (\App\Models\Blog::where('blog_type', 'blog')
