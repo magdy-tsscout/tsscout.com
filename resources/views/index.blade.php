@@ -702,7 +702,9 @@
             <div class="container">
                 <div class="section-title">
                     <h1 style="font-family: 'Montserrat-Arabic';font-size: 52px; font-weight:600" class="wow fadeInUp">Our <span style="color: #3545D6">Blog</span> </h1>
+                    <p style="font-family: 'Montserrat-Arabic'; font-size:20px; font-weight: 400;">Insights, tips, and trends to help you grow smarter and sell better.</p>
                 </div>
+
                 <div class="row g-4">
                     @foreach (\App\Models\Blog::where('blog_type', 'blog')
             ->where('published', true)
