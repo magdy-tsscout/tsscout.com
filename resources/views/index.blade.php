@@ -696,6 +696,71 @@
         </div>
         <!-- Latest News Section End -->
 
+
+        <!-- Blogs Section Start -->
+        <div class="latest-news our-blog">
+            <div class="container">
+                <div class="service-content-title">
+                    <h2>Blogs</h2>
+                    <a href="{{ route('blogs.userIndex') }}"><img
+                            src="{{ asset('images/arrow.svg') }}" alt=""></a>
+                </div>
+                <div class="row g-4">
+                    @foreach (Blog::where('blog_type', 'blog')
+            ->where('published', true)
+            ->where('scheduled_at', '<=', \Carbon\Carbon::now())
+            ->orderBy('publish_date', 'desc')->limit(6)->get() as $blog)
+                    <div class="col-lg-4 col-md-6 d-flex blog-item-container" data-category="{{ $blog->category }}">
+                        <div class="blog-item w-100">
+                            <div class="post-featured-image">
+                                <a href="{{ $blog->blog_url }}">
+                                    <figure class="image-anime">
+                                        {!! $blog->blogMedia() !!}
+                                    </figure>
+                                </a>
+                            </div>
+
+                            <div class="post-item-body">
+                                <p><a href="{{ $blog->blog_url }}">{{ $blog->publish_date }}</a></p>
+                                <h3><a href="{{ $blog->blog_url }}">{{ $blog->title }}</a></h3>
+                                @php
+                                    $content = json_decode($blog->content, true);
+                                @endphp
+                                <div class="content-sections">
+                                    @if($content && is_array($content))
+                                        @foreach($content as $section)
+                                            @if(isset($section['heading']))
+                                                <h4>{{ $section['heading'] }}</h4>
+                                            @endif
+                                            @if(isset($section['paragraphs']) && is_array($section['paragraphs']))
+                                                @foreach($section['paragraphs'] as $paragraph)
+                                                    <p>{{ Str::limit($paragraph, 150) }}</p>
+                                                @endforeach
+                                            @endif
+                                            @if(isset($section['image']))
+                                                <figure class="image-anime">
+                                                    <img src="{{ asset($section['image']) }}" alt="">
+                                                </figure>
+                                            @endif
+                                        @endforeach
+                                    @else
+                                        <p>{{ Str::limit(strip_tags($blog->excerpt), 150) }}</p>
+                                    @endif
+                                </div>
+                            </div>
+                            <!-- Category Label -->
+                            <div class="category-label">
+                                {{ $blog->category=='Tiktook'?'TikTok Shop':$blog->category }}
+                            </div>
+                        </div>
+                    </div>
+                @endforeach
+
+                </div>
+            </div>
+        </div>
+        <!-- Blogs Section End -->
+
         <!-- Unique Section Start -->
         <div class="unique-outer-container">
             <div class="unique-inner-container">
