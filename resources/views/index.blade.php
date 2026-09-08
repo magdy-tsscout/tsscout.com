@@ -706,7 +706,7 @@
                             src="{{ asset('images/arrow.svg') }}" alt=""></a>
                 </div>
                 <div class="row g-4">
-                    @foreach (Blog::where('blog_type', 'blog')
+                    @foreach (\App\Models\Blog::where('blog_type', 'blog')
             ->where('published', true)
             ->where('scheduled_at', '<=', \Carbon\Carbon::now())
             ->orderBy('publish_date', 'desc')->limit(6)->get() as $blog)
