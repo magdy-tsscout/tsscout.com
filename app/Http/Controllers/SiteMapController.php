@@ -39,28 +39,21 @@ class SiteMapController extends Controller
         ];
 
         foreach ($staticRoutes as $route) {
-            $sitemap->add(Url::create($route)
-                ->setLastModificationDate(Carbon::yesterday())
-                ->setChangeFrequency(Url::CHANGE_FREQUENCY_WEEKLY)
-                ->setPriority(0.9));
+            $this->addToSitemap($sitemap, $route, Carbon::yesterday(), Url::CHANGE_FREQUENCY_WEEKLY, 0.9);
         }
 
-        // Dynamic Blog Routes
         foreach ($this->BlogByType('blog') as $blog) {
-            $sitemap->add(Url::create("/blogs/{$blog->slug}")
-                ->setLastModificationDate($blog->updated_at)
-                ->setChangeFrequency(Url::CHANGE_FREQUENCY_WEEKLY)
-                ->setPriority(0.8));
+            $this->addToSitemap($sitemap, "/blogs/{$blog->slug}", $blog->updated_at, Url::CHANGE_FREQUENCY_WEEKLY, 0.8);
         }
 
+        foreach ($this->BlogByType('tutorial') as $blog) {
+            $this->addToSitemap($sitemap, "/tutorial/{$blog->slug}", $blog->updated_at, Url::CHANGE_FREQUENCY_WEEKLY, 0.8);
+        }
 
         // Dynamic Pages based on {slug} route
         $pages = Page::all(); // Assuming your dynamic pages have a Page model
         foreach ($pages as $page) {
-            $sitemap->add(Url::create("/{$page->slug}")
-                ->setLastModificationDate($page->updated_at)
-                ->setChangeFrequency(Url::CHANGE_FREQUENCY_WEEKLY)
-                ->setPriority(0.6));
+            $this->addToSitemap($sitemap, "/{$page->slug}", $page->updated_at, Url::CHANGE_FREQUENCY_WEEKLY, 0.6);
         }
 
         // output the sitemap as XML response
@@ -87,4 +80,26 @@ class SiteMapController extends Controller
             ->where('blog_type',$type)
             ->get();
     }
+    # ##########################################################
+
+    /**
+     * Add an entry to the sitemap
+     *
+     * Creates and adds a URL entry to the sitemap with specified metadata
+     *
+     * @param \Spatie\Sitemap\Sitemap $sitemap The sitemap object to add the entry to
+     * @param string $url The URL to add to the sitemap
+     * @param \Carbon\Carbon $lastModDate The last modification date of the URL
+     * @param string $changeFreq The change frequency (weekly, daily, monthly, yearly, never)
+     * @param float $priority The priority of the URL (0.0 to 1.0)
+     */
+    private function addToSitemap($sitemap, $url, $lastModDate, $changeFreq, $priority)
+    {
+        $sitemap->add(Url::create($url)
+            ->setLastModificationDate($lastModDate)
+            ->setChangeFrequency($changeFreq)
+            ->setPriority($priority));
+    }
+    # ##########################################################
+
 }
