@@ -66,6 +66,23 @@ class SiteMapController extends Controller
     }
 
     # ##########################################################
+    /**
+     * Generate sitemap for a specific blog type
+     *
+     * Creates a sitemap containing published blogs of a specific type (blog, tutorial, podcast)
+     *
+     * @param string $blog_type The blog type to generate sitemap for (e.g., 'blog', 'tutorial', 'podcast')
+     * @return \Spatie\Sitemap\Sitemap The sitemap object containing blog URLs for the specified type
+     */
+    public function blog(string $blog_type) {
+        if( !in_array($blog_type,['blog', 'tutorial', 'podcast'] ) ) return abort(404);
+        $sitemap = Sitemap::create();
+        foreach ($this->BlogByType($blog_type) as $blog) {
+            $this->addToSitemap($sitemap, "/{$blog_type}/{$blog->slug}", $blog->updated_at, Url::CHANGE_FREQUENCY_WEEKLY, 0.8);
+        }
+        return $sitemap;
+    }
+    # ##########################################################
      /**
          * Get published blogs of a specific type
          *

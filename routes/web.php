@@ -24,6 +24,7 @@ use App\Http\Controllers\SellersDictionaryHomeController;
 use App\Http\Controllers\SiteMapController;
 use App\Http\Controllers\TitleBuilderController;
 use App\Http\Middleware\AdminMiddleware;
+use Spatie\Sitemap\SitemapGenerator;
 
 // Authentication Routes For Admin
 Route::middleware('guest')->group(function () {
@@ -127,6 +128,7 @@ Route::get('sitemap.xml', [SiteMapController::class, 'generate'])->name('sitemap
 Route::group(['prefix' => 'sitemap'], function () {
     Route::get('blog-sitemap.xml', [BlogController::class, 'sitemap'])->name('pages.sitemap'); // Pages sitemap
     Route::get('sitemap.xml', [SiteMapController::class, 'generate'])->name('sitemap.generate');
+    Route::get("{slug}.xml", [SiteMapController::class, 'blog'])->name('sitemap.blog')->whereIn('slug',['blog','tutorial','podcast']);
 });
 
 
