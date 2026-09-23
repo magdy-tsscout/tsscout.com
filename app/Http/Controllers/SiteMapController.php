@@ -42,20 +42,15 @@ class SiteMapController extends Controller
             $this->addToSitemap($sitemap, $route, Carbon::yesterday(), Url::CHANGE_FREQUENCY_WEEKLY, 0.9);
         }
 
-        foreach ($this->BlogByType('blog') as $blog) {
-            $this->addToSitemap($sitemap, "/blogs/{$blog->slug}", $blog->updated_at, Url::CHANGE_FREQUENCY_WEEKLY, 0.8);
+        $blog_types= ['blog','tutorial', 'podcast'];
+        foreach( $blog_types as $blog_type ) {
+            foreach ($this->BlogByType($blog_type) as $blog) {
+                $this->addToSitemap($sitemap, "/{$blog_type}/{$blog->slug}", $blog->updated_at, Url::CHANGE_FREQUENCY_WEEKLY, 0.8);
+            }
         }
 
-        foreach ($this->BlogByType('tutorial') as $blog) {
-            $this->addToSitemap($sitemap, "/tutorial/{$blog->slug}", $blog->updated_at, Url::CHANGE_FREQUENCY_WEEKLY, 0.8);
-        }
 
-        foreach ($this->BlogByType('podcast') as $blog) {
-            $this->addToSitemap($sitemap, "/podcast/{$blog->slug}", $blog->updated_at, Url::CHANGE_FREQUENCY_WEEKLY, 0.8);
-        }
-
-        // Dynamic Pages based on {slug} route
-        $pages = Page::all(); // Assuming your dynamic pages have a Page model
+        $pages = Page::all();
         foreach ($pages as $page) {
             $this->addToSitemap($sitemap, "/{$page->slug}", $page->updated_at, Url::CHANGE_FREQUENCY_WEEKLY, 0.6);
         }
