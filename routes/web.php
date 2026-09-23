@@ -21,6 +21,7 @@ use App\Http\Controllers\LandingPageController;
 use App\Http\Controllers\SellersDictionaryController;
 use App\Http\Controllers\SellersDictionaryCategoryController;
 use App\Http\Controllers\SellersDictionaryHomeController;
+use App\Http\Controllers\SiteMapController;
 use App\Http\Controllers\TitleBuilderController;
 use App\Http\Middleware\AdminMiddleware;
 
@@ -124,11 +125,12 @@ Route::get('author/{slug}', [AuthorDataController::class, 'show'])->name('author
 // sitemap
 Route::group(['prefix' => 'sitemap'], function () {
     Route::get('blog-sitemap.xml', [BlogController::class, 'sitemap'])->name('pages.sitemap'); // Pages sitemap
-    Route::get('/sitemap.xml', function() {
-    return Response::file(public_path('sitemap.xml'), [
-        'Content-Type' => 'application/xml'
-    ]);
-});
+    Route::get('/sitemap.xml', [SiteMapController::class, 'generate'])->name('sitemap.generate');
+    // Route::get('/sitemap.xml', function() {
+    // return Response::file(public_path('sitemap.xml'), [
+    //     'Content-Type' => 'application/xml'
+    // ]);
+    // });
 
 });
 

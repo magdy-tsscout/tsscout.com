@@ -1,8 +1,8 @@
 <?php
 
-namespace App\Console\Commands;
+namespace App\Http\Controllers;
 
-use Illuminate\Console\Command;
+use Illuminate\Http\Request;
 use Spatie\Sitemap\Sitemap;
 use Spatie\Sitemap\Tags\Url;
 use App\Models\Page;
@@ -10,30 +10,22 @@ use App\Models\Blog;
 use App\Models\Faq;
 use Carbon\Carbon;
 
-class GenerateSitemap extends Command
+
+class SiteMapController extends Controller
 {
-    protected $signature = 'sitemap:generate'; // Command signature
-    protected $description = 'Generate a dynamic sitemap for the website';
-
-    public function __construct()
+    public function generate()
     {
-        parent::__construct();
-    }
-
-    public function handle()
-    {
-        // Create a new Sitemap instance
         $sitemap = Sitemap::create();
 
         // Static Routes
         $staticRoutes = [
-            '/',
+            url('/'),
             'https://app.tsscout.com/login',
             'https://app.tsscout.com/register',
             'https://app.tsscout.com/pricing',
-            '/blogs',
-            '/tutorial',
-            '/faqs'
+            url('/blogs'),
+            url('/tutorial'),
+            url('/faqs'),
         ];
 
         foreach ($staticRoutes as $route) {
@@ -44,7 +36,11 @@ class GenerateSitemap extends Command
         }
 
         // Dynamic Blog Routes
-        $blogs = Blog::where('published', true)->get();
+        $blogs = Blog::
+            where('published', true)
+            ->where('publish_date','<=', now())
+            ->where('blog_type','blog')
+            ->get();
         foreach ($blogs as $blog) {
             $sitemap->add(Url::create("/blogs/{$blog->slug}")
                 ->setLastModificationDate($blog->updated_at)
@@ -62,9 +58,7 @@ class GenerateSitemap extends Command
                 ->setPriority(0.6));
         }
 
-        // Save the sitemap to the public directory
-        $sitemap->writeToFile(public_path('sitemap.xml'));
-
-        $this->info('Sitemap has been generated successfully.');
+        // output the sitemap as XML response
+        return $sitemap;
     }
 }
