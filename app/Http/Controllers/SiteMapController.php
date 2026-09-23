@@ -36,12 +36,7 @@ class SiteMapController extends Controller
         }
 
         // Dynamic Blog Routes
-        $blogs = Blog::
-            where('published', true)
-            ->where('publish_date','<=', now())
-            ->where('blog_type','blog')
-            ->get();
-        foreach ($blogs as $blog) {
+        foreach ($this->BlogByType('blog') as $blog) {
             $sitemap->add(Url::create("/blogs/{$blog->slug}")
                 ->setLastModificationDate($blog->updated_at)
                 ->setChangeFrequency(Url::CHANGE_FREQUENCY_WEEKLY)
@@ -60,5 +55,13 @@ class SiteMapController extends Controller
 
         // output the sitemap as XML response
         return $sitemap;
+    }
+
+    private function BlogByType($type='blog') {
+        return Blog::
+            where('published', true)
+            ->where('publish_date','<=', now())
+            ->where('blog_type',$type)
+            ->get();
     }
 }
