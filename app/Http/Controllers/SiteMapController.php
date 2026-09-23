@@ -13,6 +13,16 @@ use Carbon\Carbon;
 
 class SiteMapController extends Controller
 {
+    /**
+     * Generate sitemap XML with static and dynamic routes
+     *
+     * Creates a sitemap containing:
+     * - Static routes (home, login, register, pricing, blogs, tutorial, faqs)
+     * - Dynamic blog routes based on published blogs
+     * - Dynamic pages based on page slugs
+     *
+     * @return \Spatie\Sitemap\Sitemap The sitemap object to be output as XML
+     */
     public function generate()
     {
         $sitemap = Sitemap::create();
@@ -57,7 +67,20 @@ class SiteMapController extends Controller
         return $sitemap;
     }
 
-    private function BlogByType($type='blog') {
+    # ##########################################################
+     /**
+         * Get published blogs of a specific type
+         *
+         * Filters blogs by:
+         * - Published status (true)
+         * - Publish date (must be in the past)
+         * - Blog type (default: 'blog')
+         *
+         * @param string $type The blog type to filter by (default: 'blog')
+         * @return \Illuminate\Database\Eloquent\Collection Collection of Blog models
+         */
+    private function BlogByType($type='blog')
+    {
         return Blog::
             where('published', true)
             ->where('publish_date','<=', now())
