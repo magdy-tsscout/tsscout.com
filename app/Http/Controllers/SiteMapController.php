@@ -50,6 +50,10 @@ class SiteMapController extends Controller
             $this->addToSitemap($sitemap, "/tutorial/{$blog->slug}", $blog->updated_at, Url::CHANGE_FREQUENCY_WEEKLY, 0.8);
         }
 
+        foreach ($this->BlogByType('podcast') as $blog) {
+            $this->addToSitemap($sitemap, "/podcast/{$blog->slug}", $blog->updated_at, Url::CHANGE_FREQUENCY_WEEKLY, 0.8);
+        }
+
         // Dynamic Pages based on {slug} route
         $pages = Page::all(); // Assuming your dynamic pages have a Page model
         foreach ($pages as $page) {
