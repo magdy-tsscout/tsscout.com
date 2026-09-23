@@ -25,9 +25,10 @@ class SiteMapController extends Controller
      */
     public function generate()
     {
+        // Initialize the sitemap object
         $sitemap = Sitemap::create();
 
-        // Static Routes
+        // Static Routes - Add predefined static URLs to the sitemap
         $staticRoutes = [
             url('/'),
             'https://app.tsscout.com/login',
@@ -38,24 +39,29 @@ class SiteMapController extends Controller
             url('/faqs'),
         ];
 
+        // Add each static route to the sitemap with weekly change frequency and high priority
         foreach ($staticRoutes as $route) {
             $this->addToSitemap($sitemap, $route, Carbon::yesterday(), Url::CHANGE_FREQUENCY_WEEKLY, 0.9);
         }
 
-        $blog_types= ['blog','tutorial', 'podcast'];
-        foreach( $blog_types as $blog_type ) {
+        // Dynamic Blog Routes - Add published blogs for each blog type (blog, tutorial, podcast)
+        $blog_types = ['blog', 'tutorial', 'podcast'];
+        foreach ($blog_types as $blog_type) {
+            // Get published blogs of the current type
             foreach ($this->BlogByType($blog_type) as $blog) {
+                // Add blog route with weekly change frequency and medium priority
                 $this->addToSitemap($sitemap, "/{$blog_type}/{$blog->slug}", $blog->updated_at, Url::CHANGE_FREQUENCY_WEEKLY, 0.8);
             }
         }
 
-
+        // Dynamic Pages - Add all pages from the database
         $pages = Page::all();
         foreach ($pages as $page) {
+            // Add page route with weekly change frequency and low priority
             $this->addToSitemap($sitemap, "/{$page->slug}", $page->updated_at, Url::CHANGE_FREQUENCY_WEEKLY, 0.6);
         }
 
-        // output the sitemap as XML response
+        // Output the sitemap as XML response
         return $sitemap;
     }
 
@@ -73,11 +79,13 @@ class SiteMapController extends Controller
          */
     private function BlogByType($type='blog')
     {
+        // Query published blogs of the specified type
+        // Filter by published status, past publish date, and blog type
         return Blog::
-            where('published', true)
-            ->where('publish_date','<=', now())
-            ->where('blog_type',$type)
-            ->get();
+            where('published', true)           // Only include published blogs
+            ->where('publish_date','<=', now()) // Only include blogs published in the past
+            ->where('blog_type',$type)         // Filter by blog type (blog, tutorial, podcast, etc.)
+            ->get();                           // Execute the query and return results
     }
     # ##########################################################
 
@@ -94,10 +102,11 @@ class SiteMapController extends Controller
      */
     private function addToSitemap($sitemap, $url, $lastModDate, $changeFreq, $priority)
     {
+        // Create a new URL entry and add it to the sitemap
         $sitemap->add(Url::create($url)
-            ->setLastModificationDate($lastModDate)
-            ->setChangeFrequency($changeFreq)
-            ->setPriority($priority));
+            ->setLastModificationDate($lastModDate)  // Set the last modification date
+            ->setChangeFrequency($changeFreq)        // Set how frequently the URL changes
+            ->setPriority($priority));               // Set the priority of this URL (0.0 to 1.0)
     }
     # ##########################################################
 
