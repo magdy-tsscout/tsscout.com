@@ -124,8 +124,9 @@ Route::get('author/{slug}', [AuthorDataController::class, 'show'])->name('author
 
 // sitemap
 Route::group(['prefix' => 'sitemap'], function () {
+    Route::get('/', [SiteMapController::class, 'generate'])->name('sitemap.root');
     Route::get('blog-sitemap.xml', [BlogController::class, 'sitemap'])->name('pages.sitemap'); // Pages sitemap
-    Route::get('/sitemap.xml', [SiteMapController::class, 'generate'])->name('sitemap.generate');
+    Route::get('sitemap.xml', [SiteMapController::class, 'generate'])->name('sitemap.generate');
 });
 
 
