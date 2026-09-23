@@ -126,12 +126,6 @@ Route::get('author/{slug}', [AuthorDataController::class, 'show'])->name('author
 Route::group(['prefix' => 'sitemap'], function () {
     Route::get('blog-sitemap.xml', [BlogController::class, 'sitemap'])->name('pages.sitemap'); // Pages sitemap
     Route::get('/sitemap.xml', [SiteMapController::class, 'generate'])->name('sitemap.generate');
-    // Route::get('/sitemap.xml', function() {
-    // return Response::file(public_path('sitemap.xml'), [
-    //     'Content-Type' => 'application/xml'
-    // ]);
-    // });
-
 });
 
 
