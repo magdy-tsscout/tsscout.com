@@ -15,6 +15,7 @@ class SiteMapController extends Controller
     public function pages() {
         $sitemap = Sitemap::create();
         $pages = Page::all();
+        $this->addToSitemap($sitemap, "https://app.tsscout.com/pricing", Carbon::yesterday(), Url::CHANGE_FREQUENCY_WEEKLY, 0.6);
         foreach ($pages as $page) {
             $this->addToSitemap($sitemap, "/{$page->slug}", $page->updated_at, Url::CHANGE_FREQUENCY_WEEKLY, 0.6);
         }
