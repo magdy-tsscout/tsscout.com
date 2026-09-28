@@ -60,9 +60,6 @@ class SiteMapController extends Controller
 
         $this->addToSitemap($sitemap, route("sitemap.pages"), Carbon::yesterday(), Url::CHANGE_FREQUENCY_WEEKLY, 0.8);
 
-
-        dd($sitemap); // Debug the sitemap object before returning it
-
         // Output the sitemap as XML response
         return $sitemap;
     }
