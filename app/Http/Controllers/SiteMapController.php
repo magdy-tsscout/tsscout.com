@@ -2,17 +2,28 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Http\Request;
 use Spatie\Sitemap\Sitemap;
 use Spatie\Sitemap\Tags\Url;
 use App\Models\Page;
 use App\Models\Blog;
-use App\Models\Faq;
 use Carbon\Carbon;
 
 
 class SiteMapController extends Controller
 {
+
+    public function pages() {
+        $sitemap = Sitemap::create();
+        $pages = Page::all();
+        foreach ($pages as $page) {
+            $this->addToSitemap($sitemap, "/{$page->slug}", $page->updated_at, Url::CHANGE_FREQUENCY_WEEKLY, 0.6);
+        }
+        return $sitemap;
+    }
+
+    # ##########################################################
+
+
     /**
      * Generate sitemap XML with static and dynamic routes
      *

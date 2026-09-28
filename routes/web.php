@@ -1,34 +1,30 @@
 <?php
 
-use App\Http\Controllers\AdminDashboardController;
-use App\Http\Controllers\AdminUploadHandlerController;
 use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\ScouterProController;
-use App\Http\Controllers\PagesController;
-use App\Http\Controllers\Auth\RegisterController;
-use App\Http\Controllers\Auth\LoginController;
-use App\Http\Controllers\AuthorDataController;
-use App\Http\Controllers\BlogController;
-use App\Http\Controllers\BlogFaqController;
-use App\Http\Controllers\FaqController;
-use App\Http\Controllers\toolsController;
-use Illuminate\Support\Facades\Response;
-use App\Http\Controllers\EbayCalculatorController;
-use App\Http\Controllers\PageBackupController;
-use App\Http\Controllers\ShopifyDetectorController;
-use App\Http\Controllers\ThemeController;
-use App\Http\Controllers\LandingPageController;
-use App\Http\Controllers\SellersDictionaryController;
-use App\Http\Controllers\SellersDictionaryCategoryController;
-use App\Http\Controllers\SellersDictionaryHomeController;
-use App\Http\Controllers\SiteMapController;
-use App\Http\Controllers\TitleBuilderController;
 use App\Http\Middleware\AdminMiddleware;
-use Spatie\Sitemap\SitemapGenerator;
 
-// Route::get("robots.txt", function () {
-//     return response()->file(public_path('robots.txt'));
-// });
+use App\Http\Controllers\{
+    AdminDashboardController,
+    AdminUploadHandlerController,
+    ScouterProController,
+    PagesController,
+    Auth\LoginController,
+    AuthorDataController,
+    BlogController,
+    BlogFaqController,
+    FaqController,
+    EbayCalculatorController,
+    PageBackupController,
+    ShopifyDetectorController,
+    ThemeController,
+    LandingPageController,
+    SellersDictionaryController,
+    SellersDictionaryCategoryController,
+    SellersDictionaryHomeController,
+    SiteMapController,
+    TitleBuilderController,
+};
+
 // Authentication Routes For Admin
 Route::middleware('guest')->group(function () {
     Route::get('admin', [LoginController::class, 'showLoginForm']);
@@ -129,6 +125,7 @@ Route::get('author/{slug}', [AuthorDataController::class, 'show'])->name('author
 // sitemap
 Route::get('sitemap.xml', [SiteMapController::class, 'generate'])->name('sitemap.root');
 Route::group(['prefix' => 'sitemap'], function () {
+    Route::get("pages.xml", [SiteMapController::class, 'pages'])->name('sitemap.pages');
     Route::get('blog-sitemap.xml', [BlogController::class, 'sitemap'])->name('pages.sitemap'); // Pages sitemap
     Route::get('sitemap.xml', [SiteMapController::class, 'generate'])->name('sitemap.generate');
     Route::get("{slug}.xml", [SiteMapController::class, 'blog'])->name('sitemap.blog')->whereIn('slug',['blog','tutorial','podcast']);
