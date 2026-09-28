@@ -1,6 +1,7 @@
 <IfModule mod_rewrite.c>
     RewriteEngine On
 
+    # 1. استثناء ملف robots.txt من أي إعادة توجيه أو معالجة داخلية
     RewriteRule ^robots\.txt$ - [L]
 
     # Redirect www to non-www (optional if needed)
@@ -33,10 +34,9 @@
     RewriteRule ^ index.php [L]
 
     <Files .env>
-    Order Allow,Deny
-    Deny from all
-</Files>
-
+        Order Allow,Deny
+        Deny from all
+    </Files>
 
 </IfModule>
 
