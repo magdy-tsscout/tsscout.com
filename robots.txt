@@ -1,12 +1,49 @@
 User-agent: *
+# Crawl politely; supported by some crawlers (e.g., Bing, Yandex)
+Crawl-delay: 1
+
+# Block private/admin/auth endpoints
 Disallow: /admin/
 Disallow: /login
 Disallow: /register
-Disallow: /index
 
-# Disallow system files & search queries
+# Block non-indexable utility/API endpoints
+Disallow: /api/
+Disallow: /calculate-fees
+Disallow: /search-title
+Disallow: /shopify-detector/download
+
+# Reduce duplicate URL crawl from query parameters
 Disallow: /*?*
-Disallow: /storage/*.pdf
-Disallow: /storage/*.doc
 
+# Block sensitive/internal storage paths
+Disallow: /storage/
+Disallow: /public/storage/
+
+# Ensure render-critical static assets remain crawlable
+Allow: /assets/
+Allow: /css/
+Allow: /js/
+Allow: /images/
+Allow: /uploads/
+Allow: /webfonts/
+
+# Ensure key public sections are clearly crawlable
+Allow: /blogs/
+Allow: /tutorial/
+Allow: /podcast/
+Allow: /faqs
+Allow: /author/
+Allow: /sellers-dictionary/
+Allow: /Suppliers-Scouting/
+Allow: /competitor-monitoring/
+Allow: /product-scouting/
+Allow: /landing-pages/
+Allow: /ebay-calculator
+Allow: /calculator/
+Allow: /affiliate-program
+Allow: /ai-tool
+
+# Sitemaps
 Sitemap: https://tsscout.com/sitemap.xml
+Sitemap: https://tsscout.com/sitemap/blog-sitemap.xml
