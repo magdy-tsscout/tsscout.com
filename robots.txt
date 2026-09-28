@@ -1,0 +1,10 @@
+# robots.txt - tsscout.com
+# Must be served at: https://tsscout.com/robots.txt (root, NOT /public/robots.txt)
+
+User-agent: *
+Disallow: /admin/
+Disallow: /login
+Disallow: /register
+Disallow: /index
+
+Sitemap: https://tsscout.com/sitemap.xml
