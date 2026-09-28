@@ -46,3 +46,4 @@ Allow: /ai-tool
 
 # Sitemaps
 Sitemap: https://tsscout.com/sitemap.xml
+# Other sitemaps will be added here
