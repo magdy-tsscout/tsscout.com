@@ -16,6 +16,19 @@ class SiteMapController extends Controller
         $sitemap = Sitemap::create();
         $pages = Page::all();
         $this->addToSitemap($sitemap, "https://app.tsscout.com/pricing", Carbon::yesterday(), Url::CHANGE_FREQUENCY_MONTHLY, 0.6);
+        $staticRoutes = [
+            url('/'),
+            'https://app.tsscout.com/login',
+            'https://app.tsscout.com/register',
+            'https://app.tsscout.com/pricing',
+            url('/blogs'),
+            url('/tutorial'),
+            url('/faqs'),
+        ];
+        foreach ($staticRoutes as $route) {
+            $this->addToSitemap($sitemap, $route, Carbon::yesterday(), Url::CHANGE_FREQUENCY_MONTHLY, 0.6);
+        }
+
         foreach ($pages as $page) {
             $this->addToSitemap($sitemap, "/{$page->slug}", $page->updated_at, Url::CHANGE_FREQUENCY_WEEKLY, 0.6);
         }
@@ -40,38 +53,15 @@ class SiteMapController extends Controller
         // Initialize the sitemap object
         $sitemap = Sitemap::create();
 
-        // Static Routes - Add predefined static URLs to the sitemap
-        $staticRoutes = [
-            url('/'),
-            'https://app.tsscout.com/login',
-            'https://app.tsscout.com/register',
-            'https://app.tsscout.com/pricing',
-            url('/blogs'),
-            url('/tutorial'),
-            url('/faqs'),
-        ];
-
-        // Add each static route to the sitemap with weekly change frequency and high priority
-        foreach ($staticRoutes as $route) {
-            $this->addToSitemap($sitemap, $route, Carbon::yesterday(), Url::CHANGE_FREQUENCY_WEEKLY, 0.9);
-        }
-
-        // Dynamic Blog Routes - Add published blogs for each blog type (blog, tutorial, podcast)
         $blog_types = ['blog', 'tutorial', 'podcast'];
         foreach ($blog_types as $blog_type) {
-            // Get published blogs of the current type
-            foreach ($this->BlogByType($blog_type) as $blog) {
-                // Add blog route with weekly change frequency and medium priority
-                $this->addToSitemap($sitemap, "/{$blog_type}/{$blog->slug}", $blog->updated_at, Url::CHANGE_FREQUENCY_WEEKLY, 0.8);
-            }
+            $this->addToSitemap($sitemap, route("sitemap.blog", ['slug' => $blog_type]), Carbon::yesterday(), Url::CHANGE_FREQUENCY_WEEKLY, 0.8);
         }
 
-        // Dynamic Pages - Add all pages from the database
-        $pages = Page::all();
-        foreach ($pages as $page) {
-            // Add page route with weekly change frequency and low priority
-            $this->addToSitemap($sitemap, "/{$page->slug}", $page->updated_at, Url::CHANGE_FREQUENCY_WEEKLY, 0.6);
-        }
+        $this->addToSitemap($sitemap, route("sitemap.pages"), Carbon::yesterday(), Url::CHANGE_FREQUENCY_WEEKLY, 0.8);
+
+
+
 
         // Output the sitemap as XML response
         return $sitemap;
