@@ -26,6 +26,9 @@ use App\Http\Controllers\TitleBuilderController;
 use App\Http\Middleware\AdminMiddleware;
 use Spatie\Sitemap\SitemapGenerator;
 
+Route::get("robots.txt", function () {
+    return response()->file(public_path('robots.txt'));
+});
 // Authentication Routes For Admin
 Route::middleware('guest')->group(function () {
     Route::get('admin', [LoginController::class, 'showLoginForm']);

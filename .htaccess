@@ -2,7 +2,7 @@
     RewriteEngine On
 
     # 1. استثناء ملف robots.txt من أي إعادة توجيه أو معالجة داخلية
-    RewriteRule ^robots\.txt$ - [L]
+    # RewriteRule ^robots\.txt$ - [L]
 
     # Redirect www to non-www (optional if needed)
     RewriteCond %{HTTP_HOST} ^www\.(.*)$ [NC]
