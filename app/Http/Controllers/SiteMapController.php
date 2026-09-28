@@ -50,6 +50,7 @@ class SiteMapController extends Controller
      */
     public function generate()
     {
+        dd(123);
         // Initialize the sitemap object
         $sitemap = Sitemap::create();
 
