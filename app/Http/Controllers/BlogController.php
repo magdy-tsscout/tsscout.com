@@ -7,7 +7,9 @@ use Illuminate\Http\UploadedFile;
 use App\Models\Blog;
 use App\Models\Page;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Log;
 use PhpOffice\PhpWord\IOFactory;
+use Symfony\Component\HttpKernel\Exception\HttpExceptionInterface;
 
 class BlogController extends Controller
 {
@@ -169,7 +171,6 @@ class BlogController extends Controller
 
     public function update(Request $request, int $id)
     {
-        return "1111";
         try {
 
             $blog = Blog::findOrFail($id);
@@ -233,8 +234,24 @@ class BlogController extends Controller
             $blog->update($validatedData);
 
             return redirect()->route('admin.blogs.index', ['slug'=>$blog->slug,'id'=>$blog->id, 'saved'=>1, 'draft'=>$validatedData['published'] ? 0 : 1])->with('success', "Blog \"{$blog->title}\" updated successfully.");
-        }catch (\Throwable $exception) {
-            return $exception->getMessage();
+        } catch (\Throwable $exception) {
+            Log::error('Blog update failed', [
+                'blog_id' => $id,
+                'user_id' => Auth::id(),
+                'message' => $exception->getMessage(),
+            ]);
+
+            $errorMessage = 'Unable to update the blog right now. Please try again.';
+
+            if ($exception instanceof HttpExceptionInterface && $exception->getStatusCode() === 403) {
+                $errorMessage = 'Permission denied while updating this blog.';
+            }
+
+            if (app()->isLocal()) {
+                $errorMessage .= ' ' . $exception->getMessage();
+            }
+
+            return back()->withInput()->withErrors(['update' => $errorMessage]);
         }
     }
 
