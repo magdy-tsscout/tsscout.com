@@ -169,7 +169,7 @@ class BlogController extends Controller
 
     public function update(Request $request, int $id)
     {
-
+        return "1111";
         try {
 
             $blog = Blog::findOrFail($id);
