@@ -7,6 +7,7 @@ use Spatie\Sitemap\Tags\Url;
 use App\Models\Page;
 use App\Models\Blog;
 use Carbon\Carbon;
+use Illuminate\Database\Eloquent\Collection;
 
 
 class SiteMapController extends Controller
@@ -50,18 +51,42 @@ class SiteMapController extends Controller
      */
     public function generate()
     {
-        // Initialize the sitemap object
-        $sitemap = Sitemap::create();
+        $domain = parse_url(config('app.url'), PHP_URL_HOST) ?: request()->getHost();
+        $stylesheetHref = '//' . $domain . '/main-sitemap.xsl';
 
-        $blog_types = ['blog', 'tutorial', 'podcast'];
-        foreach ($blog_types as $blog_type) {
-            $this->addToSitemap($sitemap, route("sitemap.blog", ['slug' => $blog_type]), Carbon::yesterday(), Url::CHANGE_FREQUENCY_WEEKLY, 0.8);
+        $entries = [
+            [
+                'loc' => route('sitemap.pages'),
+                'lastmod' => $this->latestPageLastMod(),
+            ],
+            [
+                'loc' => route('sitemap.blog', ['slug' => 'blog']),
+                'lastmod' => $this->latestBlogTypeLastMod('blog'),
+            ],
+            [
+                'loc' => route('sitemap.blog', ['slug' => 'tutorial']),
+                'lastmod' => $this->latestBlogTypeLastMod('tutorial'),
+            ],
+            [
+                'loc' => route('sitemap.blog', ['slug' => 'podcast']),
+                'lastmod' => $this->latestBlogTypeLastMod('podcast'),
+            ],
+        ];
+
+        $xml = '<?xml version="1.0" encoding="UTF-8"?>' . "\n";
+        $xml .= '<?xml-stylesheet type="text/xsl" href="' . e($stylesheetHref) . '"?>' . "\n";
+        $xml .= '<sitemapindex xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">' . "\n";
+
+        foreach ($entries as $entry) {
+            $xml .= '    <sitemap>' . "\n";
+            $xml .= '        <loc>' . e($entry['loc']) . '</loc>' . "\n";
+            $xml .= '        <lastmod>' . $entry['lastmod'] . '</lastmod>' . "\n";
+            $xml .= '    </sitemap>' . "\n";
         }
 
-        $this->addToSitemap($sitemap, route("sitemap.pages"), Carbon::yesterday(), Url::CHANGE_FREQUENCY_WEEKLY, 0.8);
+        $xml .= '</sitemapindex>';
 
-        // Output the sitemap as XML response
-        return $sitemap;
+        return response($xml, 200)->header('Content-Type', 'application/xml; charset=UTF-8');
     }
 
     # ##########################################################
@@ -123,6 +148,24 @@ class SiteMapController extends Controller
             ->setLastModificationDate($lastModDate)  // Set the last modification date
             ->setChangeFrequency($changeFreq)        // Set how frequently the URL changes
             ->setPriority($priority));               // Set the priority of this URL (0.0 to 1.0)
+    }
+
+    private function latestBlogTypeLastMod(string $type): string
+    {
+        $lastModified = Blog::query()
+            ->where('published', true)
+            ->where('publish_date', '<=', now())
+            ->where('blog_type', $type)
+            ->max('updated_at');
+
+        return Carbon::parse($lastModified ?? now())->toAtomString();
+    }
+
+    private function latestPageLastMod(): string
+    {
+        $lastModified = Page::query()->max('updated_at');
+
+        return Carbon::parse($lastModified ?? now())->toAtomString();
     }
     # ##########################################################
 
