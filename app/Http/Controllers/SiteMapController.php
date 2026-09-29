@@ -51,8 +51,7 @@ class SiteMapController extends Controller
      */
     public function generate()
     {
-        $domain = parse_url(config('app.url'), PHP_URL_HOST) ?: request()->getHost();
-        $stylesheetHref = '//' . $domain . '/main-sitemap.xsl';
+        $stylesheetHref = '/main-sitemap.xsl';
 
         $entries = [
             [
