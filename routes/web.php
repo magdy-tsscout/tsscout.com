@@ -57,7 +57,7 @@ Route::prefix('admin')->name('admin.')->middleware([AdminMiddleware::class])->gr
 
 
     Route::get('blogs/create', [BlogController::class, 'create'])->name('blogs.create');
-    Route::get('blogs/{blog_type?}', [BlogController::class, 'index'])->name('blogs.index');
+    Route::get('blogs/{blog_type?}', [BlogController::class, 'index'])->name('blogs.index')->whereIn('blog_type', ['blog', 'tutorial','podcast']);
     Route::post('blogs', [BlogController::class, 'store'])->name('blogs.store');
     Route::get('blogs/{blog}/edit', [BlogController::class, 'edit'])->name('blogs.edit');
     Route::put('blogs/{blog}', [BlogController::class, 'update'])->name('blogs.update');
