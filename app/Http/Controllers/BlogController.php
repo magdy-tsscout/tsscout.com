@@ -167,13 +167,13 @@ class BlogController extends Controller
         return view('blogs.edit', compact('blog'));
     }
 
-    public function update(Request $request, int $id): \Illuminate\Http\RedirectResponse | string
+    public function update(Request $request, int $id)
     {
 
         try {
 
             $blog = Blog::findOrFail($id);
-            dd($blog);
+
 
             $validatedData = $request->validate([
                 'title' => 'required|string|max:255',
