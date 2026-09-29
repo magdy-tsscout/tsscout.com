@@ -23,6 +23,7 @@ use App\Http\Controllers\{
     SellersDictionaryHomeController,
     SiteMapController,
     TitleBuilderController,
+    toolsController,
 };
 
 // Authentication Routes For Admin
