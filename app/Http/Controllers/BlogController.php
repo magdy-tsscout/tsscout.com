@@ -171,6 +171,7 @@ class BlogController extends Controller
 
     public function update(Request $request, int $id)
     {
+        return date('Y-m-d H:i:s');
         try {
 
             $blog = Blog::findOrFail($id);
