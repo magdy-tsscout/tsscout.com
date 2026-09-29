@@ -173,6 +173,7 @@ class BlogController extends Controller
         try {
 
             $blog = Blog::findOrFail($id);
+            dd($blog);
 
             $validatedData = $request->validate([
                 'title' => 'required|string|max:255',
