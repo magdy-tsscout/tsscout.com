@@ -243,7 +243,7 @@ class BlogController extends Controller
                 'user_id' => Auth::id(),
                 'message' => $exception->getMessage(),
             ]);
-            return $exception->getMessage();
+            // return $exception->getMessage();
 
             $errorMessage = 'Unable to update the blog right now. Please try again.';
 
