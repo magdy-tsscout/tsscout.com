@@ -167,70 +167,74 @@ class BlogController extends Controller
         return view('blogs.edit', compact('blog'));
     }
 
-    public function update(Request $request, int $id): \Illuminate\Http\RedirectResponse
+    public function update(Request $request, int $id): \Illuminate\Http\RedirectResponse | string
     {
 
+        try {
 
-        $blog = Blog::findOrFail($id);
+            $blog = Blog::findOrFail($id);
 
-        $validatedData = $request->validate([
-            'title' => 'required|string|max:255',
-            'excerpt' => 'required|string',
-            'author' => 'required|string|max:255',
-            'publish_date' => 'required|date',
-            'media_type' => 'required|string|in:image,video,podcast',
-            'image' => 'nullable|image|max:2048',
-            'video_url' => 'nullable|url',
-            'slug' => 'required|string|max:60|unique:blogs,slug,' . $blog->id,
-            'meta_description' => 'nullable|string|max:255',
-            'meta_keywords' => 'nullable|string|max:255',
-            'meta_author' => 'nullable|string|max:255',
-            'category' => 'required|string|max:255',
-            'content' => 'required_without:word_file',
-            'word_file' => 'nullable|file|mimes:doc,docx|max:10240',
-            'published'=> 'boolean',
-            'scheduled_at' => 'nullable|date',
-            'meta_title' => 'nullable|string|max:255',
-            'podcast_url' => 'nullable|url',
-        ]);
+            $validatedData = $request->validate([
+                'title' => 'required|string|max:255',
+                'excerpt' => 'required|string',
+                'author' => 'required|string|max:255',
+                'publish_date' => 'required|date',
+                'media_type' => 'required|string|in:image,video,podcast',
+                'image' => 'nullable|image|max:2048',
+                'video_url' => 'nullable|url',
+                'slug' => 'required|string|max:60|unique:blogs,slug,' . $blog->id,
+                'meta_description' => 'nullable|string|max:255',
+                'meta_keywords' => 'nullable|string|max:255',
+                'meta_author' => 'nullable|string|max:255',
+                'category' => 'required|string|max:255',
+                'content' => 'required_without:word_file',
+                'word_file' => 'nullable|file|mimes:doc,docx|max:10240',
+                'published'=> 'boolean',
+                'scheduled_at' => 'nullable|date',
+                'meta_title' => 'nullable|string|max:255',
+                'podcast_url' => 'nullable|url',
+            ]);
 
-        if ($request->hasFile('word_file')) {
-            try {
-                $validatedData['content'] = $this->convertWordToHtml($request->file('word_file'));
-            } catch (\Throwable $exception) {
-                return back()->withErrors(['word_file' => 'Unable to convert the uploaded Word file. Please verify the file and try again.'])->withInput();
+            if ($request->hasFile('word_file')) {
+                try {
+                    $validatedData['content'] = $this->convertWordToHtml($request->file('word_file'));
+                } catch (\Throwable $exception) {
+                    return back()->withErrors(['word_file' => 'Unable to convert the uploaded Word file. Please verify the file and try again.'])->withInput();
+                }
             }
-        }
 
-        unset($validatedData['word_file']);
-
+            unset($validatedData['word_file']);
 
 
-        if ($validatedData['media_type'] === 'image') {
-            if ($request->hasFile('image')) {
-                $validatedData['image'] = $request->file('image')->store('images', 'public');
+
+            if ($validatedData['media_type'] === 'image') {
+                if ($request->hasFile('image')) {
+                    $validatedData['image'] = $request->file('image')->store('images', 'public');
+                }
+                $validatedData['video_url'] = null; // No video for this blog
+                $validatedData['podcast_url'] = null; // No podcast for this blog
+            } elseif ($validatedData['media_type'] === 'video') {
+                $validatedData['image'] = null; // No image for this blog
+                $validatedData['video_url'] = $request->input('video_url'); // Set the video URL
+                $validatedData['podcast_url'] = null; // No podcast for this blog
+            } elseif ($validatedData['media_type'] === 'podcast') {
+                $validatedData['image'] = null; // No image for this blog
+                $validatedData['video_url'] = null; // No video for this blog
+                $validatedData['podcast_url'] = $request->input('podcast_url'); // Set the podcast URL
             }
-            $validatedData['video_url'] = null; // No video for this blog
-            $validatedData['podcast_url'] = null; // No podcast for this blog
-        } elseif ($validatedData['media_type'] === 'video') {
-            $validatedData['image'] = null; // No image for this blog
-            $validatedData['video_url'] = $request->input('video_url'); // Set the video URL
-            $validatedData['podcast_url'] = null; // No podcast for this blog
-        } elseif ($validatedData['media_type'] === 'podcast') {
-            $validatedData['image'] = null; // No image for this blog
-            $validatedData['video_url'] = null; // No video for this blog
-            $validatedData['podcast_url'] = $request->input('podcast_url'); // Set the podcast URL
+
+            if( $request->input('published') === null ) {
+                $validatedData['published'] = false;
+            }
+
+
+            // Update the blog entry with the validated data
+            $blog->update($validatedData);
+
+            return redirect()->route('admin.blogs.index', ['slug'=>$blog->slug,'id'=>$blog->id, 'saved'=>1, 'draft'=>$validatedData['published'] ? 0 : 1])->with('success', "Blog \"{$blog->title}\" updated successfully.");
+        }catch (\Throwable $exception) {
+            return $exception->getMessage();
         }
-
-        if( $request->input('published') === null ) {
-            $validatedData['published'] = false;
-        }
-
-
-        // Update the blog entry with the validated data
-        $blog->update($validatedData);
-
-        return redirect()->route('admin.blogs.index', ['slug'=>$blog->slug,'id'=>$blog->id, 'saved'=>1, 'draft'=>$validatedData['published'] ? 0 : 1])->with('success', "Blog \"{$blog->title}\" updated successfully.");
     }
 
 
