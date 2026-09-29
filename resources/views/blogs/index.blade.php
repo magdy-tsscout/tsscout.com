@@ -135,7 +135,7 @@
             </div>
             <button type="submit" class="btn btn-primary mb-2 mr-2">Search</button>
             @if (request()->filled('search') || request()->filled('category'))
-                <a href="{{ route('blogs.index') }}" class="btn btn-outline-dark mb-2">Reset</a>
+                <a href="{{ route('admin.blogs.index') }}" class="btn btn-outline-dark mb-2">Reset</a>
             @endif
         </form>
     </div>
