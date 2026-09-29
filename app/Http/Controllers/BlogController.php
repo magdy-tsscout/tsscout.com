@@ -171,7 +171,9 @@ class BlogController extends Controller
 
     public function update(Request $request, int $id)
     {
-        return date('Y-m-d H:i:s');
+        if (!$this->isAdmin()) {
+            // return redirect()->route('Adminlogin')->with('error', 'Access denied.');
+        }
         try {
 
             $blog = Blog::findOrFail($id);
