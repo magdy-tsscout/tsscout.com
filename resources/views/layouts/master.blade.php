@@ -105,7 +105,8 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
                         @endif
                     @elseif(Route::is('sellers-dictionary.web.index')  )
                         @php
-                            $sd_id= \App\Models\SellersDictionaryCategory::where('slug',$route_parameters['category'])?->id??null;
+                            $sd_id = \App\Models\SellersDictionaryCategory::where('slug', $route_parameters['category'] ?? null)
+                                ->value('id');
                         @endphp
                         @if($sd_id)
                             <a href="{{ route('admin.sellers-dictionary-categories.edit',['id'=>$sd_id]) }}" class="btn btn-success"><span class="fa fa-clone"></span> Edit sellers dictionary</a>
