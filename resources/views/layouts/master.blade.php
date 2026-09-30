@@ -80,12 +80,19 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
     @include('header')
     @include('partials.public-seo')
 
-    <main class="content">
-        @if( Auth()->user() )
-            <div class="d-fixed-top">
+    @if( Auth()->user() )
+        <div class="admin-bar fixed-top bg-dark text-light">
+            <div class="container">
                 <a href="{{ route('admin.dashboard') }}">Admin panel</a>
+                <form method="POST" action="{{ route('admin.logout') }}">
+                    @csrf
+                    <button type="submit" class="btn btn-link text-light">Admin logout</button>
+                </form>
             </div>
-        @endif
+        </div>
+    @endif
+    <main class="content">
+
         @yield('content')
     </main>
 
