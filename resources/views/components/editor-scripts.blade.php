@@ -53,6 +53,9 @@
         body_class: siteBodyClasses,
         plugins: 'advlist autolink lists link image charmap preview anchor searchreplace visualblocks visualchars code fullscreen insertdatetime media table help wordcount autosave directionality nonbreaking pagebreak quickbars emoticons codesample',
         menubar: 'file edit view insert format tools table help',
+        relative_urls: false,
+        remove_script_host: false,
+        convert_urls: false,
         menu: {
             file: { title: 'File', items: 'newdocument restoredraft | preview | print' },
             edit: { title: 'Edit', items: 'undo redo | cut copy paste pastetext | selectall | searchreplace' },
