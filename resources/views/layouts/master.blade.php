@@ -108,14 +108,14 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
                             $sd_id= \App\Models\SellersDictionaryCategory::where('slug',$route_parameters['category'])?->id??null;
                         @endphp
                         @if($sd_id)
-                            <a href="{{ route('admin.sellers-dictionary-categories.edit',$sd_id) }}" class="btn btn-success"><span class="fa fa-clone"></span> Edit sellers dictionary</a>
+                            <a href="{{ route('admin.sellers-dictionary-categories.edit',['id'=>$sd_id]) }}" class="btn btn-success"><span class="fa fa-clone"></span> Edit sellers dictionary</a>
                         @endif
                     @else
-                        <!-- rrrr: {{ request()->route()->getName() }}
+                        {{-- <!-- rrrr: {{ request()->route()->getName() }}
                         @foreach($route_parameters as $key => $value)
                         <!-- {{ "{$key}: {$value}" }} -->
                         @endforeach
-                        -->
+                        --> --}}
                     @endif
                     <form method="POST" action="{{ route('admin.logout') }}">
                         @csrf
