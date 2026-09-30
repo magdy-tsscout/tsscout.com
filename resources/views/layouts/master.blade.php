@@ -86,12 +86,11 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
                 <div class="d-flex">
                     <a href="{{ route('admin.dashboard') }}" class="btn btn-outline-light">Admin panel</a>
                     @if(Route::is('pages.show'))
-                        @dd( request()->all())
-                        <a href="{{ route('admin.pages.edit',request('id')) }}" class="btn btn-outline-success">Edit Page</a>
+                        {{-- <a href="{{ route('admin.pages.edit',request('id')) }}" class="btn btn-outline-success">Edit Page</a> --}}
                     @endif
                     <form method="POST" action="{{ route('admin.logout') }}">
                         @csrf
-                        <button type="submit" class="btn btn-link text-danger">Admin logout</button>
+                        <button type="submit" class="btn btn-danger">Admin logout</button>
                     </form>
                 </div>
             </div>
