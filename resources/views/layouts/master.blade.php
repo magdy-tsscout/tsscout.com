@@ -106,10 +106,11 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
                     {{-- @elseif(Route::is('sellers-dictionary.web.index')  ) --}}
 
                     @else
-                        <!-- rrrr: {{ request()->route()->getName() }} -->
-                        <!-- {{ foreach($route_parameters as $key => $value) }} -->
+                        <!-- rrrr: {{ request()->route()->getName() }}
+                        @foreach($route_parameters as $key => $value)
                         <!-- {{ "{$key}: {$value}" }} -->
-                        <!-- {{ endforeach }} -->
+                        @endforeach
+                        -->
                     @endif
                     <form method="POST" action="{{ route('admin.logout') }}">
                         @csrf
