@@ -87,7 +87,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
                     <a href="{{ route('admin.dashboard') }}" class="btn btn-outline-light">Admin panel</a>
                     <form method="POST" action="{{ route('admin.logout') }}">
                         @csrf
-                        <button type="submit" class="btn btn-link text-light">Admin logout</button>
+                        <button type="submit" class="btn btn-link text-danger">Admin logout</button>
                     </form>
                 </div>
             </div>
