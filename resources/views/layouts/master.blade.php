@@ -93,7 +93,9 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
                             $page_id=\App\Models\Page::where('slug',$route_parameters['slug'])->first()?->id??null;
                         @endphp
                         @if($page_id)
-                            <a href="{{ route('admin.pages.edit',$page_id) }}" class="btn btn-success"><span class="fa fa-pagelines"></span> Edit Page</a>
+                            <a href="{{ route('admin.pages.edit',$page_id) }}" class="btn btn-success"><span class="fa fa-clone"></span> Edit Page</a>
+                        @else
+                        <!-- rrrr: {{ request()->route()->getName() }} -->
                         @endif
                     @endif
                     <form method="POST" action="{{ route('admin.logout') }}">
