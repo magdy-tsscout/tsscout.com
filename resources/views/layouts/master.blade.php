@@ -103,7 +103,6 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
                         @if($blog_id)
                             <a href="{{ route('admin.blogs.edit',$blog_id) }}" class="btn btn-success"><span class="fa fa-clone"></span> Edit Blog</a>
                         @endif
-                        @endif
                     @else
                         <!-- rrrr: {{ request()->route()->getName() }} -->
                     @endif
