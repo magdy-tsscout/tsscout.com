@@ -103,8 +103,13 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
                         @if($blog_id)
                             <a href="{{ route('admin.blogs.edit',$blog_id) }}" class="btn btn-success"><span class="fa fa-clone"></span> Edit Blog</a>
                         @endif
-                    {{-- @elseif(Route::is('sellers-dictionary.web.index')  ) --}}
-
+                    @elseif(Route::is('sellers-dictionary.web.index')  )
+                        @php
+                            $sd_id= \App\Models\SellersDictionaryCategory::where('slug',$route_parameters['category'])?->id??null;
+                        @endphp
+                        @if($sd_id)
+                            <a href="{{ route('admin.sellers-dictionary-categories.edit',$sd_id) }}" class="btn btn-success"><span class="fa fa-clone"></span> Edit sellers dictionary</a>
+                        @endif
                     @else
                         <!-- rrrr: {{ request()->route()->getName() }}
                         @foreach($route_parameters as $key => $value)
