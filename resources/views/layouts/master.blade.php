@@ -85,7 +85,11 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
             <div class="container">
                 <div class="d-flex">
                     <a href="{{ route('admin.dashboard') }}" class="btn btn-outline-light">Admin panel</a>
+                    @php
+                        $route_parameters = Route::current()->parameters();
+                    @endphp
                     @if(Route::is('pages.show'))
+                        @dd($route_parameters)
                         {{-- <a href="{{ route('admin.pages.edit',request('id')) }}" class="btn btn-outline-success">Edit Page</a> --}}
                     @endif
                     <form method="POST" action="{{ route('admin.logout') }}">
