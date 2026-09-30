@@ -109,7 +109,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
                                 ->value('id');
                         @endphp
                         @if($sd_id)
-                            <a href="{{ route('admin.sellers-dictionary-categories.edit',['id'=>$sd_id]) }}" class="btn btn-success"><span class="fa fa-clone"></span> Edit sellers dictionary</a>
+                            <a href="{{ route('admin.sellers-dictionary-categories.edit', ['sellers_dictionary_category' => $sd_id]) }}" class="btn btn-success"><span class="fa fa-clone"></span> Edit sellers dictionary</a>
                         @endif
                     @else
                         {{-- <!-- rrrr: {{ request()->route()->getName() }}
