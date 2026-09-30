@@ -81,6 +81,9 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
     @include('partials.public-seo')
 
     <main class="content">
+        @if( Auth()->user() )
+            <!-- Authenticated User Content -->
+        @endif
         @yield('content')
     </main>
 
