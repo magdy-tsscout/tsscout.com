@@ -83,8 +83,8 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
     @if( Auth()->user() )
         <div class="admin-bar bg-dark text-light">
             <div class="container">
-                <div class="d-flex">
-                    <a href="{{ route('admin.dashboard') }}" class="btn btn-outline-light">Admin panel</a>
+                <div class="d-flex gap-2">
+                    <a href="{{ route('admin.dashboard') }}" class="btn btn-outline-light"><span class="fa fa-home"></span> Admin panel</a>
                     @php
                         $route_parameters = Route::current()->parameters();
                     @endphp
@@ -93,12 +93,15 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
                             $page_id=\App\Models\Page::where('slug',$route_parameters['slug'])->first()?->id??null;
                         @endphp
                         @if($page_id)
-                            <a href="{{ route('admin.pages.edit',$page_id) }}" class="btn btn-outline-success">Edit Page</a>
+                            <a href="{{ route('admin.pages.edit',$page_id) }}" class="btn btn-success"><span class="fa fa-pagelines"></span> Edit Page</a>
                         @endif
                     @endif
                     <form method="POST" action="{{ route('admin.logout') }}">
                         @csrf
-                        <button type="submit" class="btn btn-danger">Admin logout</button>
+                        <button type="submit" class="btn btn-danger">
+                            <span class="fa fa-sign-out-alt"></span>
+                            logout
+                        </button>
                     </form>
                 </div>
             </div>
