@@ -82,7 +82,9 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 
     <main class="content">
         @if( Auth()->user() )
-            <!-- Authenticated User Content -->
+            <div class="d-fixed-top">
+                <a href="{{ route('admin.dashboard') }}">Admin panel</a>
+            </div>
         @endif
         @yield('content')
     </main>
