@@ -96,6 +96,14 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
                             <a href="{{ route('admin.pages.edit',$page_id) }}" class="btn btn-success"><span class="fa fa-clone"></span> Edit Page</a>
 
                         @endif
+                    @elseif( Route::is('blogs.show') )
+                        @php
+                            $blog_id= \App\Models\Blog::where('slug',$route_parameters['slug'])->first()?->id??null;
+                        @endphp
+                        @if($blog_id)
+                            <a href="{{ route('admin.blogs.edit',$blog_id) }}" class="btn btn-success"><span class="fa fa-clone"></span> Edit Blog</a>
+                        @endif
+                        @endif
                     @else
                         <!-- rrrr: {{ request()->route()->getName() }} -->
                     @endif
