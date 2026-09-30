@@ -107,7 +107,9 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 
                     @else
                         <!-- rrrr: {{ request()->route()->getName() }} -->
-                        <!-- {{ $route_parameters }} -->
+                        <!-- {{ foreach($route_parameters as $key => $value) }} -->
+                        <!-- {{ "{$key}: {$value}" }}
+                        <!-- {{ endforeach }} -->
                     @endif
                     <form method="POST" action="{{ route('admin.logout') }}">
                         @csrf
