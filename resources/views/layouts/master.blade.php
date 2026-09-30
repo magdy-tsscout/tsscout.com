@@ -97,8 +97,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 
                         @endif
                     @else
-                    <!-- rrrr: {{ request()->route()->getName() }} -->
-                    @endif
+                        <!-- rrrr: {{ request()->route()->getName() }} -->
                     @endif
                     <form method="POST" action="{{ route('admin.logout') }}">
                         @csrf
