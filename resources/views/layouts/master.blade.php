@@ -90,7 +90,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
                     @endphp
                     @if(Route::is('pages.show'))
                         @php
-                            $page_id=\App\Models\Page::where('slug',$route_parameters->slug)->first()?->id??null;
+                            $page_id=\App\Models\Page::where('slug',$route_parameters['slug'])->first()?->id??null;
                         @endphp
                         @if($page_id)
                             <a href="{{ route('admin.pages.edit',$page_id) }}" class="btn btn-outline-success">Edit Page</a>
