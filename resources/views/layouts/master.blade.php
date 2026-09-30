@@ -89,8 +89,12 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
                         $route_parameters = Route::current()->parameters();
                     @endphp
                     @if(Route::is('pages.show'))
-                        @dd($route_parameters)
-                        {{-- <a href="{{ route('admin.pages.edit',request('id')) }}" class="btn btn-outline-success">Edit Page</a> --}}
+                        @php
+                            $page_id=\App\Models\Pages::where('slug',$route_parameters->slug)->first()?->id??null;
+                        @endphp
+                        @if($page_id)
+                            <a href="{{ route('admin.pages.edit',$page_id) }}" class="btn btn-outline-success">Edit Page</a>
+                        @endif
                     @endif
                     <form method="POST" action="{{ route('admin.logout') }}">
                         @csrf
