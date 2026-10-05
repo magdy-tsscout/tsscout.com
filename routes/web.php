@@ -132,6 +132,7 @@ Route::get('author/{slug}', [AuthorDataController::class, 'show'])->name('author
 Route::get('sitemap.xml', [SiteMapController::class, 'generate'])->name('sitemap.root');
 Route::group(['prefix' => 'sitemap'], function () {
     Route::get("pages.xml", [SiteMapController::class, 'pages'])->name('sitemap.pages');
+    Route::get("tools.xml", [SiteMapController::class, 'tools'])->name('sitemap.tools');
     Route::get("{slug}.xml", [SiteMapController::class, 'blog'])->name('sitemap.blog')->whereIn('slug',['blog','tutorial','podcast']);
 });
 

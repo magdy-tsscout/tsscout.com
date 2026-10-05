@@ -13,9 +13,18 @@ use Illuminate\Database\Eloquent\Collection;
 class SiteMapController extends Controller
 {
 
+    public function tools() {
+        $sitemap = Sitemap::create();
+        foreach (\App\Models\tool::get() as $blog) {
+            $this->addToSitemap($sitemap, "/product-scouting/{$blog->slug}", $blog->updated_at, Url::CHANGE_FREQUENCY_WEEKLY, 0.8);
+        }
+        return $sitemap;
+    }
+
+    # ##########################################################
     public function pages() {
         $sitemap = Sitemap::create();
-        $pages = Page::where('include_in_sitemap', true)->get();
+        $pages = Page::all();
         $this->addToSitemap($sitemap, "https://app.tsscout.com/pricing", Carbon::yesterday(), Url::CHANGE_FREQUENCY_MONTHLY, 0.6);
         $staticRoutes = [
             url('/'),
@@ -51,7 +60,7 @@ class SiteMapController extends Controller
      */
     public function generate()
     {
-        $stylesheetHref = '/main-sitemap.xsl';
+        $stylesheetHref = asset('main-sitemap.xsl');
 
         $entries = [
             [
@@ -69,6 +78,10 @@ class SiteMapController extends Controller
             [
                 'loc' => route('sitemap.blog', ['slug' => 'podcast']),
                 'lastmod' => $this->latestBlogTypeLastMod('podcast'),
+            ],
+            [
+                'loc' => route('sitemap.tools'),
+                'lastmod' => $this->latestBlogTypeLastMod('tools'),
             ],
         ];
 
