@@ -4,10 +4,14 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Str;
+use \App\Observers\SellersDictionaryCategoryObserver;
+use Illuminate\Database\Eloquent\Attributes\ObservedBy;
 
+#[ObservedBy(SellersDictionaryCategoryObserver::class)]
 class SellersDictionaryCategory extends Model
 {
     protected $fillable = ['name', 'slug', 'image'];
+
 
     protected static function booted(): void
     {
