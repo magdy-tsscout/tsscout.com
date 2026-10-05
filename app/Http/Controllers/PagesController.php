@@ -107,6 +107,41 @@ class PagesController extends Controller
         return redirect()->route('admin.pages.index')->with('success', 'Page deleted successfully.');
     }
 
+    public function updateSitemap(Request $request)
+    {
+        if (!$this->isAdmin()) {
+            if ($request->expectsJson()) {
+                return response()->json([
+                    'message' => 'Access denied.',
+                ], 403);
+            }
+
+            return redirect()->route('Adminlogin')->with('error', 'Access denied.');
+        }
+
+        $validated = $request->validate([
+            'page_id' => 'required|integer|exists:pages,id',
+            'include_in_sitemap' => 'nullable|boolean',
+        ]);
+
+        $page = Page::findOrFail($validated['page_id']);
+        $page->include_in_sitemap = $request->boolean('include_in_sitemap');
+        $page->save();
+        $statusMessage = $page->include_in_sitemap
+            ? 'Page included in sitemap successfully.'
+            : 'Page excluded from sitemap successfully.';
+
+        if ($request->expectsJson()) {
+            return response()->json([
+                'message' => $statusMessage,
+                'page_id' => $page->id,
+                'include_in_sitemap' => (bool) $page->include_in_sitemap,
+            ]);
+        }
+
+        return redirect()->route('admin.pages.index')->with('success', $statusMessage);
+    }
+
     public function show($identifier)
     {
         $page = $this->getPageByIdentifier($identifier);

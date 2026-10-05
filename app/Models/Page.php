@@ -12,7 +12,7 @@ class Page extends Model
     use HasFactory;
 // In your Page model
 protected $fillable = [
-    'title', 'slug', 'content', 'meta_description', 'meta_keywords', 'meta_author', 'view_name'
+    'title', 'slug', 'content', 'meta_description', 'meta_keywords', 'meta_author', 'view_name', 'include_in_sitemap'
 ];
 
 

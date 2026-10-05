@@ -55,6 +55,7 @@ Route::prefix('admin')->name('admin.')->middleware([AdminMiddleware::class])->gr
     Route::get('pages-backup/{view_name}', [PageBackupController::class,'index'])->name('pages.backup.index');
     Route::get('pages-backup/{view_name}/preview/{id}/{base}', [PageBackupController::class,'preview'])->name('pages.backup.preview')->whereIn('base',['from','to','side-by-side']);
     Route::post('pages-backup/{view_name}/restore/{id}/{base}', [PageBackupController::class,'restore'])->name('pages.backup.restore')->whereIn('base',['from','to']);
+    Route::post('pages/update-sitemap', [PagesController::class, 'updateSitemap'])->name('pages.update-sitemap');
 
 
     Route::get('blogs/create', [BlogController::class, 'create'])->name('blogs.create');
