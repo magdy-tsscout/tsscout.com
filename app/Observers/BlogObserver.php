@@ -4,7 +4,6 @@ namespace App\Observers;
 
 use App\Models\Blog;
 use App\Models\PageRedir;
-use \Illuminate\Http\Request;
 class BlogObserver
 {
     public function updating(Blog $blog)
