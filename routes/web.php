@@ -24,6 +24,7 @@ use App\Http\Controllers\{
     SiteMapController,
     TitleBuilderController,
     toolsController,
+    PageRedirController
 };
 
 // Authentication Routes For Admin
@@ -93,6 +94,9 @@ Route::prefix('admin')->name('admin.')->middleware([AdminMiddleware::class])->gr
         Route::get('footer/history', [ThemeController::class, 'history'])->name('footer.history');
         Route::get('footer/edit', [ThemeController::class, 'editFooter'])->name('footer.edit');
     });
+
+
+    Route::resource('page-redir', PageRedirController::class);
 
 
 
