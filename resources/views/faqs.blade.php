@@ -1,3 +1,7 @@
+@inject('Faqs', \App\Models\Faq::class)
+@php
+    $faqs = $Faqs::all();
+@endphp
 @extends('layouts.master')
 
 @section('title', $page->title)
