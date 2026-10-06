@@ -21,11 +21,6 @@
 @section('content')
     <div class="header">Looking for help? Here are our most frequently asked questions.</div>
 
-    <div class="search-container">
-        <input type="text" id="faq-search" placeholder="Search about what you are looking for…">
-        <button id="faq-search-button" type="button">Search</button>
-    </div>
-
     <div class="info-text">
         Can’t find the answer to a question you have? <a href="{{ url('contact-us') }}">Contact us</a>
     </div>
@@ -97,70 +92,13 @@ document.addEventListener('DOMContentLoaded', function() {
     const options = document.querySelectorAll('.option');
     const faqItems = document.querySelectorAll('.accordion-item');
     const sectionTitles = document.querySelectorAll('.accordion-title');
-    const searchInput = document.getElementById('faq-search');
-    const searchButton = document.getElementById('faq-search-button');
     let activeFilter = 'all';
 
-    function escapeRegExp(value) {
-        return value.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
-    }
-
-    function escapeHtml(value) {
-        return value
-            .replace(/&/g, '&amp;')
-            .replace(/</g, '&lt;')
-            .replace(/>/g, '&gt;')
-            .replace(/"/g, '&quot;')
-            .replace(/'/g, '&#39;');
-    }
-
-    function getOriginalText(element) {
-        if (!element) {
-            return '';
-        }
-
-        if (element.dataset.originalText === undefined) {
-            element.dataset.originalText = element.textContent;
-        }
-
-        return element.dataset.originalText;
-    }
-
-    function highlightText(element, searchTerm) {
-        if (!element) {
-            return;
-        }
-
-        const originalText = getOriginalText(element);
-        if (!searchTerm) {
-            element.textContent = originalText;
-            return;
-        }
-
-        const regex = new RegExp(`(${escapeRegExp(searchTerm)})`, 'gi');
-        const highlightedText = originalText
-            .split(regex)
-            .map((part, index) => index % 2 === 1 ? `<mark>${escapeHtml(part)}</mark>` : escapeHtml(part))
-            .join('');
-        element.innerHTML = highlightedText;
-    }
-
     function applyFilters() {
-        const rawSearchTerm = searchInput.value.trim();
-        const searchTerm = rawSearchTerm.toLowerCase();
-
         faqItems.forEach(item => {
             const category = item.getAttribute('data-category');
-            const questionElement = item.querySelector('.accordion-button');
-            const answerElement = item.querySelector('.accordion-body p') || item.querySelector('.accordion-body');
-            const question = getOriginalText(questionElement).toLowerCase();
-            const answer = getOriginalText(answerElement).toLowerCase();
             const matchesCategory = activeFilter === 'all' || category === activeFilter;
-            const matchesSearch = searchTerm === '' || question.includes(searchTerm) || answer.includes(searchTerm);
-            item.style.display = (matchesCategory && matchesSearch) ? 'block' : 'none';
-
-            highlightText(questionElement, rawSearchTerm);
-            highlightText(answerElement, rawSearchTerm);
+            item.style.display = matchesCategory ? 'block' : 'none';
         });
 
         sectionTitles.forEach(section => {
@@ -183,14 +121,6 @@ document.addEventListener('DOMContentLoaded', function() {
             this.classList.add('active');
             applyFilters();
         });
-    });
-
-    searchButton.addEventListener('click', applyFilters);
-    searchInput.addEventListener('input', applyFilters);
-    searchInput.addEventListener('keydown', function(event) {
-        if (event.key === 'Enter') {
-            applyFilters();
-        }
     });
 
     options[0]?.classList.add('active');
