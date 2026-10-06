@@ -101,16 +101,66 @@ document.addEventListener('DOMContentLoaded', function() {
     const searchButton = document.getElementById('faq-search-button');
     let activeFilter = 'all';
 
+    function escapeRegExp(value) {
+        return value.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
+    }
+
+    function escapeHtml(value) {
+        return value
+            .replace(/&/g, '&amp;')
+            .replace(/</g, '&lt;')
+            .replace(/>/g, '&gt;')
+            .replace(/"/g, '&quot;')
+            .replace(/'/g, '&#39;');
+    }
+
+    function getOriginalText(element) {
+        if (!element) {
+            return '';
+        }
+
+        if (element.dataset.originalText === undefined) {
+            element.dataset.originalText = element.textContent;
+        }
+
+        return element.dataset.originalText;
+    }
+
+    function highlightText(element, searchTerm) {
+        if (!element) {
+            return;
+        }
+
+        const originalText = getOriginalText(element);
+        if (!searchTerm) {
+            element.textContent = originalText;
+            return;
+        }
+
+        const regex = new RegExp(`(${escapeRegExp(searchTerm)})`, 'gi');
+        const highlightedText = originalText
+            .split(regex)
+            .map((part, index) => index % 2 === 1 ? `<mark>${escapeHtml(part)}</mark>` : escapeHtml(part))
+            .join('');
+        element.innerHTML = highlightedText;
+    }
+
     function applyFilters() {
-        const searchTerm = searchInput.value.trim().toLowerCase();
+        const rawSearchTerm = searchInput.value.trim();
+        const searchTerm = rawSearchTerm.toLowerCase();
 
         faqItems.forEach(item => {
             const category = item.getAttribute('data-category');
-            const question = item.querySelector('.accordion-button')?.textContent.toLowerCase() || '';
-            const answer = item.querySelector('.accordion-body')?.textContent.toLowerCase() || '';
+            const questionElement = item.querySelector('.accordion-button');
+            const answerElement = item.querySelector('.accordion-body p') || item.querySelector('.accordion-body');
+            const question = getOriginalText(questionElement).toLowerCase();
+            const answer = getOriginalText(answerElement).toLowerCase();
             const matchesCategory = activeFilter === 'all' || category === activeFilter;
             const matchesSearch = searchTerm === '' || question.includes(searchTerm) || answer.includes(searchTerm);
             item.style.display = (matchesCategory && matchesSearch) ? 'block' : 'none';
+
+            highlightText(questionElement, rawSearchTerm);
+            highlightText(answerElement, rawSearchTerm);
         });
 
         sectionTitles.forEach(section => {
