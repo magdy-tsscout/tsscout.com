@@ -15,9 +15,24 @@ class SiteMapController extends Controller
 
     public function tools() {
         $sitemap = Sitemap::create();
+        $staticRoutes = [
+            'https://tsscout.com/ebay-calculator',
+            'https://tsscout.com/calculator/uk',
+            'https://tsscout.com/calculator/au',
+            'https://tsscout.com/calculator/ca',
+            'https://tsscout.com/calculator/de',
+            'https://tsscout.com/calculator/fr',
+            'https://tsscout.com/calculator/it',
+        ];
+
         foreach (\App\Models\tool::get() as $blog) {
             $this->addToSitemap($sitemap, "/product-scouting/{$blog->slug}", $blog->updated_at, Url::CHANGE_FREQUENCY_WEEKLY, 0.8);
         }
+
+        foreach ($staticRoutes as $route) {
+            $this->addToSitemap($sitemap, $route, Carbon::yesterday(), Url::CHANGE_FREQUENCY_MONTHLY, 0.6);
+        }
+
         return $sitemap;
     }
 
