@@ -23,7 +23,7 @@
 
     <div class="search-container">
         <input type="text" id="faq-search" placeholder="Search about what you are looking for…">
-        <button onclick="filterFaqs()">Search</button>
+        <button id="faq-search-button" type="button">Search</button>
     </div>
 
     <div class="info-text">
@@ -33,11 +33,11 @@
     <div class="options-wrapper">
         <div class="options-container">
             <div class="option" data-filter="all">All</div>
-            <div class="option" data-filter="Get-Started">Get Started</div>
-            <div class="option" data-filter="Pricing-Subscriptions">Pricing & Subscriptions</div>
-            <div class="option" data-filter="Security-Privacy">Security & Privacy</div>
-            <div class="option" data-filter="Support-Assistance">Support & Assistance</div>
-            <div class="option" data-filter="Tool-Features">Tool Features & Usage</div>
+            <div class="option" data-filter="get-started">Get Started</div>
+            <div class="option" data-filter="pricing-subscriptions">Pricing & Subscriptions</div>
+            <div class="option" data-filter="security-privacy">Security & Privacy</div>
+            <div class="option" data-filter="support-assistance">Support & Assistance</div>
+            <div class="option" data-filter="tool-features-usage">Tool Features & Usage</div>
         </div>
     </div>
 
@@ -66,7 +66,7 @@
                         @endif
 
                         <!-- Accordion Item -->
-                        <div class="accordion-item wow fadeInUp" data-wow-delay="0.5s" data-category="{{ strtolower(str_replace(' ', '-', $faq->category_name)) }}" style="margin-bottom: 15px;">
+                        <div class="accordion-item wow fadeInUp" data-wow-delay="0.5s" data-category="{{ Str::slug($faq->category_name) }}" style="margin-bottom: 15px;">
                             <h2 class="accordion-header" id="heading{{ $faq->id }}">
                                 <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
                                         data-bs-target="#collapse{{ $faq->id }}" aria-expanded="false" aria-controls="collapse{{ $faq->id }}">
@@ -93,67 +93,59 @@
     </div>
 
 <script>
-  document.addEventListener('DOMContentLoaded', function() {
+document.addEventListener('DOMContentLoaded', function() {
     const options = document.querySelectorAll('.option');
     const faqItems = document.querySelectorAll('.accordion-item');
     const sectionTitles = document.querySelectorAll('.accordion-title');
+    const searchInput = document.getElementById('faq-search');
+    const searchButton = document.getElementById('faq-search-button');
+    let activeFilter = 'all';
+
+    function applyFilters() {
+        const searchTerm = searchInput.value.trim().toLowerCase();
+
+        faqItems.forEach(item => {
+            const category = item.getAttribute('data-category');
+            const question = item.querySelector('.accordion-button')?.textContent.toLowerCase() || '';
+            const answer = item.querySelector('.accordion-body')?.textContent.toLowerCase() || '';
+            const matchesCategory = activeFilter === 'all' || category === activeFilter;
+            const matchesSearch = searchTerm === '' || question.includes(searchTerm) || answer.includes(searchTerm);
+            item.style.display = (matchesCategory && matchesSearch) ? 'block' : 'none';
+        });
+
+        sectionTitles.forEach(section => {
+            const faqGroup = section.nextElementSibling;
+            if (!faqGroup) {
+                section.style.display = 'none';
+                return;
+            }
+
+            const hasVisibleFaqs = Array.from(faqGroup.querySelectorAll('.accordion-item'))
+                .some(item => item.style.display !== 'none');
+            section.style.display = hasVisibleFaqs ? 'block' : 'none';
+        });
+    }
 
     options.forEach(option => {
         option.addEventListener('click', function() {
-            const filter = this.getAttribute('data-filter').toLowerCase();
+            activeFilter = this.getAttribute('data-filter');
             options.forEach(opt => opt.classList.remove('active'));
             this.classList.add('active');
-
-            // Show/Hide FAQs based on filter
-            faqItems.forEach(item => {
-                const category = item.getAttribute('data-category').toLowerCase();
-                item.style.display = (filter === 'all' || category === filter) ? 'block' : 'none';
-            });
-
-            // After filtering, hide section titles that have no visible FAQ items
-            sectionTitles.forEach(section => {
-                const faqGroup = section.nextElementSibling; // The FAQs that belong to this section
-                const visibleFaqs = faqGroup.querySelectorAll('.accordion-item:not([style*="display: none"])');
-
-                if (visibleFaqs.length === 0) {
-                    section.style.display = 'none';
-                } else {
-                    section.style.display = 'block';
-                }
-            });
+            applyFilters();
         });
     });
+
+    searchButton.addEventListener('click', applyFilters);
+    searchInput.addEventListener('input', applyFilters);
+    searchInput.addEventListener('keydown', function(event) {
+        if (event.key === 'Enter') {
+            applyFilters();
+        }
+    });
+
+    options[0]?.classList.add('active');
+    applyFilters();
 });
-
-function filterFaqs() {
-    const searchInput = document.getElementById('faq-search').value.toLowerCase();
-    const faqItems = document.querySelectorAll('.accordion-item');
-    const sectionTitles = document.querySelectorAll('.accordion-title');
-
-    // Filter FAQ items based on search input
-    faqItems.forEach(item => {
-        const question = item.querySelector('.accordion-button').textContent.toLowerCase();
-        const answer = item.querySelector('.accordion-body').textContent.toLowerCase();
-
-        if (question.includes(searchInput) || answer.includes(searchInput)) {
-            item.style.display = 'block';
-        } else {
-            item.style.display = 'none';
-        }
-    });
-
-    // After search filtering, hide section titles that have no visible FAQ items
-    sectionTitles.forEach(section => {
-        const faqGroup = section.nextElementSibling; // The FAQs that belong to this section
-        const visibleFaqs = faqGroup.querySelectorAll('.accordion-item:not([style*="display: none"])');
-
-        if (visibleFaqs.length === 0) {
-            section.style.display = 'none';
-        } else {
-            section.style.display = 'block';
-        }
-    });
-}
 
 </script>
 @endsection
