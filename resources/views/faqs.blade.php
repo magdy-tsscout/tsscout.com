@@ -29,11 +29,11 @@
     <div class="options-wrapper">
         <div class="options-container">
             <div class="option" data-filter="all">All</div>
-            <div class="option" data-filter="Get-Started">Get Started</div>
-            <div class="option" data-filter="Pricing-Subscriptions">Pricing & Subscriptions</div>
-            <div class="option" data-filter="Security-Privacy">Security & Privacy</div>
-            <div class="option" data-filter="Support-Assistance">Support & Assistance</div>
-            <div class="option" data-filter="Tool-Features">Tool Features & Usage</div>
+            <div class="option" data-filter="get-started">Get Started</div>
+            <div class="option" data-filter="pricing-subscriptions">Pricing & Subscriptions</div>
+            <div class="option" data-filter="security-privacy">Security & Privacy</div>
+            <div class="option" data-filter="support-assistance">Support & Assistance</div>
+            <div class="option" data-filter="tool-features-usage">Tool Features & Usage</div>
         </div>
     </div>
 
@@ -46,38 +46,38 @@
                     @endphp
 
                     @if(isset($faqs) && $faqs->isNotEmpty())
-                    @foreach($faqs as $faq)
-                        @if($current_section !== $faq->section_title)
-                            @if($current_section !== null)
-                                </div> <!-- Close previous accordion group -->
+                        @foreach($faqs as $faq)
+                            @if($current_section !== $faq->section_title)
+                                @if($current_section !== null)
+                                    </div> <!-- Close previous accordion group -->
+                                @endif
+                                <!-- Start a new section with a section title -->
+                                <div class="accordion-title">
+                                    <h3 class="accordion-MainTitle">{{ $faq->section_title ?? 'General FAQs' }}</h3>
+                                </div>
+                                <div class="faq-accordion" id="accordion{{ Str::slug($faq->section_title) }}">
+                                @php
+                                    $current_section = $faq->section_title;
+                                @endphp
                             @endif
-                            <!-- Start a new section with a section title -->
-                            <div class="accordion-title">
-                                <h3 class="accordion-MainTitle">{{ $faq->section_title ?? 'General FAQs' }}</h3>
-                            </div>
-                            <div class="faq-accordion" id="accordion{{ Str::slug($faq->section_title) }}">
-                            @php
-                                $current_section = $faq->section_title;
-                            @endphp
-                        @endif
 
-                        <!-- Accordion Item -->
-                        <div class="accordion-item wow fadeInUp" data-wow-delay="0.5s" data-category="{{ strtolower(str_replace(' ', '-', $faq->category_name)) }}" style="margin-bottom: 15px;">
-                            <h2 class="accordion-header" id="heading{{ $faq->id }}">
-                                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
-                                        data-bs-target="#collapse{{ $faq->id }}" aria-expanded="false" aria-controls="collapse{{ $faq->id }}">
-                                    {{ $faq->question }}
-                                </button>
-                            </h2>
-                            <div id="collapse{{ $faq->id }}" class="accordion-collapse collapse" aria-labelledby="heading{{ $faq->id }}"
-                                 data-bs-parent="#accordion{{ Str::slug($faq->section_title) }}">
-                                <div class="accordion-body">
-                                    <p>{{ $faq->answer }}</p>
+                            <!-- Accordion Item -->
+                            <div class="accordion-item wow fadeInUp" data-wow-delay="0.5s" data-category="{{ Str::slug($faq->category_name ?? '') }}" style="margin-bottom: 15px;">
+                                <h2 class="accordion-header" id="heading{{ $faq->id }}">
+                                    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
+                                            data-bs-target="#collapse{{ $faq->id }}" aria-expanded="false" aria-controls="collapse{{ $faq->id }}">
+                                        {{ $faq->question }}
+                                    </button>
+                                </h2>
+                                <div id="collapse{{ $faq->id }}" class="accordion-collapse collapse" aria-labelledby="heading{{ $faq->id }}"
+                                    data-bs-parent="#accordion{{ Str::slug($faq->section_title) }}">
+                                    <div class="accordion-body">
+                                        <p>{{ $faq->answer }}</p>
+                                    </div>
                                 </div>
                             </div>
-                        </div>
-                        <!-- End of Accordion Item -->
-                    @endforeach
+                            <!-- End of Accordion Item -->
+                        @endforeach
                     @endif
 
                     @if($current_section !== null)
@@ -109,6 +109,10 @@
             // After filtering, hide section titles that have no visible FAQ items
             sectionTitles.forEach(section => {
                 const faqGroup = section.nextElementSibling; // The FAQs that belong to this section
+                if (!faqGroup) {
+                    section.style.display = 'none';
+                    return;
+                }
                 const visibleFaqs = faqGroup.querySelectorAll('.accordion-item:not([style*="display: none"])');
 
                 if (visibleFaqs.length === 0) {
@@ -141,6 +145,10 @@ function filterFaqs() {
     // After search filtering, hide section titles that have no visible FAQ items
     sectionTitles.forEach(section => {
         const faqGroup = section.nextElementSibling; // The FAQs that belong to this section
+        if (!faqGroup) {
+            section.style.display = 'none';
+            return;
+        }
         const visibleFaqs = faqGroup.querySelectorAll('.accordion-item:not([style*="display: none"])');
 
         if (visibleFaqs.length === 0) {
