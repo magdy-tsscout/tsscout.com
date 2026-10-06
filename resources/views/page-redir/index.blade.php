@@ -34,8 +34,8 @@
                         <tr>
                             <td>{{ $pageRedir->id }}</td>
                             <td class="text-capitalize">{{ $pageRedir->url_type }}</td>
-                            <td class="text-break">{{ $pageRedir->old_url }}</td>
-                            <td class="text-break">{{ $pageRedir->new_url }}</td>
+                            <td class="text-break"><a href="{{ $pageRedir->old_url }}" target="_blank">{{ $pageRedir->old_url }}</a></td>
+                            <td class="text-break"><a href="{{ $pageRedir->new_url }}" target="_blank">{{ $pageRedir->new_url }}</a></td>
                             <td>{{ $pageRedir->status_code }}</td>
                             <td>
                                 <a href="{{ route('admin.page-redir.show', $pageRedir->id) }}" class="btn btn-info btn-sm">View</a>
