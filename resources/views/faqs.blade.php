@@ -163,7 +163,7 @@ function filterFaqs() {
             'url' => url()->current(),
             'name' => $page->title,
             'description' => $page->meta_description,
-            'mainEntity' => $faqs->map(function ($faq) {
+            /*'mainEntity' => $faqs->map(function ($faq) {
                 return [
                     '@type' => 'Question',
                     'name' => $faq->question,
@@ -172,7 +172,7 @@ function filterFaqs() {
                         'text' => $faq->answer,
                     ],
                 ];
-            })->values()->all(),
+            })->values()->all(),*/
         ];
     @endphp
     <script type="application/ld+json">{!! json_encode($faqSchema, JSON_UNESCAPED_SLASHES | JSON_UNESCAPED_UNICODE) !!}</script>
