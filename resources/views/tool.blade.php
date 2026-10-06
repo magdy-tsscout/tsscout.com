@@ -238,7 +238,7 @@
                     'description' => $page->content_subheader ?: $page->meta_description,
                     'image' => array_values(
                         array_filter([
-                            $page->img(1),
+                            // isset($page->img) ? $page->img(1) : null,
                         ]),
                     ),
                     'brand' => [
