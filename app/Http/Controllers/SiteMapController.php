@@ -39,7 +39,7 @@ class SiteMapController extends Controller
     # ##########################################################
     public function pages() {
         $sitemap = Sitemap::create();
-        $pages = Page::all();
+        $pages = Page::where('include_in_sitemap', true)->get();
         $this->addToSitemap($sitemap, "https://app.tsscout.com/pricing", Carbon::yesterday(), Url::CHANGE_FREQUENCY_MONTHLY, 0.6);
         $staticRoutes = [
             url('/'),
