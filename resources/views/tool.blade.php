@@ -174,7 +174,7 @@
             <div class="container">
                 <div class="row">
                     <div class="col-lg-10 offset-lg-1 col-md-12 offset-md-0">
-                        @if ($Faq->isNotEmpty())
+                        @if (isset($Faq) && $Faq->isNotEmpty())
                             <!-- Check if there are any FAQs -->
                             <div class="faq-accordion" id="accordionToolFeatures">
                                 @foreach ($Faq as $faq)
