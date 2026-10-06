@@ -252,7 +252,7 @@
                     'mainEntityOfPage' => [
                         '@id' => url()->current() . '#webpage',
                     ],
-                    'additionalProperty' => collect($page->sections())
+                    /*'additionalProperty' => collect($page->sections())
                         ->map(function ($section) {
                             $value = trim(
                                 implode(' ', array_filter([$section['header'] ?? null, $section['paragraph'] ?? null])),
@@ -270,7 +270,7 @@
                         })
                         ->filter()
                         ->values()
-                        ->all(),
+                        ->all(),*/
                 ],
             ],
         ];
