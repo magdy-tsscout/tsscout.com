@@ -45,6 +45,7 @@
                         $current_section = null;
                     @endphp
 
+                    @if(isset($faqs) && $faqs->isNotEmpty())
                     @foreach($faqs as $faq)
                         @if($current_section !== $faq->section_title)
                             @if($current_section !== null)
@@ -77,6 +78,7 @@
                         </div>
                         <!-- End of Accordion Item -->
                     @endforeach
+                    @endif
 
                     @if($current_section !== null)
                         </div> <!-- Close last accordion group -->
