@@ -275,7 +275,7 @@
             ],
         ];
 
-        if ($Faq->isNotEmpty()) {
+        if (isset($Faq) && $Faq->isNotEmpty()) {
             $productSchema['@graph'][] = [
                 '@type' => 'FAQPage',
                 '@id' => url()->current() . '#faqpage',
