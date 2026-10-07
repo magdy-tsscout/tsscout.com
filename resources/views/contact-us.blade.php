@@ -40,7 +40,8 @@
                 <div class="contact-form-box">
                     <!-- Contact Form Start -->
                     <div class="contact-form">
-                        <form id="contactForm" action="#" method="POST" data-toggle="validator">
+                        <form id="contactForm" action="{{ route('contact-us.store') }}" method="POST" data-toggle="validator">
+                            @csrf
                             <div class="row">
                                 <!-- First Name -->
 <div class="form-group col-md-6 mb-4 position-relative">

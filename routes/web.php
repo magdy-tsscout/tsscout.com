@@ -24,7 +24,8 @@ use App\Http\Controllers\{
     SiteMapController,
     TitleBuilderController,
     toolsController,
-    PageRedirController
+    PageRedirController,
+    ContactsController
 };
 
 // Authentication Routes For Admin
@@ -222,6 +223,10 @@ Route::prefix('landing-pages')->group(function () {
 Route::get('/affiliate-program', function () {
     return view('affiliate-dashboard');
 })->name('affiliate-program');
+
+
+// contact-us submit
+Route::post('contact-us', [ContactsController::class, 'store'])->name("contact-us.store");
 
 // Dynamic Page Route
 Route::get('/{slug}', [PagesController::class, 'show'])->name('pages.show');
