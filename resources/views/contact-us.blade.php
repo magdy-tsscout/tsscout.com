@@ -12,6 +12,33 @@
 @section('styles')
     <!-- Custom CSS for this view -->
      <link href="{{asset('css/contact-us.css')}}" rel="stylesheet">
+     <style>
+        body.modal-open,
+        html.modal-open {
+            overflow: hidden !important;
+            height: 100%;
+        }
+
+        #contactStatusModal {
+            overflow: hidden !important;
+        }
+
+        #contactStatusModal .modal-dialog {
+            margin: 1rem auto;
+            max-width: 500px;
+            min-height: calc(100vh - 2rem);
+        }
+
+        #contactStatusModal .modal-content {
+            max-height: calc(100vh - 2rem);
+            overflow: hidden;
+        }
+
+        #contactStatusModal .modal-body {
+            overflow: hidden;
+            word-break: break-word;
+        }
+     </style>
 @endsection
 
 @section('content')
@@ -124,6 +151,21 @@
 
 </div>
 
+<div class="modal fade" id="contactStatusModal" tabindex="-1" aria-labelledby="contactStatusModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="contactStatusModalLabel">Notification</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body" id="contactStatusModalBody"></div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-primary" data-bs-dismiss="modal">OK</button>
+            </div>
+        </div>
+    </div>
+</div>
+
     <!-- clients testimonials Section End -->
 @endsection
 
@@ -160,3 +202,102 @@
     ], JSON_UNESCAPED_SLASHES | JSON_UNESCAPED_UNICODE) !!}
     </script>
 @endpush
+
+@section('script')
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            const form = document.getElementById('contactForm');
+            if (!form) {
+                return;
+            }
+
+            const submitButton = form.querySelector('button[type="submit"]');
+            const modalElement = document.getElementById('contactStatusModal');
+            const modalBody = document.getElementById('contactStatusModalBody');
+            const modalTitle = document.getElementById('contactStatusModalLabel');
+            const modalInstance = window.bootstrap && modalElement ? new bootstrap.Modal(modalElement) : null;
+            const lockViewport = function () {
+                document.documentElement.classList.add('modal-open');
+                document.body.classList.add('modal-open');
+                document.documentElement.style.overflow = 'hidden';
+                document.body.style.overflow = 'hidden';
+            };
+            const unlockViewport = function () {
+                document.documentElement.classList.remove('modal-open');
+                document.body.classList.remove('modal-open');
+                document.documentElement.style.overflow = '';
+                document.body.style.overflow = '';
+            };
+
+            if (modalElement) {
+                modalElement.addEventListener('shown.bs.modal', lockViewport);
+                modalElement.addEventListener('hidden.bs.modal', unlockViewport);
+            }
+
+            const notify = function (icon, message) {
+                if (modalInstance && modalBody && modalTitle) {
+                    modalTitle.textContent = icon === 'success' ? 'Success' : 'Error';
+                    modalBody.textContent = message;
+                    modalBody.className = icon === 'success'
+                        ? 'modal-body text-success'
+                        : 'modal-body text-danger';
+                    modalInstance.show();
+                    return;
+                }
+
+                window.alert(message);
+            };
+
+            form.addEventListener('submit', async function (event) {
+                event.preventDefault();
+
+                if (submitButton) {
+                    submitButton.disabled = true;
+                    submitButton.textContent = 'Sending...';
+                }
+
+                const payload = {
+                    fname: (document.getElementById('fname')?.value || '').trim(),
+                    lname: (document.getElementById('lname')?.value || '').trim(),
+                    email: (document.getElementById('email')?.value || '').trim(),
+                    msg: (document.getElementById('msg')?.value || '').trim()
+                };
+
+                try {
+                    const response = await fetch('{{ route('api.contact-us.store') }}', {
+                        method: 'POST',
+                        headers: {
+                            'Accept': 'application/json',
+                            'Content-Type': 'application/json'
+                        },
+                        body: JSON.stringify(payload)
+                    });
+
+                    const data = await response.json();
+
+                    if (!response.ok) {
+                        if (response.status === 422 && data.errors) {
+                            const firstError = Object.values(data.errors)[0];
+                            const message = Array.isArray(firstError) ? firstError[0] : 'Validation failed.';
+                            notify('error', message);
+                        } else {
+                            notify('error', data.message || 'Unable to submit the form right now.');
+                        }
+
+                        return;
+                    }
+
+                    notify('success', data.message || 'Contact form submitted successfully.');
+                    form.reset();
+                } catch (error) {
+                    notify('error', 'Network error. Please try again.');
+                } finally {
+                    if (submitButton) {
+                        submitButton.disabled = false;
+                        submitButton.textContent = 'Send a Message';
+                    }
+                }
+            });
+        });
+    </script>
+@endsection

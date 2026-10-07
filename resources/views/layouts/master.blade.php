@@ -196,6 +196,8 @@ function toggleVisibility(event, id) {
 <script src="{{asset('js/isotope.min.js')}}"></script>
 <!-- Magnific js file -->
 <script src="{{asset('js/jquery.magnific-popup.min.js')}}"></script>
+<!-- Swiper js file -->
+<script src="{{asset('js/swiper-bundle.min.js')}}"></script>
 <!-- SmoothScroll -->
 <script src="{{asset('js/SmoothScroll.js')}}"></script>
 <!-- Text Effect js file -->
