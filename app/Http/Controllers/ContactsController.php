@@ -15,7 +15,13 @@ class ContactsController extends Controller
     }
     public function store(Request $request)  {
         $api_url = config('services.api.url').'support/';
-        $response = Http::post($api_url, $request->all());
+        $payload = [
+            'name' => $request->input('name'),
+            'subject' => $request->input('subject')??'',
+            'email' => $request->input('email')??'',
+            'message' => $request->input('message')??'',
+        ];
+        $response = Http::post($api_url, $payload);
         // dd($response);
         if ($response->failed()) {
             return response()->json([
