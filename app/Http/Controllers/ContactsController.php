@@ -20,6 +20,7 @@ class ContactsController extends Controller
             return response()->json([
                 'message' => 'Failed to submit contact form.',
                 'errors' => $response->json(),
+                'url' => $api_url,
             ], 500);
         }
         return response()->json([
