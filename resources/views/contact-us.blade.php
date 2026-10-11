@@ -43,27 +43,17 @@
                         <form id="contactForm" action="#" method="POST" data-toggle="validator">
                             <div class="row">
                                 <!-- First Name -->
-<div class="form-group col-md-6 mb-4 position-relative">
-    <label>First Name</label>
+<div class="form-group col-md-12 mb-4 position-relative">
+    <label>Name</label>
     <div class="input-group">
         <div class="icon-wrapper">
             <img src="{{asset('images/name.svg')}}" alt="Name Icon">
         </div>
-        <input type="text" name="fname" class="form-control input-with-icon" id="fname" placeholder="Your Name" required>
+        <input type="text" name="name" class="form-control input-with-icon" id="name" placeholder="Your Name" required>
     </div>
     <div class="help-block with-errors"></div>
 </div>
-<!-- Last Name -->
-<div class="form-group col-md-6 mb-4 position-relative">
-    <label>Last Name</label>
-    <div class="input-group">
-        <div class="icon-wrapper">
-            <img src="{{asset('images/name.svg')}}" alt="Name Icon">
-        </div>
-        <input type="text" name="lname" class="form-control input-with-icon" id="lname" placeholder="Your Name" required>
-    </div>
-    <div class="help-block with-errors"></div>
-</div>
+
 <!-- Email -->
 <div class="form-group col-md-12 mb-4 position-relative">
     <label>Email</label>
