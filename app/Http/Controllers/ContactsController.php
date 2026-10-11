@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Http;
 use Illuminate\Support\Facades\Mail;
 use App\Mail\ContactFormMail;
 
@@ -13,15 +14,13 @@ class ContactsController extends Controller
         $this->send_to = config('mail.send_to');
     }
     public function store(Request $request)  {
-        $validated = $request->validate([
-            'fname' => 'required|string|max:255',
-            'lname' => 'required|string|max:255',
-            'email' => 'required|email|max:255',
-            'msg' => 'required|string',
-        ]);
-
-        Mail::to($this->send_to)->send(new ContactFormMail($validated));
-
+        $api_url = config('services.api.url').'support/';
+        $response = Http::post($api_url, $request->all());
+        if ($response->failed()) {
+            return response()->json([
+                'message' => 'Failed to submit contact form.',
+            ], 500);
+        }
         return response()->json([
             'message' => 'Contact form submitted successfully.',
         ]);
