@@ -23,6 +23,7 @@ class ContactsController extends Controller
         ];
         $response = Http::withHeaders([
             'Accept' => 'application/json',
+            'Content-Type' => 'application/json',
         ])->post($api_url, $payload);
         dd($response->body());
         if ($response->failed()) {
