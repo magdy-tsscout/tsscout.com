@@ -24,6 +24,8 @@ use App\Http\Controllers\{
     SiteMapController,
     TitleBuilderController,
     toolsController,
+    PageRedirController,
+    ContactsController
 };
 
 // Authentication Routes For Admin
@@ -54,6 +56,7 @@ Route::prefix('admin')->name('admin.')->middleware([AdminMiddleware::class])->gr
     Route::get('pages-backup/{view_name}', [PageBackupController::class,'index'])->name('pages.backup.index');
     Route::get('pages-backup/{view_name}/preview/{id}/{base}', [PageBackupController::class,'preview'])->name('pages.backup.preview')->whereIn('base',['from','to','side-by-side']);
     Route::post('pages-backup/{view_name}/restore/{id}/{base}', [PageBackupController::class,'restore'])->name('pages.backup.restore')->whereIn('base',['from','to']);
+    Route::post('pages/update-sitemap', [PagesController::class, 'updateSitemap'])->name('pages.update-sitemap');
 
 
     Route::get('blogs/create', [BlogController::class, 'create'])->name('blogs.create');
@@ -95,6 +98,9 @@ Route::prefix('admin')->name('admin.')->middleware([AdminMiddleware::class])->gr
     });
 
 
+    Route::resource('page-redir', PageRedirController::class);
+
+
 
 
 });
@@ -127,6 +133,7 @@ Route::get('author/{slug}', [AuthorDataController::class, 'show'])->name('author
 Route::get('sitemap.xml', [SiteMapController::class, 'generate'])->name('sitemap.root');
 Route::group(['prefix' => 'sitemap'], function () {
     Route::get("pages.xml", [SiteMapController::class, 'pages'])->name('sitemap.pages');
+    Route::get("tools.xml", [SiteMapController::class, 'tools'])->name('sitemap.tools');
     Route::get("{slug}.xml", [SiteMapController::class, 'blog'])->name('sitemap.blog')->whereIn('slug',['blog','tutorial','podcast']);
 });
 
@@ -216,6 +223,10 @@ Route::prefix('landing-pages')->group(function () {
 Route::get('/affiliate-program', function () {
     return view('affiliate-dashboard');
 })->name('affiliate-program');
+
+
+// contact-us submit
+Route::post('contact-us', [ContactsController::class, 'store'])->name("contact-us.store");
 
 // Dynamic Page Route
 Route::get('/{slug}', [PagesController::class, 'show'])->name('pages.show');

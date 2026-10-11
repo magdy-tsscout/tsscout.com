@@ -2,14 +2,17 @@
 
 namespace App\Models;
 
+use App\Observers\BlogObserver;
 use Illuminate\Database\Eloquent\Casts\Attribute;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Str;
 use DOMDocument;
 use DOMXPath;
+use Illuminate\Database\Eloquent\Attributes\ObservedBy;
 use Illuminate\Support\Facades\Log;
 
+#[ObservedBy(BlogObserver::class)]
 class Blog extends Model
 {
     protected $fillable = [

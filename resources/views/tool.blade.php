@@ -174,7 +174,7 @@
             <div class="container">
                 <div class="row">
                     <div class="col-lg-10 offset-lg-1 col-md-12 offset-md-0">
-                        @if ($Faq->isNotEmpty())
+                        @if (isset($Faq) && $Faq->isNotEmpty())
                             <!-- Check if there are any FAQs -->
                             <div class="faq-accordion" id="accordionToolFeatures">
                                 @foreach ($Faq as $faq)
@@ -238,7 +238,7 @@
                     'description' => $page->content_subheader ?: $page->meta_description,
                     'image' => array_values(
                         array_filter([
-                            $page->img(1),
+                            // isset($page->img) ? $page->img(1) : null,
                         ]),
                     ),
                     'brand' => [
@@ -252,7 +252,7 @@
                     'mainEntityOfPage' => [
                         '@id' => url()->current() . '#webpage',
                     ],
-                    'additionalProperty' => collect($page->sections())
+                    /*'additionalProperty' => collect($page->sections())
                         ->map(function ($section) {
                             $value = trim(
                                 implode(' ', array_filter([$section['header'] ?? null, $section['paragraph'] ?? null])),
@@ -270,12 +270,12 @@
                         })
                         ->filter()
                         ->values()
-                        ->all(),
+                        ->all(),*/
                 ],
             ],
         ];
 
-        if ($Faq->isNotEmpty()) {
+        if (isset($Faq) && $Faq->isNotEmpty()) {
             $productSchema['@graph'][] = [
                 '@type' => 'FAQPage',
                 '@id' => url()->current() . '#faqpage',

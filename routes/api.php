@@ -2,6 +2,7 @@
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\ContactsController;
 
 Route::get('/user', function (Request $request) {
     return $request->user();
@@ -17,3 +18,5 @@ Route::post('header', function(Request $request) {
     }
     return view('header')->render();
 });
+
+Route::post('contact-us', [ContactsController::class, 'store'])->name('api.contact-us.store');

@@ -96,7 +96,6 @@ class toolsController extends Controller
 
 
         $tools= tool::create($data);
-        dd($tools);
 
         return redirect()->route('tools.create')->with('success', 'Page created successfully');
     }

@@ -33,7 +33,7 @@
             color: #FCFDFF !important; /* Light text color for contrast */
         }
 
-        
+
 
         .navbar-brand {
             font-weight: bold;
@@ -185,6 +185,11 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
                 </li>
                 <li class="nav-item">
                     <a class="nav-link @if(request()->is('admin/author-data*')) active @endif" href="{{ route('admin.author-data.edit') }}"><i class="fas fa-user-edit ml-1"></i> Author Data</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link @if(request()->routeIs('admin.page-redir.*')) active @endif" href="{{ route('admin.page-redir.index') }}">
+                        <i class="fas fa-undo ml-1"></i> Page Redirects
+                    </a>
                 </li>
             </ul>
             <ul class="navbar-nav ml-auto">

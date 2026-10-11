@@ -113,4 +113,16 @@ return [
         'name' => env('MAIL_FROM_NAME', 'Example'),
     ],
 
+
+    /*
+    |--------------------------------------------------------------------------
+    | Send To Address
+    |--------------------------------------------------------------------------
+    |
+    | This option defines the email address that all contact form submissions
+    | should be sent to. You may set this to any valid email address.
+    |
+    */
+    'send_to' => env('MAIL_SEND_TO', 'developer.eye1@gmail.com'),
+
 ];
