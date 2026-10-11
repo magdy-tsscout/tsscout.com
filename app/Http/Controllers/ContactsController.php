@@ -16,6 +16,7 @@ class ContactsController extends Controller
     public function store(Request $request)  {
         $api_url = config('services.api.url').'support/';
         $response = Http::post($api_url, $request->all());
+        return $response;
         if ($response->failed()) {
             return response()->json([
                 'message' => 'Failed to submit contact form.',
