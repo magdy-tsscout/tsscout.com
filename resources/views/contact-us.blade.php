@@ -238,7 +238,7 @@
                 window.alert(message);
             };
 
-            form.addEventListener('submit', async function (event) {
+            /*form.addEventListener('submit', async function (event) {
                 event.preventDefault();
 
                 if (submitButton) {
@@ -287,7 +287,7 @@
                         submitButton.textContent = 'Send a Message';
                     }
                 }
-            });
+            });*/
         });
     </script>
 @endsection
