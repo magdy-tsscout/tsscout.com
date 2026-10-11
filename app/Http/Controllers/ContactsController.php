@@ -24,7 +24,7 @@ class ContactsController extends Controller
         $response = Http::withHeaders([
             'Accept' => 'application/json',
         ])->post($api_url, $payload);
-        // dd($response);
+        dd($response->body());
         if ($response->failed()) {
             return response()->json([
                 'message' => 'Failed to submit contact form.',
