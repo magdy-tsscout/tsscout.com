@@ -21,7 +21,9 @@ class ContactsController extends Controller
             'email' => $request->input('email')??'',
             'message' => $request->input('message')??'',
         ];
-        $response = Http::post($api_url, $payload);
+        $response = Http::withHeaders([
+            'Accept' => 'application/json',
+        ])->post($api_url, $payload);
         // dd($response);
         if ($response->failed()) {
             return response()->json([
