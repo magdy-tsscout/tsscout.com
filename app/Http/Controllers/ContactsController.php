@@ -20,8 +20,10 @@ class ContactsController extends Controller
         if ($response->failed()) {
             return response()->json([
                 'message' => 'Failed to submit contact form.',
+                'request'=> $request->all(),
                 'errors' => $response->json(),
                 'url' => $api_url,
+
             ], 500);
         }
         return response()->json([
