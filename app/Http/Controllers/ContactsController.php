@@ -28,7 +28,7 @@ class ContactsController extends Controller
         ->withOptions([
             'allow_redirects' => false
         ])->post($api_url, $payload);
-        dd($api_url,$payload,$response->body());
+        // dd($api_url,$payload,$response->body());
         if ($response->failed()) {
             return response()->json([
                 'message' => 'Failed to submit contact form.',
