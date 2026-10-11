@@ -25,7 +25,7 @@ class ContactsController extends Controller
             'Accept' => 'application/json',
             'Content-Type' => 'application/json',
         ])->post($api_url, $payload);
-        dd($response->body());
+        dd($api_url,$payload,$response->body());
         if ($response->failed()) {
             return response()->json([
                 'message' => 'Failed to submit contact form.',
