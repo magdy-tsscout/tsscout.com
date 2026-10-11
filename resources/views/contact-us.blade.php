@@ -94,6 +94,16 @@
     <div class="help-block with-errors"></div>
 </div>
 
+<div class="form-group col-md-12 mb-4 position-relative">
+    <label>subject</label>
+    <div class="input-group">
+        <div class="icon-wrapper">
+            <img src="{{asset('images/subject.svg')}}" alt="Subject Icon">
+        </div>
+        <input type="text" name="subject" class="form-control input-with-icon" id="subject" placeholder="Subject" required>
+    </div>
+    <div class="help-block with-errors"></div>
+</div>
 
                                 <!-- Message -->
                                 <div class="form-group col-md-12 mb-4 position-relative">
@@ -104,7 +114,7 @@
                                                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5.121 18.364a1.5 1.5 0 11-2.121-2.121 1.5 1.5 0 012.121 2.121zM18.364 5.121a1.5 1.5 0 10-2.121-2.121 1.5 1.5 0 002.121 2.121zM12 15v.01M12 11a3 3 0 000 6M12 3a9 9 0 11-9 9M12 15v.01M12 3a9 9 0 00-9 9M15 12a3 3 0 00-6 0" />
                                             </svg>
                                         </div>
-                                        <textarea name="msg" class="form-control pl-5" id="msg" rows="7" placeholder="Write your message here..." required></textarea>
+                                        <textarea name="message" class="form-control pl-5" id="message" rows="7" placeholder="Write your message here..." required></textarea>
                                     </div>
                                     <div class="help-block with-errors"></div>
                                 </div>
