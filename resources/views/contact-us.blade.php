@@ -247,10 +247,10 @@
                 }
 
                 const payload = {
-                    fname: (document.getElementById('fname')?.value || '').trim(),
-                    lname: (document.getElementById('lname')?.value || '').trim(),
+                    name: (document.getElementById('name')?.value || '').trim(),
+                    subject: (document.getElementById('subject')?.value || '').trim(),
                     email: (document.getElementById('email')?.value || '').trim(),
-                    msg: (document.getElementById('msg')?.value || '').trim()
+                    message: (document.getElementById('msg')?.value || '').trim()
                 };
 
                 try {
@@ -264,7 +264,7 @@
                     });
 
                     const data = await response.json();
-
+                    console.log(data);
                     if (!response.ok) {
                         if (response.status === 422 && data.errors) {
                             const firstError = Object.values(data.errors)[0];
