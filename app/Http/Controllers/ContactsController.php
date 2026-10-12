@@ -12,31 +12,43 @@ class ContactsController extends Controller
     public function __construct() {
         $this->send_to = config('mail.send_to');
     }
+
+
     public function store(Request $request)  {
 
-$curl = curl_init();
 
-curl_setopt_array($curl, [
-  CURLOPT_URL => "https://app.tsscout.com/api/support?email=Megane%40gmail.com&subject=test-api&message=this+is+message+body+1791806885&name=Megane+Schneider",
-  CURLOPT_RETURNTRANSFER => true,
-  CURLOPT_ENCODING => "",
-  CURLOPT_MAXREDIRS => 10,
-  CURLOPT_TIMEOUT => 30,
-  CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
-  CURLOPT_CUSTOMREQUEST => "POST",
-]);
+        $payload = [
+            'name' => $request->input('name')??'',
+            'subject' => $request->input('subject')??'',
+            'email' => $request->input('email')??'',
+            'message' => $request->input('message')??'',
+        ];
 
-$response = curl_exec($curl);
-$err = curl_error($curl);
+        $curl = curl_init();
 
-curl_close($curl);
+        curl_setopt_array($curl, [
+        CURLOPT_URL => "https://app.tsscout.com/api/support?".http_build_query($payload),
+        CURLOPT_RETURNTRANSFER => true,
+        CURLOPT_ENCODING => "",
+        CURLOPT_MAXREDIRS => 10,
+        CURLOPT_TIMEOUT => 30,
+        CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
+        CURLOPT_CUSTOMREQUEST => "POST",
+        ]);
 
-if ($err) {
-  echo "cURL Error #:" . $err;
-} else {
-  echo $response;
-}
-return $response;
+        $response = curl_exec($curl);
+        $err = curl_error($curl);
+
+        curl_close($curl);
+
+        if ($err) {
+            echo "cURL Error #:" . $err;
+        } else {
+            echo $response;
+        }
+        return $response;
+
+
         $api_url = config('services.api.url').'support/';
         $payload = [
             'name' => $request->input('name'),
