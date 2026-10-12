@@ -39,6 +39,7 @@ class ContactsController extends Controller
         ]);
 
         $response = curl_exec($curl);
+        dd($response);
         $err = curl_error($curl);
         $httpCode = curl_getinfo($curl, CURLINFO_HTTP_CODE);
         curl_close($curl);
