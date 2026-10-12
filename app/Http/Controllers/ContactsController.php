@@ -27,7 +27,7 @@ class ContactsController extends Controller
 
 
         $curl = curl_init();
-        $url = config('services.api.url').'support/';
+        $url = config('services.api.url').'support/?'.http_build_query($payload);
         curl_setopt_array($curl, [
             CURLOPT_URL => $url,
             CURLOPT_RETURNTRANSFER => true,
