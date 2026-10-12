@@ -3,8 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Mail;
-use App\Mail\ContactFormMail;
+use Illuminate\Support\Facades\Http;
 
 class ContactsController extends Controller
 {
@@ -14,96 +13,51 @@ class ContactsController extends Controller
     }
 
 
-    public function store(Request $request)  {
-
-
-        $payload = [
-            'name' => $request->input('name')??'',
-            'subject' => $request->input('subject')??'',
-            'email' => $request->input('email')??'',
-            'message' => $request->input('message')??'',
-        ];
-
-
-
-        $curl = curl_init();
-        $url = config('services.api.url').'support/?'.http_build_query($payload);
-        curl_setopt_array($curl, [
-            CURLOPT_URL => $url,
-            CURLOPT_RETURNTRANSFER => true,
-            CURLOPT_ENCODING => "",
-            CURLOPT_MAXREDIRS => 10,
-            CURLOPT_TIMEOUT => 30,
-            CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
-            CURLOPT_CUSTOMREQUEST => "POST",
-            CURLOPT_POSTFIELDS => json_encode($payload),
-            CURLOPT_HTTPHEADER => [
-                "Accept: application/json",
-                "Content-Type: application/json"
-            ],
-            CURLOPT_FOLLOWLOCATION => false,
+    public function store(Request $request)
+    {
+        $validated = $request->validate([
+            'name' => 'required|string|max:255',
+            'subject' => 'required|string|max:255',
+            'email' => 'required|email|max:255',
+            'message' => 'required|string',
         ]);
 
-        $response = curl_exec($curl);
-        $err = curl_error($curl);
-        dd($response, $err);
+        $apiUrl = rtrim((string) config('services.api.url'), '/');
 
-        curl_close($curl);
-
-        if ($err) {
-            return "cURL Error #:" . $err;
-        } else {
-            return json_decode($response, true);
-        }
-
-
-
-        $api_url = config('services.api.url').'support/';
-        $payload = [
-            'name' => $request->input('name'),
-            'subject' => $request->input('subject')??'',
-            'email' => $request->input('email')??'',
-            'message' => $request->input('message')??'',
-        ];
-
-        $curl = curl_init();
-        curl_setopt_array($curl, [
-            CURLOPT_URL => $api_url,
-            CURLOPT_RETURNTRANSFER => true,
-            CURLOPT_ENCODING => "",
-            CURLOPT_MAXREDIRS => 10,
-            CURLOPT_TIMEOUT => 30,
-            CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
-            CURLOPT_CUSTOMREQUEST => "POST",
-            CURLOPT_POSTFIELDS => json_encode($payload),
-            CURLOPT_HTTPHEADER => [
-                "Accept: application/json",
-                "Content-Type: application/json"
-            ],
-            CURLOPT_FOLLOWLOCATION => false,
-        ]);
-
-        $response = curl_exec($curl);
-        dd($response);
-        $err = curl_error($curl);
-        $httpCode = curl_getinfo($curl, CURLINFO_HTTP_CODE);
-        curl_close($curl);
-
-        if ($err) {
+        if ($apiUrl === '') {
             return response()->json([
-                'message' => 'cURL Error: ' . $err,
-            ], 500);
-        } elseif ($httpCode >= 400) {
-            $responseData = json_decode($response, true);
-            return response()->json([
-                'message' => 'Failed to submit contact form.',
-                'request'=> $request->all(),
-                'errors' => $responseData ?? [],
-                'url' => $api_url,
+                'success' => false,
+                'message' => 'Support service is not configured.',
             ], 500);
         }
+
+        $response = Http::asForm()
+            ->acceptJson()
+            ->withHeaders([
+                'X-Requested-With' => 'XMLHttpRequest',
+                'API-KEY' => (string) env('API_KEY'),
+                'API-SECRET' => (string) env('API_SECRET'),
+            ])
+            ->post($apiUrl . '/support', $validated);
+
+        if ($response->successful()) {
+            return response()->json([
+                'success' => true,
+                'message' => data_get($response->json(), 'message', 'Contact form submitted successfully.'),
+            ]);
+        }
+
+        if ($response->status() === 422) {
+            return response()->json([
+                'success' => false,
+                'errors' => data_get($response->json(), 'errors', []),
+                'message' => data_get($response->json(), 'message', 'Validation failed.'),
+            ], 422);
+        }
+
         return response()->json([
-            'message' => 'Contact form submitted successfully.',
-        ]);
+            'success' => false,
+            'message' => data_get($response->json(), 'message', 'Failed to submit contact form.'),
+        ], $response->status() >= 400 ? $response->status() : 500);
     }
 }

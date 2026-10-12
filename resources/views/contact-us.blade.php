@@ -205,11 +205,13 @@
 
 @section('script')
     <script>
-        document.addEventListener('DOMContentLoaded', function () {
+        function bindContactFormHandler() {
             const form = document.getElementById('contactForm');
-            if (!form) {
+            if (!form || form.dataset.ajaxBound === '1') {
                 return;
             }
+
+            form.dataset.ajaxBound = '1';
 
             const submitButton = form.querySelector('button[type="submit"]');
             const modalElement = document.getElementById('contactStatusModal');
@@ -260,8 +262,7 @@
                     name: (document.getElementById('name')?.value || '').trim(),
                     subject: (document.getElementById('subject')?.value || '').trim(),
                     email: (document.getElementById('email')?.value || '').trim(),
-                    message: (document.getElementById('message')?.value || '').trim(),
-                    csrf_token: '{{ csrf_token() }}'
+                    message: (document.getElementById('message')?.value || '').trim()
                 };
 
                 try {
@@ -269,13 +270,13 @@
                         method: 'POST',
                         headers: {
                             'Accept': 'application/json',
-                            'Content-Type': 'application/json'
+                            'Content-Type': 'application/json',
+                            'X-Requested-With': 'XMLHttpRequest'
                         },
                         body: JSON.stringify(payload)
                     });
 
                     const data = await response.json();
-                    console.log(data);
                     if (!response.ok) {
                         if (response.status === 422 && data.errors) {
                             const firstError = Object.values(data.errors)[0];
@@ -299,6 +300,9 @@
                     }
                 }
             });
-        });
+        }
+
+        bindContactFormHandler();
+        window.addEventListener('pageshow', bindContactFormHandler);
     </script>
 @endsection

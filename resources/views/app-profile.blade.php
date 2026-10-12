@@ -324,7 +324,9 @@
 
                 <!-- Support & Resources -->
                 <div class="contact-form col-lg-6 support-resources tab-content" id="support"  >
-                    <form id="contactForm" action="#" method="POST" data-toggle="validator">
+                    <form id="supportContactForm" action="{{ route('contact-us.store') }}" method="POST" data-toggle="validator">
+                        @csrf
+                        <input type="hidden" name="subject" value="Profile Support Request">
                         <div class="row">
                 <!-- Email -->
 <div class="form-group col-md-12 mb-4 position-relative">
@@ -335,7 +337,7 @@
         <div class="icon-wrapper">
             <img src="{{asset('images/email.svg')}}" alt="Email Icon">
         </div>
-        <input type="email" name="email" class="form-control input-with-icon" id="email" placeholder="Email@example.com" required>
+        <input type="email" name="email" class="form-control input-with-icon" id="support_email" placeholder="Email@example.com" required>
     </div>
     <div class="help-block with-errors"></div>
 </div>
@@ -350,7 +352,7 @@
                                                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5.121 18.364a1.5 1.5 0 11-2.121-2.121 1.5 1.5 0 012.121 2.121zM18.364 5.121a1.5 1.5 0 10-2.121-2.121 1.5 1.5 0 002.121 2.121zM12 15v.01M12 11a3 3 0 000 6M12 3a9 9 0 11-9 9M12 15v.01M12 3a9 9 0 00-9 9M15 12a3 3 0 00-6 0" />
                                             </svg>
                                         </div>
-                                        <textarea name="msg" class="form-control pl-5" id="msg" rows="7" placeholder="Write your message here..." required></textarea>
+                                        <textarea name="message" class="form-control pl-5" id="support_message" rows="7" placeholder="Write your message here..." required></textarea>
                                     </div>
                                     <div class="help-block with-errors"></div>
                                 </div>
@@ -449,6 +451,71 @@ paypalBtn.addEventListener('click', function() {
             cardSection.style.display = 'none';   // Hide the form
         }
     });
+</script>
+
+<script>
+    function bindProfileSupportFormHandler() {
+        const form = document.getElementById('supportContactForm');
+        if (!form || form.dataset.ajaxBound === '1') {
+            return;
+        }
+
+        form.dataset.ajaxBound = '1';
+        form.addEventListener('submit', async function (event) {
+            event.preventDefault();
+
+            const submitButton = form.querySelector('button[type="submit"]');
+            if (submitButton) {
+                submitButton.disabled = true;
+                submitButton.textContent = 'Sending...';
+            }
+
+            const payload = {
+                name: 'Profile User',
+                subject: 'Profile Support Request',
+                email: (document.getElementById('support_email')?.value || '').trim(),
+                message: (document.getElementById('support_message')?.value || '').trim()
+            };
+
+            try {
+                const response = await fetch('{{ route('api.contact-us.store') }}', {
+                    method: 'POST',
+                    headers: {
+                        'Accept': 'application/json',
+                        'Content-Type': 'application/json',
+                        'X-Requested-With': 'XMLHttpRequest'
+                    },
+                    body: JSON.stringify(payload)
+                });
+
+                const data = await response.json();
+                if (!response.ok) {
+                    if (response.status === 422 && data.errors) {
+                        const firstError = Object.values(data.errors)[0];
+                        const message = Array.isArray(firstError) ? firstError[0] : 'Validation failed.';
+                        alert(message);
+                    } else {
+                        alert(data.message || 'Unable to submit your support request right now.');
+                    }
+
+                    return;
+                }
+
+                alert(data.message || 'Your message has been sent successfully.');
+                form.reset();
+            } catch (error) {
+                alert('Network error. Please try again.');
+            } finally {
+                if (submitButton) {
+                    submitButton.disabled = false;
+                    submitButton.textContent = 'Send a Message';
+                }
+            }
+        });
+    }
+
+    bindProfileSupportFormHandler();
+    window.addEventListener('pageshow', bindProfileSupportFormHandler);
 </script>
 
     <!-- clients testimonials Section End -->
