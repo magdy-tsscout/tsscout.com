@@ -226,7 +226,8 @@ Route::get('/affiliate-program', function () {
 
 
 // contact-us submit
-Route::post('contact-us', [ContactsController::class, 'store'])->name("contact-us.store");
+Route::post('contact-us', [ContactsController::class, 'store'])
+    ->name("contact-us.store")->middleware('throttle:10,1');
 
 // Dynamic Page Route
 Route::get('/{slug}', [PagesController::class, 'show'])->name('pages.show');

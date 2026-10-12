@@ -27,7 +27,7 @@ class ContactsController extends Controller
         $curl = curl_init();
 
         curl_setopt_array($curl, [
-        CURLOPT_URL => "https://app.tsscout.com/api/support?".http_build_query($payload),
+        CURLOPT_URL => config('services.api.url').'support/?'.http_build_query($payload),
         CURLOPT_RETURNTRANSFER => true,
         CURLOPT_ENCODING => "",
         CURLOPT_MAXREDIRS => 10,
@@ -44,7 +44,7 @@ class ContactsController extends Controller
         if ($err) {
             echo "cURL Error #:" . $err;
         } else {
-            echo $response;
+            $response = json_decode($response, true);
         }
         return $response;
 
