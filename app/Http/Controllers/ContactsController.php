@@ -3,7 +3,6 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Http;
 use Illuminate\Support\Facades\Mail;
 use App\Mail\ContactFormMail;
 
@@ -21,21 +20,40 @@ class ContactsController extends Controller
             'email' => $request->input('email')??'',
             'message' => $request->input('message')??'',
         ];
-        $response = Http::withHeaders([
-            'Accept' => 'application/json',
-            'Content-Type' => 'application/json',
-        ])
-        ->withOptions([
-            'allow_redirects' => false
-        ])->post($api_url, $payload);
-        // dd($api_url,$payload,$response->body());
-        if ($response->failed()) {
+
+        $curl = curl_init();
+        curl_setopt_array($curl, [
+            CURLOPT_URL => $api_url,
+            CURLOPT_RETURNTRANSFER => true,
+            CURLOPT_ENCODING => "",
+            CURLOPT_MAXREDIRS => 10,
+            CURLOPT_TIMEOUT => 30,
+            CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
+            CURLOPT_CUSTOMREQUEST => "POST",
+            CURLOPT_POSTFIELDS => json_encode($payload),
+            CURLOPT_HTTPHEADER => [
+                "Accept: application/json",
+                "Content-Type: application/json"
+            ],
+            CURLOPT_FOLLOWLOCATION => false,
+        ]);
+
+        $response = curl_exec($curl);
+        $err = curl_error($curl);
+        $httpCode = curl_getinfo($curl, CURLINFO_HTTP_CODE);
+        curl_close($curl);
+
+        if ($err) {
+            return response()->json([
+                'message' => 'cURL Error: ' . $err,
+            ], 500);
+        } elseif ($httpCode >= 400) {
+            $responseData = json_decode($response, true);
             return response()->json([
                 'message' => 'Failed to submit contact form.',
                 'request'=> $request->all(),
-                'errors' => $response->json(),
+                'errors' => $responseData ?? [],
                 'url' => $api_url,
-
             ], 500);
         }
         return response()->json([
