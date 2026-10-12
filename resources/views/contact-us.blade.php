@@ -260,7 +260,8 @@
                     name: (document.getElementById('name')?.value || '').trim(),
                     subject: (document.getElementById('subject')?.value || '').trim(),
                     email: (document.getElementById('email')?.value || '').trim(),
-                    message: (document.getElementById('message')?.value || '').trim()
+                    message: (document.getElementById('message')?.value || '').trim(),
+                    csrf_token: '{{ csrf_token() }}'
                 };
 
                 try {
