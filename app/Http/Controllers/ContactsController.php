@@ -42,11 +42,11 @@ class ContactsController extends Controller
         curl_close($curl);
 
         if ($err) {
-            // return "cURL Error #:" . $err;
+            return "cURL Error #:" . $err;
         } else {
-            // $response = json_decode($response, true);
+            return json_decode($response, true);
         }
-        dd($response,$err);
+
 
 
         $api_url = config('services.api.url').'support/';

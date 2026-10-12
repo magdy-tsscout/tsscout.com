@@ -205,7 +205,7 @@
 
 @section('script')
     <script>
-        /*document.addEventListener('DOMContentLoaded', function () {
+        document.addEventListener('DOMContentLoaded', function () {
             const form = document.getElementById('contactForm');
             if (!form) {
                 return;
@@ -298,6 +298,6 @@
                     }
                 }
             });
-        });*/
+        });
     </script>
 @endsection
