@@ -24,6 +24,8 @@ class ContactsController extends Controller
             'message' => $request->input('message')??'',
         ];
 
+        dd($payload);
+
         $curl = curl_init();
 
         curl_setopt_array($curl, [
