@@ -42,9 +42,9 @@ class ContactsController extends Controller
         curl_close($curl);
 
         if ($err) {
-            echo "cURL Error #:" . $err;
+            return "cURL Error #:" . $err;
         } else {
-            $response = json_decode($response, true);
+            // $response = json_decode($response, true);
         }
         return $response;
 
