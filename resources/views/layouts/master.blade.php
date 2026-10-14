@@ -212,5 +212,21 @@ function toggleVisibility(event, id) {
 
 @yield('script')
 <x-refgrow />
+
+<script>
+  (function() {
+    var hasExited = false;
+    document.addEventListener('visibilitychange', function() {
+      if (document.visibilityState === 'hidden' && !hasExited) {
+        hasExited = true;
+        window.dataLayer = window.dataLayer || [];
+        window.dataLayer.push({
+          'event': 'user_left_page',
+          'page_location': window.location.pathname
+        });
+      }
+    });
+  })();
+</script>
 </body>
 </html>
