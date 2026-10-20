@@ -225,6 +225,8 @@ Route::get('/affiliate-program', function () {
 })->name('affiliate-program');
 
 
+Route::view('tsscout-reengage2', 'tsscout-reengage2-v2');
+
 // contact-us submit
 Route::post('contact-us', [ContactsController::class, 'store'])
     ->name("contact-us.store");
