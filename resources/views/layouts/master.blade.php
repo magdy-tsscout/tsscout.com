@@ -77,6 +77,8 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 
     <div class="gredient">
 
+        <x-blackfriday-offer />
+
     @include('header')
     @include('partials.public-seo')
 
