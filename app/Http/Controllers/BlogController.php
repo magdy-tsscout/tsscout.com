@@ -393,16 +393,18 @@ class BlogController extends Controller
         }
         $blog= $blog->first();
 
+        // If the blog does not exist, return the custom 404 view
+        if (!$blog) {
+            return response()->view('404', [], 404);
+        }
+
         if( $blog->blog_type == 'tutorial' && request()->route()->getName() !== 'tutorial.show' ) {
             http_response_code(301);
             return redirect(route('tutorial.show', ['slug'=>$slug]), 301);
             // return redirect(route('tutorial.show', ['slug'=>$slug]), 301);
         }
 
-        // If the blog does not exist, return the custom 404 view
-        if (!$blog) {
-            return response()->view('404', [], 404);
-        }
+
 
         // Read headings for TOC without mutating stored HTML content.
         $headings = [];

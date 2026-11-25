@@ -93,6 +93,11 @@ class Blog extends Model
         });
     }
 
+    protected function getContentAttribute(string $value) {
+        $content = $this->replaceAllYoutubeByEmbed($value);
+        return $content;
+    }
+
     public function scopePublished($query)
     {
         return $query->where('published', true);
@@ -120,10 +125,7 @@ class Blog extends Model
 
 
 
-    protected function getContentAttribute(string $value) {
-        $content = $this->replaceAllYoutubeByEmbed($value);
-        return $content;
-    }
+
 
     public function setPublishedAttribute($value)
     {
