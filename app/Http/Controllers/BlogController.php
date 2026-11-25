@@ -388,7 +388,6 @@ class BlogController extends Controller
    {
         // Find the blog by slug
         $blog = Blog::where('slug', $slug);
-
         if( !Auth::check() ) {
             $blog->where('published', true);
         }

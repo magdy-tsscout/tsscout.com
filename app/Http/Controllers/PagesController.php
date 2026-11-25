@@ -209,7 +209,6 @@ private function getFaqsByPageName($pageName)
 
     private function handleBlogView($identifier){
         $blog = Blog::where('slug', $identifier)->first();
-
         if ($blog) {
             return $this->loadBlogDetailsPage($blog);
         }

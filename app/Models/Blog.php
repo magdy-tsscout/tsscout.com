@@ -120,6 +120,10 @@ class Blog extends Model
 
 
 
+    protected function getContentAttribute(string $value) {
+        $content = $this->replaceAllYoutubeByEmbed($value);
+        return $content;
+    }
 
     public function setPublishedAttribute($value)
     {
@@ -252,8 +256,8 @@ class Blog extends Model
         return null;
     }
 
-    private function getYouTubeVideoId($url) {
-        $pattern = '%(?:youtube(?:-nocookie)?\.com/(?:[^/]+/.+/|(?:v|e(?:mbed)?)/|.*[?&]v=|live/)|youtu\.be/)([^"&?/]{11})%i';
+    private static function getYouTubeVideoId($url) {
+        $pattern = '%(?:youtube(?:-nocookie)?\.com/(?:[^/]+/.+/|(?:v|e(?:mbed)?)/|.*[?&]v=|live/|shorts/)|youtu\.be/)([^"&?/\s<]{11})%i';
 
         if (preg_match($pattern, $url, $match)) {
             return $match[1];
@@ -261,6 +265,71 @@ class Blog extends Model
 
         return null;
     }
+
+
+    public static function contentHasYoutube(string $content) {
+        if( empty($content) ) {
+            return false;
+        }
+        return preg_match('/youtube\.com|youtu\.be/i', $content);
+    }
+
+    public static function replaceAllYoutubeByEmbed(string $content): string {
+        if (empty($content) || !self::contentHasYoutube($content)) {
+            return $content;
+        }
+
+        $buildIframe = static function (string $videoId): string {
+            $safeId = htmlspecialchars($videoId, ENT_QUOTES, 'UTF-8');
+            return '<iframe width="100%" height="415" src="https://www.youtube.com/embed/' . $safeId . '" frameborder="0" allowfullscreen></iframe>';
+        };
+
+        $pattern = '~'
+            . '(<iframe\b[^>]*>.*?</iframe>)'
+            . '|'
+            . '(<a\b[^>]*\bhref=["\']([^"\']*(?:youtube(?:-nocookie)?\.com|youtu\.be)[^"\']*)["\'][^>]*>(.*?)</a>)'
+            . '|'
+            . '(<[^>]+>)'
+            . '|'
+            . '(https?://(?:www\.|m\.)?(?:youtube(?:-nocookie)?\.com/[^\s<>"\']+|youtu\.be/[^\s<>"\']+))'
+            . '~is';
+
+        return preg_replace_callback($pattern, static function (array $matches) use ($buildIframe): string {
+            // Preserve existing iframes
+            if (!empty($matches[1])) {
+                return $matches[1];
+            }
+
+            // Convert <a> tags whose href is a YouTube video and whose text is a URL or empty
+            if (!empty($matches[2])) {
+                $href = html_entity_decode($matches[3], ENT_QUOTES, 'UTF-8');
+                $linkText = trim(strip_tags($matches[4]));
+                $videoId = self::getYouTubeVideoId($href);
+
+                if ($videoId && ($linkText === '' || preg_match('~^(https?://)?(www\.|m\.)?(youtube(?:-nocookie)?\.com|youtu\.be)~i', $linkText))) {
+                    return $buildIframe($videoId);
+                }
+
+                return $matches[2];
+            }
+
+            // Preserve other HTML tags and their attributes
+            if (!empty($matches[5])) {
+                return $matches[5];
+            }
+
+            // Convert bare YouTube URLs in text
+            if (!empty($matches[6])) {
+                $url = html_entity_decode($matches[6], ENT_QUOTES, 'UTF-8');
+                $videoId = self::getYouTubeVideoId($url);
+
+                return $videoId ? $buildIframe($videoId) : $matches[6];
+            }
+
+            return $matches[0];
+        }, $content) ?? $content;
+    }
+
 
 
 }
